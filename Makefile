@@ -1,10 +1,33 @@
 all: main.pdf
 
-main.pdf: main.tex main.toc
+main.pdf: main.tex main.toc main.bbl main.ind glossaries
+	pdflatex $<
 	pdflatex $<
 
-main.toc: main.tex
+# Index
+%.ind: %.idx
+		texindy -I omega --language english $<
+
+%.idx: %.tex
+		pdflatex $<
+
+# Bibliography
+%.bbl: %.aux
+	bibtex $<
+
+%.aux: %.tex database.bib
 	pdflatex $<
 
+# Table of contents
+%.toc: %.tex
+	pdflatex $<
+
+# Glossaries
+glossaries: glossaries.tex
+	makeglossaries main
+
+# Phony targets
 clean:
-	rm main.aux main.log main.pdf main.toc
+	rm -f main.aux main.pdf main.toc main.bbl main.blg main.ind main.idx main.out main.gl[gos] main.xdy main.lo[ftg]
+
+rebase: clean all

@@ -1,13 +1,46 @@
 \documentclass{article}
+
+% My own macros
+\input{definitions}
+
 % Packages
-\usepackage[resetfonts]{cmap}
-\usepackage{lmodern}
-\usepackage[english]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{metalogo}
+\usepackage[resetfonts]{cmap}  % CMAP
+\usepackage{lmodern}           % Latin modern fonts
+\usepackage[english]{babel}    % Babel
+\usepackage[utf8]{inputenc}    % UTF-8
+\usepackage[T1]{fontenc}       % T1 font encoding
+\usepackage{hologo}            % \XeLaTeX{} and friends
+\usepackage{hyperref}          % Hypertext links
+\usepackage{setspace}          % Spacing
+
+% Settings
+\frenchspacing                 % Enable french spacing
+
+% Bibliography
+\bibliographystyle{plainnat}
+\usepackage[square,sort,comma,numbers]{natbib}
+
+% Index
+\usepackage{makeidx}
+\makeindex
+
+% Glossary
+\usepackage[xindy]{glossaries}
+\input{glossaries}
+\glossarystyle{altlist}
+\makeglossaries
+
 \begin{document}
+  
+  % Front matter
+  \pagenumbering{roman}
   \tableofcontents
+  \listoftables
+  \listoffigures
+  \newpage
+
+  % Main matter
+  \pagenumbering{arabic}
   \section{Introduction}
   \section{Existing \emph{Fithesis} Codebase}
   \subsection{\emph{Fithesis} Document Class}
@@ -16,17 +49,39 @@
   \section{Research}
   \subsection{User Survey}
   \subsection{Comparison with Existing Solutions}
+  As a part of my initial research, I assessed several templates for the typesetting of theses in order to gather ideas for improvements of the fithesis class. Initially, I will focus on templates used at czech universities. I will then broaden the scope to include both the templates of foreign universities and generic thesis typesetting classes for \gls{latex} from \gls{ctan}.
+
+  The first of the reviewed classes was Petr Olšák's \texttt{CTUStyle} \gls{tex} macro package, which is one of the thesis typesetting templates used at the Faculty of Electrical Engineering of the Czech Technical University in Prague \cite{Olsak13}. Rather than being a \gls{latex} document class, \texttt{CTUStyle} is a set of plain\gls{tex} macros, which only depend on the \gls{csplain} and \gls{opmac} macro packages.
+  % Amongst them were \LaTeX{} document classes used at both czech and foreign universities, such as ..., as well as generic classes from \gls{ctan}.
+
+  % CTAN: muthesis, ... from Kumar07
+  % CZ:   CTUstyle
+
   \subsection{Technical Limitations of the \emph{Fithesis} Document Classes}
   \subsection{Usability and Maintainability}
   \section{Results}
   \subsection{\emph{Fithesis2} Class Improvements}
-  \subsubsection{\XeLaTeX{} Engine Support}
+  \subsubsection{\Hologo{XeLaTeX} Engine Support}
   \subsubsection{OpenType Font Support}
   \subsection{Thesis Writing Guidelines}
   \section{Conclusions}
-  \renewcommand\thesection{\Alph{section}}
-  \setcounter{section}{0}
+  \appendix
   \section{Example Theses}
   \section{User Guide}
   \section{Technical Documentation}
+
+  % Bibliography
+  \newpage
+  {\footnotesize
+  \singlespacing
+  \nocite{*}
+  \bibliography{database}}
+
+  % Glossary
+  \newpage
+  \printglossaries
+
+  % Index
+  \printindex
+
 \end{document}
