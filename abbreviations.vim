@@ -1,6 +1,7 @@
-" Glossaries
+" Acronyms
 abbr ctan \gls{ctan}
-abbr latex \gls{latex}
+abbr fi \gls{fi}
 abbr tex \gls{tex}
+abbr latex \gls{latex}
 abbr csplain \gls{csplain}
 abbr opmac \gls{opmac}

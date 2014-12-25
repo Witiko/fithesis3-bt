@@ -12,6 +12,11 @@
 \usepackage{hologo}            % \XeLaTeX{} and friends
 \usepackage{hyperref}          % Hypertext links
 \usepackage{setspace}          % Spacing
+\usepackage{xcolor}            % Colors
+\definecolor{pantone122}{HTML}{FFD451}
+\definecolor{pantone300}{HTML}{0067C6}
+\definecolor{cured}{RGB}{210,45,64}
+\definecolor{cugray}{gray}{0.1}
 
 % Settings
 \frenchspacing                 % Enable french spacing
@@ -25,14 +30,15 @@
 \makeindex
 
 % Glossary
-\usepackage[xindy]{glossaries}
+\usepackage[xindy,acronym]{glossaries}
 \input{glossaries}
-\glossarystyle{altlist}
+\glossarystyle{altlistgroup}
 \makeglossaries
 
 \begin{document}
   
   % Front matter
+  % \doublespacing
   \pagenumbering{roman}
   \tableofcontents
   \listoftables
@@ -49,13 +55,20 @@
   \section{Research}
   \subsection{User Survey}
   \subsection{Comparison with Existing Solutions}
-  As a part of my initial research, I assessed several templates for the typesetting of theses in order to gather ideas for improvements of the fithesis class. Initially, I will focus on templates used at czech universities. I will then broaden the scope to include both the templates of foreign universities and generic thesis typesetting classes for \gls{latex} from \gls{ctan}.
+  As a part of my initial research, I assessed several templates for the typesetting of theses in order to gather ideas for improvements of the fithesis class. Initially, I will focus on templates used at czech technical universities. I will then broaden the scope to include both the templates of foreign universities and generic thesis typesetting classes for \gls{latex} from \gls{ctan}.
 
-  The first of the reviewed classes was Petr Olšák's \texttt{CTUStyle} \gls{tex} macro package, which is one of the thesis typesetting templates used at the Faculty of Electrical Engineering of the Czech Technical University in Prague \cite{Olsak13}. Rather than being a \gls{latex} document class, \texttt{CTUStyle} is a set of plain\gls{tex} macros, which only depend on the \gls{csplain} and \gls{opmac} macro packages.
+  \subsubsection{\inx{CTUStyle} and \inx{CUStyle}}
+  The first of the reviewed thesis typesetting templates were Petr Olšák's CTUStyle \cite{ctustyle} and CUStyle \cite{custyle} packages, which are used at the Faculty of Electrical Engineering of the Czech Technical University in Prague and at the Charles University in Prague, respectively. Both templates are a set of plain \gls{tex} macros, whose sole dependencies are the \inx{\gls{csplain}} and \inx{\gls{opmac}} macro packages.
+  
+  The templates are closely tied with the visual styles of the universities, which is mainly achieved through color-coding. Aside from black-and-white text, the CTUstyle package typesets various typographic elements in the \clrpicker{pantone300} Pantone 300 color, which makes for a visually pleasing combination. The CUstyle package uses the combination of black, \textcolor{cugray}{grey} and \clrpicker{cured} bright maroon to a similar end. By typesetting various typographic elements in the \clrpicker{pantone122} Pantone 122 color, which is a part of the visual identity of \gls{fi} \cite{muvis,filogo}, and by replacing the logotype of the faculty with its colored version, which was created as a part of Matúš Kominka's bachelor thesis \cite{Kominka08}, the fithesis class could be likewise revitalized.
+  % twoside rather than oneside
   % Amongst them were \LaTeX{} document classes used at both czech and foreign universities, such as ..., as well as generic classes from \gls{ctan}.
 
+  % Karlova Univerzita -- http://www.ff.cuni.cz/FF-1492-version1-2009_metodika_BcDp.pdf, http://www.mff.cuni.cz/studium/phd/phd_sablona.htm
+  % ČVUT -- felthesis
+  % VUT -- http://latex.feec.vutbr.cz/cz/latex/download/sablona-pro-bp-dp-v2-4/
   % CTAN: muthesis, ... from Kumar07
-  % CZ:   CTUstyle
+  % ... more from https://tug.org/pracjourn/2007-4/
 
   \subsection{Technical Limitations of the \emph{Fithesis} Document Classes}
   \subsection{Usability and Maintainability}

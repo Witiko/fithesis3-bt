@@ -1,4 +1,16 @@
-% Typesets a CSplain logo
-\newcommand{\CSplain}{
-  \ensuremath{\mathcal{C}\!}\raisebox{-0.5ex}{S}plain
+% The CSplain logo
+\newcommand{\CSplain}{%
+  \,$\cal{CS}$plain%
+}
+
+% Index and print
+\newcommand{\inx}[1]{%
+  \index{#1}#1%
+}
+
+% Color picker
+\newcommand{\clrpicker}[1]{%
+  % The 0.7em is font-specific
+  % It roughly represents caps heigth - baseline
+  \textcolor{#1}{\rule{0.7em}{0.7em}}%
 }
