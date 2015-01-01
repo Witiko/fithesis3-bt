@@ -1,4 +1,16 @@
-\newacronym{fi}{FI MU}{The Faculty of Informatics of the Masaryk University in Brno}
+\usepackage{xparse} % A macro for creating an abbreviated glossary entry
+% see: <http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management>
+\DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
+  \newglossaryentry{gls-#3}{name={#5},text={#5\glsadd{#3}},
+    description={#6},#1
+  }
+  \newacronym[see={[Glossary:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
+}
+
+\newacronym{fi}{FI MU}{the Faculty of Informatics of the Masaryk University in Brno}
+\newacronym{mu}{MU}{the Masaryk University in Brno}
+\newacronym{cvut}{\v{C}VUT}{the Czech Technical University in Prague}
+\newacronym{cuni}{CUNI}{the Charles University in Prague}
 
 \newglossaryentry{ctan}{
   first = {the Comprehensive \TeX{} Archive Network (CTAN)},
@@ -9,6 +21,12 @@
 \newglossaryentry{latex}{
   name = \LaTeX{},
   description = {A macro package on top of \gls{tex}, which allows for the separation of the design and the contents of a document},
+}
+
+\newglossaryentry{docclass}{
+  name = \LaTeX{} document class,
+  plural = \LaTeX{} document classes,
+  description = {A specification of the type of a \gls{latex} document the author wants to typeset}
 }
 
 \newglossaryentry{tex}{
@@ -22,7 +40,44 @@
   description = {A software package, which simplifies the task of typesetting czech and slovak documents in plain \TeX{} using multibyte encodings \cite{csplain}}
 }
 
+\newglossaryentry{cslatex}{
+  name = \CSLaTeX,
+  sort = CSLaTeX,
+  description = {A software package, which simplifies the task of typesetting czech and slovak documents in \LaTeX{}. \CSLaTeX{} has been obsoleted by the babel package \cite{cslatexvsbabel}}
+}
+
 \newglossaryentry{opmac}{
   name = OPmac,
   description = {A lightweight macro package, which extends plain \TeX{} to include some basic functionality offered by \gls{latex} \cite{opmac}}
+}
+
+\newglossaryentry{makefile}{
+  name = makefile,
+  plural = makefiles,
+  description = {A file, which specifies the files and commands necessary to create one or more target files. The makefile is read by the make utility, when the creation of one or more target files is requested}
+}
+
+\newdualentry{cmfonts}{CM fonts}{Computer Modern fonts}{A collection of typefaces, which was designed by Donald E. Knuth and which is used in \gls{tex}}
+
+\newdualentry{ecfonts}{EC fonts}{European Computer fonts}{An extension of \gls{cmfonts}, which adds support for european languages using latin script. Due to their low typographic quality \cite{cslatexvsbabel}, EC fonts have been obsoleted by \gls{lmfonts}}
+
+\newglossaryentry{csfonts}{
+  name = \CS fonts,
+  sort = CS fonts,
+  description = {An extension of \gls{cmfonts}, which adds support for the typesetting of czech and slovak documents. Although preferrable over \gls{ecfonts}, \CS fonts have been obsoleted by the \gls{lmfonts} due to the low typographic quality of their Type 1 version \cite{cslatexvsbabel}}
+}
+
+\newdualentry{lmfonts}{LM fonts}{Latin Modern fonts}{An extension of \gls{cmfonts}, which adds support for european languages using latin script. Due to their high typographic quality \cite{cslatexvsbabel}, LM fonts have obsoleted both \gls{ecfonts} and \gls{csfonts}}
+
+\newglossaryentry{texpackage}{
+  name = macro package,
+  plural = macro packages,
+  description = {A set of \gls{tex} macros and commands, which can be loaded in the preamble of a \gls{tex} document to add or alter existing functionality}
+}
+
+\newglossaryentry{ltxpackage}{
+  name = \LaTeX{} package,
+  plural = \LaTeX{} packages,
+  sort = LaTeX package,
+  description = {A set of \gls{latex} macros and commands, which can be loaded in the preamble of a \gls{latex} document to add or alter existing functionality}
 }
