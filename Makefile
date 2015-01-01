@@ -28,6 +28,9 @@ glossaries: glossaries.tex
 
 # Phony targets
 clean:
-	rm -f main.aux main.pdf main.toc main.bbl main.blg main.ind main.idx main.out main.gl[gos] main.xdy main.lo[ftg] main.ac[rn] main.alg
+	rm -f main.aux main.toc main.bbl main.blg main.ind main.idx main.out main.gl[gos] main.xdy main.lo[ftg] main.ac[rn] main.alg
 
-rebase: clean all
+clean-all: clean
+	main.pdf
+
+rebase: clean-all all

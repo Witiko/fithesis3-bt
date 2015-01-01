@@ -1,29 +1,38 @@
-\documentclass{article}
+\documentclass[12pt,twoside,final]{fithesis3/fithesis}
 
 % My own macros
 \input{definitions}
 
 % Packages
-\usepackage[resetfonts]{cmap}  % CMAP
 \usepackage{lmodern}           % Latin modern fonts
 \usepackage[english]{babel}    % Babel
-\usepackage[utf8]{inputenc}    % UTF-8
-\usepackage[T1]{fontenc}       % T1 font encoding
+\usepackage[latin2]{inputenc}  % UTF-8
 \usepackage{hologo}            % \XeLaTeX{} and friends
-\usepackage{setspace}          % Spacing
-%\setstretch{1.2}
 \usepackage{xcolor}            % Colors
+\usepackage{setspace}          % Paragraph spacing
+\usepackage{blindtext}         % Blind text
 \definecolor{pantone122}{HTML}{FFD451}
 \definecolor{pantone300}{HTML}{0067C6}
 \definecolor{cured}{RGB}{210,45,64}
 \usepackage[                   % Hypertext links
-  linkbordercolor = pantone122
+  linkbordercolor = pantone122,
+  plainpages = false,
+  pdfpagelabels
 ]{hyperref}
 \hypersetup{pdftitle = The Form of Theses Written in LaTeX}
-\hypersetup{pdfauthor = VÃ­t NovotnÃ½} % PDF metadata
+\hypersetup{pdfauthor = Vít Novotný} % PDF metadata
 
-% Settings
-\frenchspacing % Enable french spacing
+% Fithesis options
+\thesistitle{The Form of Theses\\Written in \LaTeX{}}
+\thesissubtitle{Bachelor's thesis}
+\thesisstudent{Vít Novotný}
+\thesiswoman{false}
+\thesislang{en}
+\thesisfaculty{fi}
+\thesiscolor{true}
+\thesisyear{Spring 2015}
+\thesisadvisor{RNDr. Michal Rù¾ièka}
+\thesislogopath{./fithesis3/loga/}
 
 % Bibliography
 \bibliographystyle{plainnat}
@@ -42,56 +51,107 @@
 \begin{document}
   
   % Front matter
-  \pagenumbering{roman}
+  \FrontMatter
+  \ThesisTitlePage
+
+  \begin{ThesisDeclaration}
+    \DeclarationText
+    \AdvisorName
+  \end{ThesisDeclaration}
+
+  \begin{ThesisThanks}
+    \blindtext
+  \end{ThesisThanks}
+
+  \begin{ThesisAbstract}
+    \blindtext
+  \end{ThesisAbstract}
+
+  \begin{ThesisKeyWords}
+    \blindtext
+  \end{ThesisKeyWords}
+
   \tableofcontents
   \listoftables
   \listoffigures
-  \newpage
 
   % Main matter
-  \pagenumbering{arabic}
-  \section{Introduction}
-  \section{Existing \emph{Fithesis} Codebase}
-  \subsection{\emph{Fithesis} Document Class}
-  \subsection{\emph{Fithesis2} Document Class}
-  \subsection{\emph{Xslt2} Module}
-  \section{Research}
-  \subsection{User Survey}
-  \subsection{Comparison with Existing Solutions}
-  As a part of my initial research, I assessed several templates for the typesetting of theses in order to gather ideas for immediate and future improvements of the fithesis2 class. Initially, I'm going to focus on templates used at czech technical universities. I will then broaden the scope to include both the templates of foreign universities and generic thesis typesetting classes for \gls{latex} from \gls{ctan}.
+  \MainMatter
+  \chapter{Introduction}
+    \blindtext
 
-  \subsubsection{CTUStyle\index{CTUStyle|(} and CUStyle\index{CUStyle|(}}
-  The first of the reviewed thesis typesetting templates were Petr OlÅ¡Ã¡k's CTUStyle \cite{ctustyle} and CUStyle \cite{custyle} \glspl{texpackage}, which are used at the Faculty of Electrical Engineering of \gls{cvut} and at \gls{cuni}, respectively. The sole dependencies of these \glspl{texpackage} are the \inx{\gls{csplain}} and \inx{\gls{opmac}} \glspl{texpackage}.
+  \chapter{Existing \emph{Fithesis} Codebase}
+    \blindtext
+    
+    \section{\emph{Fithesis} Document Class}
+    \blindtext
 
-  The templates are closely tied with the visual styles of the universities, which is mainly achieved through color-coding. Aside from black-and-white text, the CTUstyle \gls{texpackage} typesets various typographic elements in the \clrpicker{pantone300} Pantone 300 color, which makes for a visually pleasing combination. The CUstyle \gls{texpackage} uses the combination of black, gray and \clrpicker{cured} bright maroon to a similar end. By typesetting various typographic elements in the \clrpicker{pantone122} Pantone 122 color, which is a part of the visual identity of \gls{fi} \cite{filogo}, and by replacing the logotype of the faculty with its colored version, which was created as a part of MatÃºÅ¡ Kominka's bachelor thesis \cite{Kominka08}, the fithesis2 \gls{docclass} could be likewise revitalized. %Since each faculty of \gls{mu} has its own identifying color \cite{muvis}, this redesign could be implemented without the loss of support for other faculties.
+    \section{\emph{Fithesis2} Document Class}
+    \blindtext
 
-  Unlike with fithesis2, documents typeset with the CTUStyle and CUStyle templates are double-sided by default. The horizontal margins of the CTUStyle (32\,mm \cite[line 249]{ctustyleCode}) and CUStyle (31\,mm \cite[line 229]{custyleCode}) templates are also much smaller than those of fithesis2, which measure 19\,mm \cite[lines 968\nobreakdash--976]{fithesis2Code} plus a binding correction of 1\,inch \cite{latexlayout} = 45\,mm on the left side and 210\,mm (A4 width) minus 45\,mm (left margin) minus 127\,mm (text width \cite[lines~989, 1017, 1045]{fithesis2Code}) = 38\,mm on the right side. The margins of CTUStyle and CUStyle, in conjunction with the chosen font family, allow for up to 100 characters per line, which is not only wearying to the eye of an inexperienced reader, but also against the recommendations of \gls{fi} \cite[section 3.2.3]{bpdpfi}. Although not explicitly stated, both decisions are have likely been made in order to reduce the required storage space for the archival of physical prints of theses. An option to remove the binding correction and to relax horizontal margins for online documents could be implemented into fithesis3.
-  \index{CTUStyle|)}
-  \index{CUStyle|)}
+    \section{\emph{Xslt2} Module}
+    \blindtext
 
-  \subsubsection{\Acrlong{cuni}}
-  Along with Petr OlÅ¡Ã¡k's CUStyle, \gls{cuni} also provides an official \gls{latex} template for the typesetting of theses \cite{cunisablona}. Rather than defining a new \gls{docclass}, the archive contains a \gls{makefile} and a skeleton \gls{latex} document using the report \gls{docclass} for both czech and english theses. The students then modify said document to suit their requirements. The template uses \gls{cslatex} rather than the babel \gls{ltxpackage}, which means that \gls{csfonts} rather than the superior \gls{lmfonts} \cite{cslatexvsbabel} are used by default.
+  \chapter{Research}
+    \blindtext
 
-  % Karlova Univerzita -- http://www.ff.cuni.cz/FF-1492-version1-2009_metodika_BcDp.pdf, http://www.mff.cuni.cz/studium/phd/phd_sablona.htm
-  % ÄŒVUT -- felthesis
-  % VUT -- http://latex.feec.vutbr.cz/cz/latex/download/sablona-pro-bp-dp-v2-4/
-  % CTAN: muthesis, ... from Kumar07
-  % ... more from https://tug.org/pracjourn/2007-4/
+    \section{User Survey}
+    \blindtext
 
-  % Add code as figures rather than bibliographic citations
+    \section{Comparison with Existing Solutions}
+    As a part of my initial research, I assessed several templates for the typesetting of theses in order to gather ideas for immediate and future improvements of the fithesis2 class. Initially, I'm going to focus on templates used at czech technical universities. I will then broaden the scope to include both the templates of foreign universities and generic thesis typesetting classes for \gls{latex} from \gls{ctan}.
 
-  \subsection{Technical Limitations of the \emph{Fithesis} Document Classes}
-  \subsection{Usability and Maintainability}
-  \section{Results}
-  \subsection{\emph{Fithesis2} Class Improvements}
-  \subsubsection{\Hologo{XeLaTeX} Engine Support}
-  \subsubsection{OpenType Font Support}
-  \subsection{Thesis Writing Guidelines}
-  \section{Conclusions}
+      \subsection{CTUStyle\index{CTUStyle|(} and CUStyle\index{CUStyle|(}}
+      The first of the reviewed thesis typesetting templates were Petr Ol¹ák's CTUStyle \cite{ctustyle} and CUStyle \cite{custyle} \glspl{texpackage}, which are used at the Faculty of Electrical Engineering of \gls{cvut} and at \gls{cuni}, respectively. The sole dependencies of these templates are the \inx{\gls{csplain}} and \inx{\gls{opmac}} \glspl{texpackage}.
+
+      The templates are closely tied with the visual styles of the universities, which is mainly achieved through color-coding. Aside from black-and-white text, the CTUstyle \gls{texpackage} typesets various typographic elements in the \clrpicker{pantone300} Pantone 300 color, which makes for a visually pleasing combination. The CUstyle \gls{texpackage} uses the combination of black, gray and \clrpicker{cured} bright maroon to a similar end. By typesetting various typographic elements in the \clrpicker{pantone122} Pantone 122 color, which is a part of the visual identity of \gls{fi} \cite{filogo}, and by replacing the logotype of the faculty with its colored version, which was created as a part of Matú¹ Kominka's bachelor thesis \cite{Kominka08}, the fithesis2 \gls{docclass} could be likewise revitalized. %Since each faculty of \gls{mu} has its own identifying color \cite{muvis}, this redesign could be implemented without the loss of support for other faculties.
+
+      Unlike with fithesis2, documents typeset with the CTUStyle and CUStyle templates are double-sided by default. The horizontal margins of the CTUStyle (32\,mm \cite[line 249]{ctustyleCode}) and CUStyle (31\,mm \cite[line 229]{custyleCode}) templates are also much smaller than those of fithesis2, which measure 19\,mm \cite[lines 968\nobreakdash--976]{fithesis2Code} plus a binding correction of 1\,inch \cite{latexlayout} = 45\,mm on the left side and 210\,mm (A4 width) minus 45\,mm (left margin) minus 127\,mm (text width \cite[lines~989, 1017, 1045]{fithesis2Code}) = 38\,mm on the right side. The margins of CTUStyle and CUStyle, in conjunction with the chosen font family, allow for up to 100 characters per line, which is not only wearying to the eye of an inexperienced reader, but also against the recommendations of \gls{fi} \cite[section 3.2.3]{bpdpfi}. Although not explicitly stated, both decisions are have likely been made in order to reduce the required storage space for the archival of physical prints of theses. %An option to remove the binding correction and to relax horizontal margins for online documents could be implemented into fithesis3.
+      \index{CTUStyle|)}
+      \index{CUStyle|)}
+
+      \subsection{The Charles University in Prague}
+      Along with Petr Ol¹ák's CUStyle, \gls{cuni} also provides an official \gls{latex} template for the typesetting of theses \cite{cunisablona}. Rather than defining a new \gls{docclass}, the archive contains a \gls{makefile} and a skeleton \gls{latex} document using the report \gls{docclass} for both czech and english theses. The students then modify said document to suit their requirements. The template uses \gls{cslatex} rather than the babel \gls{ltxpackage}, which means that \gls{csfonts} rather than the superior \gls{lmfonts} \cite{cslatexvsbabel} are used by default.
+
+      % ÈVUT -- felthesis
+      % VUT -- http://latex.feec.vutbr.cz/cz/latex/download/sablona-pro-bp-dp-v2-4/
+      % CTAN: muthesis, ... from Kumar07
+      % ... more from https://tug.org/pracjourn/2007-4/
+      % Add code as figures rather than bibliographic citations
+
+    \section{Shortcomings of the \emph{Fithesis} Document Classes}
+    \blindtext
+
+    \section{Usability and Maintainability}
+    \blindtext
+
+  \chapter{Results}
+    \blindtext
+
+    \section{\emph{Fithesis2} Class Improvements}  
+    \blindtext
+
+      \subsection{\Hologo{XeLaTeX} Engine Support} 
+      \blindtext
+
+      \subsection{OpenType Font Support} 
+      \blindtext
+
+    \section{Thesis Writing Guidelines} 
+    \blindtext
+
+  \chapter{Conclusions} 
+    \blindtext
+
   \appendix
-  \section{Example Theses}
-  \section{User Guide}
-  \section{Technical Documentation}
+  \chapter{Example Theses} 
+    \blindtext
+
+  \chapter{User Guide} 
+    \blindtext
+
+  \chapter{Technical Documentation} 
+    \blindtext
 
   % Bibliography
   \newpage

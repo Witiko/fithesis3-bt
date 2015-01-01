@@ -17,6 +17,15 @@
   \index{#1}#1%
 }
 
+\usepackage{xparse} % A macro for creating an abbreviated glossary entry
+% see: <http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management>
+\DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
+  \newglossaryentry{gls-#3}{name={#5},text={#5\glsadd{#3}},
+    description={#6},#1
+  }
+  \newacronym[see={[Glossary:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
+}
+
 % Color picker
 \newcommand{\clrpicker}[1]{%
   % The 0.7em is font-specific
