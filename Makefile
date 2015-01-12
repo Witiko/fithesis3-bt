@@ -1,36 +1,18 @@
-all: main.pdf
+.PHONY: all clean clean-all
 
-main.pdf: main.tex main.toc main.bbl main.ind glossaries
-	pdflatex $<
-	pdflatex $<
+all: main.pdf clean
 
-# Index
-%.ind: %.idx
-		texindy -I omega --language english $<
-
-%.idx: %.tex
-		pdflatex $<
-
-# Bibliography
-%.bbl: %.aux
-	bibtex $<
-
-%.aux: %.tex database.bib
-	pdflatex $<
-
-# Table of contents
-%.toc: %.tex
-	pdflatex $<
-
-# Glossaries
-glossaries: glossaries.tex
+main.pdf: main.tex database.bib glossaries.tex
+	pdflatex main.tex
+	texindy -I omega --language english main.idx
+	bibtex main.aux
 	makeglossaries main
+	pdflatex main.tex
+	makeglossaries main
+	pdflatex main.tex
 
-# Phony targets
 clean:
 	rm -f main.aux main.toc main.bbl main.blg main.ind main.idx main.out main.gl[gos] main.xdy main.lo[ftg] main.ac[rn] main.alg
 
 clean-all: clean
-	main.pdf
-
-rebase: clean-all all
+	rm -f main.pdf
