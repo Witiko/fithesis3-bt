@@ -1,18 +1,29 @@
 .PHONY: all clean clean-all
 
-all: main.pdf clean
+all: online.pdf print.pdf clean
 
-main.pdf: main.tex database.bib glossaries.tex
-	pdflatex main.tex
-	texindy -I omega --language english main.idx
-	bibtex main.aux
-	makeglossaries main
-	pdflatex main.tex
-	makeglossaries main
-	pdflatex main.tex
+online.pdf: main.tex online.tex database.bib glossaries.tex
+	pdflatex online.tex
+	texindy -I omega --language english online.idx
+	bibtex online.aux
+	makeglossaries online
+	pdflatex online.tex
+	makeglossaries online
+	pdflatex online.tex
+
+print.pdf: main.tex print.tex database.bib glossaries.tex
+	pdflatex print.tex
+	texindy -I omega --language english print.idx
+	bibtex print.aux
+	makeglossaries print
+	pdflatex print.tex
+	makeglossaries print
+	pdflatex print.tex
 
 clean:
-	rm -f main.aux main.toc main.bbl main.blg main.ind main.idx main.out main.gl[gos] main.xdy main.lo[ftg] main.ac[rn] main.alg
+	rm -f online.aux online.toc online.bbl online.blg online.ind online.idx online.out online.gl[gos] online.xdy online.lo[ftg] online.ac[rn] online.alg
+	rm -f print.aux print.toc print.bbl print.blg print.ind print.idx print.out print.gl[gos] print.xdy print.lo[ftg] print.ac[rn] print.alg
 
 clean-all: clean
-	rm -f main.pdf
+	rm -f online.pdf
+	rm -f print.pdf
