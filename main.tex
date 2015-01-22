@@ -2,17 +2,18 @@
 \input{definitions}
 
 % Packages
-\usepackage[english]{babel}    % Babel
-\usepackage[utf8]{inputenc}    % UTF-8
-\usepackage{hologo}            % \XeLaTeX{} and friends
-\usepackage[                   % Microtype
-  protrusion                     % Protrusion support
+\usepackage[english]{babel}     % Babel
+\usepackage[utf8]{inputenc}     % UTF-8
+\usepackage{hologo}             % \XeLaTeX{} and friends
+\usepackage[                    % Microtype
+  protrusion                      % Protrusion support
 ]{microtype}
-\usepackage[                   % Colors
+\usepackage[                    % Colors
   usenames,dvipsnames
 ]{xcolor}
-\usepackage{setspace}          % Paragraph spacing
-\usepackage{blindtext}         % Blind text
+\usepackage{setspace}           % Paragraph spacing
+\usepackage{blindtext}          % Blind text
+\usepackage[toc,page]{appendix} % Appendices
 
 % Definitions
 \definecolor{pantone122}{HTML}{FFD451}
@@ -144,16 +145,6 @@
   \chapter{Conclusions} 
     \blindtext
 
-  \appendix
-  \chapter{Example Theses} 
-    \blindtext
-
-  \chapter{User Guide} 
-    \blindtext
-
-  \chapter{Technical Documentation} 
-    \blindtext
-
   % Bibliography
   \newpage
   {\footnotesize
@@ -167,5 +158,18 @@
 
   % Index
   \printindex
+
+  \begin{appendices}
+
+    \chapter{Example Theses} 
+      \blindtext
+
+    \chapter{User Guide} 
+      \blindtext
+
+    \chapter{Technical Documentation} 
+      \blindtext
+
+  \end{appendices}
 
 \end{document}
