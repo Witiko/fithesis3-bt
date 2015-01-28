@@ -8,18 +8,18 @@
 \usepackage[                    % Microtype
   protrusion                      % Protrusion support
 ]{microtype}
-\usepackage[                    % Colors
-  usenames,dvipsnames
-]{xcolor}
 \usepackage{setspace}           % Paragraph spacing
 \usepackage{blindtext}          % Blind text
 \usepackage[toc,page]{appendix} % Appendices
-
-% Definitions
-\definecolor{pantone122}{HTML}{FFD451}
-\definecolor{pantone300}{HTML}{0067C6}
-\definecolor{cured}{RGB}{210,45,64}
-\hypersetup{linkbordercolor = pantone122}
+\usepackage[
+  labelfont=bf                  % Typeset table captions in bold font
+]{caption}
+\usepackage{tabularx}           % Elastic tables
+\let\oldtabularx\tabularx         % Altering the definition to allow for colors
+\let\endoldtabularx\endtabularx
+\renewenvironment{tabularx}
+  {\rowcolors{1}{facultyxlight}{facultylight}\oldtabularx}
+  {\endoldtabularx}
 
 % Fithesis options
 \thesistitle{The Form of Theses\\ Written in \LaTeX{}}
@@ -32,6 +32,11 @@
 \thesisadvisor{RNDr. Michal Růžička}
 \thesislogopath{fithesis3/loga}
 
+% Color definitions
+\definecolor{pantone122}{HTML}{FFD451}
+\definecolor{pantone300}{HTML}{0067C6}
+\definecolor{cured}{RGB}{210,45,64}
+
 % Bibliography
 \bibliographystyle{plainnat}
 \usepackage[square,sort,comma,numbers]{natbib}
@@ -41,10 +46,13 @@
 \makeindex
 
 % Glossary
-\usepackage[xindy,acronym,sanitize=none]{glossaries}
+\usepackage[xindy,acronym,toc,sanitize=none]{glossaries}
 \makeglossaries
 \input{glossaries}
 \glossarystyle{altlistgroup}
+
+% Penalties
+\clubpenalty=10000  % Zero tolerance for widows and orphans
 
 \begin{document}
   
@@ -91,21 +99,95 @@
     \blindtext
 
   \chapter{Research}
-    \blindtext
+  \blindtext
 
     \section{User Survey}
+    During the course of December 2014, an online questionnaire was distributed amongst the students of \gls{mu}. The table \ref{table:survey-faculty} illustrates the distribution of the respondents across the faculties of \gls{mu} according to the claims of the respondents. It should be noted that several respondents claimed to study at more than one faculty of \gls{mu}, which is the reason for the distortion of the percentage. The raw data obtained from the questionnaire in czech is available in the \texttt{survey.csv} file in the directory containing the thesis.
+
+    \begin{table}
+      \begin{tabularx}{\typearea}{Xcr}
+        \textbf{On which faculty of \gls{mu} do you study?} & \textbf{\#} & \textbf{\%} \\
+        \hline
+        \textbf{Faculty of Informatics}                  & 82          & 92,1 \\
+        \textbf{Faculty of Science}                      & 3           & 3,4  \\
+        \textbf{Faculty of Education}                    & 2           & 2,2  \\
+        \textbf{Faculty of Social Studies}               & 2           & 2,2  \\
+        \textbf{Faculty of Law}                          & 1           & 1,1  \\
+        \textbf{Faculty of Medicine}                     & 1           & 1,1  \\
+        \textbf{Faculty of Arts}                         & 1           & 1,1  \\
+        \textbf{Faculty of Economics \& Administration}  & 1           & 1,1  \\
+        \textbf{Faculty of Sports Studies}               & 0           & 0,0  \\
+        \hline
+        \textbf{Total}                        & \textbf{89} & \textbf{100,0}
+      \end{tabularx}
+      \caption{The distribution of the questionnaire respondents across faculties}
+      \label{table:survey-faculty}
+    \end{table}
+
+    The overwhelming majority of respondents claimed that the highest degree for which they are studying is that of a bachelor (see table \ref{table:survey-type}) and that they are planning to use \gls{tex} or \gls{latex} to write their theses (see table \ref{table:survey-sw}). Most of those who claimed to be planning to use \gls{tex} or \gls{latex} also claimed to know about the existence of the fithesis \gls{docclass} and claimed to be planning to use it as a template for their theses or dissertations (see table \ref{table:survey-tex}).
+
+    \begin{table}
+      \begin{tabularx}{\typearea}{Xcr}
+        \textbf{Which academic degree are you currently pursuing?} & \textbf{\#} & \textbf{\%} \\
+        \hline
+        \textbf{Bachelor's degree}            & 70          & 78,7 \\
+        \textbf{Master's degree}              & 17          & 19,1 \\
+        \textbf{Doctorate}                    & 2           & 2,2  \\
+        \hline
+        \textbf{Total}                        & \textbf{89} & \textbf{100,0}
+      \end{tabularx}
+      \caption{The highest academic degrees currently pursued by the respondents of the questionnaire}
+      \label{table:survey-type}
+    \end{table}
+
+    \begin{table}
+      \begin{tabularx}{\typearea}{Xcr}
+        \textbf{Which application do you use / are you planning to use to write your thesis or dissertation?} & \textbf{\#} & \textbf{\%} \\
+        \hline
+        \textbf{\TeX{} / \LaTeX{}}            & 65          & 73,0 \\
+        \textbf{Microsoft Office}             & 16          & 18,0 \\
+        \textbf{Apache OpenOffice, LibreOffice
+                or another free office
+                software suite}               & 4           &  4,5 \\
+        \textbf{Other}                        & 4           &  4,5 \\
+        \textbf{Google Documents}             & 0           &  0,0 \\
+        \hline
+        \textbf{Total}                        & \textbf{89} & \textbf{100,0}
+      \end{tabularx}
+      \caption{The software the respondents of the questionnaire are using or planning to use to write their theses or dissertations}
+      \label{table:survey-sw}
+    \end{table}
+
+    \begin{table}
+      \begin{tabularx}{\typearea}{Xcr}
+        \textbf{Are you planning to use the \gls{mu} fithesis \LaTeX{} class?} & \textbf{\#} & \textbf{\%} \\
+        \hline
+        \textbf{Yes}                                         & 47          & 72,3 \\
+        \textbf{Maybe, I didn't know it existed}             & 10          & 15,4 \\
+        \textbf{No, I'm going to use another \gls{docclass}} & 5           &  7,7 \\
+        \textbf{Other}                                       & 2           &  3,1 \\
+        \textbf{No, I'm going to use plain \gls{tex}}        & 1           &  1,5 \\
+        \hline
+        \textbf{Total}                                       & \textbf{65} & \textbf{100,0}
+      \end{tabularx}
+      \caption{The attitude towards using the fithesis class amongst those respondents who claimed to be using or planning to use \gls{tex} or \gls{latex} to typeset their theses or dissertations}
+      \label{table:survey-tex}
+    \end{table}
+
+    Some of the respondents who claimed to be using or planning to use \gls{tex} or \gls{latex} to typeset their theses or dissertations also provided feedback regarding the fithesis class. Unknown to the author at the time of the survey was the fact that fithesis2 had never been made publicly available, despite the fact that works on fithesis2 were brought to a successful end during 2009 \cite{Filipcik09}. As a result of that, much of the feedback was regarding issues long fixed in fithesis2, such as requests for the change of the default \gls{charenc} from ISO 8859-2 to UTF-8 \cite[section 4.1]{Filipcik09} or bug reports regarding a missing metafont logo file \cite{fithesis2@fbd7a25}. Among the feedback relevant to fithesis2 were calls for a more extensive user and technical documentation \gls{pending} and a suggestion that the class should support the typesetting of printed and electronic versions of theses as separate documents \gls{pending}.
+
+    \section{Statistical analysis of existing theses}
     \blindtext
 
     \section{Comparison with Existing Solutions}
-    As a part of my initial research, I assessed several templates for the typesetting of theses in order to gather ideas for immediate and future improvements of the fithesis2 class. Initially, I'm going to focus on templates used at czech technical universities. I will then broaden the scope to include both the templates of foreign universities and generic thesis typesetting classes for \gls{latex} from \gls{ctan}.
+    As a part of the initial research, I also assessed several templates for the typesetting of theses in order to gather ideas for immediate and future improvements of the fithesis2 class. Initially, I'm going to focus on templates used at czech technical universities. I will then broaden the scope to include both the templates of foreign universities and generic thesis typesetting classes for \gls{latex} from \gls{ctan}.
 
       \subsection{CTUStyle\index{CTUStyle|(} and CUStyle\index{CUStyle|(}}
       The first of the reviewed thesis typesetting templates were Petr Olšák's CTUStyle \cite{ctustyle} and CUStyle \cite{custyle} \glspl{texpackage}, which are used at \gls{fel} and at \gls{cuni}, respectively. The sole dependencies of these templates are the \inx{\gls{csplain}} and \inx{\gls{opmac}} \glspl{texpackage}.
 
-      The templates are closely tied with the visual styles of the universities, which is mainly achieved through color-coding. Aside from black-and-white text, the CTUstyle \gls{texpackage} typesets various typographic elements in the \clrpicker{pantone300} Pantone 300 color, which makes for a visually pleasing combination. The CUstyle \gls{texpackage} uses the combination of black, gray and \clrpicker{cured} bright maroon to a similar end. By typesetting various typographic elements in the \clrpicker{pantone122} Pantone 122 color, which is a part of the visual identity of \gls{fi} \cite{filogo}, and by replacing the logotype of the faculty with its colored version, which was created as a part of Matúš Kominka's bachelor thesis \cite{Kominka08}, the fithesis2 \gls{docclass} could be likewise revitalized. \gls{couldhave} Since each faculty of \gls{mu} has a color version of its logo \cite{muvis}, this redesign could be implemented without the loss of support for other faculties. % The logos were downloaded as monochromatic and direct color \gls{eps} files from \cite{muvis} and were then transformed into \gls{pdf} files using the \texttt{epstopdf}\cite{???} utility.
+      The templates are closely tied with the visual styles of the universities, which is mainly achieved through color-coding. Aside from black-and-white text, the CTUstyle \gls{texpackage} typesets various typographic elements in the \clrpicker{pantone300} Pantone 300 color, which makes for a visually pleasing combination. The CUstyle \gls{texpackage} uses the combination of black, gray and \clrpicker{cured} bright maroon to a similar end. By typesetting various typographic elements in the \clrpicker{pantone122} Pantone 122 color, which is a part of the visual identity of \gls{fi} \cite{filogo}, and by replacing the logotype of the faculty with its colored version, which was created as a part of Matúš Kominka's bachelor thesis \cite{Kominka08}, the fithesis2 \gls{docclass} could be likewise revitalized. \implemented{v0.3.00, 01, 06} Since each faculty of \gls{mu} has a color version of its logo \cite{muvis}, this redesign could be implemented without the loss of support for other faculties. \implemented{The logos were downloaded as monochromatic and direct color \gls{eps} files from \cite{muvis} and then transformed into \gls{pdf} files using the \texttt{epstopdf} \cite{epstopdf} unix utility.}
 
-      Unlike with fithesis2, documents typeset with the CTUStyle and CUStyle templates are double-sided by default. The horizontal margins of the CTUStyle (32\,mm \cite[line 249]{ctustyleCode}) and CUStyle (31\,mm \cite[line 229]{custyleCode}) templates are also much smaller than those of fithesis2, which measure 19\,mm \cite[lines 968\nobreakdash--976]{fithesis2Code} plus a binding correction of 1\,inch \cite{latexlayout} = 45\,mm on the left side and 210\,mm (A4 width) minus 45\,mm (left margin) minus 127\,mm (text width \cite[lines~989, 1017, 1045]{fithesis2Code}) = 38\,mm on the right side. The margins of CTUStyle and CUStyle, in conjunction with the chosen font family, allow for up to 100 characters per line, which is not only wearying to the eye of an inexperienced reader% cite?
-, but also against the recommendations of \gls{fi} \cite[section 3.2.3]{bpdpfi}. Although not explicitly stated, both decisions are have likely been made in order to reduce the required storage space for the archival of physical prints of theses. An option to remove the binding correction and to relax horizontal margins for online publishing could be implemented into fithesis3. \gls{wannahave}
+      Unlike with fithesis2, documents typeset with the CTUStyle and CUStyle templates are double-sided by default. The horizontal margins of the CTUStyle (32\,mm \cite[line 249]{ctustyleCode}) and CUStyle (31\,mm \cite[line 229]{custyleCode}) templates are also much smaller than those of fithesis2, which measure 19\,mm \cite[lines 968\nobreakdash--976]{fithesis2Code} plus a binding correction of 1\,inch \cite{latexlayout} = 45\,mm on the left side and 210\,mm (A4 width) minus 45\,mm (left margin) minus 127\,mm (text width \cite[lines~989, 1017, 1045]{fithesis2Code}) = 38\,mm on the right side. The margins of CTUStyle and CUStyle, in conjunction with the chosen font family, allow for up to 100 characters per line, which is not only wearying to the eye of an inexperienced reader \todo{cite}, but also against the recommendations of \gls{fi} \cite[section 3.2.3]{bpdpfi}. Although not explicitly stated, both decisions are have likely been made in order to reduce the required storage space for the archival of physical prints of theses. An option to remove the binding correction and to relax horizontal margins for online publishing could be implemented into fithesis3. \rejected{Changes to the type area would affect line breaking}
       \index{CTUStyle|)}
       \index{CUStyle|)}
 

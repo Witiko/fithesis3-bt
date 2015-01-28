@@ -55,7 +55,7 @@
   author = "Vishal Kumar",
   title = {{Using \gls{latex} for writing a thesis}},
   year = 2007,
-  month = 12,
+  month = {December},
   volume = 4,
   journal = "The Prat\gls{tex} Journal",
   url = "https://tug.org/pracjourn/2007-4/kumar/",
@@ -65,7 +65,7 @@
 @MANUAL{ctustyle,
   author = "Petr Olšák",
   title = {{CTUstyle~-- návod k použití: Šablona v plain \gls{tex}u pro sazbu studentských závěrečných prací na ČVUT}},
-  month = 1,
+  month = {January},
   year = 2013,
   url = "http://petr.olsak.net/ctustyle.html",
   note = "[Online; Accessed: \mbox{23rd December 2014}]"
@@ -74,7 +74,7 @@
 @MANUAL{custyle,
   author = "Petr Olšák",
   title = {{CUstyle~-- návod k použití: Šablona pro sazbu studentských závěrečných prací na Karlově univerzitě}},
-  month = 1,
+  month = {January},
   year = 2013,
   url = "http://petr.olsak.net/custyle.html",
   note = "[Online; Accessed: \mbox{24th December 2014}]"
@@ -83,7 +83,7 @@
 @MANUAL{felthesis,
   author = "Vít Zýka",
   title = {{Felthesis -- \gls{latex} templates for thesis on \gls{fel}}},
-  month = 12,
+  month = {December},
   year = 2012,
   url = "http://zyka.net/felthesis/felthesis.zip",
   note = "Archived under the filename \texttt{doc/felthesis-doc.pdf} [Online; Accessed: \mbox{7th January 2015}]"
@@ -92,7 +92,7 @@
 @misc{csplain,
   author = "Petr Olšák",
   title = {{\gls{csplain}: čeština a slovenština v plain \gls{tex}u}},
-  month = 11,
+  month = {November},
   year = 2012,
   url = "https://math.feld.cvut.cz/olsak/csplain.html",
   note = "[Online; Accessed: \mbox{23rd December 2014}]"
@@ -130,7 +130,7 @@
   author = "Markus Kohm, Jens-Uwe-Morawski",
   url = "http://tug.ctan.org/macros/latex/contrib/koma-script/doc/scrguien.pdf",
   year = 2014,
-  month = 10,
+  month = {October},
   note = "[Online; Accessed: \mbox{28th December 2014}]"
 }
 
@@ -149,24 +149,112 @@
 }
 
 @misc{fithesis2Code,
-  author = "Daniel Marek, Jan Pavlovič, Petr Sojka",
-  title = {{The source code of the fithesis2 \gls{docclass}}},
+  author = "Daniel Marek and Jan Pavlovič and Petr Sojka and Tomáš Janoušek",
+  title = {{The source code of the fithesis2 \gls{docclass} \todo{redirect to the stable version of fithesis2}}},
   url = {https://github.com/liskin/fithesis.git},
   howpublished = {{GIT}},
   note = "Saved under the filename \texttt{fithesis.dtx} [Online; Accessed: \mbox{28th December 2014}; Last Modified: \mbox{14th May 2012}]"
 }
 
+@misc{fithesis2@fbd7a25,
+  author       = "Jan Pavlovič and Petr Sojka and Tomáš Janoušek",
+  title        = {{The source code of the fithesis2 \gls{docclass}, commit \texttt{fbd7a25}: v0.2.11 fix missing \texttt{fi-logo.mf}}},
+  url          = {https://github.com/liskin/fithesis.git},
+  howpublished = {{GIT}},
+  year         = {2008},
+  month        = {January},
+  note         = "[Online; Accessed: \mbox{28th January 2014}]"
+}
+
 @manual{bpdpfi,
   title = {{Bakalářské a diplomové práce na \gls{fi}}},
-  note = "[Online; Accessed: \mbox{24th December 2014}; Last Modified: \mbox{24th April 2014}]",
-  url = "http://www.fi.muni.cz/docs/BP_DP_na_FI.pdf"
+  note  = "[Online; Accessed: \mbox{24th December 2014}; Last Modified: \mbox{24th April 2014}]",
+  url   = "http://www.fi.muni.cz/docs/BP_DP_na_FI.pdf"
+}
+
+@manual{epsspec,
+  title        = {{Encapsulated PostScript File Format Specification}},
+  author       = {{Adobe Developer Support}},
+  organization = {{Adobe Systems Incorporated}},
+  address      = {{Adobe Developer Technologies, 345 Park Avenue, San Jose, CA 95110}},
+  month        = {May},
+  year         = 1992,
+  url          = "http://partners.adobe.com/public/developer/en/ps/5002.EPSF_Spec.pdf",
+  note         = "[Online; Accessed: \mbox{26th January 2015}]",
+}
+
+@techreport{rfc3629,
+  AUTHOR       = {F. Yergeau},
+  TITLE        = {UTF-8, a transformation format of ISO 10646},
+  HOWPUBLISHED = {Internet Requests for Comments},
+  TYPE         = {RFC},
+  NUMBER       = 3629,
+  YEAR         = {2003},
+  MONTH        = {November},
+  PUBLISHER    = {RFC Editor},
+  INSTITUTION  = {RFC Editor},
+  URL          = {http://tools.ietf.org/html/rfc3629},
+  note         = "[Online; Accessed: \mbox{28th January 2015}]"
+}
+
+@misc{epstopdf,
+  author       = {Karl Berry and Sebastian Rahtz and Gerben Wierda et al.},
+  howpublished = {\gls{ctan}},
+  name         = {epstopdf -- Convert EPS to 'encapsulated' \gls{pdf} using GhostScript},
+  url          = {http://www.ctan.org/pkg/epstopdf},
+  note         = "[Online; Accessed: \mbox{28th January 2015}]"
+}
+
+@techreport{ascii,
+  TITLE = "{American Standard Code for Information Interchange}",
+  TYPE         = {X},
+  NUMBER       = {3.4-1963},
+  YEAR         = {1963},
+  MONTH        = {June},
+  ADDRESS      = {10 East 40th Street, New York 16, N. Y.},
+  PUBLISHER    = {American Standards Association},
+  INSTITUTION  = {American Standards Association},
+  URL          = {http://worldpowersystems.com/J/codes/X3.4-1963/},
+  note         = "[Online; Accessed: \mbox{28th January 2015}]",
+}
+
+@techreport{isolatin2,
+  title        = {{Information technology -- 8-bit single-byte coded graphic character sets -- Part 2: Latin alphabet No. 2}},
+  publisher    = {International Organization for Standardization},
+  institution  = {International Organization for Standardization},
+  type         = {ISO/ETC},
+  number       = {8859-2:1999},
+  address      = {Geneva, Switzerland},
+  year         = 1999
+}
+
+@techreport{unicode6,
+  author       = {{Julie D. Allen.}},
+  title        = {{The Unicode Standard, Version 6.0}},
+  publisher    = {The Unicode Consortium},
+  institution  = {The Unicode Consortium},
+  address      = {Mountain View, California},
+  isbn         = {9781936213016},
+  year         = 2011,
+  url          = {http://www.unicode.org/versions/Unicode6.0.0/},
+  note         = "[Online; Accessed: \mbox{28th January 2015}]"
+}
+
+@techreport{isopdf,
+  title        = {{Document management -- {P}ortable document format -- {P}art~1: {PDF}~1.7}},
+  publisher    = {International Organization for Standardization},
+  institution  = {International Organization for Standardization},
+  type         = {ISO},
+  number       = {32000-1:2008},
+  address      = {Geneva, Switzerland},
+  year         = 2013
 }
 
 @misc{cslatexvsbabel,
-  title = {{Babel vs. \CSLaTeX}},
+  title  = {{Babel vs. \CSLaTeX}},
   author = {{Michal Houda}},
-  url = "http://home.ef.jcu.cz/~houda/miktex/install/babel-cslatex.html",
-  note = "[Online; Accessed: \mbox{29th December 2014}; Last Modified: \mbox{10th December 2012}]",
+  url    = "http://home.ef.jcu.cz/~houda/miktex/install/babel-cslatex.html",
+  note   = "[Online; Accessed: \mbox{29th December 2014}; Last Modified: \mbox{10th December 2012}]",
 }
 
 @article{latexlayout,

@@ -1,3 +1,6 @@
+% The size of the type area
+\def\typearea{127mm}
+
 \newcommand{\CS}{%
   \,$\cal{CS}$%
 }
@@ -31,4 +34,19 @@
   % The 0.7em is font-specific
   % It roughly represents caps heigth - baseline
   \textcolor{#1}{\rule{0.7em}{0.7em}}%
+}
+
+% A todo marker
+\newcommand{\todo}[1]{%
+  \textcolor{red}{[\gls{todo}: #1]}%
+}
+
+% A rejected marker
+\newcommand{\rejected}[1]{%
+  \textcolor{gray}{[\gls{rejected}: #1]}%
+}
+
+% An implemented marker
+\newcommand{\implemented}[1]{%
+  \textcolor{orange}{[\gls{implemented}: #1]}%
 }

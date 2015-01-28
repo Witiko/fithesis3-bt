@@ -1,0 +1,98 @@
+Časová značka,Na jaké fakultě Masarykovy univerzity studujete?,Jaký druh studijního programu studujete?,Jaký program používáte / hodláte použít pro psaní závěrečné práce?,Hodláte při vypracovávání závěrečně práce použít univerzitní LaTeXovou třídu fithesis?,Máte nějaké výhrady nebo návrhy na zlepšení třídy fithesis?
+23.12.2014 11:50:47,Ekonomicko-správní fakulta,Bakalářský,Microsoft Office,,
+23.12.2014 11:51:47,Fakulta informatiky,Bakalářský,Microsoft Office,,
+23.12.2014 11:53:53,Fakulta informatiky,Bakalářský,Ještě nevím,,
+23.12.2014 11:53:56,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Ne, použiji jinou LaTeXovou třídu",
+23.12.2014 11:54:54,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Možná, nevěděl(a) jsem o její existenci",
+23.12.2014 11:54:59,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Možná, nevěděl(a) jsem o její existenci",
+23.12.2014 11:57:10,Fakulta informatiky,Bakalářský,OpenOffice.org nebo jiný neplacený kancelářský balík,,
+23.12.2014 11:57:43,Fakulta informatiky,Bakalářský,Microsoft Office,,
+23.12.2014 11:57:52,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,"navod, nejaky zrozumitelny navod"
+23.12.2014 11:59:06,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 11:59:26,Fakulta informatiky,Bakalářský,TeX / LaTeX,fithesis2,"možná by ostatním pomohlo, kdyby balíček zároven obsahoval všechna loga v potřebných složkách, aby je člověk jak blbec nemusel dohledávat všude možně, protože třída loga vyžaduje, ale neobsahuje (nebo obsahuje špatné formáty/verze), stejný problém je i u fithesis2"
+23.12.2014 12:00:05,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,"moc široké okraje, málo textu na jedné stránce
+líbila by se mi víc kdyby byla podobna šablonám používaným pro technické zprávy na FI MU nebo šablonám co se používají na VUT - vypadají, že jsou profesionálnější 
+rozhodně zlepšit Bibtex"
+23.12.2014 12:00:40,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 12:01:49,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 12:04:24,Fakulta informatiky,Bakalářský,Microsoft Office,,
+23.12.2014 12:05:58,Fakulta informatiky,Bakalářský,Microsoft Office,,
+23.12.2014 12:14:02,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 12:14:26,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,Vychozi kodovani by mohlo byt UTF8.
+23.12.2014 12:20:25,Fakulta informatiky,Bakalářský,Microsoft Office,,
+23.12.2014 12:20:37,Fakulta informatiky,Bakalářský,Adobe InDesign,,
+23.12.2014 12:30:06,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 12:46:20,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,chcelo by to nejaky dobry navod ako to rozbehat v roznych editoroch
+23.12.2014 12:47:11,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 12:51:30,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Ne, použiji jinou LaTeXovou třídu",
+23.12.2014 13:19:41,Fakulta informatiky,Bakalářský,Microsoft Office,,
+23.12.2014 13:26:55,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 13:27:31,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Možná, nevěděl(a) jsem o její existenci",
+23.12.2014 13:30:13,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,Defaultní kódování nechť je UTF-8
+23.12.2014 13:30:29,Fakulta informatiky,Bakalářský,TeX / LaTeX,fithesis2,
+23.12.2014 13:57:15,Fakulta informatiky,Bakalářský,Microsoft Office,,
+23.12.2014 14:01:53,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 14:12:12,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 14:32:55,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 14:40:02,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 14:55:08,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 15:07:00,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 15:09:19,Přírodovědecká fakulta,Bakalářský,TeX / LaTeX,"Možná, nevěděl(a) jsem o její existenci",
+23.12.2014 15:25:47,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 15:26:35,Fakulta informatiky,Bakalářský,OpenOffice.org nebo jiný neplacený kancelářský balík,,
+23.12.2014 17:33:12,Filozofická fakulta,Magisterský,Microsoft Office,,
+23.12.2014 17:43:00,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 18:05:43,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,"Fithesis se neda pouzivat v ciste podobe, takze do fithesis3 zapracovat veci, ktere studenti nejcasteji meni:
+BibTeX (nahradit biberem)
+kodovani latin -> utf8
+Bylo by super, kdyby existoval prepinac elektronicka/tistena verze. Prepinalo by to velikost okraju (vetsi okraj u vazby), oneside/twoside, zvyrazneni odkazu...
+
+Je dobre, ze toho fithesis moc neincluduje - veci na zkrasleni vzhledu si naincluduju po zvazeni sam."
+23.12.2014 18:34:40,Fakulta informatiky,Bakalářský,Microsoft Office,,
+23.12.2014 19:05:26,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Ne, použiji jinou LaTeXovou třídu",
+23.12.2014 19:17:49,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 20:50:27,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Možná, nevěděl(a) jsem o její existenci",
+23.12.2014 21:34:28,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 21:57:30,Fakulta informatiky,Bakalářský,Microsoft Office,,
+23.12.2014 22:33:16,Pedagogická fakulta,Bakalářský,Microsoft Office,,
+23.12.2014 22:38:30,Právnická fakulta,Magisterský,Microsoft Office,,
+23.12.2014 22:44:26,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+23.12.2014 23:34:54,Lékařská fakulta,Doktorský,vsetky vyssie spomenute okrem TeX ,,
+23.12.2014 23:40:29,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+24.12.2014 0:06:46,Fakulta sociálních studií,Bakalářský,OpenOffice.org nebo jiný neplacený kancelářský balík,,
+24.12.2014 1:00:52,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+24.12.2014 10:47:52,"Pedagogická fakulta, Fakulta sociálních studií",Magisterský,OpenOffice.org nebo jiný neplacený kancelářský balík,,
+24.12.2014 12:39:41,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Možná, nevěděl(a) jsem o její existenci",
+24.12.2014 16:40:52,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+24.12.2014 21:17:12,Fakulta informatiky,Bakalářský,Microsoft Office,,
+25.12.2014 0:42:50,Fakulta informatiky,Magisterský,TeX / LaTeX,"Možná, nevěděl(a) jsem o její existenci",
+25.12.2014 0:49:16,Fakulta informatiky,Magisterský,Microsoft Office,,
+25.12.2014 1:00:27,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,
+25.12.2014 1:54:52,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,"Dělalo mi problémy ji zprovoznit se správnou znakovou sadou, s diakritikou měla potíže a její instalace a používání mi přišly zmatené."
+25.12.2014 8:13:22,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,
+25.12.2014 8:38:38,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+25.12.2014 9:01:21,Fakulta informatiky,Magisterský,TeX / LaTeX,"Ne, použiji jinou LaTeXovou třídu","Chtělo by to úplnou revitalizaci - mmchd děkuji, že se do toho pustíš ;)"
+25.12.2014 9:12:43,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,"Psal jsem Bc. práci v angličtině a chyběl mi (nebo jsem neviděl) nějaký přepínač na EN/CZ formát odstavců, konkrétně mezeru mezi nimi. (Byť co si tak vzpomínám, tak i v anglických pracích jsem mezery moc nevídával, tak to možná je nějaký LaTeXový standard.)"
+25.12.2014 9:16:06,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,"Pro korektní zprovoznění, je hlavně kvůli logu fakulty FI nutné ručně ""někam"" kopírovat jistý soubor z fonty. Možná by to u oficiálního návodu mohlo být uvedeno..."
+25.12.2014 13:53:33,"Přírodovědecká fakulta, Fakulta informatiky",Bakalářský,TeX / LaTeX,"Ne, použiji čistý TeX",
+25.12.2014 15:14:54,Fakulta informatiky,Bakalářský,indesign,,
+25.12.2014 15:51:29,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,"Lepší dokumentace, větší konfigurovatelnost."
+25.12.2014 17:30:28,Fakulta informatiky,Doktorský,TeX / LaTeX,Ano,"Fithesis2 se mi nepovedlo u sebe (na Windows) nainstalovat - lépe řečeno, kvůli logu fi v metafontu nebo čem můj dokument nešel přeložit. Ostatní fakulty mají loga  jako ""normální"" grafiku a to bylo bez problémů, ale zrovna fi prostě nešla. Já neměl čas, znalosti, ani náladu to víc řešit. Takže jsem zase skončil tak, že jsem musel překládat na aise. Bylo by dobré v nové verzi mít opravdu jasný, blbuvzdorný instalační manuál, u kterého někdo pro jistotu i vyzkouší, jestli opravdu funguje."
+25.12.2014 20:42:04,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,- zlepšiť návod
+25.12.2014 21:58:48,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+26.12.2014 8:44:37,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,"Zprovoznit to na Win 7 bylo utrpení. Několik hodin práce, aby to začalo generovat to co má. 
+Potom už byla práce jednoduchá a vzhled... no prostě to vypadalo jako bakalářka"
+26.12.2014 14:58:20,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,"Na Windows nefungovala sablona uplne spravne, presneji logo na prvni strance."
+28.12.2014 2:39:12,Fakulta informatiky,Bakalářský,Microsoft Office,,
+28.12.2014 15:22:06,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Možná, nevěděl(a) jsem o její existenci",
+28.12.2014 16:22:22,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,
+28.12.2014 21:52:55,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Ne, použiji jinou LaTeXovou třídu",
+29.12.2014 13:26:41,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+29.12.2014 16:20:04,"Přírodovědecká fakulta, Fakulta informatiky",Bakalářský,TeX / LaTeX,Ano,"Velký problém s kódováním, možná je to spíš rukama, ale měl jsem s tím skutečně velký problém. Taky bych uvítal nějaké šikovné prostředí pro psaní zdrojových kódů."
+29.12.2014 23:53:25,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,
+2.1.2015 13:26:22,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+3.1.2015 19:36:42,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+4.1.2015 9:33:42,Fakulta informatiky,Bakalářský,TeX / LaTeX,Ano,
+4.1.2015 18:30:33,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Možná, nevěděl(a) jsem o její existenci",
+5.1.2015 17:20:08,Fakulta informatiky,Bakalářský,TeX / LaTeX,"Možná, nevěděl(a) jsem o její existenci",
+14.1.2015 15:27:20,Fakulta informatiky,Magisterský,TeX / LaTeX,Ano,

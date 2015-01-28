@@ -3,6 +3,7 @@
 \newacronym{fel}{CTU FEL}{the Faculty of Electrical Engineering of the Czech Technical University in Prague}
 \newacronym{ctu}{CTU}{the Czech Technical University in Prague}
 \newacronym{cuni}{CUNI}{the Charles University in Prague}
+\newacronym{ascii}{ASCII}{American Standard Code for Information Interchange \cite{ascii}}
 
 \newglossaryentry{ctan}{
   first = {the Comprehensive \TeX{} Archive Network (CTAN)},
@@ -80,6 +81,41 @@
   description = {A feature, whose implementation is critical}
 }
 
+\newglossaryentry{pending}{
+  name = \textcolor{brown}{[PENDING]},
+  sort = PENDING,
+  description = {A feature, whose implementation is pending}
+}
+
+\newglossaryentry{rejected}{
+  name = \textcolor{gray}{REJECTED},
+  sort = REJECTED,
+  description = {A feature, whose implementation has been rejected}
+}
+
+\newglossaryentry{implemented}{
+  name = \textcolor{orange}{IMPLEMENTED},
+  sort = IMPLEMENTED,
+  description = {A feature, whose implementation has been brought to a successful end}
+}
+
+\newglossaryentry{eps}{
+  first = Encapsulated PostScript,
+  name = EPS,
+  description = {A document in the PostScript language, which is not only well-formed, but also satisfies a set of formal restrictions meant to restrict the complexity of the resulting document. Used primarily as a vector graphics format. For more information, see \cite{epsspec}}
+}
+
+\longnewglossaryentry{charenc}{
+  name={character encoding},
+  description={A character encoding specifies how characters are going to be represented on the low level. The first character encoding in use was \gls{ascii}, which was standardized in 1963 and which encodes lowercase and uppercase letters of english alphabet, numerals, punctuation, a space and several control codes. \gls{ascii} encodes each character as a 7-bit string.\vskip\parskip\hskip\parindent As time went on, a plathora of 8-bit encodings, which remained backwards compatible with \gls{ascii}, but used the additional bit to support the encoding of various non-english alphabet characters, became increasingly popular. In the Central Europe, the encodings of choice were ISO 8859-2 \cite{isolatin2} and Windows-1250. Character encodings allowed for easy text processing, as each character was exactly one byte, but also introducted additional complexity when dealing with documents, which contained characters from several non-english alphabets at once.\vskip\parskip\hskip\parindent Nowadays, the most commonly used encoding is UTF-8 \cite{rfc3629}, which can encode any character present in the Unicode character table \cite{unicode6}. This comes at the cost of producing variable-length characters, which introduces additional overhead to the text processing, although this overhead is generally regarded as trivial}
+}
+
+\newglossaryentry{pdf}{
+  first = Portable Document Format,
+  name = PDF,
+  description = {A file format tailored specifically to allow the creation of documents, whose appearance is independant on the underlying hardware and software. For more information, see \cite{isopdf}}
+}
+
 \newglossaryentry{shouldhave}{
   name = \textcolor{orange}{[SHOULD HAVE]},
   sort = SHOULD HAVE,
@@ -96,4 +132,10 @@
   name = \textcolor{ForestGreen}{[NEAT TO HAVE]},
   sort = NEAT TO HAVE,
   description = {A feature, whose implementation is fully optional}
+}
+
+\newglossaryentry{todo}{
+  name = \textcolor{red}{TODO},
+  sort = TODO,
+  description = {A feature or a part of the text, whose implementation is pending}
 }
