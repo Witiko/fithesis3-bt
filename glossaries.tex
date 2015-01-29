@@ -1,4 +1,5 @@
 \newacronym{fi}{FI MU}{the Faculty of Informatics of the Masaryk University in Brno}
+\newacronym{sci}{FS MU}{the Faculty of Science of the Masaryk University in Brno}
 \newacronym{mu}{MU}{the Masaryk University in Brno}
 \newacronym{fel}{CTU FEL}{the Faculty of Electrical Engineering of the Czech Technical University in Prague}
 \newacronym{ctu}{CTU}{the Czech Technical University in Prague}
@@ -47,7 +48,7 @@
 \newglossaryentry{makefile}{
   name = makefile,
   plural = makefiles,
-  description = {A file, which specifies the files and commands necessary to create one or more target files. The makefile is read by the make utility, when the creation of one or more target files is requested}
+  description = {A file, which specifies the files and commands necessary to create one or more target files. The makefile is read by the \texttt{make} utility, when the creation of one or more target files is requested}
 }
 
 \newdualentry{cmfonts}{CM fonts}{Computer Modern fonts}{A collection of typefaces, which was designed by Donald E. Knuth and which is used in \gls{tex}}
@@ -94,7 +95,7 @@
 }
 
 \newglossaryentry{implemented}{
-  name = \textcolor{orange}{IMPLEMENTED},
+  name = \textcolor{BlueViolet}{IMPLEMENTED},
   sort = IMPLEMENTED,
   description = {A feature, whose implementation has been brought to a successful end}
 }
@@ -107,7 +108,7 @@
 
 \longnewglossaryentry{charenc}{
   name={character encoding},
-  description={A character encoding specifies how characters are going to be represented on the low level. The first character encoding in use was \gls{ascii}, which was standardized in 1963 and which encodes lowercase and uppercase letters of english alphabet, numerals, punctuation, a space and several control codes. \gls{ascii} encodes each character as a 7-bit string.\vskip\parskip\hskip\parindent As time went on, a plathora of 8-bit encodings, which remained backwards compatible with \gls{ascii}, but used the additional bit to support the encoding of various non-english alphabet characters, became increasingly popular. In the Central Europe, the encodings of choice were ISO 8859-2 \cite{isolatin2} and Windows-1250. Character encodings allowed for easy text processing, as each character was exactly one byte, but also introducted additional complexity when dealing with documents, which contained characters from several non-english alphabets at once.\vskip\parskip\hskip\parindent Nowadays, the most commonly used encoding is UTF-8 \cite{rfc3629}, which can encode any character present in the Unicode character table \cite{unicode6}. This comes at the cost of producing variable-length characters, which introduces additional overhead to the text processing, although this overhead is generally regarded as trivial}
+  description={A character encoding specifies how characters are going to be represented on the low level. The first character encoding in use was \gls{ascii}, which was standardized in 1963 and which encodes lowercase and uppercase letters of english alphabet, digits, punctuation, a space and several teletype control codes. \gls{ascii} encodes each character as a 7bit string.\vskip\parskip\hskip\parindent As time went on, a plathora of 8-bit encodings, which remained backwards compatible with \gls{ascii}, but used the additional bit to support the encoding of various non-english alphabet characters, became increasingly popular. In the Central Europe, the encodings of choice were ISO 8859-2 \cite{isolatin2} and Windows-1250. Character encodings allowed for easy text processing, as each character was exactly one byte long, but also introducted additional complexity when dealing with documents, which contained characters from several non-english alphabets at once.\vskip\parskip\hskip\parindent Nowadays, the most commonly used encoding is UTF-8 \cite{rfc3629}, which can encode any character present in the Unicode character table \cite{unicode6}. This comes at the cost of producing variable-length characters, which introduces additional overhead to the text processing, although this overhead is generally regarded as trivial}
 }
 
 \newglossaryentry{pdf}{
@@ -137,5 +138,5 @@
 \newglossaryentry{todo}{
   name = \textcolor{red}{TODO},
   sort = TODO,
-  description = {A feature or a part of the text, whose implementation is pending}
+  description = {A part of the text, whose completion is pending}
 }
