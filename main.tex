@@ -12,7 +12,7 @@
 \usepackage{blindtext}          % Blind text
 \usepackage[toc,page]{appendix} % Appendices
 
-\usepackage{pgfplots}           % PGFPlots for graphs
+\usepackage{pgfplots}           % Graphs
 \pgfplotsset{compat=1.8}
 \usepgfplotslibrary{statistics}
 
@@ -55,7 +55,7 @@
 \usepackage[xindy,acronym,toc,sanitize=none]{glossaries}
 \makeglossaries
 \input{glossaries}
-\glossarystyle{altlistgroup}
+\setglossarystyle{altlistgroup}
 
 % Penalties
 \clubpenalty=10000  % Zero tolerance for widows and orphans
@@ -105,10 +105,10 @@
     \blindtext
 
   \chapter{Research}
-  \blindtext
+  During the course of December 2014 and January 2015, the author of this thesis has performed an initial research to obtain user feedback to the fithesis1 and fithesis2 \glspl{docclass}, to analyze the trends in the use of \gls{tex} across the faculties of \gls{mu} and to assess the existing solutions for the typesetting of theses. This chapter contains the results and findings of this research.
 
     \section{User Survey}
-    At the end of December 2014, an online questionnaire was distributed amongst the students of \gls{mu}. The table \ref{table:survey-faculty} illustrates the distribution of the respondents across the faculties of \gls{mu} according to the claims of the respondents. It should be noted that several respondents claimed to study at more than one faculty of \gls{mu}, which is the reason for the distortion of the percentage. The raw data obtained from the questionnaire in czech is available in the \texttt{survey/survey.csv} file distributed alongside this thesis.
+    At the end of December 2014, an online questionnaire was distributed amongst the students of \gls{mu}. Table \ref{table:survey-faculty} illustrates the distribution of the respondents across the faculties of \gls{mu} according to the claims of the respondents. It should be noted that several respondents claimed to study at more than one faculty of \gls{mu}, which is the reason for the distortion of the percentage. The raw data obtained from the questionnaire in czech is available in the \texttt{survey/survey.csv} file distributed alongside this thesis.
 
     \begin{table}
       \begin{tabularx}{\typearea}{Xcr}
@@ -130,7 +130,7 @@
       \label{table:survey-faculty}
     \end{table}
 
-    The overwhelming majority of respondents claimed that the highest degree for which they were studying was that of a bachelor (see table \ref{table:survey-type}) and that they were planning to use \gls{tex} or \gls{latex} to write their theses (see table \ref{table:survey-sw}). Most of those who claimed to be planning to use \gls{tex} or \gls{latex} also claimed to know about the existence of the fithesis \gls{docclass} and claimed to be planning to use it as a template for their theses or dissertations (see table \ref{table:survey-tex}).
+    The overwhelming majority of respondents claimed that the highest degree for which they were studying was that of a bachelor (see table \ref{table:survey-type}) and that they were planning to use \gls{tex} to write their theses (see table \ref{table:survey-sw}). Most of those who claimed to be planning to use \gls{tex} also claimed to know about the existence of the fithesis \gls{docclass} and claimed to be planning to use it as a template for their theses (see table \ref{table:survey-tex}).
 
     \begin{table}
       \begin{tabularx}{\typearea}{Xcr}
@@ -148,7 +148,7 @@
 
     \begin{table}
       \begin{tabularx}{\typearea}{Xcr}
-        \textbf{Which application do you use / are you planning to use to write your thesis or dissertation?} & \textbf{\#} & \textbf{\%} \\
+        \textbf{Which application do you use / are you planning to use to write your thesis?} & \textbf{\#} & \textbf{\%} \\
         \hline
         \textbf{\TeX{} / \LaTeX{}}            & 65          & 73,0 \\
         \textbf{Microsoft Office}             & 16          & 18,0 \\
@@ -160,7 +160,7 @@
         \hline
         \textbf{Total}                        & \textbf{89} & \textbf{100,0}
       \end{tabularx}
-      \caption{The software the respondents of the questionnaire are using or planning to use to write their theses or dissertations}
+      \caption{The software the respondents of the questionnaire are using or planning to use to write their theses}
       \label{table:survey-sw}
     \end{table}
 
@@ -176,14 +176,14 @@
         \hline
         \textbf{Total}                                       & \textbf{65} & \textbf{100,0}
       \end{tabularx}
-      \caption{The attitude towards using the fithesis class amongst those respondents who claimed to be using or planning to use \gls{tex} or \gls{latex} to typeset their theses or dissertations}
+      \caption{The attitude towards using the fithesis class amongst those respondents who claimed to be using or planning to use \gls{tex} to typeset their theses}
       \label{table:survey-tex}
     \end{table}
 
-    Some of the respondents who claimed to be using or planning to use \gls{tex} or \gls{latex} to typeset their theses or dissertations also provided feedback regarding the fithesis class. Unknown to the author at the time of the survey was the fact that fithesis2 had never been made publicly available, despite the fact that works on fithesis2 were brought to a successful end during 2009 \cite{Filipcik09}. As a result of that, much of the feedback was regarding issues long fixed in fithesis2, such as requests for the change of the default \gls{charenc} from ISO 8859-2 to UTF-8 \cite[section 4.1]{Filipcik09} or bug reports regarding a missing metafont logo file \cite{fithesis2@fbd7a25}. Among the feedback relevant to fithesis2 were calls for a more extensive user and technical documentation \gls{pending} and a suggestion that the class should support the typesetting of printed and electronic versions of theses as separate documents \gls{pending}.
+    Some of the respondents who claimed to be using or planning to use \gls{tex} to typeset their theses also provided feedback regarding the fithesis class. Unknown to the author at the time of the survey was the fact that fithesis2 had never been made publicly available, despite the fact that works on fithesis2 were brought to a successful end during 2009 \cite{Filipcik09}. As a result of that, much of the feedback was regarding issues long fixed in fithesis2, such as requests for the change of the default \gls{charenc} from ISO 8859-2 to UTF-8 \cite[section 4.1]{Filipcik09} or bug reports regarding a missing metafont logo file \cite{fithesis2@fbd7a25}. Among the feedback relevant to fithesis2 were calls for a more extensive user and technical documentation \gls{pending} and a suggestion that the class should support the typesetting of printed and electronic versions of theses as separate documents \gls{pending}.
 
     \section{Statistical analysis of existing theses}
-    Along with the user survey, a statistical analysis of theses and dissertations defended on \gls{mu} between 2010 and 2015 was performed by the author. The data for the analysis were kindly provided by doc. Ing. Michal Brandejs, CSc., the head of the Computer Systems Unit at \gls{fi}. The raw data are available within the directory \texttt{statistics} distributed alongside this thesis.
+    Along with the user survey, a statistical analysis of theses defended on \gls{mu} between 2010 and 2015 was carried out by the author of this thesis. The sample data for the analysis were kindly provided by doc. Ing. Michal Brandejs, CSc., the head of the Computer Systems Unit at \gls{fi}. The raw data is available within the directory \texttt{statistics} distributed alongside this thesis.
 
     \begin{table}
       \begin{tabularx}{\typearea}{Xrr}
@@ -201,15 +201,30 @@
         \hline
         \textbf{Total}                        & \textbf{45\,058} & \textbf{100,00}
       \end{tabularx}
-      \caption{The distribution of theses and dissertations written between 2010 and 2015 across the faculties of \gls{mu}}
+      \caption{The distribution of theses defended between 2010 and 2015 across the faculties of \gls{mu}}
       \label{table:statistics-faculty}
     \end{table}
+
+    \begin{table}
+      \begin{tabularx}{\typearea}{Xrr}
+        \textbf{Degree} & \textbf{\#} & \textbf{\%} \\
+        \hline
+        \textbf{Bachelor's} & 22\,135 & 49,13 \\
+        \textbf{Master's}   & 20\,510 & 45,52 \\
+        \textbf{Doctoral}   &  2\,204 &  4,89 \\
+        \textbf{Lifelong}   &     209 &  0,46 \\
+        \hline
+        \textbf{Total}      & \textbf{45\,058} & \textbf{100,00}
+      \end{tabularx}
+      \caption{The distribution of theses defended between 2010 and 2015 across the study programme degrees}
+      \label{table:statistics-degree}
+    \end{table}
     
-    The table \ref{table:statistics-faculty} details the distribution of theses and dissertations written between 2015 and 2015 across the faculties of \gls{mu}. \todo{\ldots}
+    Tables \ref{table:statistics-faculty} and \ref{table:statistics-degree} detail the distribution of theses written and defended between 2010 and 2015 across the faculties of \gls{mu} and across the study programme degrees, respectively. Table \ref{table:statistics-tex} illustrates how many of these theses were written using \gls{tex}. Table \ref{table:statistics-tex-yearly} then details the trends in the usage of \gls{tex} by the students of Bachelor's, Master's and Doctoral degree programmes on \gls{fi} and \gls{sci}. Other faculties of \gls{mu} weren't considered, since the number of theses written at them using \gls{tex} was statistically insignificant.
 
     \begin{table}
       \begin{tabularx}{\typearea}{Xrrr}
-        \textbf{Faculty} & \textbf{Via \gls{tex} or \gls{latex}} & \textbf{Total} & \textbf{\%} \\
+        \textbf{Faculty} & \textbf{With \gls{tex}} & \textbf{Total} & \textbf{\%} \\
         \hline
         \textbf{Informatics}                 & 1\,474 & 2\,939 & 50,15 \\% 1433
         \textbf{Science}                     & 630    & 5\,231 & 12,04 \\% 1431
@@ -223,75 +238,166 @@
         \hline
         \textbf{Total} & \textbf{2\,233} & \textbf{45\,058} & \textbf{4,96}
       \end{tabularx}
-      \caption{The distribution of theses and dissertations written using \gls{tex} or \gls{latex} between 2010 and 2015 across the faculties of \gls{mu}}
+      \caption{The distribution of theses written using \gls{tex}, which were defended between 2010 and 2015 across the faculties of \gls{mu}}
       \label{table:statistics-tex}
     \end{table}
     
     \begin{table}
-        \begin{tabularx}{\typearea}{Xcrrrrrr}
+        \begin{tabularx}{\typearea}{Xlrrrrrr}
         \textbf{Degree} & \textbf{Faculty} & \textbf{2010} & \textbf{2011} & \textbf{2012} & \textbf{2013} & \textbf{2014} & $R$\\
         \hline
         \textbf{Bachelor's}
-          & Inform. & 47,04 & 49,85 & 42,86 & 48,97 & 56,04 & $+$0,565 \\
-          & Science &  7,36 &  7,88 & 14,42 & 19,44 & 14,78 & $+$0,817 \\
-          & \textbf{Total} & \textbf{4,26} & \textbf{4,76} & \textbf{5,24} & \textbf{5,62} & \textbf{5,92} & \textbf{$+$0,995} \\
+          & \acrshort{fi}  & 47,04 & 49,85 & 42,86 & 48,97 & 56,04 & \textcolor{OliveGreen}{$+$0,565} \\
+          & \acrshort{sci} &  7,36 &  7,88 & 14,42 & 19,44 & 14,78 & \textcolor{OliveGreen}{$+$0,817} \\
+          & \textbf{Total} & \textbf{4,26} & \textbf{4,76} & \textbf{5,24} & \textbf{5,62} & \textbf{5,92} & \textbf{\textcolor{OliveGreen}{$+$0,995}} \\
         \textbf{Master's}
-          & Inform. & 44,04 & 50,00 & 48,74 & 54,73 & 53,82 & $+$0,895 \\
-          & Science & 11,83 &  8,07 & 11,19 & 12,35 & 16,46 & $+$0,712 \\
-          & \textbf{Total} & \textbf{3,98} & \textbf{3,63} & \textbf{4,21} & \textbf{5,56} & \textbf{5,77} &  \textbf{$+$0,899} \\
+          & \acrshort{fi}  & 44,04 & 50,00 & 48,74 & 54,73 & 53,82 & \textcolor{OliveGreen}{$+$0,895} \\
+          & \acrshort{sci} & 11,83 &  8,07 & 11,19 & 12,35 & 16,46 & \textcolor{OliveGreen}{$+$0,712} \\
+          & \textbf{Total} & \textbf{3,98} & \textbf{3,63} & \textbf{4,21} & \textbf{5,56} & \textbf{5,77} &  \textbf{\textcolor{OliveGreen}{$+$0,899}} \\
         \textbf{Doctoral}
-          & Inform. & 76,92 & 50,00 & 53,13 & 54,84 & 68,18 & $-$0,174 \\
-          & Science & 12,63 &  8,04 &  8,82 &  2,78 &  7,21 & $-$0,720 \\
-            & \textbf{Total} & \textbf{7,29} & \textbf{5,84} & \textbf{6,25} & \textbf{4,68} & \textbf{5,20} & \textbf{$-$0,842} \\
+          & \acrshort{fi}  & 76,92 & 50,00 & 53,13 & 54,84 & 68,18 & \textcolor{red}{$-$0,174} \\
+          & \acrshort{sci} & 12,63 &  8,04 &  8,82 &  2,78 &  7,21 & \textcolor{red}{$-$0,720} \\
+          & \textbf{Total} & \textbf{7,29} & \textbf{5,84} & \textbf{6,25} & \textbf{4,68} & \textbf{5,20} & \textcolor{red}{\textbf{$-$0,842}} \\
         \hline
         \textbf{Total} 
-          & \textbf{Inform.} & \textbf{46,64} & \textbf{49,91} & \textbf{45,74} & \textbf{52,11} & \textbf{55,10} & \textbf{$+$0,781} \\
-          & \textbf{Science} & \textbf{9,45} &  \textbf{7,97} & \textbf{12,59} & \textbf{15,09} & \textbf{14,62} & \textbf{$+$0,879} \\
-          & \textbf{Total} &\textbf{4,28} & \textbf{4,30} & \textbf{4,79} & \textbf{5,50} & \textbf{5,78} & \textbf{$+$0,968}
+          & \textbf{\acrshort{fi} } & \textbf{46,64} & \textbf{49,91} & \textbf{45,74} & \textbf{52,11} & \textbf{55,10} & \textbf{\textcolor{OliveGreen}{$+$0,781}} \\
+          & \textbf{\acrshort{sci}} & \textbf{9,45} &  \textbf{7,97} & \textbf{12,59} & \textbf{15,09} & \textbf{14,62} & \textbf{\textcolor{OliveGreen}{$+$0,879}} \\
+          & \textbf{Total} &\textbf{4,28} & \textbf{4,30} & \textbf{4,79} & \textbf{5,50} & \textbf{5,78} & \textbf{\textcolor{OliveGreen}{$+$0,968}}
       \end{tabularx}
-      \caption{The percentage of bachelor's, master's and doctoral theses written using \gls{tex} or \gls{latex} in each year between 2010 and 2014 on \gls{fi} and \gls{sci} and the sample correlation coefficient $R$ between the percentage and the years}
+      \caption{The percentage of bachelor's, master's and doctoral theses written using \gls{tex} which were defended in each year between 2010 and 2014 on \acrshort{fi} and \acrshort{sci} and the sample correlation coefficient $R$ between the percentage and the years}
       \label{table:statistics-tex-yearly}
     \end{table}
+    
+    \begin{table}
+        \begin{tabularx}{\typearea}{Xlrrrrrr}
+          \bf Fac. & \bf Degree & $\mathbf{M_1}$ & $\mathbf{M_2}$ & $\mathbf{S_1}$ & $\mathbf{S_2}$ & \bf F-test & \bf t-test \\
+        \hline
+        \acrshort{fi}
+        & \textbf{Bachelor's} & 2,356 & 3,021 & 1,462 & 1,693 & $<0{,}01$ & \textcolor{OliveGreen}{$<0{,}01$} \\
+          & \textbf{Master's}   & 2,464 & 2,760 & 1,679 & 1,727 & 0,47 & \textcolor{OliveGreen}{$<0{,}01$} \\
+          & \textbf{Doctoral}   & 1,405 & 1,944 & 1,109 & 1,653 & $<0{,}01$ & \textcolor{red}{0,04} \\
+          & \textbf{Total}      & \bf 2,357 & \bf 2,876 \bf & \bf 1,564 & \bf 1,725 & $\mathbf{<0{,}01}$ & \textcolor{OliveGreen}{$\mathbf{<0{,}01}$}\\
+
+        \acrshort{sci}
+          & \textbf{Bachelor's} & 1,937 & 2,071 & 1,198 & 1,229 & 0,52 & \textcolor{red}{0,04} \\
+          & \textbf{Master's}   & 1,975 & 2,021 & 1,393 & 1,285 & 0,09 & \textcolor{red}{0,61} \\
+          & \textbf{Doctoral}   & 1,333 & 1,647 & 0,650 & 1,165 & $<0{,}01$ & \textcolor{OliveGreen}{$<0{,}01$} \\
+
+          & \textbf{Total}      & \bf 1,911 & \bf 2,007 & \bf 1,256 & \bf 1,250 & \bf 0,86 & \textcolor{red}{\bf 0,07} \\
+        \hline
+        \textbf{Total} 
+        & \textbf{Bachelor's} & \bf 2,224 & \bf 2,520 & \bf 1,395 & \bf 1,477 & $\mathbf{<0{,}01}$ & \textcolor{OliveGreen}{$\mathbf{<0{,}01}$} \\
+        & \textbf{Master's} & \bf 2,321 & \bf 2,295 & \bf 1,598 & \bf 1,441 & $\mathbf{<0{,}01}$ & \textcolor{red}{$\mathbf{0{,}62}$} \\
+        & \textbf{Doctoral} & \bf 1,423 & \bf 1,851 & \bf 1,033 & \bf 1,419 & $\mathbf{<0{,}01}$ & \textcolor{OliveGreen}{$\mathbf{<0{,}01}$} \\
+        & \textbf{Total}    & \bf 2,219 & \bf 2,384 & \bf 1,482 & \bf 1,467 & \bf 0,49 & \textcolor{OliveGreen}{$\mathbf{<0{,}01}$} \\
+      \end{tabularx}
+      \caption{The sample means $M_{1,2}$ and the sample standard deviations $S_{1,2}$ of the marks given to the bachelor's, master's and doctoral theses written and defended between 2010 and 2014 at \gls{fi} and \gls{sci} using and not using \gls{tex}, respectively, with the \glspl{pval} of the $F$-test and the unpaired two-sample $t$-test.}
+      \label{table:statistics-tex-marks}
+    \end{table}
+    
+    To determine whether or not a thesis had been written using \gls{tex}, a heuristic was employed, which takes into account the \glspl{mime}, suffices, magic numbers and metadata of the files submitted alongside the thesis. A thesis is considered to be written using \gls{tex}, if one or more files submitted alongside it satisfies one or more of the following conditions:
+
+    \begin{itemize}
+      \item The suffix is \texttt{tex}.
+      \item The magic number is that of a \acrshort{dvi} file.
+      \item The \gls{mime} is \texttt{application/postscript} and the file contain the \texttt{TeXDict} substring implying the file is a \gls{ps} document, which was created using the \texttt{dvips} utility.
+      \item The mime-type is \texttt{application/pdf} and either the \texttt{Creator} or the \texttt{Producer} \gls{pdf} header contains the \texttt{TeX} substring implying the file was created using either the \texttt{dvipdfm} utility or using \hologo{pdfTeX}, \Hologo{XeTeX}, \Hologo{LuaTeX}, \Hologo{ConTeXt} or another \gls{texeng}, which supports \gls{pdf} output.
+    \end{itemize}
+
+    Provided the heuristic is sound, there has been a marked and steady increase in the use of \gls{tex} between 2010 and 2014 across the faculties of \gls{mu} (see \ref{table:statistics-tex-yearly}). This appears to be due to the rising popularity of \gls{tex} among the students of bachelor's and master's degree programmes, as no such trend can be observed with doctoral theses and the bachelor's and master's theses make up the overwhelming majority of all the defended theses (see table \ref{table:statistics-degree}).
 
     \begin{figure}
       \centering
       \begin{tikzpicture}
         \begin{axis}
           [
-            ytick={1,2},
-            yticklabels={With \TeX{} or \LaTeX{},
-                         Without \TeX{} or \LaTeX{}},
+            ytick={1,2,3,4,5,6},
+            yticklabels={With \TeX{} (at \acrshort{sci}),
+                         Without \TeX{} (at \acrshort{sci}),
+                         With \TeX{} (total),
+                         Without \TeX{} (total),
+                         With \TeX{} (at \acrshort{fi}),
+                         Without \TeX{} (at \acrshort{fi})},
           ]
+          \addplot+[
+            boxplot prepared={
+              median=1,
+              upper quartile=2,
+              lower quartile=1,
+              upper whisker=3,
+              lower whisker=1,
+              average=1.91111111111111
+            },
+          ] table[row sep=\\,y index=0] {
+            data\\ 4\\ 5\\ 6\\
+          };
           \addplot+[
             boxplot prepared={
               median=2,
               upper quartile=3,
               lower quartile=1,
-              upper whisker=4,
+              upper whisker=5,
+              lower whisker=1,
+              average=2.00695500978048
+            },
+          ] table[row sep=\\,y index=0] {
+            data\\ 6\\
+          };
+          \addplot+[
+            boxplot prepared={
+              median=2,
+              upper quartile=3,
+              lower quartile=1,
+              upper whisker=5,
               lower whisker=1,
               average=2.2189879086
             },
           ] table[row sep=\\,y index=0] {
-            data\\ 5\\ 6\\
+            data\\ 6\\
           };
           \addplot+[
             boxplot prepared={
               median=2,
               upper quartile=3,
               lower quartile=1,
-              upper whisker=4,
+              upper whisker=5,
               lower whisker=1,
               average=2.3835843549
             },
           ] table[row sep=\\,y index=0] {
-            data\\ 5\\ 6\\
+            data\\ 6\\
+          };
+          \addplot+[
+            boxplot prepared={
+              median=2,
+              upper quartile=3,
+              lower quartile=1,
+              upper whisker=5,
+              lower whisker=1,
+              average=2.35685210312076
+            },
+          ] table[row sep=\\,y index=0] {
+            data\\ 6\\
+          };
+          \addplot+[
+            boxplot prepared={
+              median=2,
+              upper quartile=4,
+              lower quartile=1,
+              upper whisker=6,
+              lower whisker=1,
+              average=2.87645051194539
+            },
+          ] table[row sep=\\,y index=0] {
+            data\\
           };
         \end{axis}
       \end{tikzpicture}
-      \caption{A box plot of the marks of theses and dissertations written between 2010 and 2015 with and without \gls{tex} or \gls{latex}}
+      \caption{A box plot of the marks of theses written and defended between 2010 and 2015 at \gls{fi} and \gls{sci} with and without \gls{tex}}
       \label{boxplot:statistics-marks}
     \end{figure}
-    \todo{This is also reflected by the sample correlation coefficient between the marks and the usage of \gls{tex} or \gls{latex}, which is $-0{,}024$. Not statistically significant, though.}
+
+    A significant correlation ($R=-0{,}156$) was also found between the use of \gls{tex} and the marks given to theses defended between 2010 and 2015 at \gls{fi}. The author had therefore decided to test the following \gls{hypothesis}: Suppose the marks given to theses written and defended between 2010 and 2015 at \gls{mu} are normally distributed. Suppose also that the marks given to theses written using \gls{tex} have the expected value $\mu_1$ and the variance $\sigma_1^2$ and that the marks given to theses not written using \gls{tex} have the expected value $\mu_2$ and the variance $\sigma_2^2$. Under investigation is the \gls{hypothesis} that $\mu_1-\mu_2=0$ on the significance level $\alpha=0{,}01$. As an intermediary step, the $F$-test is used to test the \gls{hypothesis} that $\sigma_1^2/\sigma_2^2=1$ on the significance level $0{,}01$. Depending on the result, either the standard or Welsh's two-tailed unpaired two-sample $t$-test is used to test the original \gls{hypothesis}. As detailed in the table \ref{table:statistics-tex-marks}, we overall reject this \gls{hypothesis} on the significance level $0{,}01$. The box plots of the marks given to theses written and defended between 2010 and 2015 at \gls{fi} and \gls{sci} using and not using \gls{tex} is shown in the figure \ref{boxplot:statistics-marks}.
     
     \section{Comparison with Existing Solutions}
     As a part of the initial research, I also assessed several templates for the typesetting of theses in order to gather ideas for immediate and future improvements of the fithesis2 class. Initially, I'm going to focus on templates used at czech technical universities. I will then broaden the scope to include both the templates of foreign universities and generic thesis typesetting classes for \gls{latex} from \gls{ctan}.
@@ -299,22 +405,24 @@
       \subsection{CTUStyle\index{CTUStyle|(} and CUStyle\index{CUStyle|(}}
       The first of the reviewed thesis typesetting templates were Petr Olšák's CTUStyle \cite{ctustyle} and CUStyle \cite{custyle} \glspl{texpackage}, which are used at \gls{fel} and at \gls{cuni}, respectively. The sole dependencies of these templates are the \inx{\gls{csplain}} and \inx{\gls{opmac}} \glspl{texpackage}.
 
-      The templates are closely tied with the visual styles of the universities, which is mainly achieved through color-coding. Aside from black-and-white text, the CTUstyle \gls{texpackage} typesets various typographic elements in the \clrpicker{pantone300} Pantone 300 color, which makes for a visually pleasing combination. The CUstyle \gls{texpackage} uses the combination of black, gray and \clrpicker{cured} bright maroon to a similar end. By typesetting various typographic elements in the \clrpicker{pantone122} Pantone 122 color, which is a part of the visual identity of \gls{fi} \cite{filogo}, and by replacing the logotype of the faculty with its colored version, which was created as a part of Matúš Kominka's bachelor thesis \cite{Kominka08}, the fithesis2 \gls{docclass} could be likewise revitalized. \implemented{v0.3.00, 01, 06} Since each faculty of \gls{mu} has a color version of its logo \cite{muvis}, this redesign could be implemented without the loss of support for other faculties. \implemented{The logos were downloaded as monochromatic and direct color \gls{eps} files from \cite{muvis} and then transformed into \gls{pdf} files using the \texttt{epstopdf} \cite{epstopdf} unix utility.}
+      The templates are closely tied with the visual styles of the universities, which is mainly achieved through color-coding. Aside from black-and-white text, the CTUstyle \gls{texpackage} typesets various typographic elements in the \clrpicker{pantone300} Pantone 300 color, which makes for a visually pleasing combination. The CUstyle \gls{texpackage} uses the combination of black, gray and \clrpicker{cured} bright maroon to a similar end. By typesetting various typographic elements in the \clrpicker{pantone122} Pantone 122 color, which is a part of the visual identity of \gls{fi} \cite{filogo}, and by replacing the logotype of the faculty with its colored version, which was created as a part of Matúš Kominka's bachelor thesis \cite{Kominka08}, the fithesis2 \gls{docclass} could be likewise revitalized. \implemented{v0.3.00, 01, 06} Since each faculty of \gls{mu} has a color version of its logo \cite{muvis}, this redesign could be implemented without the loss of support for other faculties. \implemented{The logos were downloaded as monochromatic and direct color \gls{eps} files from \cite{muvis} and then transformed into \gls{pdf} files using the \texttt{epstopdf} \cite{epstopdf} utility.}
 
       Unlike with fithesis2, documents typeset with the CTUStyle and CUStyle templates are double-sided by default. The horizontal margins of the CTUStyle (32\,mm \cite[line 249]{ctustyleCode}) and CUStyle (31\,mm \cite[line 229]{custyleCode}) templates are also much smaller than those of fithesis2, which measure 19\,mm \cite[lines 968\nobreakdash--976]{fithesis2Code} plus a binding correction of 1\,inch \cite{latexlayout} = 45\,mm on the left side and 210\,mm (A4 width) minus 45\,mm (left margin) minus 127\,mm (text width \cite[lines~989, 1017, 1045]{fithesis2Code}) = 38\,mm on the right side. The margins of CTUStyle and CUStyle, in conjunction with the chosen font family, allow for up to 100 characters per line, which is not only wearying to the eye of an inexperienced reader \todo{cite}, but also against the recommendations of \gls{fi} \cite[section 3.2.3]{bpdpfi}. Although not explicitly stated, both decisions have likely been made in order to reduce the required storage space for the archival of physical prints of theses. An option to remove the binding correction and to relax horizontal margins for online publishing could be implemented into fithesis3. \rejected{Changes to the type area would affect line breaking.}
       \index{CTUStyle|)}
       \index{CUStyle|)}
 
       \subsection{Felthesis}
-      \gls{todo}
+      \todo{}
 
       \subsection{The Charles University in Prague}
       Along with Petr Olšák's CUStyle, \gls{cuni} also provides an official \gls{latex} template for the typesetting of theses \cite{cunisablona}. Rather than defining a new \gls{docclass}, the archive contains a \gls{makefile} and a skeleton \gls{latex} document using the report \gls{docclass} for both czech and english theses. The students then modify said document to suit their requirements. The template uses \gls{cslatex} rather than the babel \gls{ltxpackage}, which means that \gls{csfonts} rather than the superior \gls{lmfonts} \cite{cslatexvsbabel} are used by default.
 
+      \subsection{Mendel University in Brno}
+      \todo{\url{https://akela.mendelu.cz/~rybicka/}}
+
       % VUT -- http://latex.feec.vutbr.cz/cz/latex/download/sablona-pro-bp-dp-v2-4/
       % CTAN: muthesis, ... from Kumar07
       % ... more from https://tug.org/pracjourn/2007-4/
-      % Add code as figures rather than bibliographic citations
 
     \section{Shortcomings of the \emph{Fithesis} Document Classes}
     \blindtext

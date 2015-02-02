@@ -1,10 +1,33 @@
-\newacronym{fi}{FI MU}{the Faculty of Informatics of the Masaryk University in Brno}
-\newacronym{sci}{FS MU}{the Faculty of Science of the Masaryk University in Brno}
+\newacronym{fi}{FI}{the Faculty of Informatics of \acrlong{mu}}
+\newacronym{sci}{FS}{the Faculty of Science of \acrlong{mu}}
+\newacronym{fa}{FA}{the Faculty of Arts of \acrlong{mu}}
+\newacronym{fedu}{FEdu}{the Faculty of Education of \acrlong{mu}}
+\newacronym{fss}{FSS}{the Faculty of Social Studies of \acrlong{mu}}
+\newacronym{fsps}{FSpS}{the Faculty of Sports Studies of \acrlong{mu}}
+\newacronym{flaw}{FLaw}{the Faculty of Law of \acrlong{mu}}
+\newacronym{fea}{FEA}{the Faculty of Economics \& Administration of \acrlong{mu}}
+\newacronym{lf}{FM}{the Faculty of Medicine of \acrlong{mu}}
+
 \newacronym{mu}{MU}{the Masaryk University in Brno}
 \newacronym{fel}{CTU FEL}{the Faculty of Electrical Engineering of the Czech Technical University in Prague}
 \newacronym{ctu}{CTU}{the Czech Technical University in Prague}
 \newacronym{cuni}{CUNI}{the Charles University in Prague}
 \newacronym{ascii}{ASCII}{American Standard Code for Information Interchange \cite{ascii}}
+
+\newglossaryentry{pval}{
+  name = {$p$-value},
+  sort = {p-value},
+  description = {The least significance level $p$ at which we can refuse the given zero \gls{hypothesis}},
+}
+
+\newdualentry{mime}{MIME-type}{Multipurpose Internet Mail Extensions Type}{
+  One of the several ways to identify the type of content inside a file. As its name suggest, it was originally designed as an extension to the e-mail protocol \cite{rfc2045,rfc2046,rfc2047,rfc6838,rfc4289,rfc2049} that would allow the transfer of kinds of data other than \gls{ascii}, such as multimedia and binary files.
+}
+
+\newglossaryentry{hypothesis}{
+  name = hypothesis,
+  description = {With significance testing, we have two orthogonal hypotheses: the zero hypothesis $f(\ldots)=c$ and the alternative hypothesis $f(\ldots)\not=c$, where $f(\ldots)$ is a function of the statistics of the random variables under scrutiny and $c\in\mathbb{R}$. The hypotheses can then be tested at various significance levels. The higher the significance level, the higher the probability of refusing the zero hypothesis in favour of the alternative hypothesis, but the higher is also the risk of error}
+}
 
 \newglossaryentry{ctan}{
   first = {the Comprehensive \TeX{} Archive Network (CTAN)},
@@ -100,10 +123,15 @@
   description = {A feature, whose implementation has been brought to a successful end}
 }
 
-\newglossaryentry{eps}{
-  first = Encapsulated PostScript,
-  name = EPS,
-  description = {A document in the PostScript language, which is not only well-formed, but also satisfies a set of formal restrictions meant to restrict the complexity of the resulting document. Used primarily as a vector graphics format. For more information, see \cite{epsspec}}
+\newdualentry{ps}{PS}{PostScript}{A page-description language, which allows the creation of documents, whose appearance is independant on the underlying hardware and software. Unlike the \gls{gls-pdf}, PostScript is a turing-complete programming language, which makes it possible to generate procedural vector graphics with it. For more information, see \cite{psspec}}
+
+\newdualentry{eps}{EPS}{Encapsulated PostScript}{A subset of the \gls{gls-ps} language, which imposes a set of formal restrictions meant to decrease the complexity of the resulting document. Encapsulated Postscript is primarily used as a vector graphics format. For more information, see \cite{epsspec}}
+
+\newglossaryentry{texeng}{
+  name = {\TeX{} engine},
+  plural = {\TeX{} engines},
+  sort = {TeX engine},
+  description = {A program, which can process documents in (usually a superset of) the \gls{tex} language. The baseline \TeX{} engine is the \TeX{} typesetting program described in \cite{texbook}. Knuth's \TeX{}, along with the \hologo{eTeX} engine, is the building block of modern \TeX{} engines like \hologo{pdfTeX}, \Hologo{XeTeX}, \Hologo{ConTeXt} or \Hologo{LuaTeX}, which each come with extensions of their own}
 }
 
 \longnewglossaryentry{charenc}{
@@ -111,11 +139,9 @@
   description={A character encoding specifies how characters are going to be represented on the low level. The first character encoding in use was \gls{ascii}, which was standardized in 1963 and which encodes lowercase and uppercase letters of english alphabet, digits, punctuation, a space and several teletype control codes. \gls{ascii} encodes each character as a 7bit string.\vskip\parskip\hskip\parindent As time went on, a plathora of 8-bit encodings, which remained backwards compatible with \gls{ascii}, but used the additional bit to support the encoding of various non-english alphabet characters, became increasingly popular. In the Central Europe, the encodings of choice were ISO 8859-2 \cite{isolatin2} and Windows-1250. Character encodings allowed for easy text processing, as each character was exactly one byte long, but also introducted additional complexity when dealing with documents, which contained characters from several non-english alphabets at once.\vskip\parskip\hskip\parindent Nowadays, the most commonly used encoding is UTF-8 \cite{rfc3629}, which can encode any character present in the Unicode character table \cite{unicode6}. This comes at the cost of producing variable-length characters, which introduces additional overhead to the text processing, although this overhead is generally regarded as trivial}
 }
 
-\newglossaryentry{pdf}{
-  first = Portable Document Format,
-  name = PDF,
-  description = {A file format tailored specifically to allow the creation of documents, whose appearance is independant on the underlying hardware and software. For more information, see \cite{isopdf}}
-}
+\newdualentry{pdf}{PDF}{Portable Document Format}{A page-description format tailored specifically to allow the creation of documents, whose appearance is independant on the underlying hardware and software. For more information, see \cite{isopdf}}
+
+\newdualentry{dvi}{DVI}{Device independent file format}{the output of the \gls{tex} typesetting program, which describes the layout of the document and which is both hardware and software-independent. The format lacks any font or graphics embedding facilities and therefore needs to be transcoded into another format like \gls{gls-ps} prior to printing}
 
 \newglossaryentry{shouldhave}{
   name = \textcolor{orange}{[SHOULD HAVE]},

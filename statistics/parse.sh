@@ -1,5 +1,5 @@
 #!/bin/sh
-# Maps the "$1" file containing thesis data in the following format:
+# Maps the input containing thesis data in the following format:
 #
 #   FACULTY_ID DEGREE DEFENSE_YEAR MARK FILE_NR MIME SUFFIX <EMPTY> <EMPTY> PDF_CREATOR PDF_PRODUCER
 #
@@ -56,9 +56,9 @@ IFS=; while read line; do
   fi; LASTID=$ID
 
   # Evaluating the TeX heuristic
-  if [ -n "$HEURISTIC1" -o -n "$HEURISTIC2" ]     ||
-     echo "$SUFFIX"   | grep -iq '^\(tex\|dvi\)$' ||
-     echo "$CREATOR"  | fgrep -q 'TeX'            ||
+  if [ -n "$HEURISTIC1" -o -n "$HEURISTIC2" ] ||
+     echo "$SUFFIX"   | grep -iq '^tex$'      ||
+     echo "$CREATOR"  | fgrep -q 'TeX'        ||
      echo "$PRODUCER" | fgrep -q 'TeX'; then
     TEX=1
   fi
@@ -66,5 +66,5 @@ IFS=; while read line; do
   LASTOUTPUT="$(printf '%d\t%d\t%d\t%d\t%d\n'\
     $FACULTY $DEGREE $YEAR $MARK $TEX)"
 
-done < "$1"
+done
 printf '%s\n' "$LASTOUTPUT"
