@@ -9,6 +9,7 @@
 \newacronym{lf}{FM}{the Faculty of Medicine of \acrlong{mu}}
 
 \newacronym{mu}{MU}{the Masaryk University in Brno}
+\newacronym{mendelu}{MENDELU}{the Mendel University in Brno}
 \newacronym{fel}{CTU FEL}{the Faculty of Electrical Engineering of the Czech Technical University in Prague}
 \newacronym{ctu}{CTU}{the Czech Technical University in Prague}
 \newacronym{cuni}{CUNI}{the Charles University in Prague}
@@ -21,7 +22,12 @@
 }
 
 \newdualentry{mime}{MIME-type}{Multipurpose Internet Mail Extensions Type}{
-  One of the several ways to identify the type of content inside a file. As its name suggest, it was originally designed as an extension to the e-mail protocol \cite{rfc2045,rfc2046,rfc2047,rfc6838,rfc4289,rfc2049} that would allow the transfer of kinds of data other than \gls{ascii}, such as multimedia and binary files.
+  One of the several ways to identify the type of content inside a file. As its name suggest, it was originally designed as an extension to the e-mail protocol \cite{rfc2045,rfc2046,rfc2047,rfc6838,rfc4289,rfc2049} that would allow the transfer of kinds of data other than \gls{ascii}, such as multimedia and binary files
+}
+
+\newglossaryentry{magnum}{
+  name = {magic number},
+  description = {A pattern of bytes located typically in the header of a file, which are used to determine the type of a file at unix systems.}  
 }
 
 \newglossaryentry{hypothesis}{
@@ -99,14 +105,8 @@
   description = {A set of \gls{latex} macros and commands, which can be loaded in the preamble of a \gls{latex} document to add or alter existing functionality}
 }
 
-\newglossaryentry{musthave}{
-  name = \textcolor{red}{[MUST HAVE]},
-  sort = MUST HAVE,
-  description = {A feature, whose implementation is critical}
-}
-
 \newglossaryentry{pending}{
-  name = \textcolor{brown}{[PENDING]},
+  name = \textcolor{brown}{PENDING},
   sort = PENDING,
   description = {A feature, whose implementation is pending}
 }
@@ -117,9 +117,13 @@
   description = {A feature, whose implementation has been rejected}
 }
 
+\newglossaryentry{partimp}{
+  name = \textcolor{BlueViolet}{PARTIALLY IMPLEMENTED},
+  description = {A feature, whose implementation has been partially completed}
+}
+
 \newglossaryentry{implemented}{
-  name = \textcolor{BlueViolet}{IMPLEMENTED},
-  sort = IMPLEMENTED,
+  name = \textcolor{ForestGreen}{IMPLEMENTED},
   description = {A feature, whose implementation has been brought to a successful end}
 }
 
@@ -147,18 +151,6 @@
   name = \textcolor{orange}{[SHOULD HAVE]},
   sort = SHOULD HAVE,
   description = {A feature, whose implementation is highly desirable}
-}
-
-\newglossaryentry{couldhave}{
-  name = \textcolor{blue}{[COULD HAVE]},
-  sort = COULD HAVE,
-  description = {A feature, whose implementation is mostly optional}
-}
-
-\newglossaryentry{wannahave}{
-  name = \textcolor{ForestGreen}{[NEAT TO HAVE]},
-  sort = NEAT TO HAVE,
-  description = {A feature, whose implementation is fully optional}
 }
 
 \newglossaryentry{todo}{

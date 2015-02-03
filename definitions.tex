@@ -36,17 +36,37 @@
   \textcolor{#1}{\rule{0.7em}{0.7em}}%
 }
 
+\newcommand{\marker}[3]{%
+  \def\empty{}%
+  \def\arg{#3}%
+  \textcolor{#2}{[\gls{#1}\ifx\arg\empty\else: #3\fi]}%
+}
+
+
 % A todo marker
 \newcommand{\todo}[1]{%
-  \textcolor{red}{[\gls{todo}: #1]}%
+  \marker{todo}{red}{#1}%
+}
+
+% A pending marker
+\newcommand{\pending}[1]{%
+  \marker{pending}{brown}{#1}%
 }
 
 % A rejected marker
 \newcommand{\rejected}[1]{%
-  \textcolor{gray}{[\gls{rejected}: #1]}%
+  \marker{rejected}{gray}{#1}%
+}
+
+% An implemented marker
+\newcommand{\partimp}[1]{%
+  \marker{partimp}{BlueViolet}{#1}%
 }
 
 % An implemented marker
 \newcommand{\implemented}[1]{%
-  \textcolor{BlueViolet}{[\gls{implemented}: #1]}%
+  \marker{implemented}{ForestGreen}{#1}%
 }
+
+% Control sequence printer
+\DeclareRobustCommand{\cs}[1]{\texttt{\char`\\#1}}

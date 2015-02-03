@@ -44,8 +44,14 @@
 \definecolor{cured}{RGB}{210,45,64}
 
 % Bibliography
-\bibliographystyle{plainnat}
-\usepackage[square,sort,comma,numbers]{natbib}
+\usepackage[
+  backend=biber,
+  style=numeric,
+  citestyle=numeric,
+  sorting=none
+]{biblatex}
+\addbibresource{database.bib}
+\renewcommand*{\bibfont}{\footnotesize}
 
 % Index
 \usepackage{makeidx}
@@ -95,7 +101,7 @@
   \chapter{Existing \emph{Fithesis} Codebase}
     \blindtext
     
-    \section{\emph{Fithesis} Document Class}
+    \section{\emph{Fithesis1} Document Class}
     \blindtext
 
     \section{\emph{Fithesis2} Document Class}
@@ -180,7 +186,7 @@
       \label{table:survey-tex}
     \end{table}
 
-    Some of the respondents who claimed to be using or planning to use \gls{tex} to typeset their theses also provided feedback regarding the fithesis class. Unknown to the author at the time of the survey was the fact that fithesis2 had never been made publicly available, despite the fact that works on fithesis2 were brought to a successful end during 2009 \cite{Filipcik09}. As a result of that, much of the feedback was regarding issues long fixed in fithesis2, such as requests for the change of the default \gls{charenc} from ISO 8859-2 to UTF-8 \cite[section 4.1]{Filipcik09} or bug reports regarding a missing metafont logo file \cite{fithesis2@fbd7a25}. Among the feedback relevant to fithesis2 were calls for a more extensive user and technical documentation \gls{pending} and a suggestion that the class should support the typesetting of printed and electronic versions of theses as separate documents \gls{pending}.
+    Some of the respondents who claimed to be using or planning to use \gls{tex} to typeset their theses also provided feedback regarding the fithesis class. Unknown to the author at the time of the survey was the fact that fithesis2 had never been made publicly available, despite the fact that works on fithesis2 were brought to a successful end during 2009 \cite{Filipcik09}. As a result of that, much of the feedback was regarding issues long fixed in fithesis2, such as requests for the change of the default \gls{charenc} from ISO 8859-2 to UTF-8 \cite[section 4.1]{Filipcik09} or bug reports regarding a missing metafont logo file \cite{fithesis2@fbd7a25}. Among the feedback relevant to fithesis2 were calls for a more extensive user and technical documentation \pending{} and a suggestion that the class should support the typesetting of printed and electronic versions of theses as separate documents \pending{}.
 
     \section{Statistical analysis of existing theses}
     Along with the user survey, a statistical analysis of theses defended on \gls{mu} between 2010 and 2015 was carried out by the author of this thesis. The sample data for the analysis were kindly provided by doc. Ing. Michal Brandejs, CSc., the head of the Computer Systems Unit at \gls{fi}. The raw data is available within the directory \texttt{statistics} distributed alongside this thesis.
@@ -295,11 +301,11 @@
       \label{table:statistics-tex-marks}
     \end{table}
     
-    To determine whether or not a thesis had been written using \gls{tex}, a heuristic was employed, which takes into account the \glspl{mime}, suffices, magic numbers and metadata of the files submitted alongside the thesis. A thesis is considered to be written using \gls{tex}, if one or more files submitted alongside it satisfies one or more of the following conditions:
+    To determine whether or not a thesis had been written using \gls{tex}, a heuristic was employed, which takes into account the \glspl{mime}, suffices, \glspl{magnum} and metadata of the files submitted alongside the thesis. A thesis is considered to be written using \gls{tex}, if one or more files submitted alongside it satisfies one or more of the following conditions:
 
     \begin{itemize}
       \item The suffix is \texttt{tex}.
-      \item The magic number is that of a \acrshort{dvi} file.
+      \item The \gls{magnum} is that of a \acrshort{dvi} file.
       \item The \gls{mime} is \texttt{application/postscript} and the file contain the \texttt{TeXDict} substring implying the file is a \gls{ps} document, which was created using the \texttt{dvips} utility.
       \item The mime-type is \texttt{application/pdf} and either the \texttt{Creator} or the \texttt{Producer} \gls{pdf} header contains the \texttt{TeX} substring implying the file was created using either the \texttt{dvipdfm} utility or using \hologo{pdfTeX}, \Hologo{XeTeX}, \Hologo{LuaTeX}, \Hologo{ConTeXt} or another \gls{texeng}, which supports \gls{pdf} output.
     \end{itemize}
@@ -397,7 +403,7 @@
       \label{boxplot:statistics-marks}
     \end{figure}
 
-    A significant correlation ($R=-0{,}156$) was also found between the use of \gls{tex} and the marks given to theses defended between 2010 and 2015 at \gls{fi}. The author had therefore decided to test the following \gls{hypothesis}: Suppose the marks given to theses written and defended between 2010 and 2015 at \gls{mu} are normally distributed. Suppose also that the marks given to theses written using \gls{tex} have the expected value $\mu_1$ and the variance $\sigma_1^2$ and that the marks given to theses not written using \gls{tex} have the expected value $\mu_2$ and the variance $\sigma_2^2$. Under investigation is the \gls{hypothesis} that $\mu_1-\mu_2=0$ on the significance level $\alpha=0{,}01$. As an intermediary step, the $F$-test is used to test the \gls{hypothesis} that $\sigma_1^2/\sigma_2^2=1$ on the significance level $0{,}01$. Depending on the result, either the standard or Welsh's two-tailed unpaired two-sample $t$-test is used to test the original \gls{hypothesis}. As detailed in the table \ref{table:statistics-tex-marks}, we overall reject this \gls{hypothesis} on the significance level $0{,}01$. The box plots of the marks given to theses written and defended between 2010 and 2015 at \gls{fi} and \gls{sci} using and not using \gls{tex} is shown in the figure \ref{boxplot:statistics-marks}.
+    A significant correlation ($R=-0{,}156$) was also found between the use of \gls{tex} and the marks given to theses defended between 2010 and 2015 at \gls{fi}. The author had therefore decided to test the following \gls{hypothesis}: Suppose the marks given to theses written and defended between 2010 and 2015 at \gls{mu} are normally distributed. Suppose also that the marks given to theses written using \gls{tex} have the expected value $\mu_1$ and the variance $\sigma_1^2$ and that the marks given to theses not written using \gls{tex} have the expected value $\mu_2$ and the variance $\sigma_2^2$. Under investigation is the \gls{hypothesis} that $\mu_1-\mu_2=0$ on the significance level $\alpha=0{,}01$. As an intermediary step, the $F$-test was used to test the \gls{hypothesis} that $\sigma_1^2/\sigma_2^2=1$ on the significance level $0{,}01$. Depending on the result, either the standard or Welsh's two-tailed unpaired two-sample $t$-test was used to test the original \gls{hypothesis}. As detailed in the table \ref{table:statistics-tex-marks}, we overall reject this \gls{hypothesis} on the significance level $0{,}01$. A box plot of the marks given to theses written and defended between 2010 and 2015 at \gls{fi} and \gls{sci} using and not using \gls{tex} is shown in the figure \ref{boxplot:statistics-marks}.
     
     \section{Comparison with Existing Solutions}
     As a part of the initial research, I also assessed several templates for the typesetting of theses in order to gather ideas for immediate and future improvements of the fithesis2 class. Initially, I'm going to focus on templates used at czech technical universities. I will then broaden the scope to include both the templates of foreign universities and generic thesis typesetting classes for \gls{latex} from \gls{ctan}.
@@ -405,20 +411,22 @@
       \subsection{CTUStyle\index{CTUStyle|(} and CUStyle\index{CUStyle|(}}
       The first of the reviewed thesis typesetting templates were Petr Olšák's CTUStyle \cite{ctustyle} and CUStyle \cite{custyle} \glspl{texpackage}, which are used at \gls{fel} and at \gls{cuni}, respectively. The sole dependencies of these templates are the \inx{\gls{csplain}} and \inx{\gls{opmac}} \glspl{texpackage}.
 
-      The templates are closely tied with the visual styles of the universities, which is mainly achieved through color-coding. Aside from black-and-white text, the CTUstyle \gls{texpackage} typesets various typographic elements in the \clrpicker{pantone300} Pantone 300 color, which makes for a visually pleasing combination. The CUstyle \gls{texpackage} uses the combination of black, gray and \clrpicker{cured} bright maroon to a similar end. By typesetting various typographic elements in the \clrpicker{pantone122} Pantone 122 color, which is a part of the visual identity of \gls{fi} \cite{filogo}, and by replacing the logotype of the faculty with its colored version, which was created as a part of Matúš Kominka's bachelor thesis \cite{Kominka08}, the fithesis2 \gls{docclass} could be likewise revitalized. \implemented{v0.3.00, 01, 06} Since each faculty of \gls{mu} has a color version of its logo \cite{muvis}, this redesign could be implemented without the loss of support for other faculties. \implemented{The logos were downloaded as monochromatic and direct color \gls{eps} files from \cite{muvis} and then transformed into \gls{pdf} files using the \texttt{epstopdf} \cite{epstopdf} utility.}
+      The templates are closely tied with the visual styles of the universities, which is mainly achieved through color-coding. Aside from black-and-white text, the CTUstyle \gls{texpackage} typesets various typographic elements in the \clrpicker{pantone300} Pantone 300 color, which makes for a visually pleasing combination. The CUstyle \gls{texpackage} uses the combination of black, gray and \clrpicker{cured} Pantone 1797 color to a similar end. By typesetting various typographic elements in the \clrpicker{pantone122} Pantone 122 color, which is a part of the visual identity of \gls{fi} \cite{filogo}, and by replacing the logotype of the faculty with its colored version, which was created as a part of Matúš Kominka's bachelor thesis \cite{Kominka08}, the fithesis2 \gls{docclass} could be likewise revitalized. \partimp{v0.3.00, 01, 06} Since each faculty of \gls{mu} has a color version of its logo \cite{muvis}, this redesign could be implemented without the loss of support for other faculties. \implemented{The logos were downloaded as monochromatic and direct color \gls{eps} files from \cite{muvis} and then transformed into \gls{pdf} files using the \texttt{epstopdf} \cite{epstopdf} utility.}
 
-      Unlike with fithesis2, documents typeset with the CTUStyle and CUStyle templates are double-sided by default. The horizontal margins of the CTUStyle (32\,mm \cite[line 249]{ctustyleCode}) and CUStyle (31\,mm \cite[line 229]{custyleCode}) templates are also much smaller than those of fithesis2, which measure 19\,mm \cite[lines 968\nobreakdash--976]{fithesis2Code} plus a binding correction of 1\,inch \cite{latexlayout} = 45\,mm on the left side and 210\,mm (A4 width) minus 45\,mm (left margin) minus 127\,mm (text width \cite[lines~989, 1017, 1045]{fithesis2Code}) = 38\,mm on the right side. The margins of CTUStyle and CUStyle, in conjunction with the chosen font family, allow for up to 100 characters per line, which is not only wearying to the eye of an inexperienced reader \todo{cite}, but also against the recommendations of \gls{fi} \cite[section 3.2.3]{bpdpfi}. Although not explicitly stated, both decisions have likely been made in order to reduce the required storage space for the archival of physical prints of theses. An option to remove the binding correction and to relax horizontal margins for online publishing could be implemented into fithesis3. \rejected{Changes to the type area would affect line breaking.}
+      Unlike with fithesis2, documents typeset with the CTUStyle and CUStyle templates are double-sided by default. The horizontal margins of the CTUStyle (32\,mm \cite[line 249]{ctustyleCode}) and CUStyle (31\,mm \cite[line 229]{custyleCode}) templates are also much smaller than those of fithesis2, which measure 19\,mm \cite[lines 968--976]{fithesis2Code} plus a binding correction of 1\,inch \cite{latexlayout} = 45\,mm on the left side and 210\,mm (A4 width) minus 45\,mm (left margin) minus 127\,mm (text width \cite[lines~989, 1017, 1045]{fithesis2Code}) = 38\,mm on the right side. The margins of CTUStyle and CUStyle, in conjunction with the chosen font family, allow for up to 100 characters per line, which is not only wearying to the eye of an inexperienced reader \cite[section 2.1.2]{eletypostyle}, but also against the recommendations of \gls{fi} \cite[section 3.2.3]{bpdpfi}. Although not explicitly stated, both decisions have likely been made in order to reduce the required storage space for the archival of physical prints of theses. An option to remove the binding correction and to relax horizontal margins for online publishing could be implemented into fithesis3. \rejected{Changes to the type area would affect line breaking.}
       \index{CTUStyle|)}
       \index{CUStyle|)}
 
-      \subsection{Felthesis}
-      \todo{}
+      \subsection{Felthesis\index{felthesis}}
+      Being a traditional \gls{docclass}, Vít Zýka's felthesis provides an alternative for those \gls{fel} students, who prefer \gls{latex} over \gls{csplain} used by the CTUStyle \gls{texpackage}. Much like fithesis1 and fithesis2, felthesis loads the KOMA-Script scrreprt \gls{docclass}, redefines some of the commands and environments, loads additional packages and defines additional thesis sectioning commands. Unlike fithesis1 and fithesis2, felthesis loads babel and then selects the language based on the chosen language of the thesis \cite[lines 687--691]{felthesisCode} \pending{Load babel or polyglossia by default and pick the language based on \cs{@thesislang}}. Felthesis also preloads biblatex \pending{} \cite[line 722]{felthesisCode}, automatically generates index \pending{} \cite[line 763]{felthesisCode} and stamps the title, author, subject, and keywords into the header of the resulting \gls{pdf} file \cite[lines 959--971]{felthesisCode} \partimp{v0.3.02}.
 
       \subsection{The Charles University in Prague}
       Along with Petr Olšák's CUStyle, \gls{cuni} also provides an official \gls{latex} template for the typesetting of theses \cite{cunisablona}. Rather than defining a new \gls{docclass}, the archive contains a \gls{makefile} and a skeleton \gls{latex} document using the report \gls{docclass} for both czech and english theses. The students then modify said document to suit their requirements. The template uses \gls{cslatex} rather than the babel \gls{ltxpackage}, which means that \gls{csfonts} rather than the superior \gls{lmfonts} \cite{cslatexvsbabel} are used by default.
 
-      \subsection{Mendel University in Brno}
-      \todo{\url{https://akela.mendelu.cz/~rybicka/}}
+      \subsection{Mendel University in Brno}\index{dipp|(}
+      Despite not being an official thesis template of \gls{mendelu}, Jiří Rybička's dipp \gls{ltxpackage} warrants a mention. The package depends on the extended macro set of the \Hologo{XeTeX} \glslink{texeng}{typesetting engine} and is intended to be used with the built-in \texttt{article} \gls{docclass}. Although the \texttt{article} class was not designed with European typography in mind, the dipp package redefines much of the geometry.
+
+        Noteworthy is also the rich selection of additional markup, which is meant to ease the task of typesetting a thesis for those unfamiliar with \gls{latex}. To this end, thesis sectioning commands, macros and wrapper environments for the inclusion of bibliography, tables or figures and discretionary macros specific to Czech typography such as \cs{az} for the typesetting of ranges and \cs{spoj} for the hyphenation of prefixes and suffixes. A detailed documentation can be found in \cite{dippman}. \index{dipp|)}
 
       % VUT -- http://latex.feec.vutbr.cz/cz/latex/download/sablona-pro-bp-dp-v2-4/
       % CTAN: muthesis, ... from Kumar07
@@ -450,10 +458,9 @@
 
   % Bibliography
   \newpage
-  {\footnotesize
-  \singlespacing
+  {\singlespacing
   \nocite{*}
-  \bibliography{database}}
+  \printbibliography}
 
   % Glossary
   \newpage
