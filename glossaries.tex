@@ -1,3 +1,4 @@
+% MUNI faculties
 \newacronym{fi}{FI}{the Faculty of Informatics of \acrlong{mu}}
 \newacronym{sci}{FS}{the Faculty of Science of \acrlong{mu}}
 \newacronym{fa}{FA}{the Faculty of Arts of \acrlong{mu}}
@@ -8,6 +9,14 @@
 \newacronym{fea}{FEA}{the Faculty of Economics \& Administration of \acrlong{mu}}
 \newacronym{lf}{FM}{the Faculty of Medicine of \acrlong{mu}}
 
+\newacronym{slu}{SU}{the Silesian University in Opava}
+\newacronym{fpf}{FPF SU}{the Faculty of Philosophy and Science in Opava of \acrlong{slu}}
+\newacronym{opf}{OPF SU}{the School of Business Administration in Karviná of \acrlong{slu}}
+\newacronym{upol}{UP}{the Palacký University in Olomouc}
+\newacronym{upolsci}{FS UP}{the Faculty of Science of \gls{upol}}
+\newacronym{vsb}{VŠB-TU}{the Technical University of Ostrava}
+\newacronym{tul}{TUL}{the Technical University in Liberec}
+\newacronym{vut}{BUT}{the Brno University of Technology}
 \newacronym{mu}{MU}{the Masaryk University in Brno}
 \newacronym{mendelu}{MENDELU}{the Mendel University in Brno}
 \newacronym{fel}{CTU FEL}{the Faculty of Electrical Engineering of the Czech Technical University in Prague}
@@ -30,10 +39,18 @@
   description = {A pattern of bytes located typically in the header of a file, which are used to determine the type of a file at unix systems.}  
 }
 
+\newglossaryentry{textwidth}{
+  name = {text width},
+  description = {The part of the page surrounded by page margins into which text or graphics can be placed. The text width of this thesis is \the\textwidth{} $\approx$ 127\,mm}
+}
+
 \newglossaryentry{hypothesis}{
   name = hypothesis,
+  plural = hypotheses,
   description = {With significance testing, we have two orthogonal hypotheses: the zero hypothesis $f(\ldots)=c$ and the alternative hypothesis $f(\ldots)\not=c$, where $f(\ldots)$ is a function of the statistics of the random variables under scrutiny and $c\in\mathbb{R}$. The hypotheses can then be tested at various significance levels. The higher the significance level, the higher the probability of refusing the zero hypothesis in favour of the alternative hypothesis, but the higher is also the risk of error}
 }
+
+\newdualentry{env}{environment}{\gls{latex} environment}{A pair of macros in the form of \cs{begin{name}} and \cs{end{name}}, where \texttt{name} is the name of the environment. They are used to format blocks of text potentially containing macros several paragraphs or macros that can't be used as an argument to a command}
 
 \newglossaryentry{ctan}{
   first = {the Comprehensive \TeX{} Archive Network (CTAN)},
@@ -46,11 +63,7 @@
   description = {A macro package on top of \gls{tex}, which allows for the separation of the design and the contents of a document},
 }
 
-\newglossaryentry{docclass}{
-  name = \LaTeX{} document class,
-  plural = \LaTeX{} document classes,
-  description = {A specification of the type of a \gls{latex} document the author wants to typeset}
-}
+\newdualentry[plural={\gls{latex} document classes}][shortplural={document classes},longplural={\gls{latex} document classes}]{docclass}{document class}{\gls{latex} document class}{A specification of the type of a \gls{latex} document the author wants to typeset}
 
 \newglossaryentry{tex}{
   name = \TeX{},
@@ -66,7 +79,7 @@
 \newglossaryentry{cslatex}{
   name = \CSLaTeX,
   sort = CSLaTeX,
-  description = {A software package, which simplifies the task of typesetting czech and slovak documents in \LaTeX{}. \CSLaTeX{} has been obsoleted by the babel package \cite{cslatexvsbabel}}
+  description = {A software package, which simplifies the task of typesetting czech and slovak documents in \LaTeX{}. \CSLaTeX{} has been obsoleted in favour of the babel package \cite{cslatexvsbabel}}
 }
 
 \newglossaryentry{opmac}{
@@ -85,9 +98,9 @@
 \newdualentry{ecfonts}{EC fonts}{European Computer fonts}{An extension of \gls{cmfonts}, which adds support for european languages using latin script. Due to their low typographic quality \cite{cslatexvsbabel}, EC fonts have been obsoleted by \gls{lmfonts}}
 
 \newglossaryentry{csfonts}{
-  name = \CS fonts,
+  name = \CS{} fonts,
   sort = CS fonts,
-  description = {An extension of \gls{cmfonts}, which adds support for the typesetting of czech and slovak documents. Although preferrable over \gls{ecfonts}, \CS fonts have been obsoleted by the \gls{lmfonts} due to the low typographic quality of their Type 1 version \cite{cslatexvsbabel}}
+  description = {An extension of \gls{cmfonts}, which adds support for the typesetting of czech and slovak documents. Although preferrable over \gls{ecfonts}, \CS{} fonts have been obsoleted by the \gls{lmfonts} due to the low typographic quality of their Type 1 version \cite{cslatexvsbabel}}
 }
 
 \newdualentry{lmfonts}{LM fonts}{Latin Modern fonts}{An extension of \gls{cmfonts}, which adds support for european languages using latin script. Due to their high typographic quality \cite{cslatexvsbabel}, LM fonts have obsoleted both \gls{ecfonts} and \gls{csfonts}}
@@ -98,31 +111,38 @@
   description = {A set of \gls{tex} macros and commands, which can be loaded in the preamble of a \gls{tex} document to add or alter existing functionality}
 }
 
-\newglossaryentry{ltxpackage}{
-  name = \LaTeX{} package,
-  plural = \LaTeX{} packages,
-  sort = LaTeX package,
-  description = {A set of \gls{latex} macros and commands, which can be loaded in the preamble of a \gls{latex} document to add or alter existing functionality}
+\newdualentry[plural={\gls{latex} packages}][shortplural={packages},longplural={\gls{latex} packages}]{ltxpackage}{package}{\gls{latex} package}{A set of \gls{latex} macros and commands, which can be loaded in the preamble of a \gls{latex} document to add or alter existing functionality}
+
+\newglossaryentry{biblatex}{
+  name = \BibLaTeX{},
+  sort = BibLaTeX,
+  description = {A \gls{ltxpackage} for the automated typesetting of bibliography stored in a separate database file.}
+}
+
+\newglossaryentry{beamer}{
+  name = beamer,
+  description = {A \acrlong{docclass} for the typesetting of presentations.}  
 }
 
 \newglossaryentry{pending}{
-  name = \textcolor{brown}{PENDING},
   sort = PENDING,
+  name = \textcolor{pending}{PENDING},
   description = {A feature, whose implementation is pending}
 }
 
-\newglossaryentry{rejected}{
-  name = \textcolor{gray}{REJECTED},
-  sort = REJECTED,
-  description = {A feature, whose implementation has been rejected}
+\newglossaryentry{remark}{
+  sort = REMARK,
+  name = \textcolor{Blue}{REMARK},
+  description = {A suggestion by a reader of this thesis}
 }
-
 \newglossaryentry{partimp}{
+  sort = PARTIALLY IMPLEMENTED,
   name = \textcolor{BlueViolet}{PARTIALLY IMPLEMENTED},
   description = {A feature, whose implementation has been partially completed}
 }
 
 \newglossaryentry{implemented}{
+  sort = IMPLEMENTED,
   name = \textcolor{ForestGreen}{IMPLEMENTED},
   description = {A feature, whose implementation has been brought to a successful end}
 }
@@ -131,12 +151,7 @@
 
 \newdualentry{eps}{EPS}{Encapsulated PostScript}{A subset of the \gls{gls-ps} language, which imposes a set of formal restrictions meant to decrease the complexity of the resulting document. Encapsulated Postscript is primarily used as a vector graphics format. For more information, see \cite{epsspec}}
 
-\newglossaryentry{texeng}{
-  name = {\TeX{} engine},
-  plural = {\TeX{} engines},
-  sort = {TeX engine},
-  description = {A program, which can process documents in (usually a superset of) the \gls{tex} language. The baseline \TeX{} engine is the \TeX{} typesetting program described in \cite{texbook}. Knuth's \TeX{}, along with the \hologo{eTeX} engine, is the building block of modern \TeX{} engines like \hologo{pdfTeX}, \Hologo{XeTeX}, \Hologo{ConTeXt} or \Hologo{LuaTeX}, which each come with extensions of their own}
-}
+\newdualentry{texeng}{engine}{\gls{tex} typesetting engine}{A program, which can process documents in (usually a superset of) the \gls{tex} language. The baseline \TeX{} engine is the \TeX{} typesetting program described in \cite{texbook}. Knuth's \TeX{}, along with the \hologo{eTeX} engine, is the building block of modern \TeX{} engines like \hologo{pdfTeX}, \Hologo{XeTeX}, \Hologo{ConTeXt} or \Hologo{LuaTeX}, which each come with extensions of their own}
 
 \longnewglossaryentry{charenc}{
   name={character encoding},
@@ -146,12 +161,6 @@
 \newdualentry{pdf}{PDF}{Portable Document Format}{A page-description format tailored specifically to allow the creation of documents, whose appearance is independant on the underlying hardware and software. For more information, see \cite{isopdf}}
 
 \newdualentry{dvi}{DVI}{Device independent file format}{the output of the \gls{tex} typesetting program, which describes the layout of the document and which is both hardware and software-independent. The format lacks any font or graphics embedding facilities and therefore needs to be transcoded into another format like \gls{gls-ps} prior to printing}
-
-\newglossaryentry{shouldhave}{
-  name = \textcolor{orange}{[SHOULD HAVE]},
-  sort = SHOULD HAVE,
-  description = {A feature, whose implementation is highly desirable}
-}
 
 \newglossaryentry{todo}{
   name = \textcolor{red}{TODO},

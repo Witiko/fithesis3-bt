@@ -1,18 +1,33 @@
-% The size of the type area
-\def\typearea{127mm}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{definitions}
+
+% A slash, which allows a line break
+\def\pathslash{\discretionary{/}{}{/}}
+
+% A discretionary hyphen
+\def\hyph{\discretionary{-}{-}{-}}
 
 \newcommand{\CS}{%
-  \,$\cal{CS}$%
+  $\cal{C}$\hspace*{-0.05em}$\cal{S}$\hspace*{-0.02em}%
+}
+
+% The BibLaTeX logo
+\newcommand{\BibLaTeX}{%
+  \textsc{Bib}\LaTeX
 }
 
 % The CSplain logo
 \newcommand{\CSplain}{%
-  \CS plain%
+  \CS{}plain%
 }
 
 % The CSLaTeX logo
 \newcommand{\CSLaTeX}{%
-  \CS\LaTeX{}%
+  \CS{}\LaTeX{}%
+}
+
+\newcommand{\pdfCSLaTeX}{%
+  pdf\CS\LaTeX{}%
 }
 
 % Index and print
@@ -36,12 +51,15 @@
   \textcolor{#1}{\rule{0.7em}{0.7em}}%
 }
 
+% Support for colored markers
+\usepackage[color]{changebar}
 \newcommand{\marker}[3]{%
   \def\empty{}%
   \def\arg{#3}%
-  \textcolor{#2}{[\gls{#1}\ifx\arg\empty\else: #3\fi]}%
+  \cbcolor{#2}\begin{changebar}%
+    \textcolor{#2}{[\gls{#1}\ifx\arg\empty\else: #3\fi]}%
+  \end{changebar}%
 }
-
 
 % A todo marker
 \newcommand{\todo}[1]{%
@@ -49,16 +67,22 @@
 }
 
 % A pending marker
+\definecolor{pending}{HTML}{BD7404}
 \newcommand{\pending}[1]{%
-  \marker{pending}{brown}{#1}%
+  \marker{pending}{pending}{#1}%
 }
 
-% A rejected marker
-\newcommand{\rejected}[1]{%
-  \marker{rejected}{gray}{#1}%
+% A remark marker
+\newcommand{\remark}[2]{%
+  \marker{remark}{Blue}{#2 --- \textit{#1}}%
 }
 
-% An implemented marker
+% Remark names
+\def\VN{Vít Novotný}
+\def\PS{Petr Sojka}
+\def\MR{Michal Růžička}
+
+% A partially-implemented marker
 \newcommand{\partimp}[1]{%
   \marker{partimp}{BlueViolet}{#1}%
 }
