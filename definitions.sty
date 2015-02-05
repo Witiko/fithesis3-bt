@@ -7,9 +7,9 @@
 % A discretionary hyphen
 \def\hyph{\discretionary{-}{-}{-}}
 
-\newcommand{\CS}{%
-  $\cal{C}$\hspace*{-0.05em}$\cal{S}$\hspace*{-0.02em}%
-}
+% The CS logo
+% https://math.feld.cvut.cz/ftp/olsak/tbn/tbnklik.tex
+\def\CS{$\cal C\kern-.1667em\lower.5ex\hbox{$\cal S$}\kern-.075em $}
 
 % The BibLaTeX logo
 \newcommand{\BibLaTeX}{%
@@ -18,12 +18,12 @@
 
 % The CSplain logo
 \newcommand{\CSplain}{%
-  \CS{}plain%
+  \CS plain%
 }
 
 % The CSLaTeX logo
 \newcommand{\CSLaTeX}{%
-  \CS{}\LaTeX{}%
+  \CS\LaTeX{}%
 }
 
 \newcommand{\pdfCSLaTeX}{%
