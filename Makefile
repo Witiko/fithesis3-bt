@@ -2,35 +2,24 @@
 
 CHAPTERS=chapters/*.tex
 APPENDICES=appendices/*.tex
-SOURCES=database.bib main.tex definitions.sty glossaries.tex $(CHAPTERS) $(APPENDICES)
-AUX=online.aux online.toc online.bbl online.blg online.ind online.idx online.out online.gl[gos] online.xdy online.lo[ftg] online.ac[rn] online.alg online.run.xml online.bcf online-blx.bib online.cb online.cb2 print.aux print.toc print.bbl print.blg print.ind print.idx print.out print.gl[gos] print.xdy print.lo[ftg] print.ac[rn] print.alg print.run.xml print.bcf print-blx.bib print.cb print.cb2
-OUTPUT=print.pdf online.pdf
+SOURCES=database.bib definitions.sty glossaries.tex $(CHAPTERS) $(APPENDICES)
+OUTPUT=thesis
+AUX=$(OUTPUT).aux $(OUTPUT).toc $(OUTPUT).bbl $(OUTPUT).blg $(OUTPUT).ind $(OUTPUT).idx $(OUTPUT).out $(OUTPUT).gl[gos] $(OUTPUT).xdy $(OUTPUT).lo[ftg] $(OUTPUT).ac[rn] $(OUTPUT).alg $(OUTPUT).run.xml $(OUTPUT).bcf $(OUTPUT)-blx.bib $(OUTPUT).cb $(OUTPUT).cb2
 
-all: online.pdf clean
-complete: print.pdf all
+all: $(OUTPUT).pdf clean
 
-online.pdf: online.tex $(SOURCES)
-	pdflatex online.tex
-	texindy -I omega --language english online.idx
-	biber online
-	makeglossaries online
-	pdflatex online.tex
-	makeglossaries online
-	pdflatex online.tex
-	pdflatex online.tex # Necessary to correctly typeset changebars
-
-print.pdf: print.tex $(SOURCES)
-	pdflatex print.tex
-	texindy -I omega --language english print.idx
-	biber print
-	makeglossaries print
-	pdflatex print.tex
-	makeglossaries print
-	pdflatex print.tex
-	pdflatex print.tex # Necessary to correctly typeset changebars
+$(OUTPUT).pdf: $(OUTPUT).tex $(SOURCES)
+	pdflatex $<
+	texindy -I omega --language english $(OUTPUT).idx
+	biber $(OUTPUT)
+	makeglossaries $(OUTPUT)
+	pdflatex $<
+	makeglossaries $(OUTPUT)
+	pdflatex $<
+	pdflatex $< # Necessary to correctly typeset changebars
 
 clean:
 	rm -f $(AUX)
 
 clean-all: clean
-	rm -f $(OUTPUT)
+	rm -f $(OUTPUT).pdf
