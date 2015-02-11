@@ -10,12 +10,12 @@
 # where each line represents one thesis or dissertation.
 
 parseColumn() {
-  echo "$1" | cut -f $2 | sed 's/^"\(.*\)"$/\1/'
+  printf "%s\n" "$1" | cut -f $2 | sed 's/^"\(.*\)"$/\1/'
 }
 
 LASTID=0
 TEX=0
-IFS=; while read line; do
+IFS=$'\n'; while read -r line; do
   FACULTY="$(   parseColumn "$line" 1)"
   DEGREE="$(    parseColumn "$line" 2)"
   YEAR="$(      parseColumn "$line" 3)"
@@ -27,7 +27,7 @@ IFS=; while read line; do
   HEURISTIC2="$(parseColumn "$line" 9)"
   CREATOR="$(   parseColumn "$line" 10)"
   PRODUCER="$(  parseColumn "$line" 11)"
- 
+
   # Degree mapping
   case "$DEGREE" in
     C)    DEGREE=0;;
@@ -49,17 +49,17 @@ IFS=; while read line; do
   esac
 
   # We aggregate adjoining lines
-  if [ $ID != $((LASTID + 1)) ]; then
+  if [ $ID -lt $((LASTID + 1)) ]; then
     # A next student
     printf '%s\n' "$LASTOUTPUT"
     TEX=0
   fi; LASTID=$ID
 
   # Evaluating the TeX heuristic
-  if [ -n "$HEURISTIC1" -o -n "$HEURISTIC2" ] ||
-     echo "$SUFFIX"   | grep -iq '^tex$'      ||
-     echo "$CREATOR"  | fgrep -q 'TeX'        ||
-     echo "$PRODUCER" | fgrep -q 'TeX'; then
+  if [ -n "$HEURISTIC1" -o -n "$HEURISTIC2" ]     ||
+     printf "%s\n" "$SUFFIX"   | grep -iq '^tex$' ||
+     printf "%s\n" "$CREATOR"  | fgrep -q 'TeX'   ||
+     printf "%s\n" "$PRODUCER" | fgrep -q 'TeX'; then
     TEX=1
   fi
   

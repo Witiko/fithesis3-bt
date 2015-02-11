@@ -54,7 +54,6 @@
 % Support for colored markers
 \usepackage[color]{changebar}
 \newcommand{\marker}[3]{%
-  \def\empty{}%
   \def\arg{#3}%
   \cbcolor{#2}\begin{changebar}%
     \textcolor{#2}{[\gls{#1}\ifx\arg\empty\else: #3\fi]}%
