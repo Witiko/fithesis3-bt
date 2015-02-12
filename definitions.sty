@@ -52,11 +52,14 @@
 }
 
 % Support for colored markers
+\usepackage[hang,multiple,ragged]{footmisc}
 \usepackage[color]{changebar}
 \newcommand{\marker}[3]{%
   \def\arg{#3}%
   \cbcolor{#2}\begin{changebar}%
-    \textcolor{#2}{[\gls{#1}\ifx\arg\empty\else: #3\fi]}%
+    \footnote{%
+      \textcolor{#2}{\gls{#1}\ifx\arg\empty\else: #3\fi}%
+    }%
   \end{changebar}%
 }
 
