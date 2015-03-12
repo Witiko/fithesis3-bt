@@ -1,0 +1,74 @@
+\section{User Survey}
+At the end of December 2014, an online questionnaire was distributed amongst the students of \gls{mu}. Table \ref{table:survey-faculty} illustrates the distribution of the respondents across the faculties of \gls{mu} according to the claims of the respondents. It should be noted that several respondents claimed to be studying at more than one faculty of \gls{mu}, which is the reason for the distortion of the percentage. The raw data obtained from the questionnaire in Czech is available in the \texttt{survey/survey.csv} file distributed alongside this thesis.
+
+\begin{table}
+  \caption{The distribution of the questionnaire respondents across the faculties of \acrshort{mu}}
+  \begin{tabularx}{\textwidth}{Xcr}
+    \textbf{On which faculty of \gls{mu} do you study?} & \textbf{\#} & \textbf{\%} \\
+    \hline
+    Faculty of Informatics                  & $82$          & $92.1$ \\
+    Faculty of Science                      &  $3$          &  $3.4$ \\
+    Faculty of Education                    &  $2$          &  $2.2$ \\
+    Faculty of Social Studies               &  $2$          &  $2.2$ \\
+    Faculty of Law                          &  $1$          &  $1.1$ \\
+    Faculty of Medicine                     &  $1$          &  $1.1$ \\
+    Faculty of Arts                         &  $1$          &  $1.1$ \\
+    Faculty of Economics \& Administration  &  $1$          &  $1.1$ \\
+    Faculty of Sports Studies               &  $0$          &  $0.0$ \\
+    \hline
+    \textbf{Total}                        & $\mathbf{89}$ & $\mathbf{100.0}$
+  \end{tabularx}
+  \label{table:survey-faculty}
+\end{table}
+
+The overwhelming majority of respondents claimed that the highest degree for which they were studying was that of a bachelor (see Table \ref{table:survey-type}) and that they were planning to use \gls{tex} to write their theses (see Table \ref{table:survey-sw}). Most of those who claimed to be planning to use \gls{tex} also claimed to know about the existence of the fithesis \gls{docclass} and claimed to be planning to use it as a template for their theses (see Table \ref{table:survey-tex}).
+
+\begin{table}
+  \caption{The highest academic degrees currently pursued by the respondents of the questionnaire}
+  \begin{tabularx}{\textwidth}{Xcr}
+    \textbf{Which academic degree are you currently pursuing?} & \textbf{\#} & \textbf{\%} \\
+    \hline
+    Bachelor's degree            & $70$          & $78.7$ \\
+    Master's degree              & $17$          & $19.1$ \\
+    Doctorate                    & $2$           & $2.2$  \\
+    \hline
+    \textbf{Total}               & $\mathbf{89}$ & $\mathbf{100.0}$
+  \end{tabularx}
+  \label{table:survey-type}
+\end{table}
+
+\begin{table}
+  \caption{The software the respondents of the questionnaire are using or planning to use to write their theses}
+  \begin{tabularx}{\textwidth}{Xcr}
+    \textbf{Which application do you use / are you planning to use to write your thesis?} & \textbf{\#} & \textbf{\%} \\
+    \hline
+    \TeX{ / \LaTeX{}}            & $65$          & $73.0$ \\
+    Microsoft Office             & $16$          & $18.0$ \\
+    Apache OpenOffice, LibreOffice
+    or another free office
+    software suite               & $4$           &  $4.5$ \\
+    Other                        & $4$           &  $4.5$ \\
+    Google Documents             & $0$           &  $0.0$ \\
+    \hline
+    \textbf{Total}               & $\mathbf{89}$ & $\mathbf{100.0}$
+  \end{tabularx}
+  \label{table:survey-sw}
+\end{table}
+
+\begin{table}
+  \caption{The attitude towards using the fithesis class amongst those respondents who claimed to be using or planning to use \gls{tex} to typeset their theses}
+  \begin{tabularx}{\textwidth}{Xcr}
+    \textbf{Are you planning to use the \gls{mu} fithesis \LaTeX{} class?} & \textbf{\#} & \textbf{\%} \\
+    \hline
+    Yes                                         & $47$          & $72.3$ \\
+    Maybe, I did not know it existed            & $10$          & $15.4$ \\
+    No, I'm going to use another \gls{docclass} & $5$           &  $7.7$ \\
+    Other                                       & $2$           &  $3.1$ \\
+    No, I'm going to use plain \gls{tex}        & $1$           &  $1.5$ \\
+    \hline
+    \textbf{Total}                              & $\mathbf{65}$ & $\mathbf{100.0}$
+  \end{tabularx}
+  \label{table:survey-tex}
+\end{table}
+
+Some of the respondents who claimed to be using or planning to use \gls{tex} to typeset their theses also provided feedback regarding the fithesis class. Unknown to the author at the time of the survey was the fact that fithesis2 had never been made publicly available, despite the fact that works on fithesis2 were brought to a successful end during 2009 \cite{Filipcik09}. As a result of that, much of the feedback was regarding issues long fixed in fithesis2, such as requests for the change of the default \gls{charenc} from ISO 8859-2 to UTF-8 \cite[section~4.1]{Filipcik09} or bug reports regarding a missing metafont logo file \cite{fithesis2@fbd7a25}. Among the feedback relevant to fithesis2 were calls for a more extensive user and technical documentation\pending{} and a suggestion that the class should support the typesetting of printed and electronic versions of theses as separate documents\pending{}.
