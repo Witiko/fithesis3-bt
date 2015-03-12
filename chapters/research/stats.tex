@@ -1,0 +1,216 @@
+\section{Statistical analysis of existing theses}
+Along with the user survey, a statistical analysis of theses defended at \gls{mu} between 2010 and 2015 was carried out by the author of this thesis. The sample data for the analysis were kindly provided by doc. Ing. Michal Brandejs, CSc., the head of the Computer Systems Unit at \gls{fi}. The raw data is available within the directory \texttt{statistics} distributed alongside this thesis.
+
+\begin{table}
+  \caption{The distribution of theses defended between 2010 and 2015 across the faculties of \acrshort{mu}}
+  \begin{tabularx}{\textwidth}{Xrr}
+    \textbf{Faculty} & \textbf{\#} & \textbf{\%} \\
+    \hline
+    Arts                         & $10{,}000$ & $21.98$ \\% 1421
+    Education                    & $8{,}219$  & $18.07$ \\% 1441
+    Social Studies               & $5{,}599$  & $12.31$ \\% 1423
+    Science                      & $5{,}275$  & $11.60$ \\% 1431
+    Law                          & $4{,}824$  & $10.60$ \\% 1422
+    Economics \& Administration  & $4{,}591$  & $10.09$ \\% 1456
+    Informatics                  & $2{,}904$  &  $6.38$ \\% 1433
+    Medicine                     & $2{,}014$  &  $4.43$ \\% 1411
+    Sports Studies               & $2{,}062$  &  $4.53$ \\% 1451
+    \hline
+    \textbf{Total}               & $\mathbf{45{,}488}$ & $\mathbf{100.00}$
+  \end{tabularx}
+  \label{table:statistics-faculty}
+\end{table}
+
+\begin{table}
+  \caption{The distribution of theses defended between 2010 and 2015 across the study programme degrees}
+  \begin{tabularx}{\textwidth}{Xrr}
+    \textbf{Degree} & \textbf{\#} & \textbf{\%} \\
+    \hline
+    Bachelor's & $22{,}288$ & $49.00$ \\
+    Master's   & $20{,}761$ & $45.64$ \\
+    Doctoral   &  $2{,}231$ &  $4.90$ \\
+    Lifelong   &      $208$ &  $0.46$ \\
+    \hline
+    \textbf{Total} & $\mathbf{45{,}488}$ & $\mathbf{100.00}$
+  \end{tabularx}
+  \label{table:statistics-degree}
+\end{table}
+
+Tables \ref{table:statistics-faculty} and \ref{table:statistics-degree} detail the distribution of theses written and defended between 2010 and 2015 across the faculties of \gls{mu} and across the study programme degrees, respectively. Table \ref{table:statistics-tex} illustrates how many of these theses were written using \gls{tex}. Table \ref{table:statistics-tex-yearly} then details the trends in the usage of \gls{tex} by the students of Bachelor's, Master's and Doctoral degree programmes on \gls{fi} and \gls{sci}. Other faculties of \gls{mu} were not considered, since the number of theses written at them using \gls{tex} was statistically insignificant (see Table \ref{table:statistics-tex}).
+
+\begin{table}
+  \caption{The distribution of theses written using \gls{tex}, which were defended between 2010 and 2015 across the faculties of \acrshort{mu}}
+  \begin{tabularx}{\textwidth}{Xrrr}
+    \textbf{Faculty} & \textbf{With \gls{tex}} & \textbf{Total} & \textbf{\%} \\
+    \hline
+    Informatics                 & $1{,}716$ & $2{,}904$  & $59.09$ \\% 1433
+    Science                     & $786$     & $5{,}275$  & $14.90$ \\% 1431
+    Economics \& Administration & $64$      & $4{,}591$  & $1.39$  \\% 1456
+    Arts                        & $69$      & $10{,}000$ & $0.69$  \\% 1421
+    Medicine                    & $8$       & $2{,}014$  & $0.40$  \\% 1411
+    Law                         & $15$      & $4{,}824$  & $0.31$  \\% 1422
+    Education                   & $19$      & $8{,}219$  & $0.23$  \\% 1441
+    Social Studies              & $12$      & $5{,}599$  & $0.21$  \\% 1423
+    Sports Studies              & $3$       & $2{,}062$  & $0.15$  \\% 1451
+    \hline
+    \textbf{Total} & $\mathbf{2{,}692}$ & $\mathbf{45{,}488}$ & $\mathbf{5.92}$
+  \end{tabularx}
+  \label{table:statistics-tex}
+\end{table}
+
+\begin{table}
+  \caption{The percentage of bachelor's, master's and doctoral theses written using \gls{tex} which were defended in each year between 2010 and 2014 at \acrshort{fi} and \acrshort{sci} and the sample correlation coefficient $R$ between the percentage and the years}
+  \begin{tabularx}{\textwidth}{Xlrrrrrr}
+    \textbf{Degree} & \textbf{Fac.} & \textbf{2010} & \textbf{2011} & \textbf{2012} & \textbf{2013} & \textbf{2014} & $R$\\
+    \hline
+    Bachelor's
+      & \acrshort{fi}  & $58.92$ & $59.44$ & $49.54$ & $53.77$ & $59.06$ & \textcolor{red}{$-0.195$} \\
+      & \acrshort{sci} & $11.55$ & $13.00$ & $15.90$ & $19.79$ & $15.16$ & \textcolor{OliveGreen}{$+0.703$} \\
+      & \textbf{Total} & $\mathbf{5.08}$ & $\mathbf{6.19}$ & $\mathbf{6.00}$ & $\mathbf{6.08}$ & $\mathbf{6.24}$ & \textcolor{OliveGreen}{$\mathbf{+0.731}$} \\
+    Master's
+      & \acrshort{fi}  & $60.61$ & $59.91$ & $60.08$ & $64.50$ & $57.96$ & \textcolor{red}{$-0.046$} \\
+      & \acrshort{sci} & $19.38$ & $13.54$ & $13.75$ & $13.78$ & $17.71$ & \textcolor{red}{$-0.180$} \\
+      & \textbf{Total} & $\mathbf{6.02}$ & $\mathbf{4.88}$ & $\mathbf{5.22}$ & $\mathbf{6.59}$ & $\mathbf{6.29}$ &  \textcolor{OliveGreen}{$\mathbf{+0.490}$} \\
+    Doctoral
+      & \acrshort{fi}  & $100.00$ & $76.67$ & $71.88$ & $83.87$ & $90.91$ & \textcolor{red}{$-0.155$} \\
+      & \acrshort{sci} & $18.09$  & $10.71$ & $12.75$ & $10.19$ & $8.85$ & \textcolor{red}{$-0.830$} \\
+      & \textbf{Total} & $\mathbf{8.83}$ & $\mathbf{8.23}$ & $\mathbf{8.41}$ & $\mathbf{9.38}$ & $\mathbf{7.43}$ & \textcolor{red}{$\mathbf{-0.361}$} \\
+    \hline
+    \textbf{Total} 
+      & \textbf{\acrshort{fi} } & $\mathbf{60.83}$ & $\mathbf{60.53}$ & $\mathbf{54.92}$ & $\mathbf{60.57}$ & $\mathbf{59.34}$ & \textcolor{red}{$\mathbf{-0.188}$} \\
+      & \textbf{\acrshort{sci}} & $\mathbf{14.86}$ & $\mathbf{12.96}$ & $\mathbf{14.74}$ & $\mathbf{16.55}$ & $\mathbf{15.45}$ & \textcolor{OliveGreen}{$\mathbf{+0.577}$} \\
+      & \textbf{Total} &$\mathbf{5.67}$ & $\mathbf{5.70}$ & $\mathbf{5.73}$ & $\mathbf{6.41}$ & $\mathbf{6.28}$ & \textcolor{OliveGreen}{$\mathbf{+0.855}$}
+  \end{tabularx}
+  \label{table:statistics-tex-yearly}
+\end{table}
+  
+To determine whether or not a thesis had been written using \gls{tex}, a heuristic was employed. A thesis was considered to be written using \gls{tex}, if one or more files submitted alongside it satisfied one or more of the following conditions:
+
+\begin{itemize}
+  \item The suffix is \texttt{tex}.
+  \item The \gls{magnum} is that of a \acrshort{dvi} file.
+  \item The \gls{mime} is \texttt{application/postscript} and the file contains the \texttt{TeXDict} substring implying the file is a \gls{ps} document, which was created using the \texttt{dvips} utility.
+  \item The \gls{mime} is \texttt{application/pdf} and either the \texttt{Creator} or the \texttt{Producer} \gls{pdf} header contains the \texttt{TeX} substring implying the file was created using either the \texttt{dvipdfm} utility or using \hologo{pdfTeX}, \Hologo{XeTeX}, \Hologo{LuaTeX}, \Hologo{ConTeXt} or another \gls{texeng}, which supports \gls{pdf} output.
+\end{itemize}
+
+Provided the heuristic is sound, there was a marked and steady increase in the use of \gls{tex} between 2010 and 2014 across the faculties of \gls{mu} (see Table \ref{table:statistics-tex-yearly}). This appears to be due to the rising popularity of \gls{tex} among the students of bachelor's and master's degree programmes, as no such trend can be observed with doctoral theses and the bachelor's and master's theses make up the overwhelming majority of all the defended theses (see Table \ref{table:statistics-degree}).
+
+\begin{table}
+  \caption{The sample means $M_{1,2}$ and the sample standard deviations $S_{1,2}$ of the marks given to the bachelor's, master's and doctoral theses written and defended between 2010 and 2015 at \acrshort{fi} and \acrshort{sci} using and not using \gls{tex}, respectively, with the \glspl{pval} of the $F$-test and the unpaired two-sample $t$-test}
+  \begin{tabularx}{\textwidth}{Xlrrrrrr}
+      \bf Fac. & \bf Degree & $\mathbf{M_1}$ & $\mathbf{M_2}$ & $\mathbf{S_1}$ & $\mathbf{S_2}$ & \bf F-test & \bf t-test \\
+    \hline
+    \acrshort{fi}  % 1433
+      & Bachelor's & $2.360$ & $3.210$ & $1.498$ & $1.691$ & $<0.01$ & \textcolor{OliveGreen}{$<0.01$} \\
+      & Master's   & $2.379$ & $3.004$ & $1.642$ & $1.764$ & $0.08$ & \textcolor{OliveGreen}{$<0.01$} \\
+      & Doctoral   & $1.639$ & $1.708$ & $1.370$ & $1.654$ & $0.20$ & \textcolor{red}{$0.83$} \\
+      & \textbf{Total}      & $\mathbf{2.323}$ & $\mathbf{3.103}$ \bf & $\mathbf{1.566}$ & $\mathbf{1.740}$ & $\mathbf{<0.01}$ & \textcolor{OliveGreen}{$\mathbf{<0.01}$}\\
+
+    \acrshort{sci} % 1431
+      & Bachelor's & $1.978$ & $2.066$ & $1.226$ & $1.226$ & $1.00$ & \textcolor{red}{$0.18$} \\
+      & Master's   & $1.903$ & $2.041$ & $1.333$ & $1.300$ & $0.55$ & \textcolor{red}{$0.09$} \\
+      & Doctoral   & $1.406$ & $1.633$ & $0.849$ & $1.154$ & $<0.01$ & \textcolor{red}{$0.06$} \\
+
+      & \textbf{Total}      & $\mathbf{1.902}$ & $\mathbf{2.010}$ & $\mathbf{1.251}$ & $\mathbf{1.254}$ & $\mathbf{0.96}$ & \textcolor{red}{$\mathbf{0.03}$} \\
+    \hline
+    \textbf{Total} 
+    & \textbf{Bachelor's} & $\mathbf{2.235}$ & $\mathbf{2.530}$ & $\mathbf{1.422}$ & $\mathbf{1.479}$ & $\mathbf{0.05}$  & \textcolor{OliveGreen}{$\mathbf{<0.01}$} \\
+    & \textbf{Master's} & $\mathbf{2.234}$ & $\mathbf{2.312}$ & $\mathbf{1.552}$ & $\mathbf{1.447}$ & $\mathbf{<0.01}$ & \textcolor{OliveGreen}{$\mathbf{<0.01}$} \\
+    & \textbf{Doctoral} & $\mathbf{1.576}$ & $\mathbf{1.849}$ & $\mathbf{1.250}$ & $\mathbf{1.420}$ & $\mathbf{0.02}$ & \textcolor{OliveGreen}{$\mathbf{<0.01}$} \\
+    & \textbf{Total}    & $\mathbf{2.118}$ & $\mathbf{2.396}$ & $\mathbf{1.478}$ & $\mathbf{1.471}$ & $\mathbf{0.70}$ & \textcolor{OliveGreen}{$\mathbf{<0.01}$} \\
+  \end{tabularx}
+  \label{table:statistics-tex-marks}
+\end{table}
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}
+      [
+        ytick={1,2,3,4,5,6},
+        yticklabels={With \TeX{} (at \acrshort{sci}),
+                     Without \TeX{} (at \acrshort{sci}),
+                     With \TeX{} (total),
+                     Without \TeX{} (total),
+                     With \TeX{} (at \acrshort{fi}),
+                     Without \TeX{} (at \acrshort{fi})},
+      ]
+      \addplot+[
+        boxplot prepared={
+          upper quartile=2,
+          median=1,
+          lower quartile=1,
+          upper whisker=3,
+          lower whisker=1,
+          average=1.90203562340967
+        },
+      ] table[row sep=\\,y index=0] {
+        data\\ 4\\ 5\\ 6\\
+      };
+      \addplot+[
+        boxplot prepared={
+          upper quartile=3,
+          median=2,
+          lower quartile=1,
+          upper whisker=6,
+          lower whisker=1,
+          average=2.01024727110715
+        },
+      ] table[row sep=\\,y index=0] {
+        data\\
+      };
+      \addplot+[
+        boxplot prepared={
+          upper quartile=3,
+          median=2,
+          lower quartile=1,
+          upper whisker=6,
+          lower whisker=1,
+          average=2.18796433878158
+        },
+      ] table[row sep=\\,y index=0] {
+        data\\
+      };
+      \addplot+[
+        boxplot prepared={
+          upper quartile=3,
+          median=2,
+          lower quartile=1,
+          upper whisker=6,
+          lower whisker=1,
+          average=2.39634545284606
+        },
+      ] table[row sep=\\,y index=0] {
+        data\\
+      };
+      \addplot+[
+        boxplot prepared={
+          upper quartile=3,
+          median=2,
+          lower quartile=1,
+          upper whisker=6,
+          lower whisker=1,
+          average=2.32342657342657
+        },
+      ] table[row sep=\\,y index=0] {
+        data\\
+      };
+      \addplot+[
+        boxplot prepared={
+          upper quartile=5,
+          median=3,
+          lower quartile=2,
+          upper whisker=6,
+          lower whisker=1,
+          average=3.1026936026936
+        },
+      ] table[row sep=\\,y index=0] {
+        data\\
+      };
+    \end{axis}
+  \end{tikzpicture}
+  \caption{A box plot of the marks of theses written and defended between 2010 and 2015 at \acrshort{fi} and \acrshort{sci} with and without \gls{tex}}
+  \label{fig:statistics-marks}
+\end{figure}
+
+A weak negative correlation ($R=-0.033$) had also been found between the use of \gls{tex} and the marks given to theses defended between 2010 and 2015 at \gls{fi}. The author had therefore decided to test the following \gls{hypothesis}: Suppose the marks given to theses written and defended between 2010 and 2015 at \gls{mu} are normally distributed. Suppose also that the marks given to theses written using \gls{tex} have the expected value $\mu_1$ and the variance $\sigma_1^2$ and that the marks given to theses not written using \gls{tex} have the expected value $\mu_2$ and the variance $\sigma_2^2$. Under investigation is the \gls{hypothesis} that $\mu_1-\mu_2=0$ on the significance level $\alpha=0.01$. As an intermediary step, the $F$-test was used to test the \gls{hypothesis} that $\sigma_1^2/\sigma_2^2=1$ on the significance level $0.01$. Consequently, a two-tailed unpaired two-sample $t$-test was used to test the original \gls{hypothesis}. Based on the result of the $F$-test, either the Student's (for $\sigma_1^2=\sigma_2^2$) or Welch's \cite{WELCH01011947} (for $\sigma_1^2\not=\sigma_2^2$) variant of the $t$-test was used. As detailed in Table \ref{table:statistics-tex-marks}, the author overall rejected this \gls{hypothesis} on the significance level $0.01$. A box plot of the marks given to theses written and defended between 2010 and 2015 at \gls{fi} and \gls{sci} using and not using \gls{tex} is shown in Figure \ref{fig:statistics-marks}.
