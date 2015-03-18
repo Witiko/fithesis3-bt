@@ -96,7 +96,7 @@ To determine whether or not a thesis had been written using \gls{tex}, a heurist
 Provided the heuristic is sound, there was a marked and steady increase in the use of \gls{tex} between 2010 and 2014 across the faculties of \gls{mu} (see Table \ref{table:statistics-tex-yearly}). This appears to be due to the rising popularity of \gls{tex} among the students of bachelor's and master's degree programmes, as no such trend can be observed with doctoral theses and the bachelor's and master's theses make up the overwhelming majority of all the defended theses (see Table \ref{table:statistics-degree}).
 
 \begin{table}
-  \caption{The sample means $M_{1,2}$ and the sample standard deviations $S_{1,2}$ of the marks given to the bachelor's, master's and doctoral theses written and defended between 2010 and 2015 at \acrshort{fi} and \acrshort{sci} using and not using \gls{tex}, respectively, with the \glspl{pval} of the $F$-test and the unpaired two-sample $t$-test}
+  \caption{The sample means $M_{1,2}$ and the sample standard deviations $S_{1,2}$ of the grades given to the bachelor's, master's and doctoral theses written and defended between 2010 and 2015 at \acrshort{fi} and \acrshort{sci} using and not using \gls{tex}, respectively, with the \glspl{pval} of the $F$-test and the unpaired two-sample $t$-test}
   \begin{tabularx}{\textwidth}{Xlrrrrrr}
       \bf Fac. & \bf Degree & $\mathbf{M_1}$ & $\mathbf{M_2}$ & $\mathbf{S_1}$ & $\mathbf{S_2}$ & \bf F-test & \bf t-test \\
     \hline
@@ -119,7 +119,7 @@ Provided the heuristic is sound, there was a marked and steady increase in the u
     & \textbf{Doctoral} & $\mathbf{1.576}$ & $\mathbf{1.849}$ & $\mathbf{1.250}$ & $\mathbf{1.420}$ & $\mathbf{0.02}$ & \textcolor{OliveGreen}{$\mathbf{<0.01}$} \\
     & \textbf{Total}    & $\mathbf{2.118}$ & $\mathbf{2.396}$ & $\mathbf{1.478}$ & $\mathbf{1.471}$ & $\mathbf{0.70}$ & \textcolor{OliveGreen}{$\mathbf{<0.01}$} \\
   \end{tabularx}
-  \label{table:statistics-tex-marks}
+  \label{table:statistics-tex-grades}
 \end{table}
 
 \begin{figure}
@@ -209,8 +209,8 @@ Provided the heuristic is sound, there was a marked and steady increase in the u
       };
     \end{axis}
   \end{tikzpicture}
-  \caption{A box plot of the marks of theses written and defended between 2010 and 2015 at \acrshort{fi} and \acrshort{sci} with and without \gls{tex}}
-  \label{fig:statistics-marks}
+  \caption{A box plot of the grades of theses written and defended between 2010 and 2015 at \acrshort{fi} and \acrshort{sci} with and without \gls{tex}}
+  \label{fig:statistics-grades}
 \end{figure}
 
-A weak negative correlation ($R=-0.033$) had also been found between the use of \gls{tex} and the marks given to theses defended between 2010 and 2015 at \gls{fi}. The author had therefore decided to test the following \gls{hypothesis}: Suppose the marks given to theses written and defended between 2010 and 2015 at \gls{mu} are normally distributed. Suppose also that the marks given to theses written using \gls{tex} have the expected value $\mu_1$ and the variance $\sigma_1^2$ and that the marks given to theses not written using \gls{tex} have the expected value $\mu_2$ and the variance $\sigma_2^2$. Under investigation is the \gls{hypothesis} that $\mu_1-\mu_2=0$ on the significance level $\alpha=0.01$. As an intermediary step, the $F$-test was used to test the \gls{hypothesis} that $\sigma_1^2/\sigma_2^2=1$ on the significance level $0.01$. Consequently, a two-tailed unpaired two-sample $t$-test was used to test the original \gls{hypothesis}. Based on the result of the $F$-test, either the Student's (for $\sigma_1^2=\sigma_2^2$) or Welch's \cite{WELCH01011947} (for $\sigma_1^2\not=\sigma_2^2$) variant of the $t$-test was used. As detailed in Table \ref{table:statistics-tex-marks}, the author overall rejected this \gls{hypothesis} on the significance level $0.01$. A box plot of the marks given to theses written and defended between 2010 and 2015 at \gls{fi} and \gls{sci} using and not using \gls{tex} is shown in Figure \ref{fig:statistics-marks}.
+A weak negative correlation ($R=-0.033$) had also been found between the use of \gls{tex} and the grades given to theses defended between 2010 and 2015 at \gls{fi}. The author had therefore decided to test the following \gls{hypothesis}: Suppose the grades given to theses written and defended between 2010 and 2015 at \gls{mu} are normally distributed. Suppose also that the grades given to theses written using \gls{tex} have the expected value $\mu_1$ and the variance $\sigma_1^2$ and that the grades given to theses not written using \gls{tex} have the expected value $\mu_2$ and the variance $\sigma_2^2$. Under investigation is the \gls{hypothesis} that $\mu_1-\mu_2=0$ on the significance level $\alpha=0.01$. As an intermediary step, the $F$-test was used to test the \gls{hypothesis} that $\sigma_1^2/\sigma_2^2=1$ on the significance level $0.01$. Consequently, a two-tailed unpaired two-sample $t$-test was used to test the original \gls{hypothesis}. Based on the result of the $F$-test, either the Student's (for $\sigma_1^2=\sigma_2^2$) or Welch's \cite{WELCH01011947} (for $\sigma_1^2\not=\sigma_2^2$) variant of the $t$-test was used. As detailed in Table \ref{table:statistics-tex-grades}, the author overall rejected this \gls{hypothesis} on the significance level $0.01$. A box plot of the grades given to theses written and defended between 2010 and 2015 at \gls{fi} and \gls{sci} using and not using \gls{tex} is shown in Figure \ref{fig:statistics-grades}.

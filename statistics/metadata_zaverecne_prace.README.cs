@@ -48,4 +48,3 @@ Typy studia:
   D -- Doktorské
   R -- Rigorózní
   C -- Celoživotní
-  D -- Doktorské

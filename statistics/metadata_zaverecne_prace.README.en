@@ -1,0 +1,50 @@
+The `metadata_zaverecne_prace.csv.gz` file format:
+
+  Columns:
+    Faculty
+    Type of study
+    Thesis defense year
+    Final grade
+    File number
+    MIME-type
+    File suffix
+    Non-empty, if `file FILENAME | grep -q 'TeX DVI file'`
+    Non-empty, if the MIME-type is `application/postscript` and `grep -q 'TeXDict' FILENAME`
+    Creator, if the MIME-type is `application/pdf`
+    Producer, if the MIME-type is `application/pdf`
+
+  The order of lines matters.
+  Only files flagged as a "full text of thesis" are included.
+  Files automatically created by IS are not included.
+  Tiny files (smaller than 4000 B) and plain text files (MIME-type `text/plain`, `text/xml`, `text/html`) are not included.
+
+Faculty codes:
+  1411 -- Faculty of Medicine
+  1421 -- Faculty of Arts
+  1422 -- Faculty of Law
+  1423 -- Faculty of Social Studies
+  1431 -- Faculty of Science
+  1433 -- Faculty of Informatics
+  1441 -- Faculty of Education
+  1451 -- Faculty of Sports Studies
+  1456 -- Faculty of Economics & Administration
+
+Grades (see https://is.muni.cz/auth/predmety/prehled_ukonceni_a_hodnoceni):
+  A -- Excellent
+  P -- Passed
+  O -- Defended
+  B -- Very good
+  C -- Good
+  D -- Satisfactory
+  E -- Sufficient
+  F -- Failed
+  N -- Failed
+  - -- Waived
+
+Types of study:
+  B -- Bachelor
+  M -- Magister
+  N -- Magister (cont.)
+  D -- Doctor (higher)
+  R -- Doctor (lower)
+  C -- Lifelong
