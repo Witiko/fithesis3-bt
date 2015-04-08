@@ -25,7 +25,7 @@ done < $PAGES
 # Remove the pages and inject the updated bookmarks
 DATA2=`mktemp`; DATA3=`mktemp`; TEMP=`mktemp`
 pdftk "$1" cat `< $PAGES sed -En 's/(.*)\t.*/\1/p'` output $TEMP
-pdftk $TEMP dump_data_utf8 | sed -n /^Bookmark/\!p > $DATA2
+pdftk $1 dump_data_utf8 | sed -n /^Bookmark/\!p > $DATA2
 cat $DATA1 $DATA2 > $DATA3
 pdftk $TEMP update_info_utf8 $DATA3 output "$2"
 

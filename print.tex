@@ -1,6 +1,4 @@
-\documentclass[
-  12pt,twoside,final,color
-]{fithesis3/fithesis3}
+\documentclass[12pt,twoside,final,color]{fithesis3/fithesis3}
 
 % Packages
 \usepackage[english]{babel}     % Babel
@@ -13,48 +11,56 @@
 \usepackage{setspace}           % Paragraph spacing
 \usepackage{blindtext}          % Blind text
 \usepackage[toc,page]{appendix} % Appendices
-
+\usepackage[                    % Colors
+  usenames,dvipsnames,
+  svgnames,table
+]{xcolor}
 \usepackage[                    % Fonts
   scaled=1.03
 ]{inconsolata}
 
-\hypersetup{                    % Hyperref
+\usepackage[                    % Hyperref
   pdfborderstyle={/S/U/W 1},      % Less obtrusive borders
   hyperfootnotes,                 % Footnote hyperlinks
   breaklinks                      % Better cross-page link handling
-}
+]{hyperref}
 
 \usepackage{pgfplots}           % Graphs
 \pgfplotsset{compat=1.8}
 \usepgfplotslibrary{statistics}
 
+% Color definitions
+\definecolor{pantone122}{HTML}{FFD451}
+\definecolor{pantone300}{HTML}{0067C6}
+\definecolor{cured}{RGB}{210,45,64}
+% TODO: Add this functionality to the `future` branch of fithesis3
+\definecolor{faculty}{HTML}{FFD451} % Pantone 122
+\hypersetup{linkbordercolor = faculty}
+\definecolor{facultylight}{HTML}{FFECB3}
+\definecolor{facultyxlight}{HTML}{FFF9E5}
+
 \usepackage[
   labelfont=bf                  % Typeset table captions in bold font
 ]{caption}
 \usepackage{multirow}           % Multirows
+
 \usepackage{tabularx}           % Elastic tables
 \let\oldtabularx\tabularx         % Altering the definition to allow for colors
-\let\endoldtabularx\endtabularx
-\renewenvironment{tabularx}
+\let\endoldtabularx\endtabularx     % TODO: Add this functionality to the 
+\renewenvironment{tabularx}         %       `future` branch of fithesis3
   {\rowcolors{1}{facultyxlight}{facultylight}\oldtabularx}
   {\endoldtabularx}
 \usepackage{./definitions}      % My own macros
 
 % Fithesis options
-\thesistitle{The Form of Theses\\ Written in \LaTeX{}}
-\thesissubtitle{Bachelor's thesis}
-\thesisstudent{Vít Novotný}
-\thesisgender{male}
-\thesislang{en}
-\thesisfaculty{fi}
-\thesisyear{Spring 2015}
-\thesisadvisor{RNDr. \MR}
-\thesislogopath{fithesis3/loga}
-
-% Color definitions
-\definecolor{pantone122}{HTML}{FFD451}
-\definecolor{pantone300}{HTML}{0067C6}
-\definecolor{cured}{RGB}{210,45,64}
+\thesissetup{
+  title    = {The Form of Theses Written in LaTeX},
+  TeXtitle = {The Form of Theses\\ Written in \LaTeX{}},
+  year     = 2015,
+  author   = \VN,
+  advisor  = {RNDr. \MR},
+  basepath = ./fithesis3
+}
 
 % Bibliography
 \usepackage[
@@ -81,20 +87,11 @@
 \clubpenalty=10000  % Zero tolerance for widows and orphans
 
 % Miscellaneous
+\usepackage{morewrites}                 % Fixing the `no room for a new \write`
 \renewcommand{\floatpagefraction}{0.7}  % Enforce more dense float-pages
 
 \begin{document}
   
-  % Front matter
-  \FrontMatter
-  \ThesisTitlePage
-  \input{chapters/front}
-  \tableofcontents
-  \listoftables
-  \listoffigures
-
-  % Main matter
-  \MainMatter
 % \input{chapters/intro}
 % \input{chapters/fithesis1&2}
   \input{chapters/research}
