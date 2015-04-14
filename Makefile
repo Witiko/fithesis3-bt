@@ -6,7 +6,10 @@ NONSOURCES=$(OUTPUT).pdf online.pdf
 OUTPUT=print
 AUX=$(OUTPUT).aux $(OUTPUT).toc $(OUTPUT).bbl $(OUTPUT).blg $(OUTPUT).ind $(OUTPUT).idx $(OUTPUT).out $(OUTPUT).gl[gos] $(OUTPUT).xdy $(OUTPUT).lo[ftg] $(OUTPUT).ac[rn] $(OUTPUT).alg $(OUTPUT).run.xml $(OUTPUT).bcf $(OUTPUT)-blx.bib $(OUTPUT).mw $(OUTPUT).cb $(OUTPUT).cb2
 
-all: $(OUTPUT).pdf clean
+all:
+	cd fithesis3; make
+	make $(OUTPUT).pdf clean
+
 complete: all online.pdf
 
 # This target creates an online version of
