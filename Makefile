@@ -1,15 +1,24 @@
 .PHONY: all complete clean clean-all
 
-CHAPTERS=chapters/*.tex chapters/*/*.tex
-SOURCES=database.bib definitions.sty glossaries.tex $(CHAPTERS)
+SOURCES=database.bib definitions.sty glossaries.tex
 NONSOURCES=$(OUTPUT).pdf online.pdf
 OUTPUT=print
-AUX=$(OUTPUT).aux $(OUTPUT).toc $(OUTPUT).bbl $(OUTPUT).blg $(OUTPUT).ind $(OUTPUT).idx $(OUTPUT).out $(OUTPUT).gl[gos] $(OUTPUT).xdy $(OUTPUT).lo[ftg] $(OUTPUT).ac[rn] $(OUTPUT).alg $(OUTPUT).run.xml $(OUTPUT).bcf $(OUTPUT)-blx.bib $(OUTPUT).mw $(OUTPUT).cb $(OUTPUT).cb2
+AUX=$(OUTPUT).aux $(OUTPUT).toc $(OUTPUT).bbl $(OUTPUT).blg \
+	$(OUTPUT).ind $(OUTPUT).idx $(OUTPUT).out $(OUTPUT).gl[gos] \
+	$(OUTPUT).xdy $(OUTPUT).lo[ftg] $(OUTPUT).ac[rn] $(OUTPUT).alg \
+	$(OUTPUT).run.xml $(OUTPUT).bcf $(OUTPUT)-blx.bib $(OUTPUT).mw \
+	$(OUTPUT).cb $(OUTPUT).cb2 texput.log
 
+# This target prepares the fithesis3 class
+# and typesets the printed version of the
+# thesis.
 all:
-	cd fithesis3; make
+	cd fithesis3/fithesis3 && make all
 	make $(OUTPUT).pdf clean
 
+# This target performs the `all` pseudo-target
+# and then also typesets the online version
+# of the thesis.
 complete: all online.pdf
 
 # This target creates an online version of
@@ -22,6 +31,7 @@ online.pdf: $(OUTPUT).pdf
 $(OUTPUT).pdf: $(OUTPUT).tex $(SOURCES)
 	@toolbox/test.sh pdflatex texindy biber makeglossaries
 	pdflatex $<
+	# Prepare index, bibliography and glossaries
 	texindy -I omega --language english $(OUTPUT).idx
 	biber $(OUTPUT)
 	makeglossaries $(OUTPUT)

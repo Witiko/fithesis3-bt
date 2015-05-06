@@ -1,1 +1,3 @@
-This directory contains data regarding the statistical analysis of the use of TeX at MUNI.
+This directory contains data regarding the statistical analysis of the use of TeX at MUNI in Section 3.2.
+The `suite1.ods` file was used to calculate the data for the box plot.
+The `suite2.ods` file was used to calculate Pearson's goodness-of-fit measure.

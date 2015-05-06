@@ -5,7 +5,7 @@
 #
 # to a set of lines in the following format:
 #
-#   FACULTY_ID DEGREE_MAPPED DEFENSE_YEAR MARK_MAPPED USED_TEX
+#   FACULTY_ID DEGREE_MAPPED DEFENSE_YEAR MARK USED_TEX
 #
 # where each line represents one thesis or dissertation.
 
@@ -37,17 +37,6 @@ IFS=$'\n'; while read -r line; do
     *)    continue;;
   esac
 
-  # Mark mapping
-  case "$MARK" in
-    [OPA]) MARK=1;;
-    B)     MARK=2;;
-    C)     MARK=3;;
-    D)     MARK=4;;
-    E)     MARK=5;;
-    [NF-]) MARK=6;;
-    *)     continue;;
-  esac
-
   # We aggregate adjoining lines
   if [ $ID -lt $((LASTID + 1)) ]; then
     # A next student
@@ -63,7 +52,7 @@ IFS=$'\n'; while read -r line; do
     TEX=1
   fi
   
-  LASTOUTPUT="$(printf '%d\t%d\t%d\t%d\t%d\n'\
+  LASTOUTPUT="$(printf '%d\t%d\t%d\t%d\t%c\t%d\n'\
     $FACULTY $DEGREE $YEAR $MARK $TEX)"
 
 done

@@ -1,9 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{definitions}
 
-% A slash, which allows a line break
-\def\pathslash{\discretionary{/}{}{/}}
-
 % A discretionary hyphen
 \def\hyph{\discretionary{-}{-}{-}}
 
@@ -39,16 +36,13 @@
 % see: <http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management>
 \DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
   \newglossaryentry{gls-#3}{name={#5},text={#5\glsadd{#3}},
-    description={#6},#1
-  }
+    description={#6},#1}
   \newacronym[see={[Glossary:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
 }
 
 % Color picker
 \newcommand{\clrpicker}[1]{%
-  % The 0.7em is font-specific
-  % It roughly represents caps heigth - baseline
-  \textcolor{#1}{\rule{0.7em}{0.7em}}%
+  \textcolor{#1}{\rule{1ex}{1ex}}%
 }
 
 % Support for colored markers
@@ -96,3 +90,7 @@
 
 % Control sequence printer
 \DeclareRobustCommand{\cs}[1]{\texttt{\char`\\#1}}
+
+% A couple of table markup macros
+\def\cellemph{\cellcolor{thesis@color@tableEmph}}
+\def\rowemph{\rowcolor{thesis@color@tableEmph}}
