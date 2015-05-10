@@ -3,6 +3,7 @@
 SOURCES=database.bib definitions.sty glossaries.tex
 NONSOURCES=$(OUTPUT).pdf online.pdf
 OUTPUT=print
+TEXOPTS=
 AUX=$(OUTPUT).aux $(OUTPUT).toc $(OUTPUT).bbl $(OUTPUT).blg \
 	$(OUTPUT).ind $(OUTPUT).idx $(OUTPUT).out $(OUTPUT).gl[gos] \
 	$(OUTPUT).xdy $(OUTPUT).lo[ftg] $(OUTPUT).ac[rn] $(OUTPUT).alg \
@@ -30,15 +31,15 @@ online.pdf: $(OUTPUT).pdf
 # This target typesets the thesis.
 $(OUTPUT).pdf: $(OUTPUT).tex $(SOURCES)
 	@toolbox/test.sh pdflatex texindy biber makeglossaries
-	pdflatex $<
+	pdflatex $(TEXOPTS) $<
 	# Prepare index, bibliography and glossaries
 	texindy -I omega --language english $(OUTPUT).idx
 	biber $(OUTPUT)
 	makeglossaries $(OUTPUT)
-	pdflatex $<
+	pdflatex $(TEXOPTS) $<
 	makeglossaries $(OUTPUT)
-	pdflatex $<
-	pdflatex $< # Necessary to correctly typeset changebars
+	pdflatex $(TEXOPTS) $<
+	pdflatex $(TEXOPTS) $< # Necessary to correctly typeset changebars
 
 # This target removes auxiliary files.
 clean:

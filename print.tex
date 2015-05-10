@@ -3,7 +3,6 @@
 
 % Packages
 \usepackage[english]{babel} % Babel
-\usepackage[utf8]{inputenc} % UTF-8
 \usepackage{hologo}         % \XeLaTeX{} and friends
 \usepackage[                % Microtype
   protrusion                  % Protrusion support
@@ -11,6 +10,8 @@
 \usepackage{amsmath}        % The split and multline environments
 \usepackage{setspace}       % Paragraph spacing
 \usepackage{blindtext}      % Blind text
+\usepackage{dirtree}        % Directory tree diagrams
+\usepackage{pbox}           % Variable-width parbox
 \usepackage[toc,page]%      % Appendices
   {appendix}
 \usepackage{csquotes}       % Quotations
@@ -134,7 +135,11 @@
   however, were insufficiently documented, which is why
   \textsf{fithesis2} wasn't released. In 2012, Bc. Tomáš Janoušek
   was tasked to document the code of \textsf{fithesis2}, which he
-  did only partially \cite{fithesis2Code}.
+  did only partially \cite{fithesis2Code}. In 2013, Mgr. Tomáš
+  Fábry created a package adding support for the usage of Comenia
+  fonts purchased bz \gls{mu} to \gls{tex} as the implementation
+  part of his thesis. This project is described separately in
+  Section \ref{sec:comenia}.
 
   During January--March 2015, the author and Petr Sojka finished
   the technical documentation of \textsf{fithesis2}, refactored its
@@ -171,8 +176,17 @@
   dedicated to the module \cite{xslt2web}. Since the \textsf{xslt2}
   module is only loosely coupled with the \textsf{fithesis1}
   \gls{docclass}, the author also concluded that the module should
-  be relatively simple to extend to support \textsf{fithesis2} and
+  be reasonably simple to extend to support \textsf{fithesis2} and
   \textsf{fithesis3}.
+
+  \section{The \textsf{comenia} package}\label{sec:comenia}
+  The \textsf{comenia} \gls{ltxpackage} was developed in 2013 by
+  Mgr.  Tomáš Fábry as the implementation part of his bachelor's
+  thesis \cite{Fabry13}. The package added support for the usage of
+  the Comenia font superfamily within \TeX{}. During January--March
+  2015, the author tested the final version of \textsf{fithesis1}
+  and \textsf{fithesis2} with the \textsf{comenia} package and
+  encountered no technical difficulties.
 
 \chapter{Research}
   During the course of December 2014 and January 2015, the author
@@ -556,7 +570,7 @@
             upper quartile=2,
             upper whisker=3,
             lower whisker=1,
-            average=1.9148387097
+            % average=1.9148387097
           },
         ] table[row sep=\\,y index=0] {
           data\\ 4\\ 5\\ 6\\
@@ -568,7 +582,7 @@
             upper quartile=3,
             upper whisker=6,
             lower whisker=1,
-            average=2.0201768307
+            % average=2.0201768307
           },
         ] table[row sep=\\,y index=0] {
           data\\
@@ -580,7 +594,7 @@
             median=2,
             upper quartile=3,
             upper whisker=6,
-            average=2.2110091743
+            % average=2.2110091743
           },
         ] table[row sep=\\,y index=0] {
           data\\
@@ -592,7 +606,7 @@
             median=2,
             upper quartile=3,
             upper whisker=6,
-            average=2.3971979233
+            % average=2.3971979233
           },
         ] table[row sep=\\,y index=0] {
           data\\
@@ -604,7 +618,7 @@
             median=2,
             upper quartile=3,
             upper whisker=6,
-            average=2.3565375303
+            % average=2.3565375303
           },
         ] table[row sep=\\,y index=0] {
           data\\
@@ -616,7 +630,7 @@
             median=3,
             upper quartile=5,
             upper whisker=6,
-            average=3.1209262436
+            % average=3.1209262436
           },
         ] table[row sep=\\,y index=0] {
           data\\
@@ -949,11 +963,95 @@
   % CTAN: http://www.ctan.org/topic/dissertation
   % Kumar07, https://tug.org/pracjourn/2007-4/
 
-  \chapter{Implementation}
-    \section{Design goals}
-    \section{Architecture}
-    \section{\Hologo{XeLaTeX} Support}
-  % \section{OpenType Font Support}
+  \chapter{Design and Implementation}
+  In parallel to the work on the release of the \textsf{fithesis2}
+  \gls{docclass}, the author had been developing the new
+  \textsf{fithesis3} \gls{docclass}, which forms the implementation
+  part of this thesis. In this chapter, the author is going to
+  describe the main design goals of \textsf{fithesis3}, the
+  rationale behind them and their implementation.
+
+  \section{Goals}
+  The \textsf{fithesis2} document class included the logos of all
+  faculties of \gls{mu}, which in theory enabled its usage across
+  the faculties of \gls{mu}. In practice, however, each faculty of
+  \gls{mu} had a vastly different rules regarding the structure and
+  the formatting of theses. These differences had to be resolved by
+  the end users, which decreased the usefulness of the class. One
+  of the main goals of \textsf{fithesis3} was therefore the
+  addition of a more comprehensive support for the various
+  faculties of \gls{mu}.
+
+  With the advent of the digital age, the importance of printed
+  works has diminished in favour of electronic documents. Another
+  main goal of \textsf{fithesis3} was therefore better utilization
+  of the \gls{pdf} format capabilities. Other goals included the
+  addition of support for modern \glspl{texeng} other than \TeX{}
+  and \hologo{pdfLaTeX} and the addition of support for color
+  printing.
+
+  \section{Design}
+  The \textsf{fithesis1} and \textsf{fithesis2} \glspl{docclass}
+  had the following responsibilities: \begin{enumerate}
+    \item The management of Czech, Slovak and English locale
+      strings
+    \item The definition of the document style
+    \item The processing of the input options and metadata
+  \end{enumerate} These responsibilities had been hard-wired into
+  the \glspl{docclass} with little thought given to extensibility.  
+  With the addition of support for faculties other than \gls{fi},
+  it was necessary to enable easy addition of new languages such as
+  French \cite{Zeman14} or Russian \cite{Kupcevic14}. To enable the
+  automatic typesetting of the mandatory parts of theses in
+  compliance with the requirements of the faculties of \gls{mu},
+  new metadata fields also had to be added to the class and the
+  document style had to respond to the faculty at which the thesis
+  was going to be written and defended.
+  
+  For these reasons, the author had decided to decompose the class
+  into the following parts: \begin{enumerate}
+    \item\emph{Locale files} that encapsulate locale strings
+    \item\emph{Style files} that define the look and layout of the
+      document
+    \item\emph{The \gls{docclass} file} that processes the user
+      input and loads the according locale and style files
+  \end{enumerate} When a user specified the \gls{docclass} in the
+  preamble of the document, only the \gls{docclass} file would get
+  loaded. The user would then input the metadata of their thesis,
+  which would be processed by the \gls{docclass}. If no metadata
+  were input, default and placeholder values would be used instead.
+  At the end of the preamble, the metadata would be written to the
+  output document, the corresponding locale and style files would
+  be loaded and the mandatory parts specified by the style file
+  would be appended to the document.
+
+  The compatibility with various \glspl{texeng} would be ensured by
+  the style files, which would detect the engine used and behave
+  accordingly. The support for color printing would likewise be
+  added at the style file level.
+
+  \section{Implementation}
+
+  \begin{figure}
+    \centering
+    \pbox{0.5\textwidth}{\dirtree{%
+      .1 locale.
+      .2 \textit{locale}.def.
+      .2 \textit{university}.
+      .3 \textit{locale}.def.
+      .3 \textit{faculty}.
+      .4 \textit{locale}.def.
+      .1 style.
+      .2 fithesis3-base.sty.
+      .2 \textit{university}.
+      .3 fithesis3-base.sty.
+      .3 fithesis3-\textit{faculty}.sty.
+      .1 fithesis3.cls.
+    }}\label{fig:dirs}
+    \caption{The directory structure of the \textsf{fithesis3}
+      class}
+  \end{figure}
+
   \chapter{Closing Notes}
 
   % Bibliography
