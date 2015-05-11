@@ -42,20 +42,22 @@
 
 % Color picker
 \newcommand{\clrpicker}[1]{%
-  \textcolor{#1}{\rule{1ex}{1ex}}%
-}
+  % The 0.7em is font-specific
+  % It roughly represents caps heigth - baseline
+  \textcolor{#1}{\rule{0.7em}{0.7em}}}
 
 % Support for colored markers
 \usepackage[hang,multiple,ragged]{footmisc}
 \usepackage[color]{changebar}
-\newcommand{\marker}[3]{%
-  \def\arg{#3}%
-  \cbcolor{#2}\begin{changebar}%
-    \footnote{%
-      \textcolor{#2}{\gls{#1}\ifx\arg\empty\else: #3\fi}%
-    }%
-  \end{changebar}%
-}
+\def\marker{} % Temporarily disabled
+%\newcommand{\marker}[3]{%
+%  \def\arg{#3}%
+%  \cbcolor{#2}\begin{changebar}%
+%    \footnote{%
+%      \textcolor{#2}{\gls{#1}\ifx\arg\empty\else: #3\fi}%
+%    }%
+%  \end{changebar}%
+%}
 
 % A todo marker
 \newcommand{\todo}[1]{%

@@ -1,7 +1,7 @@
 .PHONY: all complete clean clean-all
 
 SOURCES=database.bib definitions.sty glossaries.tex
-NONSOURCES=$(OUTPUT).pdf online.pdf
+NONSOURCES=$(OUTPUT).pdf
 OUTPUT=print
 TEXOPTS=
 AUX=$(OUTPUT).aux $(OUTPUT).toc $(OUTPUT).bbl $(OUTPUT).blg \
@@ -14,19 +14,7 @@ AUX=$(OUTPUT).aux $(OUTPUT).toc $(OUTPUT).bbl $(OUTPUT).blg \
 # and typesets the printed version of the
 # thesis.
 all:
-	cd fithesis3/fithesis3 && make all
 	make $(OUTPUT).pdf clean
-
-# This target performs the `all` pseudo-target
-# and then also typesets the online version
-# of the thesis.
-complete: all online.pdf
-
-# This target creates an online version of
-# the thesis without blank pages.
-online.pdf: $(OUTPUT).pdf
-	@toolbox/test.sh pdftk /usr/bin/perl
-	toolbox/remove-empty.sh $< $@
 
 # This target typesets the thesis.
 $(OUTPUT).pdf: $(OUTPUT).tex $(SOURCES)
