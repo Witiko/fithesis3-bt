@@ -176,6 +176,17 @@ document.}
   more target files is requested}
 }
 
+\newdualentry{dtx}{DTX}{Documented \TeX{} file}{
+  A \TeX{} document, whose comments form a separate \TeX{}
+  document, which can be typeset \cite{dtxtut}}
+
+\newdualentry{ins}{INS}{\textsf{DocStrip} installer file}{
+  A \TeX{} document, which loads the \textsf{DocStrip}
+  \gls{texpackage} and instructs it to decompose a file marked up
+  with \textsf{DocStrip}-specific delimiter strings into specified
+  output files. Any comments are stripped from the files in the
+  process \cite{docstrip}.}
+
 \newdualentry{cmfonts}{CM fonts}{Computer Modern fonts}{A
 collection of typefaces, which was designed by Donald E. Knuth and
 which is used in \gls{tex}}
@@ -226,7 +237,7 @@ functionality}
 \newglossaryentry{beamer}{
   name = beamer,
   description = {A \acrlong{docclass} for the typesetting of
-  presentations.}  
+  presentations}  
 }
 
 \newglossaryentry{pending}{
@@ -266,6 +277,13 @@ graphics with it. For more information, see \cite{psspec}}
 meant to decrease the complexity of the resulting document.
 Encapsulated Postscript is primarily used as a vector graphics
 format. For more information, see \cite{epsspec}}
+
+\newdualentry{tds}{TDS}{\gls{tex} Directory Structure}{A set of
+rules and recommendations \cite{tds} describing a unified directory
+structure containing \gls{tex} distribution files such as fonts,
+\glspl{format}, \glspl{ltxpackage} and \glspl{docclass}. The
+\gls{tex} directory structure is used by all major \gls{tex}
+distributions}
 
 \newdualentry{texeng}{engine}{\gls{tex} engine}{An interpreter of
 (usually a superset of) the \gls{tex} language. The baseline
@@ -315,4 +333,11 @@ therefore needs to be transcoded into another format like
   name = \textcolor{red}{TODO},
   sort = TODO,
   description = {A part of the text, whose completion is pending}
+}
+
+\newglossaryentry{metafont}{
+  name = \MF{},
+  sort = Metafont,
+  description = {A language developed alongside \gls{tex}, which
+  allows the definition of vector fonts}
 }
