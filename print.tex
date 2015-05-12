@@ -1,4 +1,4 @@
-\documentclass[12pt,twoside,cover,color,table]%
+\documentclass[12pt,twoside,color,table]%
   {fithesis3/fithesis3/fithesis3} % 0_0
 
 % Packages
@@ -8,10 +8,13 @@
 \usepackage[                % Microtype
   protrusion                  % Protrusion support
 ]{microtype}
-\usepackage{amsmath}        % The split and multline environments
+\usepackage{amsmath}        % The split and multiline environments
 \usepackage{setspace}       % Paragraph spacing
 \usepackage{blindtext}      % Blind text
 \usepackage{dirtree}        % Directory tree diagrams
+\usepackage[                % Appendices
+  toc,page
+]{appendix}
 \usepackage{csquotes}       % Quotations
 \usepackage[                % Colors
   usenames,dvipsnames,
@@ -47,27 +50,28 @@
   title       = The Form of Theses Written in LaTeX,
   TeXtitle    = The Form of Theses\\ Written in \LaTeX{},
   author      = \VN,
-  advisor     = {Doc. RNDr. \PS, Ph.D.},
+  advisor     = {Doc.\ RNDr.\ \PS,\ Ph.D.},
   keywords    = {latex document classes, thesis typesetting,
     fithesis, tex usage statistics},
   TeXkeywords = {\LaTeX\ document classes, thesis typesetting,
     \textsf{fithesis}, \TeX\ usage statistics},
   basepath = ./fithesis3/fithesis3,
-  assignment = {./misc/declaration.pdf, 1, {},
-                ./misc/assignment.pdf,  1, {}}}
+  assignment = {}}
+%  assignment = {./misc/declaration.pdf, 1, {},
+%                ./misc/assignment.pdf,  1, {}}}
 
 \thesislong{abstract}{This bachelor's thesis aims to assess the
   existing templates for the typesetting of theses and to analyze
   the trends in the usage of \gls{tex} at \acrlong{mu}. Based on
-  the findings, the author designs of a new \LaTeX\ document class
+  the findings, the author designs a new \LaTeX\ document class
   for the typesetting of theses at \acrlong{mu}.}
 
-\thesislong{thanks}{I wish to express my most sicere gratitude and
-  appreciation to \thesis{advisor} for sharing expertise, valuable
-  guidance and encouragement, Doc. Ing. Michal Brandejs, CSc. for
+\thesislong{thanks}{I wish to express my most sincere gratitude and
+  appreciation to \thesis{advisor}\ for sharing expertise, valuable
+  guidance and encouragement, Doc.\ Ing.\ Michal Brandejs, CSc.\ for
   providing me with statistical data, which proved invaluable for
   the initial research, and one and all who, directly or
-  indirectly, have lent their hand in this venture. I also thank my
+  indirectly, have lent their hand in this venture. I~also thank my
   parents for their unceasing encouragement and support during my
   studies.}
 
@@ -105,10 +109,53 @@
 %% Enforce more dense float-pages
 \renewcommand{\floatpagefraction}{0.7}
 
-\begin{document}
+% We redefine the title page
+\makeatletter\thesis@load\makeatletter
+\def\thesis@blocks@titlePage@content{%
+  {\thesis@titlePage@Huge\bf\thesis@TeXtitle\par\vfil}%
+  \vskip 0.8in%
+  {\thesis@titlePage@large\sc\thesis@@{typeName}}\\[0.3in]%
+  {\thesis@titlePage@Large\bf\thesis@author}\vfill
+  This thesis was prepared for the SVOČ competition.}
+\makeatother
 
+\begin{document}
 \chapter{Introduction}
-...
+For many university students a bachelor's thesis is the first
+relatively complex document they ever had to complete. The task of
+writing a thesis in a run-of-the-mill word processor is not
+unsurmountable, but it can be greatly simplified by the use of the
+right tools. One of such tools is the \acrshort{latex} document
+preparation system, which has been the industry standard for the
+creation of scientific documents ever since its inception in 1984.
+
+For this reason, the faculties of major universities often provide
+their students with \gls{latex} thesis typesetting templates.
+\Gls{fi} is no exception and provides its students with the
+\textsf{fithesis1} \gls{docclass}, which automates the typesetting
+of the mandatory parts of theses. However, the ecosystem around
+\gls{latex} constantly evolves and the typesetting templates need
+to be groomed in order to stay compatible with the various
+\glspl{texeng} and \glspl{ltxpackage}. With the last public update
+of \textsf{fithesis1} dating back to 2006, an updated version was
+required. The main goal of this thesis was therefore to create a
+new \gls{latex} document class that would fix the ailments of
+\textsf{fithesis1} and implement meaningful new features.
+
+In Chapter \ref{sec:init-state}, the author describes the state of
+\textsf{fithesis1} and related software projects prior
+to the author's involvement. Chapter \ref{sec:texusage} contains
+the author's analysis of the trends in the usage of \gls{tex} and
+\gls{latex} at \gls{mu}. In Chapter \ref{sec:review}, the author
+reviews the typesetting styles used at Czech universities as well
+as generic typesetting templates. Based on the research described
+in chapters \ref{sec:texusage} and \ref{sec:review}, the
+author designed a new \gls{latex} thesis typesetting template. This
+procedure is described in detail in Chapter \ref{sec:des&impl}.
+The appendices \ref{sec:figuide}--\ref{sec:fspsguide} contain the
+user documentation of the class for the various faculties of
+\gls{mu} and Appendix \ref{sec:techdoc} contains the full technical
+documentation of the class.
 
 \chapter{Existing Codebase}\label{sec:init-state}
 The implementation part of this thesis concerns the development of
@@ -121,34 +168,34 @@ which aren't directly related to the \textsf{fithesis3}
 
   \section{The \textsf{fithesis1} and \textsf{fithesis2}
     classes}
-  The \textsf{fithesis1} \gls{docclass} had been created by Mgr.
+  The \textsf{fithesis1} \gls{docclass} had been created by Mgr.\ 
   Daniel Marek in 1998 as a bachelor's project under the
-  supervision of \thesis{advisor}. Despite the best effort on part
+  supervision of \thesis{advisor} Despite the best effort on part
   of both the author and the staff of the Computer Systems Unit at
   \gls{fi}, neither the source code of \textsf{fithesis1}, nor the
   thesis accompanying the project, was recovered.
 
-  In 2002, the main maintainership was transferred to RNDr. Jan
-  Pavlovič, Ph.D. who extended the class to serve as one of the
+  In 2002, the main maintainership was transferred to RNDr.\ Jan
+  Pavlovič, Ph.D.\ who extended the class to serve as one of the
   backends to his \gls{docbook}-based system for thesis writing.
   This project is described separately in Section \ref{sec:xslt}.
   During 2002--2008, the codebase of \textsf{fithesis1} remained
   relatively stable under the maintenance of Jan Pavlovič and Petr
   Sojka, with one of the few major additions being the addition of
-  support for Slovak by Mgr. Peter Čerenský in 2004.
+  support for Slovak by Mgr.\ Peter Čerenský in 2004.
 
-  In 2008, Mgr. Stanislav Filipčík created a derivative of
+  In 2008, Mgr.\ Stanislav Filipčík created a derivative of
   \textsf{fithesis1} called \textsf{fithesis2} as the
   implementation part of his bachelor's thesis \cite{Filipcik09}.
   This derivative contained desirable changes, such as the removal
   of the mandatory ISO Latin-2 \gls{charenc} and the addition of
   the logos of all the faculties of \gls{mu}. These changes,
   however, were insufficiently documented, which is why
-  \textsf{fithesis2} wasn't released. In 2012, Bc. Tomáš Janoušek
+  \textsf{fithesis2} wasn't released. In 2012, Bc.\ Tomáš Janoušek
   was tasked to document the code of \textsf{fithesis2}, which he
-  did only partially \cite{fithesis2Code}. In 2013, Mgr. Tomáš
+  did only partially \cite{fithesis2Code}. In 2013, Mgr.\ Tomáš
   Fábry created a package adding support for the usage of Comenia
-  fonts purchased bz \gls{mu} to \gls{tex} as the implementation
+  fonts purchased by \gls{mu} to \gls{tex} as the implementation
   part of his thesis. This project is described separately in
   Section \ref{sec:comenia}.
 
@@ -156,24 +203,24 @@ which aren't directly related to the \textsf{fithesis3}
   the technical documentation of \textsf{fithesis2}, refactored its
   source code and published it on the website of \gls{fi}
   \cite{fithesisWeb}. A thematic discussion forum
-  \cite{fithesisForum} was also founded by doc. Ing. Michal
+  \cite{fithesisForum} was also founded by Doc.\ Ing.\ Michal
   Brandejs, CSc. to foster discussion about the typesetting of
   theses at the Masaryk University.
 
   \section{The \textsf{xslt} and \textsf{xslt2} modules}
   \label{sec:xslt}
-  The \textsf{xslt} module was developed in 2001 by RNDr. Jan
-  Pavlovič, Ph.D. as the implementation part of his bachelor's
+  The \textsf{xslt} module was developed in 2001 by RNDr.\ Jan
+  Pavlovič, Ph.D.\ as the implementation part of his bachelor's
   thesis \cite{PavlovicO1}. The module combined several tools to
   enable the conversion of theses written using the \gls{docbook}
   format into various output formats including the
   \textsf{fithesis1} class.  The development of the module
   continued until 2003. During 2003--2004, Jan Pavlovič co-wrote
-  several articles concerning \gls{docbook} \cite{Pavlovic03,
+  several articles concerning \gls{docbook}~\cite{Pavlovic03,
   PitPav03, PitPav04} and released a rewritten version of the
   module called \textsf{xslt2}. The latest contribution to the
   \textsf{xslt2} module was the implementation part of the
-  bachelor's thesis of Bc. Tomáš Baluch \cite{Baluch09} supervised
+  bachelor's thesis of Bc.\ Tomáš Baluch~\cite{Baluch09} supervised
   by Jan Pavlovič. The thesis modernized the user interface of the
   module and added support for access to Java content repositories.
 
@@ -192,21 +239,21 @@ which aren't directly related to the \textsf{fithesis3}
 
   \section{The \textsf{comenia} package}\label{sec:comenia}
   The \textsf{comenia} \gls{ltxpackage} was developed in 2013 by
-  Mgr.  Tomáš Fábry as the implementation part of his bachelor's
+  Mgr.\ Tomáš Fábry as the implementation part of his bachelor's
   thesis \cite{Fabry13}. The package added support for the usage of
   the Comenia font superfamily within \TeX{}. During January--March
   2015, the author tested the final version of \textsf{fithesis1}
   and \textsf{fithesis2} with the \textsf{comenia} package and
   encountered no technical difficulties.
 
-\chapter{Research}
-During the course of December 2014 and January 2015, the author
-performed an initial research to obtain user feedback to the
-\textsf{fithesis1} and \textsf{fithesis2} \glspl{docclass}, to
-analyze the trends in the use of \gls{tex} across the faculties of
-\gls{mu} and to assess the existing solutions for the typesetting
-of theses. In this chapter, the author is going to summarize the
-results of his research.
+\chapter{TeX\ usage at the Masaryk University in
+  Brno}\label{sec:texusage}
+During December 2014--January 2015, the author performed an initial
+research to obtain user feedback regarding the \textsf{fithesis1}
+and \textsf{fithesis2} \glspl{docclass} and to analyze the trends
+in the use of \gls{tex} across the faculties of \gls{mu}. In this
+chapter, the author is going to summarize the results of his
+research.
 
   \section{User Survey}
   At the end of December 2014, an online questionnaire was
@@ -215,12 +262,13 @@ results of his research.
   respondents across the faculties of \gls{mu} according to the
   claims of the respondents. Several respondents claimed to be
   studying at more than one faculty of \gls{mu}, which is the
-  reason for the distortion of percentage. The raw data obtained
-  from the questionnaire in Czech is available in the
-  \texttt{survey/survey.csv} file distributed alongside this
-  thesis.
+  reason for the distortion of percentage.
+  % The raw data obtained
+  % from the questionnaire in Czech is available in the
+  % \texttt{survey/survey.csv} file distributed alongside this
+  % thesis.
 
-  \begin{table}[!bt]
+  \begin{table}[!b]
     \caption{The distribution of the questionnaire
       respondents across the faculties of \acrshort{mu}}
     \begin{tabularx}{\textwidth}{Xcr} \textbf{On which faculty of
@@ -307,23 +355,23 @@ results of his research.
   use \gls{tex} to typeset their theses also provided feedback
   regarding the \textsf{fithesis1} class. Unknown to the author at
   the time of the survey was the fact that \textsf{fithesis2} had
-  never been made publicly available, as detailed in Section
+  not yet been made publicly available, as detailed in Section
   \ref{sec:init-state}. As a result of that, much of the feedback
   was regarding issues long fixed in \textsf{fithesis2}. Among
   the feedback relevant to \textsf{fithesis2} were calls for a more
-  extensive user and technical documentation\implemented{} and a
-  suggestion that the class should support the typesetting of
-  printed and electronic versions of theses as separate
-  documents\partimp{}.
+  extensive user and technical documentation\implemented{} (see
+  Appendix \ref{sec:techdoc}) and a suggestion that the class
+  should support the typesetting of printed and electronic versions
+  of theses as separate documents\partimp{}.
 
   \section{Statistical analysis of existing
   theses}\label{sec:statistics}
   Along with the user survey, a statistical analysis of theses
   defended at \gls{mu} during 2010--2015 was carried out by the
   author. The sample data for the analysis were kindly provided by
-  doc. Ing. Michal Brandejs, CSc., the head of the Computer Systems
-  Unit at \gls{fi}. The raw data is available within the directory
-  \texttt{statistics/} distributed alongside this thesis.
+  Doc.\ Ing.\ Michal Brandejs, CSc., the head of the Computer Systems
+  Unit at \gls{fi}. % The raw data is available within the directory
+  %\texttt{statistics/} distributed alongside this thesis.
 
   \begin{table}
     \caption{The distribution of theses defended between 2010 and
@@ -478,12 +526,12 @@ results of his research.
       the \texttt{Creator} or the \texttt{Producer} \gls{pdf}
       header contained the \texttt{TeX} substring suggesting that
       the file had been created using either the \textsf{dvipdfm}
-      utility or a \gls{texeng}, which supports \gls{pdf} output.
+      utility or an \gls{texeng}, which supports \gls{pdf} output.
   \end{itemize} Provided the heuristic is sound, there has
   been a marked and
   steady increase in the use of \gls{tex} for the typesetting of
   theses during 2010--2014 (see Table
-  \ref{table:statistics-tex-yearly}). This, however, doesn't
+  \ref{table:statistics-tex-yearly}). This, however, does not
   necessarily hold true for individual faculties and degree study
   programmes with some of them showing barely any correlation
   between the years and the use of \gls{tex} and others showing a
@@ -532,9 +580,9 @@ results of his research.
     \caption{The contingency table of the numbers of marks awarded
       to theses written and defended during 2010--2015 with
       Pearson's goodness-of-fit measure
-      $(\text{E}-\text{O})^2/\text{E}$ between the expected and the
-      observed numbers of marks awarded to theses written using
-      \gls{tex}}
+      $(\text{E}-\text{O})^2/\text{E}$ between the expected (O)
+      and the observed (E) numbers of marks awarded to theses
+      written using \gls{tex}}
     \begin{tabularx}{\textwidth}{Xrrrrr}
       &\textbf{Without \TeX}&E(\textbf{With \TeX})
       &O(\textbf{With \TeX})&$(\text{E}-\text{O})^2/\text{E}$
@@ -675,7 +723,7 @@ results of his research.
   distribution of grade F being awarded to theses written using
   \gls{tex} is equivalent to the distribution of grade F being
   awarded to theses not written using \gls{tex}. The two-tailed
-  Mann-Whitney U test \cite{mann47} was applied to the observations
+  Mann-Whitney U test~\cite{mann47} was applied to the observations
   of grade F being and not being awarded to theses written using
   and not using \gls{tex}: \begin{align}
     \tag{Without \gls{tex}} n_1 &= 42\,183 \\
@@ -685,12 +733,13 @@ results of his research.
       \cdot1\right) \\
       \nonumber&=56\,383\,784.5 \\
     U_2 &= 145\cdot\left(1\,979\cdot0.5+(42\,183-1\,979)\cdot1\right) \\
-    \nonumber&+(2\,892-145)\cdot\left(1\,975\cdot0+(42\,183-1\,979)
+    \nonumber&+(2\,692-145)\cdot\left(1\,975\cdot0+(42\,183-1\,979)
       \cdot0.5\right) \\
       \nonumber&=57\,172\,851.5 \\
     U &= \min(U_1,U_2) = U_1 = 56\,383\,784.5
-  \end{align} Since $n_1n_2\gg20$, $U\sim\text{N}(\frac{n_1n_2}2,
-  \frac{n_1n_2(n_1n_2+1)}{12})$. After normalization to
+  \end{align} Since $n_1n_2\gg20$,
+  $U\sim\text{N}\left(\frac{n_1n_2}2,
+  \frac{n_1n_2(n_1n_2+1)}{12}\right)$. After normalization to
   \begin{equation}
     \text{N}(0,1)\sim z =
     \frac{U-\frac{n_1n_2}2}{\sqrt{\frac{n_1n_2(n_1+n_2+1)}{12}}}
@@ -711,21 +760,22 @@ results of his research.
   \gls{tex}. A box plot of the grades is shown in Figure
   \ref{fig:statistics-grades}.
 
-  \section{Comparison with Existing Solutions}
-  As a part of the initial research, the author also assessed
-  several \gls{tex} templates for the typesetting of theses in
-  order to gather ideas for the design of the \textsf{fithesis3}
-  \gls{docclass}.  Initially, the author is going to focus on
-  templates used at Czech technical universities. At the end of the
-  section, select generic thesis typesetting \glspl{docclass} will
-  also be considered.
+\chapter{Review of Existing Templates}\label{sec:review}
+During December 2014--January 2015, the author also assessed
+several \gls{tex} templates for the typesetting of theses in order
+to gather ideas for the design of the \textsf{fithesis3}
+\gls{docclass} (see Chapter~\ref{sec:des&impl}). Initially, the
+author is going to focus on templates used at Czech technical
+universities. At the end of the section, select generic thesis
+typesetting \glspl{docclass} will also be considered.
 
-  \subsection{\textsf{CTUStyle}\index{\textsf{CTUStyle}} and
-    \textsf{CUStyle}\index{\textsf{CUStyle}}}\label{sec:ctu&custyle}
-  The first of the reviewed thesis typesetting templates were
-  \textsf{CTUStyle} \cite{ctustyle} and \textsf{CUStyle}
-  \cite{custyle} \glspl{texpackage} from RNDr. Petr Olšák, which
-  were designed to be used at \gls{fel} and at \gls{cuni},
+  \section{Charles University and Czech Technical~University}
+  \subsection{\textsf{CUStyle}\index{\textsf{CUStyle}} and
+    \textsf{CTUStyle}\index{\textsf{CTUStyle}}}\label{sec:ctu&custyle}
+  The first of the reviewed thesis typesetting templates were the
+  \textsf{CUStyle} \cite{custyle} and \textsf{CTUStyle}
+  \cite{ctustyle} \glspl{texpackage} from RNDr.\ Petr Olšák,
+  which were designed to be used at \gls{fel} and at \gls{cuni},
   respectively. The sole dependencies of these templates are the
   \inx{\gls{csplain}} and \inx{\gls{opmac}} \glspl{texpackage}.
 
@@ -755,17 +805,17 @@ results of his research.
   margins of \textsf{CTUStyle} and \textsf{CUStyle}, in conjunction
   with the chosen font family, \label{overlong-lines} allow for up
   to 100 characters per line, which is not only wearying to the eye
-  of an inexperienced reader \cite[section~2.1.2]{eletypostyle},
+  of an inexperienced reader~\cite[section~2.1.2]{eletypostyle},
   but also against the recommendations of \gls{fi}
   \cite[section~3.2.3]{bpdpfi}. According the the statements of the
-  author of the styles \cite[post~25]{ctustyle-forums}, both
+  author of the styles~\cite[post~25]{ctustyle-forums}, both
   decisions have likely been made in an effort to reduce the
   required storage space for the archival of physical prints of
   theses.
 
-  \subsection{\textsf{Felthesis}\index{\textsf{felthesis}}}
+  \subsection{Official template of Czech Technical University}
     \label{sec:felthesis}
-  The \textsf{felthesis} \gls{docclass} from Ing. Vít Zýka
+  The \textsf{felthesis} \gls{docclass} from Ing.\ Vít Zýka
   Ph. D. provides an alternative for those \gls{fel} students, who
   prefer \gls{latex} over \gls{csplain} used by the CTUStyle
   \gls{texpackage}. Much like \textsf{fithesis1} and
@@ -776,15 +826,15 @@ results of his research.
   \textsf{fithesis2}, felthesis loads babel and then selects the
   language based on the chosen language of the thesis
   \cite[lines~687--691]{felthesisCode}. Felthesis also loads Bib%
-  \LaTeX\ \cite[line~722]{felthesisCode}, automatically generates
-  index \cite[line~763]{felthesisCode} and stamps the title,
+  \LaTeX~\cite[line~722]{felthesisCode}, automatically generates
+  index~\cite[line~763]{felthesisCode} and stamps the title,
   author, subject, and keywords into the header of the resulting
-  \gls{pdf} file \cite[lines~959--971]{felthesisCode}%
+  \gls{pdf} file~\cite[lines~959--971]{felthesisCode}%
   \label{pdf-stamping}. Alongside the package \gls{ltxpackage},
   both a technical \cite{felthesisCode} and a user documentation
   \cite{felthesis} is distributed.
 
-  \subsection{The Charles University in Prague}
+  \subsection{Official template of Charles University}
   Along with Petr Olšák's CUStyle, \gls{cuni} also provides an
   official \gls{latex} template for the typesetting of theses
   \cite{cunisablona}. Rather than defining a new \gls{docclass},
@@ -793,13 +843,13 @@ results of his research.
   Czech and English theses. The students are expected to modify the
   said document to suit their requirements. The template uses
   \gls{cslatex} rather than the babel \gls{ltxpackage}, which means
-  that \gls{csfonts} rather than the superior \gls{lmfonts}
+  that \gls{csfonts} rather than the superior \gls{lmfonts}~%
   \cite{cslatexvsbabel} are used by default.
 
-  \subsection{Mendel University in Brno}\index{\texttt{dipp.sty}|(}
+  \section{Mendel University in Brno}\index{\texttt{dipp.sty}|(}
   \label{sec:dipp.sty}
   Despite not being an official thesis template of \gls{mendelu},
-  the \texttt{dipp.sty} \gls{ltxpackage} from doc. Ing. Dr. Jiří
+  the \texttt{dipp.sty} \gls{ltxpackage} from Doc.\ Ing.\ Dr.\ Jiří
   Rybička warrants a mention. The \gls{ltxpackage} depends on the
   extended macro set of the \Hologo{XeTeX}
   \glslink{texeng}{typesetting engine} and is intended to be used
@@ -817,7 +867,7 @@ results of his research.
   \cs{az} for the typesetting of ranges and \cs{spoj} for
   hyphenation \cite{dippman}.\index{\texttt{dipp.sty}|)}
 
-  \subsection{Brno University of Technology}
+  \section{Brno University of Technology}
   \index{\texttt{thesis.sty}|(}
   The official thesis typesetting template of \gls{vut} is the
   \texttt{thesis.sty} \gls{ltxpackage}. Unlike
@@ -845,10 +895,10 @@ results of his research.
   can be downloaded from \cite{thesis.sty}.
   \index{\texttt{thesis.sty}|)}
 
-  \subsection{Technical University of Liberec}
+  \section{Technical University of Liberec}
   \index{\textsf{tul}|(}\index{\textsf{tulthesis}|(}
   Unlike the preceding typesetting templates, \textsf{tulthesis}
-  from doc.  RNDr. Pavel Satrapa, Ph.D. is not a standalone
+  from Doc.\ RNDr.\ Pavel Satrapa,\ Ph.D.\ is not a standalone
   \gls{docclass}, but rather a part of the tul \gls{ltxpackage},
   which is the official \gls{ltxpackage} used for the typesetting
   of documents on \gls{tul}. \textsf{Tulthesis} uses the base
@@ -861,8 +911,7 @@ results of his research.
   downloaded from \cite{tul}. \index{\textsf{tul}|)}
   \index{\textsf{tulthesis}|)}
 
-  \subsection{Technical University of
-    Ostrava}\index{\textsf{diploma}|(}
+  \section{Technical University of Ostrava}\index{\textsf{diploma}|(}
   The official style for the typesetting of documents at \gls{vsb}
   is the \textsf{diploma} \gls{docclass} by Jiří Dvorský. Like Jiří
   Rybička's \hyperref[sec:dipp.sty]{\tt dipp.sty}, \textsf{diploma}
@@ -886,13 +935,13 @@ results of his research.
   \cite[section~3.6]{diploma} through commands for the insertion of
   graphics \cite[section~3.7]{diploma}. \index{\textsf{diploma}|)}
 
-  \subsection{Silesian University in Opava}
+  \section{Silesian University in Opava}
   At the time of writing this thesis, there is no official or
   unofficial \gls{gls-docclass} or \gls{ltxpackage} of \gls{slu}
   available on the internet. There is a mention \cite{vavreckova}
-  of the works on a \gls{docclass} at the webpage of RNDr. Šárka
-  Vavřečková, Ph.D. who teaches typography at \acrlong{fpf}. There
-  is also a bachelor's thesis \cite{hanzal09} written by Michal
+  of the works on a \gls{docclass} at the webpage of RNDr.\ Šárka
+  Vavřečková, Ph.D.\ who teaches typography at \acrlong{fpf}. There
+  is also a bachelor's thesis~\cite{hanzal09} written by Michal
   Hanzal from \gls{opf}, whose author describes the process of
   creating a \gls{gls-docclass} for what is supposed to be the
   official thesis typesetting template at \gls{opf}. There is,
@@ -900,15 +949,15 @@ results of his research.
   \cite{opftemplates}, although the linked Dean's directives were
   written with \gls{latex} in mind.
 
-  \subsection{Palacký Univerzity Olomouc}\label{sec:upol}
-  There are three independant \gls{latex} thesis typesetting
+  \section{Palacký University Olomouc}\label{sec:upol}
+  There are three independent \gls{latex} thesis typesetting
   templates available at \acrlong{upolsci} provided by the
   departments of Experimental Physics, Informatics and Mathematical
   Analysis and Applications, respectively.
 
   The template used at the Department of Experimental Physics is
   just en example \gls{latex} document using the base
-  \textsf{article} class, which the students are exprected to edit
+  \textsf{article} class, which the students are expected to edit
   according to the needs of their theses. The template is supposed
   to be typeset using \glslink{cslatex}{\pdfCSLaTeX{}} \gls{texeng}
   meaning that \gls{csfonts} instead of the superior \gls{lmfonts}
@@ -939,7 +988,7 @@ results of his research.
   typesetting of mathematical definitions, theorems or proofs as
   well as code snippets. Along with the thesis template,
   \gls{latex} templates for the typesetting of thesis reader's
-  reports and \gls{biblatex} ISO\hyph{}690 \cite{iso690-1,iso690-2}
+  reports and \gls{biblatex} ISO\hyph{}690~\cite{iso690-1,iso690-2}
   citation styles\pending{} are distributed. The templates can be
   downloaded at \cite{upol-inf-template}.\index{\textsf{KIdiplom}|)}
 
@@ -950,7 +999,7 @@ results of his research.
   \textsf{article} \gls{docclass}. The template can be downloaded
   at \cite{upol-maam-template}\index{\texttt{maam-dipl.sty}|)}.
 
-  \subsection{Masaryk University in Brno}\label{sec:muni-styles}
+  \section{Masaryk University in Brno}\label{sec:muni-styles}
   Aside from \gls{fi}, the only other faculty of \gls{mu} to offer
   a thesis typesetting template in \gls{tex} was \gls{sci}. This
   is in line with the statistics of usage of \gls{tex}, which are
@@ -968,7 +1017,7 @@ results of his research.
   \cite[line~109]{scimuni-thesisSource}, resulting in overlong
   lines as discussed earlier (see section \ref{overlong-lines}).
 
-  \subsection{Generic templates}
+  \section{Generic templates}
   Amongst the noteworthy generic thesis typesetting templates the
   author had the opportunity to encounter was the
   \textsf{classicthesis} \index{\textsf{classicthesis}}
@@ -978,31 +1027,35 @@ results of his research.
   \cite{eletypostyle}. The author notes that the
   \textsf{classicthesis} \gls{ltxpackage} is one of the few that
   manage to avoid overlong lines (see Section
-  \ref{overlong-lines}). The \gls{ltxpackage} can be downloaded at
-  \cite{classicthesis}
+  \ref{overlong-lines}). The \gls{ltxpackage} can be downloaded at%
+  ~\cite{classicthesis}.
 
   Another generic thesis typesetting template, which the author
   found refreshing, was the
   \textsf{graduate-thesis}\index{\textsf{graduate-thesis}}
   \gls{docclass}, which is based on the base \textsf{book}
   \gls{docclass} and which, like
-  \hyperref[sec:ctu&custyle]{\textsf{CTUStyle}
+  \hyperref[sec:ctu&custyle]{\textsf{CTUStyle}%
   \index{\textsf{CTUStyle}}}, uses a visually pleasing combination
   of black and blue. Like most of the reviewed templates,
   \textsf{graduate-thesis}, too, suffers from overlong lines (see
   Section \ref{overlong-lines}). The \gls{ltxpackage} can be
   downloaded at \cite{graduate-thesis}.
 
+  % TODO: Conclusion, move to a separate chapter
+
   % CTAN: http://www.ctan.org/topic/dissertation
   % Kumar07, https://tug.org/pracjourn/2007-4/
 
-\chapter{Design and Implementation}
-In parallel to the work on the release of the \textsf{fithesis2}
-\gls{docclass}, the author had been developing the new
-\textsf{fithesis3} \gls{docclass}, which forms the implementation
-part of this thesis. In this chapter, the author is going to
-describe the main design goals of \textsf{fithesis3}, the rationale
-behind them and their implementation.
+\chapter{Design and Implementation}\label{sec:des&impl}
+Following the analysis of the usage of \gls{tex} at \gls{mu} (see
+Chapter \ref{sec:texusage}) and the review of existing thesis
+typesetting templates (see Chapter \ref{sec:review}) conducted
+during December 2014--January 2015, the author developed the new
+\textsf{fithesis3} \gls{docclass} during January--March 2015.  This
+\gls{docclass} forms the implementation part of this thesis and in
+this chapter, the author is going to describe the main goals of
+\textsf{fithesis3}, its design and implementation.
 
   \section{Goals}
   The \textsf{fithesis2} document class included the logos of all
@@ -1154,13 +1207,19 @@ behind them and their implementation.
   style file was created, which the user can alter
   in accordance with the requirements of the given department. At
   \gls{lf}, only the department of optometrics specified any
-  formal requirements \cite{meddirective}. The style file of
+  formal requirements~\cite{meddirective}. The style file of
   \gls{lf} was therefore prepared in accordance with these
   requirements. The style file of \gls{sci} also warrants a
   mention, since it was deliberately designed to resemble
   the thesis typesetting template of \gls{sci} (see Section
-  \ref{sec:muni-styles}) in order to faciliate the adoption of
+  \ref{sec:muni-styles}) in order to facilitate the adoption of
   \textsf{fithesis3} at \gls{sci}.
+
+  The compatibility of the style files of \gls{mu} with the
+  \Hologo{XeTeX} and \Hologo{LuaTeX} \glspl{texeng} is
+  implemented by the \texttt{fithesis3-base.sty} style file stored
+  within the \texttt{mu/} directory, which loads
+  \gls{texeng}-specific packages based on the \gls{texeng} used.
 
   Drawing inspiration from Petr Olšák's
   \hyperref[sec:ctu&custyle]{\textsf{CTUStyle}
@@ -1168,8 +1227,8 @@ behind them and their implementation.
   \textsf{CUStyle}\index{\textsf{CUStyle}} \glspl{texpackage}} (see
   Section \ref{sec:ctu&custyle}), the addition of support for
   colorful typesetting was added to the style files of \gls{mu}
-  spanning links, bibliographical citations, tables and the
-  university and faculty logos.
+  spanning links, %bibliographical citations, %TODO
+  tables and the university and faculty logos.
 
   For documentation and maintenance purposes, the style file of each
   faculty at a given university consists of
@@ -1234,11 +1293,11 @@ behind them and their implementation.
   and subsequently converted to \gls{pdf} using the
   \textsf{epstopdf} utility. The only exception to this was the
   logo of \gls{fi}, which was instead taken from the bachelor's
-  thesis of Mgr. Matúš Kominka \cite{Kominka08}. Figure
+  thesis of Mgr.\ Matúš Kominka \cite{Kominka08}. Figure
   \ref{fig:logo} contrasts the vector logo with the original
-  \gls{metafont} logo designed by \thesis{advisor} and
-  implemented by the founding Dean of \gls{fi}, Prof. Jiří
-  Zlatuška \cite{filogo}.
+  \gls{metafont} logo designed by \thesis{advisor}\ and
+  implemented by the founding Dean of \gls{fi}, Prof.\ Jiří
+  Zlatuška~\cite{filogo}.
 
   For maintenance purposes, the logo files consist of only the
   \gls{eps} files. The \gls{eps} files can be converted into
@@ -1250,7 +1309,7 @@ behind them and their implementation.
   \begin{figure}
     \includegraphics[clip,trim=4.25cm 19.2cm 4.25cm 5.8cm]%
       {misc/metaveps.pdf}
-    \caption{The comparison of the \gls{metafont} and vector
+    \caption{The comparison of the \gls{metafont} and the vector
       logo of \acrshort{fi} at 40\,mm}
     \label{fig:logo}
   \end{figure}
@@ -1270,6 +1329,12 @@ behind them and their implementation.
   \textsf{babel} or the \textsf{polyglossia} package and sets it as
   the locale, when the locale is unspecified by the user.
 
+  In order to be future-proof for the modern \gls{tex} engines, the
+  class mandates the use of the UTF-8 \gls{charenc}. This is also
+  in line with the belief of the author that the production of new
+  documents in \glspl{charenc} other than UTF-8 hinders
+  accessibility, has no grounds and should therefore be avoided.
+
   For documentation and maintenance purposes, the
   \textsf{fithesis3} \gls{docclass} file consists of only one
   \texttt{fithesis.dtx} \gls{dtx} file stored within the root
@@ -1287,43 +1352,118 @@ behind them and their implementation.
   stored within the \texttt{guide/\textit{university}/}
   subdirectory.
 
-  \subsection{Further reading}
-  In case of interest, the description of the complete public and
-  private API of the class is available as a part of the technical
-  documentation \cite{novotny15}, which is was submitted along with
-  the thesis. Also submitted was the user documentation of the style
-  files of \gls{mu}.
+  \section{Further reading}
+  For an introduction to the class, consult the user documentation
+  in appendices \ref{sec:figuide}--\ref{sec:fspsguide}. For the
+  description of the complete public and private interface of the
+  \gls{docclass}, see the technical documentation in Appendix
+  \ref{sec:techdoc}. 
 
-  \chapter{Conclusion}
-  ...
+\chapter{Conclusion}
+In the thesis, the author described the state of the \gls{latex}
+thesis typesetting templates at \gls{fi} and the related software
+projects prior to the author's involvement and the author's
+contributions to help to bring the project to a successful closure.
 
-  Being a part of the Dean's program for the support of software
-  development projects, the development of the \textsf{fithesis3}
-  document class will continue until the end of June 2015. During
-  July--September 2015, the user guide will be expanded to its
-  full length reflecting the user feedback submitted to the
-  discussion forum \cite{fithesisForum}. An author's cookbook
-  summarizing the formal requirements for theses will also be
-  created and, drawing inspiration from the Department of
-  Experimental Physics and the Department of Informatics at
-  \gls{upol} (see Section \ref{sec:upol}), so will a \gls{beamer}
-  template for thesis defense presentations and a template for
-  the typesetting of reader's reports by thesis advisors and
-  opponents.
+The author then performed an analysis of the trends in the usage of
+\gls{tex} at \gls{fi}, concluding that there has been a steady rise
+in the use of \gls{tex} and that there has been a statistically
+significant correlation between the use of \gls{tex} and the grades
+being awarded to theses at \gls{mu} in the recent years. The author
+then proceeded to perform a review of the typesetting styles used
+at Czech universities and of generic typesetting templates. The
+results of this research will also be published as an article in
+the \CS TUG bulletin \cite{cstug}.
 
-  % Bibliography
-  \newpage
-  %\nocite{*}
-  \tolerance=300
-  \emergencystretch=1em
-  \printbibliography[heading=bibintoc]
-  \par
+Finally, the author designed and implemented a \textsf{fithesis3}
+\gls{latex} document class, which will be used for the typesetting
+of theses at the faculties of \gls{mu}. Being a part of the Dean's
+program for the support of software development projects, the
+testing of the \textsf{fithesis3} document class will continue
+until the end of June 2015, when it will be published at online
+collaboration platforms, \gls{ctan} and at the website of \gls{fi}.
 
-  % Glossary
-  \newpage
-  \printglossaries
+During July--September 2015, the user guide will be
+expanded to its full length reflecting the user feedback submitted
+to the discussion forum \cite{fithesisForum}. An author's cookbook
+summarizing the formal requirements for theses will also be created
+and, drawing inspiration from the Department of Experimental
+Physics and the Department of Informatics at \gls{upol} (see
+Section \ref{sec:upol}), so will a \gls{beamer} template for thesis
+defense presentations and a template for the typesetting of
+reader's reports by thesis advisors and opponents.
 
-  % Index
-  \printindex
+\begin{appendices}
+\fakechapter{A \textsf{fithesis3} user guide for the Faculty of
+  Informatics}\label{sec:figuide}
+\includepdf[pages=-]{misc/fi.pdf}
 
+\thispagestyle{empty}
+\cleardoublepage
+\fakechapter{A \textsf{fithesis3} user guide for the Faculty of
+  Science}
+\includepdf[pages=-]{misc/sci.pdf}
+
+\thispagestyle{empty}
+\cleardoublepage
+\fakechapter{A \textsf{fithesis3} user guide for the Faculty of
+  Economics and Administration}
+\includepdf[pages=-]{misc/econ.pdf}
+
+\thispagestyle{empty}
+\cleardoublepage
+\fakechapter{A \textsf{fithesis3} user guide for the Faculty of
+  Social Studies}
+\includepdf[pages=-]{misc/fss.pdf}
+
+\thispagestyle{empty}
+\cleardoublepage
+\fakechapter{A \textsf{fithesis3} user guide for the Faculty of Law}
+\includepdf[pages=-]{misc/law.pdf}
+
+\thispagestyle{empty}
+\cleardoublepage
+\fakechapter{A \textsf{fithesis3} user guide for the Faculty of
+  Medicine}
+\includepdf[pages=-]{misc/med.pdf}
+
+\thispagestyle{empty}
+\cleardoublepage
+\fakechapter{A \textsf{fithesis3} user guide for the Faculty of
+  Education}
+\includepdf[pages=-]{misc/ped.pdf}
+
+\thispagestyle{empty}
+\cleardoublepage
+\fakechapter{A \textsf{fithesis3} user guide for the Faculty of
+  Arts}
+\includepdf[pages=-]{misc/phil.pdf}
+
+\thispagestyle{empty}
+\cleardoublepage
+\fakechapter{A \textsf{fithesis3} user guide for the Faculty of
+  Sports Studies}\label{sec:fspsguide}
+\includepdf[pages=-]{misc/fsps.pdf}
+
+\thispagestyle{empty}
+\cleardoublepage
+\fakechapter{The technical documentation of
+  \textsf{fithesis3}}\label{sec:techdoc}
+\includepdf[pages=-]{misc/fithesis.pdf}
+\end{appendices}
+
+% Bibliography
+\newpage
+%\nocite{*}
+\tolerance=300
+\emergencystretch=1em
+\printbibliography[heading=bibintoc]
+\par
+
+% Glossary
+\newpage
+\printglossaries
+
+% Index
+\printindex
 \end{document}

@@ -22,9 +22,9 @@ $(OUTPUT).pdf: $(OUTPUT).tex $(SOURCES)
 	pdflatex $(TEXOPTS) $<
 	# Prepare index, bibliography and glossaries
 	texindy -I omega --language english $(OUTPUT).idx
-	biber $(OUTPUT)
 	makeglossaries $(OUTPUT)
 	pdflatex $(TEXOPTS) $<
+	biber $(OUTPUT)
 	makeglossaries $(OUTPUT)
 	pdflatex $(TEXOPTS) $<
 	pdflatex $(TEXOPTS) $< # Necessary to correctly typeset changebars
