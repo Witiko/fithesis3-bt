@@ -152,10 +152,12 @@ as generic typesetting templates. Based on the research described
 in chapters \ref{sec:texusage} and \ref{sec:review}, the
 author designed a new \gls{latex} thesis typesetting template. This
 procedure is described in detail in Chapter \ref{sec:des&impl}.
+This entire thesis was typeset using the template.
+
 The appendices \ref{sec:figuide}--\ref{sec:fspsguide} contain the
-user documentation of the class for the various faculties of
+user documentation of the template for the various faculties of
 \gls{mu} and Appendix \ref{sec:techdoc} contains the full technical
-documentation of the class.
+documentation of the template.
 
 \chapter{Existing Codebase}\label{sec:init-state}
 The implementation part of this thesis concerns the development of
@@ -719,45 +721,56 @@ research.
   and concluded that the grades are indeed differently
   distributed on the significance level $\alpha$.
 
-  Suppose also the null \gls{hypothesis} $h_2$ that the
-  distribution of grade F being awarded to theses written using
-  \gls{tex} is equivalent to the distribution of grade F being
+  Having shown that the distribution of grades awarded to theses
+  written using and not using \gls{tex} is different, the author
+  proceeded to inspect, if this assertion holds for individual
+  grades. Suppose the null \gls{hypothesis} $h_\text{A}$ that
+  the distribution of grade A being awarded to theses written using
+  \gls{tex} is equivalent to the distribution of grade A being
   awarded to theses not written using \gls{tex}. The two-tailed
-  Mann-Whitney U test~\cite{mann47} was applied to the observations
-  of grade F being and not being awarded to theses written using
-  and not using \gls{tex}: \begin{align}
-    \tag{Without \gls{tex}} n_1 &= 42\,183 \\
-    \tag{With \gls{tex}}     n_2 &= 2\,692  \\
-    U_1 &= 1\,979\cdot\left(145\cdot0.5+(2\,692-145)\cdot1\right) \\
-    \nonumber&+(42\,183-1979)\cdot\left(145\cdot0+(2\,692-145)
-      \cdot1\right) \\
-      \nonumber&=56\,383\,784.5 \\
-    U_2 &= 145\cdot\left(1\,979\cdot0.5+(42\,183-1\,979)\cdot1\right) \\
-    \nonumber&+(2\,692-145)\cdot\left(1\,975\cdot0+(42\,183-1\,979)
-      \cdot0.5\right) \\
-      \nonumber&=57\,172\,851.5 \\
-    U &= \min(U_1,U_2) = U_1 = 56\,383\,784.5
+  Mann-Whitney U test~\cite{mann47,manntut} was applied to the
+  observations of grade A being and not being awarded to theses
+  written using and not using~\gls{tex}: \begin{align}
+    \tag{Without \gls{tex} (grade A)} m_1 &= 15\,476 \\
+    \tag{With \gls{tex} (grade A)}    m_2 &= 1\,181  \\
+    \tag{Without \gls{tex} (total)} n_1 &= 42\,183 \\
+    \tag{With \gls{tex} (total)}    n_2 &= 2\,692  \\
+    U_1 &=  m_1(m_2\cdot0.5+(n_2-m_2))+
+                  (n_1-m_1)((n_2-m_2)\cdot0.5) \\
+      \nonumber&=52\,699\,952.5 \\
+    U_2 &=  m_2(m_1\cdot0.5+(n_1-m_1))+
+                  (n_2-m_2)((n_1-m_1)\cdot0.5) \\
+      \nonumber&=60\,856\,683.5 \\
+    U &= \min(U_1,U_2) = U_1 = 52\,699\,952.5
   \end{align} Since $n_1n_2\gg20$,
   $U\sim\text{N}\left(\frac{n_1n_2}2,
   \frac{n_1n_2(n_1n_2+1)}{12}\right)$. After normalization to
   \begin{equation}
     \text{N}(0,1)\sim z =
     \frac{U-\frac{n_1n_2}2}{\sqrt{\frac{n_1n_2(n_1+n_2+1)}{12}}}
-    \approx-\frac{394\,533.5}{651\,662.46}\approx-0.605
+    \approx-\frac{4\,078\,365.5}{651\,662.46}\approx-6.258
   \end{equation} the two-tailed \gls{pval} $\beta$ was computed by
-  the author as follows:\begin{equation}
-    \operatorname{arg\,min}\limits_{\beta} P(\Phi^{-1}_{\beta/2}
-    \leq z\leq\Phi^{-1}_{1-\beta/2}) \approx 0.54518
-  \end{equation}Since $\beta>\alpha$, the author concluded on the
-  significance level $\alpha$ that there wasn't a strong evidence
-  against the null \gls{hypothesis} $h_2$.
-  
-  On grounds of the refusal of $h_1$ and the inability to refuse
-  $h_2$ the author concluded that the grades awarded to
-  theses defended during 2010--2015 and written using \gls{tex}
-  had been statistically significantly better than grades awarded
-  to theses defended during 2010--2015 and not written using
-  \gls{tex}. A box plot of the grades is shown in Figure
+  the author as follows:\begin{align}
+    & \operatorname{arg\,min}\limits_{\beta} P(\Phi^{-1}_{\beta/2}
+        \leq z\leq\Phi^{-1}_{1-\beta/2})=\beta \\
+    \nonumber& \iff\Phi^{-1}_{\beta/2}=-6.258 \iff\beta/2=1-
+        \Phi(6.258)\iff\beta\approx 0
+  \end{align}Since $\beta<\alpha$, the author refused the null
+  \gls{hypothesis} $h_\text{A}$ on the significance level $\alpha$.
+  Following a similar procedure for marks B--F, the author arrived
+  at the following conclusions on the significance level $\alpha$:
+  \begin{itemize}
+    \item Theses written using \gls{tex} had been awarded grade A
+      statistically significantly more often than theses not
+      written using \gls{tex}.
+    \item Theses written using \gls{tex} had been awarded grades C
+      and D statistically less often than theses not written
+      using \gls{tex}.
+    \item No statistically significant difference was observed in
+      the distributions of grades B, E and F being awarded to
+      theses written using and not using \gls{tex}.
+  \end{itemize}
+  A box plot of the grades is shown in Figure
   \ref{fig:statistics-grades}.
 
 \chapter{Review of Existing Templates}\label{sec:review}
@@ -879,7 +892,7 @@ typesetting \glspl{docclass} will also be considered.
   implicit \gls{textwidth} of the \gls{ltxpackage} is 150\,mm
   \cite[p.~2]{thesis.sty-doc}, which, in conjunction with the usage
   of \gls{csfonts} at 12\,pt, allows for up to 90 characters per
-  line. This is problematic for reasons mentioned in Section
+  line. This is problematic for reasons mentioned in Subsection
   \ref{overlong-lines}.
 
   The \texttt{thesis.sty} \gls{ltxpackage} also adds
@@ -927,7 +940,7 @@ typesetting \glspl{docclass} will also be considered.
     \end{split}
   \end{equation} as defined in
   \cite[lines~111,~123]{diplomaSource}, resulting in overlong lines
-  as discussed earlier (see section \ref{overlong-lines}).
+  as discussed earlier (see Subsection \ref{overlong-lines}).
 
   The additional macros range from mathematical \glspl{env}
   \cite[section~3.5]{diploma} and commands and \glspl{env} for the
@@ -981,16 +994,17 @@ typesetting \glspl{docclass} will also be considered.
   \end{equation} which, in conjunction with the 12\,pt
   \gls{lmfonts} is, according to the author, too generous
   \cite[lines~74--82]{upol-inf-templateSource} and caused causing
-  overlong lines (see section \ref{overlong-lines}). The template
-  by default loads \gls{biblatex} and \glspl{ltxpackage} for the
-  typesetting of glossaries and index. The added convenience macros
-  comprise thesis sectioning commands and \glspl{env} for the
-  typesetting of mathematical definitions, theorems or proofs as
-  well as code snippets. Along with the thesis template,
-  \gls{latex} templates for the typesetting of thesis reader's
-  reports and \gls{biblatex} ISO\hyph{}690~\cite{iso690-1,iso690-2}
-  citation styles\pending{} are distributed. The templates can be
-  downloaded at \cite{upol-inf-template}.\index{\textsf{KIdiplom}|)}
+  overlong lines (see Subsection \ref{overlong-lines}). The
+  template by default loads \gls{biblatex} and \glspl{ltxpackage}
+  for the typesetting of glossaries and index. The added
+  convenience macros comprise thesis sectioning commands and
+  \glspl{env} for the typesetting of mathematical definitions,
+  theorems or proofs as well as code snippets. Along with the
+  thesis template, \gls{latex} templates for the typesetting of
+  thesis reader's reports and \gls{biblatex}
+  ISO\hyph{}690~\cite{iso690-1,iso690-2} citation styles\pending{}
+  are distributed. The templates can be downloaded at
+  \cite{upol-inf-template}.\index{\textsf{KIdiplom}|)}
 
   \index{\texttt{maam-dipl.sty}|(}The template used at the
   Department of Mathematical Analysis and Applications is the
@@ -1015,7 +1029,7 @@ typesetting \glspl{docclass} will also be considered.
     &- 25\,\text{mm} \text{ (right margin) } =
     151\,\text{mm}\end{split}\end{equation} as defined in
   \cite[line~109]{scimuni-thesisSource}, resulting in overlong
-  lines as discussed earlier (see section \ref{overlong-lines}).
+  lines as discussed earlier (see Subsection \ref{overlong-lines}).
 
   \section{Generic templates}
   Amongst the noteworthy generic thesis typesetting templates the
@@ -1026,7 +1040,7 @@ typesetting \glspl{docclass} will also be considered.
   of Bringhurst's \emph{The Elements of Typographic Style}
   \cite{eletypostyle}. The author notes that the
   \textsf{classicthesis} \gls{ltxpackage} is one of the few that
-  manage to avoid overlong lines (see Section
+  manage to avoid overlong lines (see Subsection
   \ref{overlong-lines}). The \gls{ltxpackage} can be downloaded at%
   ~\cite{classicthesis}.
 
@@ -1039,7 +1053,7 @@ typesetting \glspl{docclass} will also be considered.
   \index{\textsf{CTUStyle}}}, uses a visually pleasing combination
   of black and blue. Like most of the reviewed templates,
   \textsf{graduate-thesis}, too, suffers from overlong lines (see
-  Section \ref{overlong-lines}). The \gls{ltxpackage} can be
+  Subsection \ref{overlong-lines}). The \gls{ltxpackage} can be
   downloaded at \cite{graduate-thesis}.
 
   % TODO: Conclusion, move to a separate chapter
@@ -1052,7 +1066,7 @@ Following the analysis of the usage of \gls{tex} at \gls{mu} (see
 Chapter \ref{sec:texusage}) and the review of existing thesis
 typesetting templates (see Chapter \ref{sec:review}) conducted
 during December 2014--January 2015, the author developed the new
-\textsf{fithesis3} \gls{docclass} during January--March 2015.  This
+\textsf{fithesis3} \gls{docclass} during January--May 2015. This
 \gls{docclass} forms the implementation part of this thesis and in
 this chapter, the author is going to describe the main goals of
 \textsf{fithesis3}, its design and implementation.
@@ -1210,15 +1224,13 @@ this chapter, the author is going to describe the main goals of
   formal requirements~\cite{meddirective}. The style file of
   \gls{lf} was therefore prepared in accordance with these
   requirements. The style file of \gls{sci} also warrants a
-  mention, since it was deliberately designed to resemble
-  the thesis typesetting template of \gls{sci} (see Section
+  mention, since it was deliberately designed to resemble the
+  thesis typesetting template of \gls{sci} (see Section
   \ref{sec:muni-styles}) in order to facilitate the adoption of
-  \textsf{fithesis3} at \gls{sci}.
-
-  The compatibility of the style files of \gls{mu} with the
-  \Hologo{XeTeX} and \Hologo{LuaTeX} \glspl{texeng} is
-  implemented by the \texttt{fithesis3-base.sty} style file stored
-  within the \texttt{mu/} directory, which loads
+  \textsf{fithesis3} at \gls{sci}.  The compatibility of the style
+  files of \gls{mu} with the \Hologo{XeTeX} and \Hologo{LuaTeX}
+  \glspl{texeng} is implemented by the \texttt{fithesis3-base.sty}
+  style file stored within the \texttt{mu/} directory, which loads
   \gls{texeng}-specific packages based on the \gls{texeng} used.
 
   Drawing inspiration from Petr Olšák's
@@ -1353,11 +1365,13 @@ this chapter, the author is going to describe the main goals of
   subdirectory.
 
   \section{Further reading}
-  For an introduction to the class, consult the user documentation
-  in appendices \ref{sec:figuide}--\ref{sec:fspsguide}. For the
-  description of the complete public and private interface of the
-  \gls{docclass}, see the technical documentation in Appendix
-  \ref{sec:techdoc}. 
+  To familiarize themselves with the \gls{docclass}, readers are
+  advised to consult the user documentation in appendices
+  \ref{sec:figuide}--\ref{sec:fspsguide}. In case of further
+  interest, the technical documentation of the \gls{docclass}
+  contains a detailed description of the complete public and
+  private interface of the \gls{docclass} and is available in
+  Appendix \ref{sec:techdoc}. 
 
 \chapter{Conclusion}
 In the thesis, the author described the state of the \gls{latex}
