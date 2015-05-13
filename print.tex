@@ -56,9 +56,8 @@
   TeXkeywords = {\LaTeX\ document classes, thesis typesetting,
     \textsf{fithesis}, \TeX\ usage statistics},
   basepath = ./fithesis3/fithesis3,
-  assignment = {}}
-%  assignment = {./misc/declaration.pdf, 1, {},
-%                ./misc/assignment.pdf,  1, {}}}
+  assignment = {./misc/assignment.pdf,  1, {},
+                ./misc/declaration.pdf, 1, {}}}
 
 \thesislong{abstract}{This bachelor's thesis aims to assess
   existing templates for the typesetting of theses and to analyze
@@ -94,6 +93,7 @@
 % Index
 \usepackage{makeidx}
 \makeindex
+\usepackage[totoc]{idxlayout}
 
 % Glossary and acronyms
 \usepackage[xindy,acronym,toc]{glossaries}
@@ -109,25 +109,16 @@
 %% Enforce more dense float-pages
 \renewcommand{\floatpagefraction}{0.7}
 
-% We redefine the title page
-\makeatletter\thesis@load\makeatletter
-\def\thesis@blocks@titlePage@content{%
-  {\thesis@titlePage@Huge\bf\thesis@TeXtitle\par\vfil}%
-  \vskip 0.8in%
-  {\thesis@titlePage@large\sc\thesis@@{typeName}}\\[0.3in]%
-  {\thesis@titlePage@Large\bf\thesis@author}\vfill
-  This thesis was prepared for the SVOČ competition.}
-\makeatother
-
 \begin{document}
 \chapter{Introduction}
-For many a university student, a bachelor's thesis is the first
+For many university students, a bachelor's thesis is the first
 relatively complex document they ever had to complete. The task of
-writing a thesis in a run-of-the-mill word processor is not
-unsurmountable, but it can be greatly simplified by the use of the
-right tools. One of such tools is the \acrshort{latex} document
-preparation system, which has been the industry standard for the
-creation of scientific documents ever since its inception in 1984.
+writing and typesetting a thesis in a run-of-the-mill word
+processor is not unsurmountable, but it can be greatly simplified
+by the use of the right tools. One of such tools is the
+\acrshort{latex} document preparation system, which has been the
+industry standard for the creation of scientific documents ever
+since its inception in 1984.
 
 For this reason, the faculties of major universities often provide
 their students with \gls{latex} thesis typesetting templates.
@@ -155,10 +146,11 @@ This procedure is described in detail in Chapter
 \ref{sec:des&impl}. This entire thesis was typeset using the
 template.
 
-Appendices \ref{sec:figuide}--\ref{sec:fspsguide} contain the
-user documentation of the template for the various faculties of
-\gls{mu} and Appendix \ref{sec:techdoc} contains the full technical
-documentation of the template.
+Appendix \ref{sec:el-att} contains the list of electronic
+attachments. Appendices \ref{sec:figuide}--\ref{sec:fspsguide} then
+contain the user documentation of the template for the various
+faculties of \gls{mu} and Appendix \ref{sec:techdoc} contains the
+full technical documentation of the template.
 
 \chapter{Existing Codebase}\label{sec:init-state}
 The implementation part of this thesis concerns the development of
@@ -207,7 +199,7 @@ which are not directly related to the \textsf{fithesis3}
   source code and published it on the website of \gls{fi}
   \cite{fithesisWeb}. A thematic discussion forum
   \cite{fithesisForum} was also founded by Doc.\ Ing.\ Michal
-  Brandejs, CSc. to foster discussion about the typesetting of
+  Brandejs, CSc.\ to foster discussion about the typesetting of
   theses at the Masaryk University.
 
   \section{The \textsf{xslt} and \textsf{xslt2} modules}
@@ -259,18 +251,17 @@ in the use of \gls{tex} across the faculties of \gls{mu}. In this
 chapter, the author is going to summarize the results of his
 research.
 
-  \section{User Survey}
+  \section{User Survey}\label{sec:survey}
   At the end of December 2014, an online questionnaire was
   distributed amongst the students of \gls{mu}. Table
   \ref{table:survey-faculty} illustrates the distribution of the
   respondents across the faculties of \gls{mu} according to the
   claims of the respondents. Several respondents claimed to be
   studying at more than one faculty of \gls{mu}, which is the
-  reason for the distortion of percentage.
-  % The raw data obtained
-  % from the questionnaire in Czech is available in the
-  % \texttt{survey/survey.csv} file distributed alongside this
-  % thesis.
+  reason for the distortion of percentage. The raw data obtained
+  from the questionnaire in Czech is available in the
+  \texttt{survey.csv} \gls{csv} file distributed alongside
+  this thesis (see Appendix \ref{sec:el-att}).
 
   \begin{table}[!b]
     \caption{The distribution of the questionnaire
@@ -373,9 +364,10 @@ research.
   Along with the user survey, a statistical analysis of theses
   defended at \gls{mu} during 2010--2015 was carried out by the
   author. The sample data for the analysis were kindly provided by
-  Doc.\ Ing.\ Michal Brandejs, CSc., the head of the Computer Systems
-  Unit at \gls{fi}. % The raw data is available within the directory
-  %\texttt{statistics/} distributed alongside this thesis.
+  Doc.\ Ing.\ Michal Brandejs, CSc., the head of the Computer
+  Systems Unit at \gls{fi}. The raw data is available within the
+  \texttt{statistics.zip} \gls{zip} archive distributed alongside
+  this thesis (see Appendix \ref{sec:el-att}).
 
   \begin{table}
     \caption{The distribution of theses defended between 2010 and
@@ -852,16 +844,17 @@ will also be considered.
   distributed.
 
   \subsection{Official template of Charles University}
-  Along with Petr Olšák's \textsf{CUStyle}, \gls{cuni} also provides an
-  official \gls{latex} template for the typesetting of theses
-  \cite{cunisablona}. Rather than defining a new \gls{docclass},
-  the archive contains a \gls{makefile} and a skeleton \gls{latex}
-  document using the base \textsf{report} \gls{docclass} for both
-  Czech and English theses. The students are expected to modify the
-  said document to suit their requirements. The template uses
-  \gls{cslatex} rather than the babel \gls{ltxpackage}, which means
-  that \gls{csfonts} rather than the superior \gls{lmfonts}~%
-  \cite{cslatexvsbabel} are used by default.
+  Along with Petr Olšák's \textsf{CUStyle}, \gls{cuni} also
+  provides an official \gls{latex} template for the typesetting of
+  theses \cite{cunisablona}. Rather than defining a new
+  \gls{docclass}, the archive contains a \gls{makefile} and a
+  skeleton \gls{latex} document using the base \textsf{report}
+  \gls{docclass} for both Czech and English theses. The students
+  are expected to modify the said document to suit their
+  requirements. The template uses \gls{cslatex} rather than the
+  babel \gls{ltxpackage}, which means that \gls{csfonts} rather
+  than the superior \gls{lmfonts}~\cite{cslatexvsbabel} are used
+  by default.
 
   \section{Mendel University in Brno}\index{\texttt{dipp.sty}|(}
   \label{sec:dipp.sty}
@@ -954,7 +947,7 @@ will also be considered.
   \section{Silesian University in Opava}
   At the time of the reasearch, there was no official or unofficial
   \gls{gls-docclass} or \gls{ltxpackage} of \gls{slu} available on
-  the internet. There is a mention \cite{vavreckova} of the works
+  the Internet. There is a mention \cite{vavreckova} of the works
   on a \gls{docclass} at the webpage of RNDr.\ Šárka Vavřečková,
   Ph.D.\ who teaches typography at \acrlong{fpf}. There is also a
   bachelor's thesis~\cite{hanzal09} written by Michal Hanzal from
@@ -1059,8 +1052,6 @@ will also be considered.
   \textsf{graduate-thesis}, too, suffers from overlong lines (see
   Subsection \ref{overlong-lines}). The \gls{ltxpackage} can be
   downloaded at \cite{graduate-thesis}.
-
-  % TODO: Conclusion, move to a separate chapter
 
   % CTAN: http://www.ctan.org/topic/dissertation
   % Kumar07, https://tug.org/pracjourn/2007-4/
@@ -1237,7 +1228,7 @@ chapter, the author is going to describe the main goals of the
   \Hologo{XeTeX} and \Hologo{LuaTeX} \glspl{texeng} is implemented
   by the \texttt{fithesis3-base.sty} style file stored within the
   \texttt{mu/} directory, which loads \gls{texeng}-specific
-  packages based on the \gls{texeng} used.  Drawing inspiration
+  packages based on the \gls{texeng} used. Drawing inspiration
   from Petr Olšák's \hyperref[sec:ctu&custyle]{\textsf{CTUStyle}
   \index{\textsf{CTUStyle}} and
   \textsf{CUStyle}\index{\textsf{CUStyle}} \glspl{texpackage}}
@@ -1323,7 +1314,7 @@ chapter, the author is going to describe the main goals of the
   \begin{figure}
     \includegraphics[clip,trim=4.25cm 19.2cm 4.25cm 5.8cm]%
       {misc/metaveps.pdf}
-    \caption{The comparison of the \gls{metafont} and the vector
+    \caption{A comparison of the \gls{metafont} and the vector
       logo of \acrshort{fi} at 40\,mm}
     \label{fig:logo}
   \end{figure}
@@ -1402,70 +1393,77 @@ testing of the \textsf{fithesis3} \gls{docclass} will continue
 until the end of June 2015, when it will be published at online
 collaboration platforms, \gls{ctan} and the website of \gls{fi}.
 
-During July--September 2015, the user
-guide will be expanded to its full length reflecting the user
-feedback submitted to the discussion forum \cite{fithesisForum}. An
-author's cookbook summarizing the formal requirements for theses
-will also be created and, drawing inspiration from the Department
-of Experimental Physics and the Department of Informatics at
-\gls{upol} (see Section \ref{sec:upol}), so will a \gls{beamer}
-template for thesis defense presentations and a template for the
-typesetting of reader's reports by thesis advisors and opponents.
+During July--September 2015, the user guide will be expanded to its
+full length reflecting the user feedback submitted to the
+discussion forum \cite{fithesisForum}. An author's cookbook
+summarizing the formal requirements for theses will also be created
+and, drawing inspiration from the Department of Experimental
+Physics and the Department of Informatics at \gls{upol} (see
+Section \ref{sec:upol}), so will a \gls{beamer} template for thesis
+defense presentations and a template for the typesetting of
+reader's reports by thesis advisors and opponents.
 
 \begin{appendices}
+\chapter{List of Electronic Attachments}\label{sec:el-att}
+Along with the thesis, the author also submitted the following
+files: \begin{itemize}
+  \item\texttt{fithesis.zip} -- The current release of the
+    \textsf{fithesis3} \gls{docclass} along with its source. This
+    material is subject to the \LaTeX\ Project Public License.
+  \item\texttt{survey.csv} -- A \gls{csv} file containing the
+    results of the questionnaire regarding the usage of \gls{tex}
+    for the writing of theses at \gls{mu}, as detailed in Section
+    \ref{sec:survey}
+  \item\texttt{statistics.zip} -- A \gls{zip} archive containing
+    the statistical data of theses written and defended during
+    2010--2015 at \gls{mu}, as detailed in Section
+    \ref{sec:statistics}
+  \item\texttt{thesis.zip} -- A \gls{zip} archive containing the
+    full \gls{latex} source of this thesis and related resources
+\end{itemize}
+
+Appendices \ref{sec:figuide}--\ref{sec:fspsguide} contain the user
+documentation of the template for the various faculties of \gls{mu}
+and Appendix \ref{sec:techdoc} contains the full technical
+documentation of the template. The author trusts that the kind
+reader will excuse some typographical deficiencies within the
+technical documentation.
+
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Informatics}\label{sec:figuide}
 \includepdf[pages=-]{misc/fi.pdf}
 
-\thispagestyle{empty}
-\cleardoublepage
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Science}
 \includepdf[pages=-]{misc/sci.pdf}
 
-\thispagestyle{empty}
-\cleardoublepage
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Economics and Administration}
 \includepdf[pages=-]{misc/econ.pdf}
 
-\thispagestyle{empty}
-\cleardoublepage
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Social Studies}
 \includepdf[pages=-]{misc/fss.pdf}
 
-\thispagestyle{empty}
-\cleardoublepage
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of Law}
 \includepdf[pages=-]{misc/law.pdf}
 
-\thispagestyle{empty}
-\cleardoublepage
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Medicine}
 \includepdf[pages=-]{misc/med.pdf}
 
-\thispagestyle{empty}
-\cleardoublepage
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Education}
 \includepdf[pages=-]{misc/ped.pdf}
 
-\thispagestyle{empty}
-\cleardoublepage
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Arts}
 \includepdf[pages=-]{misc/phil.pdf}
 
-\thispagestyle{empty}
-\cleardoublepage
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Sports Studies}\label{sec:fspsguide}
 \includepdf[pages=-]{misc/fsps.pdf}
 
-\thispagestyle{empty}
-\cleardoublepage
 \fakechapter{The technical documentation of
   \textsf{fithesis3}}\label{sec:techdoc}
 \includepdf[pages=-]{misc/fithesis.pdf}

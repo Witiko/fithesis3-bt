@@ -100,6 +100,7 @@
 
 % Adds a fake toc chapter entry
 \def\fakechapter#1{%
+  \makeatletter\thesis@blocks@clear\makeatother
   \refstepcounter{chapter}%
   \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}
     \bfseries#1}}

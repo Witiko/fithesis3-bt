@@ -8,7 +8,7 @@ AUX=$(OUTPUT).aux $(OUTPUT).toc $(OUTPUT).bbl $(OUTPUT).blg \
 	$(OUTPUT).ind $(OUTPUT).idx $(OUTPUT).out $(OUTPUT).gl[gos] \
 	$(OUTPUT).xdy $(OUTPUT).lo[ftg] $(OUTPUT).ac[rn] $(OUTPUT).alg \
 	$(OUTPUT).run.xml $(OUTPUT).bcf $(OUTPUT)-blx.bib $(OUTPUT).mw \
-	$(OUTPUT).cb $(OUTPUT).cb2 texput.log
+	$(OUTPUT).cb $(OUTPUT).cb2 $(OUTPUT).ilg texput.log
 
 # This target prepares the fithesis3 class
 # and typesets the printed version of the

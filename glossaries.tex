@@ -38,7 +38,7 @@ Interchange \cite{ascii}}
   refuse the given null \gls{hypothesis}},
 }
 
-\newdualentry{mime}{MIME-type}{Multipurpose Internet Mail
+\newdualentry{mime}{MIME type}{Multipurpose Internet Mail
 Extensions Type}{
   One of the several ways to identify the type of content inside a
   file. As its name suggest, it was originally designed as an
@@ -51,9 +51,8 @@ Extensions Type}{
 \newglossaryentry{magnum}{
   name = {magic number},
   description = {A pattern of bytes located typically in the header
-  of a file, which are used to determine the type of a file at unix
-  systems.}  
-}
+  of a file, which are used to determine the type of a file at UNIX
+  systems}}
 
 \newglossaryentry{textwidth}{
   name = {text width},
@@ -64,7 +63,7 @@ Extensions Type}{
 
 \newdualentry{xml}{XML}{Extensible Markup Language}{
   A text-based markup language, which is primarily used for the
-  exchange of structured textual data over the internet}
+  exchange of structured textual data over the Internet}
 
 \newglossaryentry{xmllang}{
   name = {\gls{xml} language},
@@ -80,9 +79,9 @@ Extensions Type}{
 
 \newglossaryentry{docbook}{
   name = {DocBook},
-  description = {A markup \gls{xmllang} for writing documentation.
-    The documentation can be published in a number of formats
-    including web pages, \gls{pdf} documents and electronic books}}
+  description = {A \gls{xmllang} for writing documentation. The
+    documentation can be published in a number of formats including
+    web pages, \gls{pdf} documents and electronic books}}
 
 \newglossaryentry{hypothesis}{
   name = hypothesis,
@@ -98,27 +97,27 @@ Extensions Type}{
   error}}
 
 \newdualentry{env}{environment}{\gls{latex} environment}{
-  A pair of macros in the form of \cs{begin\{}\textit{name}
-  \texttt{\}} and \cs{end\{}\textit{name}\texttt{\}}, where
-  \textit{name} is the name of the environment. They are used to
-  insert macros before and after content that can't be reliably
-  passed as an argument to a macro}
+  A pair of macros in the form of \cs{begin}\texttt{\{\textit{name}%
+  \}} and \cs{end}\texttt{\{\textit{name}\}}, where
+  \texttt{\textit{name}} is the name of the environment. They are
+  used to insert macros before and after content that can not be
+  reliably passed as an argument to a macro}
 
 \newglossaryentry{ctan}{
   first = {the Comprehensive \TeX{} Archive Network (CTAN)},
   name = {CTAN},
-  description = {A website where \gls{tex}-related material and
+  description = {A website, where \gls{tex}-related material and
   software can be found for download \cite{ctan}}}
 
 \newdualentry{latex}{\LaTeX{}}{\LaTeXe{}}{A \gls{format}, which is
-built around the idea of separation of the design and the contents
-of a document}
+built around the idea of separation of design and contents of a
+document}
 
 \newdualentry[plural={\gls{latex} document
 classes}][shortplural={classes},longplural={\gls{latex} document
 classes}]{docclass}{class}{\gls{latex} document class}{A set of
 \gls{latex} macros, which define the layout of the resulting
-document.}
+document}
 
 \newglossaryentry{tex}{
   name = \TeX{},
@@ -130,26 +129,25 @@ document.}
 \newglossaryentry{format}{
   name = \TeX{} format,
   description = {A set of macros on top of the language constructs
-  of \gls{tex}. The definitions are processed by the
-  \hologo{iniTeX} utility, which loads the definitions and dumps
-  the state of \gls{tex} into a format file to speed up future
-  initializations of the given format}
+  of \gls{tex}. The macro definitions are processed by the
+  \hologo{iniTeX} utility, which dumps the state of \gls{tex}
+  into a format file afterwards. The \gls{format} file is used to
+  speed up future initializations of the given format}
 }
 
 \newglossaryentry{plain}{
   name = \hologo{plainTeX},
   sort = plainTeX,
   description = {A \gls{format} created by the author of \gls{tex},
-  Donald Ervin Knuth. \Hologo{plainTeX} forms the basis of other
-  \glspl{format}}
-}
+  Prof.\ Donald Ervin Knuth. \Hologo{plainTeX} forms the basis of
+  other \glspl{format}}}
 
 \newglossaryentry{csplain}{
   name = \CSplain,
   sort = CSplain,
   description = {A software package, which simplifies the task of
   typesetting Czech and Slovak documents in \gls{plain} using
-  multibyte encodings \cite{csplain}}
+  multibyte \glspl{charenc} \cite{csplain}}
 }
 
 \newglossaryentry{cslatex}{
@@ -182,18 +180,18 @@ document.}
 
 \newdualentry{ins}{INS}{\textsf{DocStrip} installer file}{
   A \TeX{} document, which loads the \textsf{DocStrip}
-  \gls{texpackage} and instructs it to decompose a file marked up
-  with \textsf{DocStrip}-specific delimiter strings into specified
-  output files. Any comments are stripped from the files in the
-  process \cite{docstrip}.}
+  \gls{texpackage} and instructs it to decompose specified input
+  files marked up with \textsf{DocStrip}-specific delimiter strings
+  into specified output files. All comments are stripped in the
+  output files \cite{docstrip}}
 
 \newdualentry{cmfonts}{CM fonts}{Computer Modern fonts}{A
-collection of typefaces, which was designed by Donald E. Knuth and
-which is used in \gls{tex}}
+collection of typefaces, which was designed by Prof.\ Donald Ervin
+Knuth and which is used in \gls{tex}}
 
 \newdualentry{ecfonts}{EC fonts}{European Computer fonts}{An
-extension of \gls{cmfonts}, which adds support for european
-languages using latin script. Due to their low typographic quality
+extension of \gls{cmfonts}, which adds support for European
+languages using Latin script. Due to their low typographic quality
 \cite{cslatexvsbabel}, EC fonts have been obsoleted by
 \gls{lmfonts}}
 
@@ -202,14 +200,14 @@ languages using latin script. Due to their low typographic quality
   sort = CS fonts,
   description = {An extension of \gls{cmfonts}, which adds support
   for the typesetting of Czech and Slovak documents. Although
-    preferrable over \gls{ecfonts}, \CS{} fonts have been obsoleted
+    preferable over \gls{ecfonts}, \CS{} fonts have been obsoleted
     by the \gls{lmfonts} due to the low typographic quality of
     their Type 1 version \cite{cslatexvsbabel}}
 }
 
 \newdualentry{lmfonts}{LM fonts}{Latin Modern fonts}{An extension
-of \gls{cmfonts}, which adds support for european languages using
-latin script. Due to their high typographic quality
+of \gls{cmfonts}, which adds support for European languages using
+Latin script. Due to their high typographic quality
 \cite{cslatexvsbabel}, LM fonts have obsoleted both \gls{ecfonts}
 and \gls{csfonts}}
 
@@ -231,7 +229,7 @@ functionality}
   name = \BibLaTeX{},
   sort = BibLaTeX,
   description = {A \gls{ltxpackage} for the automated typesetting
-  of bibliography stored in a separate database file.}
+  of bibliography stored in a separate database file}
 }
 
 \newglossaryentry{beamer}{
@@ -265,18 +263,30 @@ functionality}
   to a successful end}
 }
 
+\newglossaryentry{zip}{
+  name = ZIP,
+  description = {An archive file format that allows the user to
+  include the contents of a directory tree into a single
+  file. The contents can be optionally compressed using one of
+  the several supported compression algorithms}}
+
+\newdualentry{csv}{CSV}{comma-separated values}{A plain text file
+  format for the storage of tabular data. Individual cells are
+  separated by commas and rows are separated by line breaks
+  \cite{rfc4180}}
+
 \newdualentry{ps}{PS}{PostScript}{A page-description language,
 which allows the creation of documents, whose appearance is
-independant on the underlying hardware and software. Unlike the
-\gls{gls-pdf}, PostScript is a turing-complete programming
-language, which makes it possible to generate procedural vector
-graphics with it. For more information, see \cite{psspec}}
+independent on the underlying hardware and software \cite{psspec}.
+Unlike the \gls{gls-pdf}, Postscript is a Turing-complete
+programming language, which enables procedural vector graphics
+generation.}
 
-\newdualentry{eps}{EPS}{Encapsulated PostScript}{A subset of the
+\newdualentry{eps}{EPS}{Encapsulated \gls{gls-ps}}{A subset of the
 \gls{gls-ps} language, which imposes a set of formal restrictions
-meant to decrease the complexity of the resulting document.
-Encapsulated Postscript is primarily used as a vector graphics
-format. For more information, see \cite{epsspec}}
+with the intent to decrease the complexity of the resulting
+document \cite{epsspec}. Encapsulated \gls{gls-ps} is primarily
+used as a vector graphics format}
 
 \newdualentry{tds}{TDS}{\gls{tex} Directory Structure}{A set of
 rules and recommendations \cite{tds} describing a unified directory
@@ -289,24 +299,24 @@ distributions}
 (usually a superset of) the \gls{tex} language. The baseline
 \gls{tex} engine, whose language extensions are supported by
 virtually all modern \TeX{} engines like \hologo{pdfTeX},
-\Hologo{XeTeX} or \Hologo{LuaTeX}, is \hologo{eTeX}.}
+\Hologo{XeTeX} or \Hologo{LuaTeX}, is \hologo{eTeX}}
 
 \longnewglossaryentry{charenc}{
   name={character encoding},
-  description={A character encoding specifies how characters are
-  going to be represented on the low level. The first character
-  encoding in use was \gls{ascii}, which was standardized in 1963
-  and which encodes lowercase and uppercase letters of English
-  alphabet, digits, punctuation, a space and several teletype
-  control codes. \gls{ascii} encodes each character as a 7bit
-  string.\vskip\parskip\hskip\parindent As time went on, a plathora
+  description={Specifies how characters are going to be represented
+  on the bit level. The first character encoding in use was
+  \gls{ascii}, which was standardized in 1963 and which encodes
+  lowercase and uppercase letters of English alphabet, digits,
+  punctuation, a space and several teletype control codes.
+  \gls{ascii} encodes each character as a 7bit
+  string.\vskip\parskip\hskip\parindent As time went on, a plethora
   of 8-bit encodings, which remained backwards compatible with
   \gls{ascii}, but used the additional bit to support the encoding
   of various non-English alphabet characters, became increasingly
   popular. In the Central Europe, the encodings of choice were ISO
   8859-2 \cite{isolatin2} and Windows-1250. Character encodings
-  allowed for easy text processing, as each character was exactly
-  one byte long, but also introducted additional complexity when
+  enabled easy text processing, as each character was exactly
+  one byte long, but also introduced additional complexity when
   dealing with documents, which contained characters from several
   non-English alphabets at once.\vskip\parskip\hskip\parindent
   Nowadays, the most commonly used encoding is UTF-8
@@ -314,15 +324,14 @@ virtually all modern \TeX{} engines like \hologo{pdfTeX},
   Unicode character table \cite{unicode6}. This comes at the cost
   of producing variable-length characters, which introduces
   additional overhead to the text processing, although this
-  overhead is generally regarded as trivial}
-}
+  overhead is generally regarded as trivial}}
 
 \newdualentry{pdf}{PDF}{Portable Document Format}{A
 page-description format tailored specifically to allow the creation
-of documents, whose appearance is independant on the underlying
-hardware and software. For more information, see \cite{isopdf}}
+of documents, whose appearance is independent on the underlying
+hardware and software \cite{isopdf}}
 
-\newdualentry{dvi}{DVI}{Device independent file format}{the output
+\newdualentry{dvi}{DVI}{Device independent file format}{The output
 of the \gls{tex} typesetting program, which describes the layout of
 the document and which is both hardware and software-independent.
 The format lacks any font or graphics embedding facilities and
@@ -338,6 +347,6 @@ therefore needs to be transcoded into another format like
 \newglossaryentry{metafont}{
   name = \MF{},
   sort = Metafont,
-  description = {A language developed alongside \gls{tex}, which
-  allows the definition of vector fonts}
+  description = {A language developed by Prof.\ Donald Ervin Knuth
+  alongside \gls{tex}, which allows the definition of vector fonts}
 }
