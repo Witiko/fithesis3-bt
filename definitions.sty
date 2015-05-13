@@ -23,6 +23,7 @@
   \CS\LaTeX{}%
 }
 
+% The pdfCSLaTeX logo
 \newcommand{\pdfCSLaTeX}{%
   pdf\CS\LaTeX{}%
 }
@@ -49,7 +50,7 @@
 % Support for colored markers
 \usepackage[hang,multiple,ragged]{footmisc}
 \usepackage[color]{changebar}
-\def\marker{} % Temporarily disabled
+\newcommand{\marker}[3]{}
 %\newcommand{\marker}[3]{%
 %  \def\arg{#3}%
 %  \cbcolor{#2}\begin{changebar}%
@@ -96,3 +97,10 @@
 % A couple of table markup macros
 \def\cellemph{\cellcolor{thesis@color@tableEmph}}
 \def\rowemph{\rowcolor{thesis@color@tableEmph}}
+
+% Adds a fake toc chapter entry
+\def\fakechapter#1{%
+  \makeatletter\thesis@blocks@clear\makeatother
+  \refstepcounter{chapter}%
+  \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}
+    \bfseries#1}}
