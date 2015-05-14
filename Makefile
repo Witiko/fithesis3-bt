@@ -1,6 +1,6 @@
 .PHONY: all complete clean clean-all
 
-SOURCES=database.bib definitions.sty glossaries.tex
+RESOURCES=database.bib definitions.sty glossaries.tex misc/*
 NONSOURCES=$(OUTPUT).pdf
 OUTPUT=print
 TEXOPTS=
@@ -17,7 +17,7 @@ all:
 	make $(OUTPUT).pdf clean
 
 # This target typesets the thesis.
-$(OUTPUT).pdf: $(OUTPUT).tex $(SOURCES)
+$(OUTPUT).pdf: $(OUTPUT).tex $(RESOURCES)
 	@toolbox/test.sh pdflatex texindy biber makeglossaries
 	pdflatex $(TEXOPTS) $<
 	# Prepare index, bibliography and glossaries
