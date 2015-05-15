@@ -1,9 +1,9 @@
-.PHONY: all complete clean clean-all
+.PHONY: all clean clean-all
 
-RESOURCES=database.bib definitions.sty glossaries.tex misc/*
+RESOURCES=database.bib definitions.sty glossaries.tex misc/*.pdf
 NONSOURCES=$(OUTPUT).pdf
 OUTPUT=print
-TEXOPTS=
+TEX=pdflatex
 AUX=$(OUTPUT).aux $(OUTPUT).toc $(OUTPUT).bbl $(OUTPUT).blg \
 	$(OUTPUT).ind $(OUTPUT).idx $(OUTPUT).out $(OUTPUT).gl[gos] \
 	$(OUTPUT).xdy $(OUTPUT).lo[ftg] $(OUTPUT).ac[rn] $(OUTPUT).alg \
@@ -19,20 +19,20 @@ all:
 # This target typesets the thesis.
 $(OUTPUT).pdf: $(OUTPUT).tex $(RESOURCES)
 	@toolbox/test.sh pdflatex texindy biber makeglossaries
-	pdflatex $(TEXOPTS) $<
+	$(TEX) $<
 	# Prepare index, bibliography and glossaries
 	texindy -I omega --language english $(OUTPUT).idx
 	makeglossaries $(OUTPUT)
-	pdflatex $(TEXOPTS) $<
+	$(TEX) $<
 	biber $(OUTPUT)
 	makeglossaries $(OUTPUT)
-	pdflatex $(TEXOPTS) $<
-	pdflatex $(TEXOPTS) $< # Necessary to correctly typeset changebars
+	$(TEX) $<
+	$(TEX) $<
 
 # This target removes auxiliary files.
 clean:
 	rm -f $(AUX)
 
 # This target removes all non-source files.
-clean-all: clean
+implode: clean
 	rm -f $(NONSOURCES)
