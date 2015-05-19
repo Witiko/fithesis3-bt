@@ -10,9 +10,8 @@ AUX=$(OUTPUT).aux $(OUTPUT).toc $(OUTPUT).bbl $(OUTPUT).blg \
 	$(OUTPUT).run.xml $(OUTPUT).bcf $(OUTPUT)-blx.bib $(OUTPUT).mw \
 	$(OUTPUT).cb $(OUTPUT).cb2 $(OUTPUT).ilg texput.log
 
-# This target prepares the fithesis3 class
-# and typesets the printed version of the
-# thesis.
+# This target typesets the printed version of
+# the thesis and removes the auxiliary files.
 all:
 	make $(OUTPUT).pdf clean
 
