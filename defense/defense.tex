@@ -1,0 +1,130 @@
+\documentclass[12pt]{beamer}
+% Packages
+\usepackage{polyglossia}
+\setmainlanguage{english}
+% Theme
+%% Fonts
+\usepackage{fontspec}
+\setsansfont[Ligatures=TeX]{Comenia Sans}
+%% Colors
+\usetheme{Boadilla}
+%% Miscellanea
+\frenchspacing
+\beamertemplatenavigationsymbolsempty
+%% Nested itemize fix
+%% http://tex.stackexchange.com/a/74069/70941
+\usepackage{etoolbox}
+\setbeamercovered{highly dynamic}
+\makeatletter
+\newcommand*\fix@beamer@close{%
+  \ifnum\beamer@trivlistdepth>0
+    \beamer@closeitem
+  \fi
+  }
+\newcommand*\fix@beamer@open{%
+  \ifnum\beamer@trivlistdepth>0
+    \gdef\beamer@closeitem{}%
+  \fi
+  }
+\BeforeBeginEnvironment{enumerate}{\fix@beamer@close}
+\AfterEndEnvironment{enumerate}{\fix@beamer@open}
+\BeforeBeginEnvironment{itemize}{\fix@beamer@close}
+\AfterEndEnvironment{itemize}{\fix@beamer@open}
+\BeforeBeginEnvironment{description}{\fix@beamer@close}
+\AfterEndEnvironment{description}{\fix@beamer@open}
+\makeatother
+% Metadata
+\title{The Form of Theses\\ Written in \LaTeX}
+\subtitle{Thesis defense}
+\date[2015]{<<date>> 2015}
+\author{Vít Novotný}
+\institute[FI MUNI]{Masaryk University in Brno\\ Faculty of Informatics}
+\logo{\includegraphics[width=10mm]{fi-logo.pdf}}
+\begin{document}
+  \frame{\maketitle}
+  \begin{frame}
+    \frametitle{Existing codebase}
+    \begin{itemize}[<+->]
+      \item The \emph{fithesis1} and \emph{fithesis2} document classes
+      \item The \emph{xslt2} module
+      \item The \emph{comenia} package
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \frametitle{\TeX\ usage at MUNI}
+    \begin{itemize}[<+->]
+      \item User survey
+      \begin{itemize}
+        \item Most respondents were FI bachelor's degree students.
+        \item Most preferred \LaTeX\ over the alternatives.
+        \item Some submitted feedback regarding \emph{fithesis1} and \emph{2}.
+      \end{itemize}
+      \item Analysis of theses defended during 2010--2015:
+      \begin{itemize}
+        \item Data kindly provided by the Computer Systems Unit.
+        \item A heuristic was devised to detect the usage of \TeX.
+        \item \TeX\ usage:
+          \begin{itemize}
+            \item Was dominated by FI (59.09\%) and Sci (14.9\%).
+            \item Correlated with better grades.
+            \item Steady 0.6\% increase across faculties
+            \item Steady 10\% decrease in rig. and doctoral theses at Sci
+          \end{itemize}
+      \end{itemize}
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Review of Existing Templates}
+    \begin{itemize}[<+->]
+      \item Moderate use of color (\emph{CTUStyle, CUStyle, tul})
+      \item Separation of presentation and logic (\emph{tul+tulthesis})
+      \item Additional mark-up (\texttt{dipp.sty}, \texttt{thesis.sty}, \emph{diploma})
+      \item Homebrew \textsc{Bib}\LaTeX\ ISO-690 citation styles (\emph{KIdiplom})
+      \item Common problems:
+      \begin{itemize}
+        \item Lack of double-sided typesetting
+        \item Overly large \texttt{\string\textwidth}
+      \end{itemize}
+    \end{itemize}
+    \uncover<8>{Some features had a direct impact on the development of \emph{fithesis3}, the rest is a good starting point for the future development of the class.}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Design and Implementation}
+    \begin{itemize}[<+->]
+      \item \emph{Fithesis1} and \emph{2} mix logic, locales and presentation.
+      \item Addition of new locales and styles is non-trivial.
+      \item \emph{Fithesis3} is composed of the following parts:\begin{enumerate}
+        \item\emph{Locale files} that encapsulate locale strings.
+          \begin{itemize}
+            \item Czech, English and Slovak are supported by default.
+            \item New locales can be easily added.
+          \end{itemize}
+        \item\emph{Style files} that define the look and layout for each faculty.
+          \begin{itemize}
+            \item Prepared in accordance with the Dean's Directives of the respective faculties.
+          \end{itemize}
+        \item\emph{The document class} that processes the user input and loads
+          the according locale and style files.
+      \end{enumerate}
+      \item Each of these parts is extensively documented.
+      \item Much of the feedback from the user survey and the features of existing templates were implemented.
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
+    \frametitle{Conclusion}
+    \begin{itemize}[<+->]
+      \item Testing will continue until the end of June.
+      \item The class will then be released at:\begin{itemize} 
+        \item Online collaboration platforms (Share\LaTeX, Overleaf)
+        \item The CTAN archive (for the inclusion in \TeX\ distibutions)
+        \item The website of FI
+      \end{itemize}
+      \item The class has been added to the curriculum of the \emph{FI:PB029 -- Electronic Document Preparation} subject
+      \item During July--September 2015:\begin{itemize} 
+        \item User documentation will be expanded.
+        \item An author’s cookbook will be created.
+        \item Thesis defense and thesis report templates will be released.
+      \end{itemize}
+    \end{itemize}
+  \end{frame}
+\end{document}
