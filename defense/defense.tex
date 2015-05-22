@@ -14,18 +14,16 @@
 %% Nested itemize fix
 %% http://tex.stackexchange.com/a/74069/70941
 \usepackage{etoolbox}
-\setbeamercovered{highly dynamic}
+\setbeamercovered{transparent}
 \makeatletter
 \newcommand*\fix@beamer@close{%
-  \ifnum\beamer@trivlistdepth>0
-    \beamer@closeitem
-  \fi
-  }
+  \ifnum\beamer@trivlistdepth>0%
+    \beamer@closeitem%
+  \fi}
 \newcommand*\fix@beamer@open{%
-  \ifnum\beamer@trivlistdepth>0
+  \ifnum\beamer@trivlistdepth>0%
     \gdef\beamer@closeitem{}%
-  \fi
-  }
+  \fi}
 \BeforeBeginEnvironment{enumerate}{\fix@beamer@close}
 \AfterEndEnvironment{enumerate}{\fix@beamer@open}
 \BeforeBeginEnvironment{itemize}{\fix@beamer@close}
@@ -36,14 +34,13 @@
 % Metadata
 \title{The Form of Theses\\ Written in \LaTeX}
 \subtitle{Thesis defense}
-\date[2015]{<<date>> 2015}
+\date{May 28, 2015}
 \author{Vít Novotný}
-\institute[FI MUNI]{Masaryk University in Brno\\ Faculty of Informatics}
-\logo{\includegraphics[width=10mm]{fi-logo.pdf}}
+\institute[FI MU]{Faculty of Informatics,\\Masaryk University in Brno}
 \begin{document}
   \frame{\maketitle}
   \begin{frame}
-    \frametitle{Existing codebase}
+    \frametitle{History}
     \begin{itemize}[<+->]
       \item The \emph{fithesis1} and \emph{fithesis2} document classes
       \item The \emph{xslt2} module
@@ -59,16 +56,15 @@
         \item Most preferred \LaTeX\ over the alternatives.
         \item Some submitted feedback regarding \emph{fithesis1} and \emph{2}.
       \end{itemize}
-      \item Analysis of theses defended during 2010--2015:
+      \item Analysis of the 45\,488 theses defended during 2010--2015:
       \begin{itemize}
-        \item Data kindly provided by the Computer Systems Unit.
         \item A heuristic was devised to detect the usage of \TeX.
         \item \TeX\ usage:
           \begin{itemize}
             \item Was dominated by FI (59.09\%) and Sci (14.9\%).
             \item Correlated with better grades.
-            \item Steady 0.6\% increase across faculties
-            \item Steady 10\% decrease in rig. and doctoral theses at Sci
+            \item Steady 0.6\% increase overall across faculties
+            \item Steady 10\% decrease overall in rig. and doc. theses at Sci
           \end{itemize}
       \end{itemize}
     \end{itemize}
@@ -89,7 +85,7 @@
     \uncover<8>{Some features had a direct impact on the development of \emph{fithesis3}, the rest is a good starting point for the future development of the class.}
   \end{frame}
   \begin{frame}
-    \frametitle{Design and Implementation}
+    \frametitle{Making the class modular: Rationale, Design and Implementation}
     \begin{itemize}[<+->]
       \item \emph{Fithesis1} and \emph{2} mix logic, locales and presentation.
       \item Addition of new locales and styles is non-trivial.
@@ -111,13 +107,24 @@
     \end{itemize}
   \end{frame}
   \begin{frame}
+    \frametitle{Other changes}
+    \begin{itemize}[<+->]
+      \item Metafont $\rightarrow$ vector graphics transition
+      \item Better metadata support
+      \item \ldots
+    \end{itemize}
+  \end{frame}
+  \begin{frame}
     \frametitle{Conclusion}
+    The first paragraph of the respective chapter.
+  \end{frame}
+  \begin{frame}
+    \frametitle{Future work}
     \begin{itemize}[<+->]
       \item Testing will continue until the end of June.
       \item The class will then be released at:\begin{itemize} 
         \item Online collaboration platforms (Share\LaTeX, Overleaf)
         \item The CTAN archive (for the inclusion in \TeX\ distibutions)
-        \item The website of FI
       \end{itemize}
       \item The class has been added to the curriculum of the \emph{FI:PB029 -- Electronic Document Preparation} subject
       \item During July--September 2015:\begin{itemize} 
