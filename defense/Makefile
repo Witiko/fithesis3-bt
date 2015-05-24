@@ -1,16 +1,16 @@
 .PHONY: all clean implode
-OUTPUT=defense
-AUXFILES=$(OUTPUT).aux $(OUTPUT).log $(OUTPUT).nav \
-				 $(OUTPUT).out $(OUTPUT).pyg $(OUTPUT).snm \
-				 $(OUTPUT).toc $(OUTPUT).vrb
+AUXFILES=*.aux *.log *.nav *.out *.pyg *.bbl\
+				 *.snm *.toc *.vrb *.run.xml *.bcf *.blg
+OUTPUT=defense.pdf handout.pdf
 
 # This target typesets the printed version of
 # the thesis and removes the auxiliary files.
-all: $(OUTPUT).pdf clean
+all: $(OUTPUT) clean
 
 # This target typesets the presentation.
-%.pdf: %.tex
+%.pdf: %.tex source.tex
 	xelatex $<
+	biber $(basename $<)
 	xelatex $<
 
 # This target removes auxiliary files.
@@ -19,4 +19,4 @@ clean:
 
 # This target removes all non-source files.
 implode: clean
-	rm -f $(OUTPUT).pdf
+	rm -f $(OUTPUT)

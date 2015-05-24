@@ -1,0 +1,389 @@
+\PassOptionsToPackage{table}{xcolor}
+\ifbeamerarticle
+  \documentclass[12pt]{article}
+  \usepackage{beamerarticle}
+\else
+  \documentclass[12pt]{beamer}
+\fi
+% Packages
+\usepackage{mflogo}
+\usepackage{tikz}
+\usetikzlibrary{fadings,patterns}
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{placeins}
+%% Bibliography
+\usepackage[
+  backend=biber,
+  style=numeric,
+  citestyle=numeric-comp,
+  sorting=none
+]{biblatex}
+\addbibresource{../database.bib}
+\ifbeamerarticle
+  \let\mycite\cite
+\else
+  \let\mycite\footfullcite
+\fi
+%% Fonts
+\usepackage{fontspec}
+\ifbeamerarticle
+  \usepackage{mathpazo}
+\else
+  \usepackage{cmbright}
+\fi
+\setmainfont[Ligatures=TeX]{Comenia Serif}
+\setsansfont[Ligatures=TeX]{Comenia Sans}
+\ifbeamerarticle
+  \def\pkg#1{{\sf#1}}
+\else
+  \let\pkg\emph
+\fi
+%% Hyperref
+\makeatletter
+  \@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}
+\makeatother
+\hypersetup{\ifbeamerarticle color\else hide\fi links,
+  linkcolor=black}
+% Theming & colors
+\usetheme{Antibes}
+\usecolortheme{crane}
+\usefonttheme{professionalfonts}
+\definecolor{green}{RGB}{0,130,0}
+\definecolor{yellow}{RGB}{242,212,92}
+\definecolor{orange}{RGB}{255,100,0}
+% Tabular redefinition
+\def\redefinetables{%
+  \definecolor{tableOdd}{HTML}{FFF9E5}
+  \definecolor{tableEven}{HTML}{FFECB3}
+  \let\oldtabular\tabular
+  \let\endoldtabular\endtabular
+  \renewenvironment{tabular}%
+    {\rowcolors{1}{tableOdd}%
+                  {tableEven}%
+     \oldtabular}%
+    {\endoldtabular}
+  \let\oldtabularx\tabularx
+  \let\endoldtabularx\endtabularx
+  \renewenvironment{tabularx}%
+    {\rowcolors{1}{tableOdd}%
+                  {tableEven}%
+     \oldtabularx}%
+     {\endoldtabularx}}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\setlength{\extrarowheight}{.75ex}
+
+% Miscellanea
+\frenchspacing
+\ifbeamerarticle\else
+  \beamertemplatenavigationsymbolsempty
+  \setbeamertemplate{caption}[numbered]
+\fi
+% Section front page support
+\AtBeginSection{\frame{\sectionpage}}
+\AtBeginSubsection{\frame{\subsectionpage}}
+% Nested itemize fix
+% http://tex.stackexchange.com/a/74069/70941
+\ifbeamerarticle\else
+  \usepackage{etoolbox}
+  \setbeamercovered{transparent}
+  \makeatletter
+  \newcommand*\fix@beamer@close{%
+    \ifnum\beamer@trivlistdepth>0%
+      \beamer@closeitem%
+    \fi}
+  \newcommand*\fix@beamer@open{%
+    \ifnum\beamer@trivlistdepth>0%
+      \gdef\beamer@closeitem{}%
+    \fi}
+  \BeforeBeginEnvironment{enumerate}{\fix@beamer@close}
+  \AfterEndEnvironment{enumerate}{\fix@beamer@open}
+  \BeforeBeginEnvironment{itemize}{\fix@beamer@close}
+  \AfterEndEnvironment{itemize}{\fix@beamer@open}
+  \BeforeBeginEnvironment{description}{\fix@beamer@close}
+  \AfterEndEnvironment{description}{\fix@beamer@open}
+  \makeatother
+\fi
+% Metadata
+\title{The Form of Theses\\ Written in \LaTeX}
+\subtitle{Thesis Presentation}
+\date{May 28, 2015}
+\author{Vít Novotný}
+\institute[FI MU]{Faculty of Informatics,\\Masaryk University in
+  Brno}
+\begin{document}
+\frame{\maketitle}
+\frame{\tableofcontents}
+\redefinetables\clearpage
+\section{\TeX\ Usage at MU}
+\newlength\yearposx
+\begin{frame}[label=history]
+  \frametitle{History}
+    \begin{itemize}[<+->]
+    \item \textcolor{violet}{1994} -- The \textcolor{violet}{ 
+      logo} of FI MU \mycite{zlatuska95}
+    \item \textcolor{red}{1998--2008} -- The
+      \textcolor{red}{\pkg{fithesis1}} class
+    \item \textcolor{green}{2001--2004} -- The
+      \textcolor{green}{\pkg{xslt2}} module
+    \item \textcolor{blue}{2008--2015} -- The
+      \textcolor{blue}{\pkg{fithesis2}} class
+    \item \textcolor{orange}{2013} -- The
+      \textcolor{orange}{\pkg{comenia}} package
+  \end{itemize}\medskip
+  \begin{tikzpicture}[remember picture,overlay]
+    \node [anchor=east] at (\ifbeamerarticle13\else11\fi cm,
+    \ifbeamerarticle4.8\else2.25\fi cm) {
+      \includegraphics[width=\ifbeamerarticle4\else3.2\fi cm]
+      {../fithesis3/fithesis3/logo/mu/color/fi}};
+  \end{tikzpicture}
+  \begin{tikzpicture}[scale=\ifbeamerarticle0.585\else0.46\fi]
+    \foreach \x in {1994,1998,2001,2004,2008,2013,2015}{
+      \pgfmathsetlength\yearposx{(\x-1994)*1cm};
+      \coordinate (y\x) at (\yearposx,0);
+      \coordinate (y\x t) at (\yearposx,0.75mm);
+      \draw (\yearposx,+3pt) -- (\yearposx,-3pt);}
+    \draw [->] (y1994) -- (y2015);
+    \uncover<1-> {\node at (y1994) [above=3pt]
+      {\textcolor{violet}{1994}};}
+    \only<1-> {\fill[violet] (y1994) circle (5pt);}
+    \uncover<2-> {
+      \node at (y1998) [below=3pt] {\textcolor{red}{1998}};}
+    \uncover<2-4> {\node at (y2008) [above=3pt]
+      {\textcolor{red}{2008}};}
+    \only<2-> {
+      \draw[red,very thick] (y1998) -- (y2008);
+      \fill[red] (y1998) circle (5pt);
+      \fill[red] (y2008) circle (5pt);}
+    \uncover<3-> {
+      \node at (y2001) [above=3pt] {\textcolor{green}{2001}};
+      \node at (y2004) [below=3pt] {\textcolor{green}{2004}};}
+    \only<3-> {
+      \draw[green,very thick] (y2001t) -- (y2004t);
+      \fill[green] (y2001t) circle (5pt);
+      \fill[green] (y2004t) circle (5pt);}
+    \uncover<4-> {
+      \node at (y2015) [below=3pt] {\textcolor{blue}{2015}};}
+    \only<4-> {
+      \node at (y2008) [above=3pt] {
+        \textcolor{blue!0!red}2%
+        \textcolor{blue!33!red}0%
+        \textcolor{blue!66!red}0%
+        \textcolor{blue!100!red}8};
+      \draw[blue,very thick] (y2008) -- (y2015);
+      \fill[blue] (y2008) circle (5pt);
+      \fill[blue] (y2015) circle (5pt);}
+    \uncover<5-> {\node at (y2013) [above=3pt]
+      {\textcolor{orange}{2013}};}
+    \only<5-> {\fill[orange] (y2013t) circle (5pt);}
+  \end{tikzpicture}
+\end{frame}
+\subsection{User Survey}
+\begin{frame}[c]
+  \begin{table}[!b]
+    \begin{tabularx}{\textwidth}{Xcr}
+      \textbf{On which faculty of
+      MU do you study?} & \textbf{\#}
+      \\ \toprule Faculty of Informatics          & $82$
+      \\ Faculty of Science                       &  $3$
+      \\ Faculty of Education                     &  $2$
+      \\ Faculty of Social Studies                &  $2$
+      \\ Faculty of Law                           &  $1$
+      \\ Faculty of Medicine                      &  $1$
+      \\ Faculty of Arts                          &  $1$
+      \\ Faculty of Economics and Administration  &  $1$
+      \\ Faculty of Sports Studies                &  $0$
+      \\
+    \end{tabularx}
+    \caption{The distribution of the questionnaire
+      respondents across the faculties of MU}
+  \end{table}
+\end{frame}
+\begin{frame}[c]
+  \begin{table}[!b]
+    \begin{tabularx}{\textwidth}{Xcr}
+      \textbf{Which academic degree are you pursuing?} &
+      \textbf{\#} \\
+      \toprule
+      Bachelor's degree  & $70$ \\
+      Master's degree    & $17$ \\
+      Doctorate          & $2$  \\
+      \bottomrule
+      \textbf{Total}     & $\mathbf{89}$
+    \end{tabularx}
+    \caption{The highest academic degrees currently pursued by the
+      respondents of the questionnaire}
+  \end{table}
+\end{frame}
+\begin{frame}
+  \begin{table}[!b]
+    \begin{tabularx}{\textwidth}{Xcr}
+      \textbf{Which application do you use / are you planning to
+      use to write your thesis?} & \textbf{\#} \\
+      \toprule
+      \TeX\ / \LaTeX          & $65$          \\
+      Microsoft Office        & $16$          \\
+      Apache OpenOffice, LibreOffice or another free office
+      software suite          & $4$           \\
+      Other                   & $4$           \\
+      Google Documents        & $0$           \\
+      \bottomrule
+      \textbf{Total}          & $\mathbf{89}$ 
+    \end{tabularx}
+    \caption{The software the respondents of the questionnaire
+      were using or planning to use to write their theses}
+  \end{table}
+\end{frame}
+\begin{frame}
+  \begin{table}[!b]
+    \begin{tabularx}{\textwidth}{Xcr}
+      \textbf{Are you planning to use the \pkg{fithesis1}
+        class?} & \textbf{\#} \\
+      \toprule    Yes                       & $47$
+      \\ Maybe, I did not know it existed   & $10$
+      \\ No, I'm going to use another class & $5$
+      \\ Other                              & $2$
+      \\ No, I'm going to use plain \TeX{}  & $1$
+      \\ \bottomrule
+      \textbf{Total}  & $\mathbf{65}$ 
+    \end{tabularx}
+      \caption{The attitude towards the usage of the \pkg{fithesis1}
+      class amongst those respondents who claimed to be using or
+      planning to use \TeX{} to typeset their theses}
+  \end{table}
+\end{frame}\FloatBarrier
+\begin{frame}
+  \frametitle{Conclusion}
+  The overwhelming majority of respondents:
+  \begin{itemize}
+    \item were FI bachelor's degree students,
+    \item preferred \LaTeX\ over the alternatives,
+    \item were aware about the existence of \pkg{fithesis1}.
+  \end{itemize}
+\end{frame}\FloatBarrier
+\subsection{Analysis of Existing Theses}
+\begin{frame}
+  \begin{table}[!b]
+    \scalebox{\ifbeamerarticle1\else0.9\fi}{\begin{tabularx}%
+      {\ifbeamerarticle1\else1.11\fi\textwidth}{Xrr}
+      \textbf{Faculty} & \textbf{\#} & \textbf{\%} \\
+      \toprule
+      Faculty of Arts                         & $10\,000$ & $21.98$ \\% 1421
+      Faculty of Education                    & $8\,219$  & $18.07$ \\% 1441
+      Faculty of Social Studies               & $5\,599$  & $12.31$ \\% 1423
+      Faculty of Science                      & $5\,275$  & $11.60$ \\% 1431
+      Faculty of Law                          & $4\,824$  & $10.60$ \\% 1422
+      Faculty of Economics and Administration & $4\,591$  & $10.09$ \\% 1456
+      Faculty of Informatics                  & $2\,904$  &  $6.38$ \\% 1433
+      Faculty of Medicine                     & $2\,014$  &  $4.43$ \\% 1411
+      Faculty of Sports Studies               & $2\,062$  &  $4.53$ \\% 1451
+      \bottomrule
+      \textbf{Total}     & $\mathbf{45\,488}$ & $\mathbf{100.00}$
+    \end{tabularx}}
+    \caption{The distribution of theses defended between 2010--2015
+      across the faculties of MU}
+  \end{table}
+\end{frame}
+\begin{frame}
+  \begin{table}
+    \begin{tabularx}{\textwidth}{Xrr}
+      \textbf{Degree} & \textbf{\#} & \textbf{\%} \\
+      \toprule
+      Bachelor's & $22\,288$ & $49.00$ \\
+      Master's   & $20\,761$ & $45.64$ \\
+      Doctoral   &  $2\,231$ &  $4.90$ \\
+      Lifelong   &     $208$ &  $0.46$ \\
+      \bottomrule
+      \textbf{Total} & $\mathbf{45\,488}$ & $\mathbf{100.00}$
+    \end{tabularx}
+    \caption{The distribution of theses defended between 2010--2015
+      across the study programme degrees}
+  \end{table}
+\end{frame}\FloatBarrier
+\section{Review of Existing Templates}
+\begin{frame}
+  \frametitle{Review of Existing Templates}
+  \begin{itemize}[<+->]
+    \item Moderate use of color (\pkg{CTUStyle, CUStyle, tul})
+    \item Separation of presentation and logic (\pkg{tul+tulthesis})
+    \item Additional mark-up (\texttt{dipp.sty}, \texttt{thesis.sty}, \pkg{diploma})
+    \item Homebrew \textsc{Bib}\LaTeX\ ISO-690 citation styles (\pkg{KIdiplom})
+    \item Common problems:
+    \begin{itemize}
+      \item Lack of double-sided typesetting
+      \item Overly large \texttt{\string\textwidth}
+    \end{itemize}
+  \end{itemize}
+  \uncover<8>{Some features had a direct impact on the development
+    of \pkg{fithesis3}, the rest is a good starting point for the
+    future development of the class.}
+\end{frame}
+\section{Design and Implementation}
+\begin{frame}
+  \frametitle{Goals}
+\end{frame}
+\begin{frame}
+  \frametitle{Design}
+  \begin{itemize}[<+->]
+    \item \pkg{Fithesis1} and \pkg{2} mix logic, locales and
+      presentation.
+    \item Addition of new locales and styles is non-trivial.
+    \item \pkg{Fithesis3} is composed of the following parts:
+      \begin{enumerate}
+        \item\emph{Locale files} that encapsulate locale strings.
+          \begin{itemize}
+            \item Czech, English and Slovak are supported by
+              default.
+            \item New locales can be easily added.
+          \end{itemize}
+        \item\emph{Style files} that define the look and layout for
+            each faculty.
+          \begin{itemize}
+            \item Prepared in accordance with the Dean's Directives
+              of the respective faculties.
+          \end{itemize}
+        \item\emph{The document class} that processes the user
+          input and loads the according locale and style files.
+      \end{enumerate}
+    \item Each of these parts is extensively documented.
+    \item Much of the feedback from the user survey and the
+      features of existing templates were implemented.
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{implementation}
+  \begin{itemize}[<+->]
+    \item Metafont $\rightarrow$ vector graphics transition
+    \item Better metadata support
+    \item \ldots
+  \end{itemize}
+\end{frame}
+\section{Conclusion}
+\begin{frame}
+  \frametitle{Results}
+  The first paragraph of the respective chapter.
+\end{frame}
+\begin{frame}
+  \frametitle{Future work}
+  \begin{itemize}[<+->]
+    \item Testing will continue until the end of June.
+    \item The class will then be released at:\begin{itemize} 
+      \item Online collaboration platforms (Share\LaTeX, Overleaf)
+      \item The CTAN archive (for the inclusion in \TeX\ distibutions)
+    \end{itemize}
+    \item The class has been added to the curriculum of the
+      \emph{FI:PB029 -- Electronic Document Preparation} subject
+    \item During July--September 2015:\begin{itemize} 
+      \item User documentation will be expanded.
+      \item An author’s cookbook will be created.
+      \item Thesis defense and thesis report templates will be released.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+\ifbeamerarticle
+  \printbibliography
+\fi
+\end{document}
