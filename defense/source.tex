@@ -9,6 +9,9 @@
 \usepackage{mflogo}
 \usepackage{tikz}
 \usetikzlibrary{fadings,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usepgfplotslibrary{statistics}
 \usepackage{polyglossia}
 \setmainlanguage{english}
 \usepackage{tabularx}
@@ -36,6 +39,7 @@
 \fi
 \setmainfont[Ligatures=TeX]{Comenia Serif}
 \setsansfont[Ligatures=TeX]{Comenia Sans}
+\setmonofont[Scale=MatchLowercase,Ligatures=TeX]{Inconsolata}
 \ifbeamerarticle
   \def\pkg#1{{\sf#1}}
 \else
@@ -58,6 +62,7 @@
 \def\redefinetables{%
   \definecolor{tableOdd}{HTML}{FFF9E5}
   \definecolor{tableEven}{HTML}{FFECB3}
+  \definecolor{tableEmph}{HTML}{FFD451}
   \let\oldtabular\tabular
   \let\endoldtabular\endtabular
   \renewenvironment{tabular}%
@@ -75,6 +80,8 @@
 \setlength{\aboverulesep}{0pt}
 \setlength{\belowrulesep}{0pt}
 \setlength{\extrarowheight}{.75ex}
+\def\cellemph{\cellcolor{tableEmph}}
+\def\rowemph{\rowcolor{tableEmph}}
 
 % Miscellanea
 \frenchspacing
@@ -257,13 +264,12 @@
 \end{frame}\FloatBarrier
 \begin{frame}
   \frametitle{Conclusion}
-  The overwhelming majority of respondents:
+  The majority of respondents:
   \begin{itemize}
-    \item were FI bachelor's degree students,
-    \item preferred \LaTeX\ over the alternatives,
-    \item were aware about the existence of \pkg{fithesis1}.
+    \item Were FI bachelor's degree students.
+    \item Preferred \pkg{fithesis1} over the alternatives.
   \end{itemize}
-\end{frame}\FloatBarrier
+\end{frame}
 \subsection{Analysis of Existing Theses}
 \begin{frame}
   \begin{table}[!b]
@@ -288,7 +294,7 @@
   \end{table}
 \end{frame}
 \begin{frame}
-  \begin{table}
+  \begin{table}[!b]
     \begin{tabularx}{\textwidth}{Xrr}
       \textbf{Degree} & \textbf{\#} & \textbf{\%} \\
       \toprule
@@ -302,8 +308,280 @@
     \caption{The distribution of theses defended between 2010--2015
       across the study programme degrees}
   \end{table}
-\end{frame}\FloatBarrier
+\end{frame}\begin{frame}
+  A thesis was considered to be written using \TeX, if one
+  or more files submitted with it satisfied one or more of the
+  following conditions: \begin{itemize}
+    \item The suffix was \texttt{tex}.
+    \item The magic number was that of a DVI file.
+    \item The MIME type was \texttt{application/postscript} and
+      the file contained the \texttt{TeXDict} substring suggesting
+      that the file was a PS document, which had been created
+      using the \textsf{dvips} utility.
+    \item The MIME type was \texttt{application/pdf} and either
+      the \texttt{Creator} or the \texttt{Producer} PDF 
+      header contained the \texttt{TeX} substring suggesting that
+      the file had been created using either the \textsf{dvipdfm}
+      utility or a \TeX\ engine, which supports PDF output.
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \begin{table}[!b]
+    \scalebox{\ifbeamerarticle1\else0.83\fi}{\begin{tabularx}%
+      {\ifbeamerarticle1\else1.2\fi\textwidth}{Xrrr}
+      \textbf{Faculty} & \textbf{With \TeX} & \textbf{Total} &
+      \textbf{\%} \\
+      \toprule
+      Faculty of Informatics       & $1\,716$ & $2\,904$  &
+      $59.09$ \\% 1433
+      Faculty of Science           & $786$     & $5\,275$  &
+      $14.90$ \\% 1431
+      Faculty of Economics and Administration & $64$ & $4\,591$ &
+      $1.39$  \\% 1456
+      Faculty of Arts              & $69$      & $10\,000$ &
+      $0.69$  \\% 1421
+      Faculty of Medicine          & $8$       & $2\,014$  &
+      $0.40$  \\% 1411
+      Faculty of Law               & $15$      & $4\,824$  &
+      $0.31$  \\% 1422
+      Faculty of Education         & $19$      & $8\,219$  &
+      $0.23$  \\% 1441
+      Faculty of Social Studies    & $12$      & $5\,599$  &
+      $0.21$  \\% 1423
+      Faculty of Sports Studies    & $3$       & $2\,062$  &
+      $0.15$  \\% 1451
+      \bottomrule
+      \textbf{Total} & $\mathbf{2\,692}$ & $\mathbf{45\,488}$ &
+      $\mathbf{5.92}$
+    \end{tabularx}}
+    \caption{The distribution of theses written using \TeX,
+      which were defended during 2010--2015 across the faculties of
+      MU}
+  \end{table}
+\end{frame}
+\begin{frame}
+  \begin{table}[!b]
+    \scalebox{\ifbeamerarticle1\else0.85\fi}{\begin{tabularx}%
+      {\ifbeamerarticle1\else1.17\fi\textwidth}{Xlrrrrrr}
+      \textbf{Degree} & \textbf{Fac.} & \textbf{2010} &
+      \textbf{2011} & \textbf{2012} & \textbf{2013} & \textbf{2014}
+      & $R$\\
+      \toprule
+      \ifbeamerarticle
+        Bachelor's
+          & FI  & $58.92$ & $59.44$ & $49.54$ & $53.77$ &
+            $59.06$ & \textcolor{red}{$-0.195$} \\
+          & Sci & $11.55$ & $13.00$ & $15.90$ & $19.79$ &
+            $15.16$ & \textcolor{green}{$+0.703$} \\
+          & All & $5.08$ & $6.19$ &
+            $6.00$ & $6.08$ & $6.24$ &
+            \textcolor{green}{$+0.731$} \\ \midrule
+        Master's
+          & FI  & $60.61$ & $59.91$ & $60.08$ & $64.50$ &
+            $57.96$ & \textcolor{red}{$-0.046$} \\
+          & Sci & $19.38$ & $13.54$ & $13.75$ & $13.78$ &
+            $17.71$ & \textcolor{red}{$-0.180$} \\
+          & All & $6.02$ & $4.88$ &
+            $5.22$ & $6.59$ & $6.29$ &
+            \textcolor{green}{$+0.490$} \\ \midrule
+      \else
+        Bachelor's &&&& \multicolumn{1}{c}{\vdots} &&& \\ \midrule
+        Master's   &&&& \multicolumn{1}{c}{\vdots} &&& \\ \midrule
+      \fi
+      Doctoral
+        & FI  & $100.00$ & $76.67$ & $71.88$ & $83.87$ &
+          $90.91$ & \textcolor{red}{$-0.155$} \\
+        & Sci & $18.09$ & $10.71$ & $12.75$ & $10.19$ &
+          $8.85$ & \only<2>{\cellemph}\textcolor{red}{$-0.830$} \\
+        & All & $8.83$ & $8.23$ &
+          $8.41$ & $9.38$ & $7.43$ &
+          \textcolor{red}{$-0.361$} \\
+        \bottomrule
+      \textbf{All}
+        & \textbf{FI} & $\mathbf{60.83}$ &
+          $\mathbf{60.53}$ & $\mathbf{54.92}$ & $\mathbf{60.57}$ &
+          $\mathbf{59.34}$ & \textcolor{red}{$\mathbf{-0.188}$} \\
+        & \textbf{Sci} & $\mathbf{14.86}$ &
+          $\mathbf{12.96}$ & $\mathbf{14.74}$ & $\mathbf{16.55}$ &
+          $\mathbf{15.45}$ &
+          \textcolor{green}{$\mathbf{+0.577}$}\\
+        & \textbf{All} & $\mathbf{5.67}$ &
+          $\mathbf{5.70}$ & $\mathbf{5.73}$ &
+          $\mathbf{6.41}$ & $\mathbf{6.28}$ &
+          \only<2>{\cellemph}\textcolor{green}{$\mathbf{+0.855}$}
+      \end{tabularx}}
+    \begin{overlayarea}{\textwidth}{8em}
+    \only<1>{\caption{The percentage of theses written using \TeX\ 
+      which were defended in each year during 2010--2014 and the
+      sample correlation coefficient $R$ between the percentage and
+      the years with remarkably strong correlations emphasized}}
+    \ifbeamerarticle\else\addtocounter{table}{1}\fi
+    \only<2>{\smallskip\footnotesize There was a marked and steady
+      increase in the use of \TeX\ for the typesetting of theses
+      during 2010--2014. This does not necessarily hold true for
+      individual faculties and degree study programmes, as
+      exemplified by the pronounced downwards trend in the use of
+      \TeX\ for the typesetting of doctoral theses at Sci.}
+    \end{overlayarea}
+  \end{table}
+\end{frame}
+\begin{frame}
+  \begin{table}[!b]
+    \scalebox{\ifbeamerarticle1\else0.9\fi}{\begin{tabularx}%
+      {\ifbeamerarticle1\else1.11\fi\textwidth}{Xrrrrr}
+      &\textbf{Without \TeX}&E(\textbf{With \TeX})
+      &O(\textbf{With \TeX})&$(\text{E}-\text{O})^2/\text{E}$
+      \\ \toprule
+      \textbf{\parbox[t]{1em}{\centering A}} 
+        &$15\,476$&$987.635$&\only<3>{\cellemph}
+        \textcolor{green}{$1\,181$}&
+        \only<3>{\cellemph}$37.858$\\
+      \textbf{\parbox[t]{1em}{\centering B}}
+        &$9999$&$638.108$&\textcolor{red}{$587$}&$4.093$\\
+      \textbf{\parbox[t]{1em}{\centering C}}
+        &$7\,926$&$505.815$&\only<3>{\cellemph}
+        \textcolor{red}{$381$}&
+        \only<3>{\cellemph}$30.799$\\
+      \textbf{\parbox[t]{1em}{\centering D}}
+        &$4\,020$&$256.545$&\only<3>{\cellemph}
+        \textcolor{red}{$194$}&
+        \only<3>{\cellemph}$15.248$\\
+      \textbf{\parbox[t]{1em}{\centering E}}
+        &$2\,783$&$177.603$&\textcolor{red}{$128$}&$13.853$\\
+      \textbf{\parbox[t]{1em}{\centering F}}
+        &$1\,979$&$126.294$&\textcolor{green}{$145$}&
+        $2.771$\\
+      \bottomrule
+      \textbf{Total} &$\mathbf{42\,183}$&$\mathbf{2\,692}$&
+        $\mathbf{2\,692}$&$\only<2>{\cellemph}\mathbf{104.623}$
+    \end{tabularx}}
+    \begin{overlayarea}{\textwidth}{8em}
+      \only<1>{\caption{The contingency table of the
+        numbers of marks awarded to theses written and defended
+        during 2010--2015 with Pearson's goodness-of-fit measure
+        $(\text{E}-\text{O})^2/\text{E}$ between the expected (O) and
+        the observed (E) numbers of marks awarded to theses written
+        using \TeX}}
+      \ifbeamerarticle\else
+      \only<2>{\smallskip\footnotesize There was an overwhelming difference
+        in the distribution of grades given to theses written using
+        and not using \TeX:\begin{equation}\nonumber
+        \sum_{\text{A},\text{B},\ldots,\text{F}}
+        (\text{E}-\text{O})^2/\text{E}=104.623\gg11.07=
+        \chi_{0.95}^2(5)
+      \end{equation}}
+      \only<3>{\smallskip\footnotesize Theses written using \TeX\
+        had been awarded:
+        \begin{itemize}
+          \item grade A statistically significantly
+            \textcolor{green}{more often} than
+            theses not written using \TeX,
+          \item grades C and D statistically significantly
+            \textcolor{red}{less often} than theses not
+            written using \TeX.
+        \end{itemize}
+      }\fi
+    \end{overlayarea}
+  \end{table}
+\end{frame}
+\begin{frame}
+  \begin{figure}
+    \begin{tikzpicture}
+      \begin{axis}
+        [
+          ytick={1,2,3,4,5,6},
+          xticklabels={,,A,B,C,D,E,F},
+          yticklabels={With \TeX{} (at Sci),
+                       Without \TeX{} (at Sci),
+                       With \TeX{},
+                       Without \TeX{},
+                       With \TeX{} (at FI),
+                       Without \TeX{} (at FI)},
+        ]
+        \addplot+[
+          boxplot prepared={
+            lower quartile=1,
+            median=1,
+            upper quartile=2,
+            upper whisker=3,
+            lower whisker=1,
+            % average=1.9148387097
+          },
+        ] table[row sep=\\,y index=0] {
+          data\\ 4\\ 5\\ 6\\
+        };
+        \addplot+[
+          boxplot prepared={
+            lower quartile=1,
+            median=2,
+            upper quartile=3,
+            upper whisker=6,
+            lower whisker=1,
+            % average=2.0201768307
+          },
+        ] table[row sep=\\,y index=0] {
+          data\\
+        };
+        \addplot+[
+          boxplot prepared={
+            lower whisker=1,
+            lower quartile=1,
+            median=2,
+            upper quartile=3,
+            upper whisker=6,
+            % average=2.2110091743
+          },
+        ] table[row sep=\\,y index=0] {
+          data\\
+        };
+        \addplot+[
+          boxplot prepared={
+            lower whisker=1,
+            lower quartile=1,
+            median=2,
+            upper quartile=3,
+            upper whisker=6,
+            % average=2.3971979233
+          },
+        ] table[row sep=\\,y index=0] {
+          data\\
+        };
+        \addplot+[
+          boxplot prepared={
+            lower whisker=1,
+            lower quartile=1,
+            median=2,
+            upper quartile=3,
+            upper whisker=6,
+            % average=2.3565375303
+          },
+        ] table[row sep=\\,y index=0] {
+          data\\
+        };
+        \addplot+[
+          boxplot prepared={
+            lower whisker=1,
+            lower quartile=2,
+            median=3,
+            upper quartile=5,
+            upper whisker=6,
+            % average=3.1209262436
+          },
+        ] table[row sep=\\,y index=0] {
+          data\\
+        };
+      \end{axis}
+    \end{tikzpicture}
+    \caption{A box plot of the grades of theses written and
+      defended during 2010--2015 at FI, Sci and all the
+      faculties of MU}
+  \end{figure}
+\end{frame}
+\FloatBarrier
 \section{Review of Existing Templates}
+\begin{frame}
+  \frametitle{Templates of Czech Technical Universities}
+\end{frame}
 \begin{frame}
   \frametitle{Review of Existing Templates}
   \begin{itemize}[<+->]
