@@ -840,12 +840,13 @@ will also be considered.
   file~\cite[lines~959--971]{felthesisCode}\label{pdf-stamping}.
   Alongside the \gls{ltxpackage}, both a technical
   \cite{felthesisCode} and a user documentation \cite{felthesis} is
-  distributed.
+  distributed. The \textsf{felthesis} \gls{docclass} can be
+  downloaded from \cite{felthesisPkg}.
 
   \subsection{Official template of Charles University}
   Along with Petr Olšák's \textsf{CUStyle}, \gls{cuni} also
   provides an official \gls{latex} template for the typesetting of
-  theses \cite{cunisablona}. Rather than defining a new
+  theses. Rather than defining a new
   \gls{docclass}, the archive contains a \gls{makefile} and a
   skeleton \gls{latex} document using the base \textsf{report}
   \gls{docclass} for both Czech and English theses. The students
@@ -853,7 +854,12 @@ will also be considered.
   requirements. The template uses \gls{cslatex} rather than the
   babel \gls{ltxpackage}, which means that \gls{csfonts} rather
   than the superior \gls{lmfonts}~\cite{cslatexvsbabel} are used
-  by default.
+  by default. Likewise problematic is the implicit \gls{textwidth}
+  of 145\,mm \cite[line~7]{cunicode}, which, in conjunction with
+  the usage of \gls{csfonts} at 12\,pt, allows for up to 100
+  characters per line. This is problematic for reasons mentioned in
+  Subsection \ref{overlong-lines}. The template can be downloaded
+  from \cite{cunisablona}.
 
   \section{Mendel University in Brno}\index{\texttt{dipp.sty}|(}
   \label{sec:dipp.sty}
@@ -865,16 +871,20 @@ will also be considered.
   with the base \textsf{article} \gls{docclass}. Although the
   article class was not designed with European typography in mind,
   the \texttt{dipp.sty} \gls{ltxpackage} redefines much of the
-  geometry.
+  geometry. The implicit \gls{textwidth} of the \gls{ltxpackage} is
+  150\,mm \cite[line~26]{dipp.sty}, which allows for up to 90
+  characters per line. This is problematic for reasons mentioned in
+  Subsection \ref{overlong-lines}.
 
-  Noteworthy is also the rich selection of additional markup, which
+  Noteworthy is the rich selection of additional markup, which
   is meant to ease the task of typesetting a thesis for those
   unfamiliar with \gls{latex}. To this end, the \gls{ltxpackage}
   defines thesis sectioning commands, macros and wrapper
   \glspl{env} for the inclusion of bibliography, tables or figures
   and discretionary macros specific to Czech typography such as
   \cs{az} for the typesetting of ranges and \cs{spoj} for
-  hyphenation \cite{dippman}.\index{\texttt{dipp.sty}|)}
+  hyphenation \cite{dippman}. The \texttt{dipp.sty} \gls{ltxpackage}
+  can be downloaded from \cite{dipp.sty}.\index{\texttt{dipp.sty}|)}
 
   \section{Brno University of Technology}
   \index{\texttt{thesis.sty}|(}
@@ -913,7 +923,7 @@ will also be considered.
   documents on \gls{tul}. \textsf{Tulthesis} uses the base
   \textsf{report} \gls{docclass} \cite[section~1]{tulthesis-man},
   supports modern \glspl{texeng} such as \Hologo{XeTeX}, and
-  \Hologo{LuaTeX} and is quite visually distinctive. An interesting
+  \Hologo{LuaTeX}, and is quite visually distinctive. An interesting
   bit of trivia is the fact that the template inspired
   \cite[post~21]{ctustyle-forums} the creation of Petr Olšák's
   \nameref{sec:ctu&custyle} \glspl{texpackage}. The \textsf{tul}
