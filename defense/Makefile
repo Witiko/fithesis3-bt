@@ -1,6 +1,6 @@
 .PHONY: all clean implode
 AUXFILES=*.aux *.log *.nav *.out *.pyg *.bbl\
-				 *.snm *.toc *.vrb *.run.xml *.bcf *.blg
+  *.snm *.toc *.vrb *.run.xml *.bcf *.blg
 OUTPUT=defense.pdf handout.pdf
 
 # This target typesets the printed version of
