@@ -131,22 +131,24 @@
   Brno}
 \begin{document}
 \frame{\maketitle}
+\ifbeamerarticle\setcounter{tocdepth}{1}\fi
 \frame{\tableofcontents}
 \redefinetables
 \section{\TeX\ Usage at MU}
+\subsection{History}
 \newlength\yearposx
-\begin{frame}<1-2>[label=history]
+\begin{frame}<2>[label=history]
   \frametitle{History of \TeX\ at FI MU}
   \begin{itemize}
-    \item<2-> {1994} -- The \textcolor{violet}{ 
+    \item<2-> {1994} -- The \textcolor{violet}{%
       logo} of FI MU
     \item<3-> {1998--2008} -- The
       \textcolor{red}{\pkg{fithesis1}} class
     \item<4-> {2001--2004} -- The
       \textcolor{green}{\pkg{xslt2}} module
-    \item<5-> {2008--2015} -- The
+    \item<4-> {2008--2015} -- The
       \textcolor{blue}{\pkg{fithesis2}} class
-    \item<6-> {2013} -- The
+    \item<5-> {2013} -- The
       \textcolor{orange}{\pkg{comenia}} package
   \end{itemize}\medskip
   \begin{tikzpicture}[scale=\ifbeamerarticle0.57\else0.46\fi]
@@ -173,15 +175,15 @@
       \draw[green,line width=0.75mm] (y2001t) -- (y2004t);
       \fill[green] (y2001t) circle (5pt);
       \fill[green] (y2004t) circle (5pt);}
-    \uncover<5-> {
+    \uncover<4-> {
       \node at (y2015) [below=3pt] {{2015}};}
-    \only<5-> {
+    \only<4-> {
       \draw[blue,line width=0.75mm] (y2008) -- (y2015);
       \fill[blue] (y2008) circle (5pt);
       \fill[blue] (y2015) circle (5pt);}
-    \uncover<6-> {\node at (y2013) [above=3pt]
+    \uncover<5-> {\node at (y2013) [above=3pt]
       {{2013}};}
-    \only<6-> {\fill[orange] (y2013t) circle (5pt);}
+    \only<5-> {\fill[orange] (y2013t) circle (5pt);}
   \end{tikzpicture}
 \end{frame}
 \begin{frame}
@@ -199,127 +201,8 @@
   \end{figure}
 \end{frame}
 \againframe<2->{history}
-\subsection{User Survey}
-\begin{frame}[c]
-  \begin{table}[!b]
-    \begin{tabularx}{\textwidth}{Xcr}
-      \textbf{On which faculty of
-      MU do you study?} & \textbf{\#}
-      \\ \toprule Faculty of Informatics          & $82$
-      \\ Faculty of Science                       &  $3$
-      \\ Faculty of Education                     &  $2$
-      \\ Faculty of Social Studies                &  $2$
-      \\ Faculty of Law                           &  $1$
-      \\ Faculty of Medicine                      &  $1$
-      \\ Faculty of Arts                          &  $1$
-      \\ Faculty of Economics and Administration  &  $1$
-      \\ Faculty of Sports Studies                &  $0$
-      \\
-    \end{tabularx}
-    \caption{The distribution of the questionnaire
-      respondents across the faculties of MU}
-  \end{table}
-\end{frame}
-\begin{frame}[c]
-  \begin{table}[!b]
-    \begin{tabularx}{\textwidth}{Xcr}
-      \textbf{Which academic degree are you pursuing?} &
-      \textbf{\#} \\
-      \toprule
-      Bachelor's degree  & $70$ \\
-      Master's degree    & $17$ \\
-      Doctorate          & $2$  \\
-      \bottomrule
-      \textbf{Total}     & $\mathbf{89}$
-    \end{tabularx}
-    \caption{The highest academic degrees currently pursued by the
-      respondents of the questionnaire}
-  \end{table}
-\end{frame}
-\begin{frame}
-  \begin{table}[!b]
-    \begin{tabularx}{\textwidth}{Xcr}
-      \textbf{Which application do you use / are you planning to
-      use to write your thesis?} & \textbf{\#} \\
-      \toprule
-      \TeX\ / \LaTeX          & $65$          \\
-      Microsoft Office        & $16$          \\
-      Apache OpenOffice, LibreOffice or another free office
-      software suite          & $4$           \\
-      Other                   & $4$           \\
-      Google Documents        & $0$           \\
-      \bottomrule
-      \textbf{Total}          & $\mathbf{89}$ 
-    \end{tabularx}
-    \caption{The software the respondents of the questionnaire
-      were using or planning to use to write their theses}
-  \end{table}
-\end{frame}
-\begin{frame}
-  \begin{table}[!b]
-    \begin{tabularx}{\textwidth}{Xcr}
-      \textbf{Are you planning to use the \pkg{fithesis1}
-        class?} & \textbf{\#} \\
-      \toprule    Yes                       & $47$
-      \\ Maybe, I did not know it existed   & $10$
-      \\ No, I'm going to use another class & $5$
-      \\ Other                              & $2$
-      \\ No, I'm going to use plain \TeX{}  & $1$
-      \\ \bottomrule
-      \textbf{Total}  & $\mathbf{65}$ 
-    \end{tabularx}
-      \caption{The attitude towards the usage of the \pkg{fithesis1}
-      class amongst those respondents who claimed to be using or
-      planning to use \TeX{} to typeset their theses}
-  \end{table}
-\end{frame}
-\begin{frame}
-  \frametitle{Conclusion}
-  The majority of respondents:
-  \begin{itemize}
-    \item were FI bachelor's degree students,
-    \item preferred \pkg{fithesis1} over the alternatives.
-  \end{itemize}
-\end{frame}\FloatBarrier
 \subsection{Analysis of Existing Theses}
 \begin{frame}
-  \begin{table}[!b]
-    \scalebox{\ifbeamerarticle1\else0.9\fi}{\begin{tabularx}%
-      {\ifbeamerarticle1\else1.11\fi\textwidth}{Xrr}
-      \textbf{Faculty} & \textbf{\#} & \textbf{\%} \\
-      \toprule
-      Faculty of Arts                         & $10\,000$ & $21.98$ \\% 1421
-      Faculty of Education                    & $8\,219$  & $18.07$ \\% 1441
-      Faculty of Social Studies               & $5\,599$  & $12.31$ \\% 1423
-      Faculty of Science                      & $5\,275$  & $11.60$ \\% 1431
-      Faculty of Law                          & $4\,824$  & $10.60$ \\% 1422
-      Faculty of Economics and Administration & $4\,591$  & $10.09$ \\% 1456
-      Faculty of Informatics                  & $2\,904$  &  $6.38$ \\% 1433
-      Faculty of Medicine                     & $2\,014$  &  $4.43$ \\% 1411
-      Faculty of Sports Studies               & $2\,062$  &  $4.53$ \\% 1451
-      \bottomrule
-      \textbf{Total}     & $\mathbf{45\,488}$ & $\mathbf{100.00}$
-    \end{tabularx}}
-    \caption{The distribution of theses defended between 2010--2015
-      across the faculties of MU}
-  \end{table}
-\end{frame}
-\begin{frame}
-  \begin{table}[!b]
-    \begin{tabularx}{\textwidth}{Xrr}
-      \textbf{Degree} & \textbf{\#} & \textbf{\%} \\
-      \toprule
-      Bachelor's & $22\,288$ & $49.00$ \\
-      Master's   & $20\,761$ & $45.64$ \\
-      Doctoral   &  $2\,231$ &  $4.90$ \\
-      Lifelong   &     $208$ &  $0.46$ \\
-      \bottomrule
-      \textbf{Total} & $\mathbf{45\,488}$ & $\mathbf{100.00}$
-    \end{tabularx}
-    \caption{The distribution of theses defended between 2010--2015
-      across the study programme degrees}
-  \end{table}
-\end{frame}\begin{frame}
   A thesis was considered to be written using \TeX, if one
   or more files submitted with it satisfied one or more of the
   following conditions: \begin{itemize}
@@ -494,102 +377,6 @@
   \end{table}
 \end{frame}
 \begin{frame}
-  \begin{figure}
-    \centering
-    \ifbeamerarticle\else\scalebox{0.95}{\fi%
-    \begin{tikzpicture}
-      \begin{axis}
-        [
-          ytick={1,2,3,4,5,6},
-          xticklabels={,,A,B,C,D,E,F},
-          yticklabels={With \TeX{} (at Sci),
-                       Without \TeX{} (at Sci),
-                       With \TeX{},
-                       Without \TeX{},
-                       With \TeX{} (at FI),
-                       Without \TeX{} (at FI)},
-        ]
-        \addplot+[
-          boxplot prepared={
-            lower quartile=1,
-            median=1,
-            upper quartile=2,
-            upper whisker=3,
-            lower whisker=1,
-            % average=1.9148387097
-          },
-        ] table[row sep=\\,y index=0] {
-          data\\ 4\\ 5\\ 6\\
-        };
-        \addplot+[
-          boxplot prepared={
-            lower quartile=1,
-            median=2,
-            upper quartile=3,
-            upper whisker=6,
-            lower whisker=1,
-            % average=2.0201768307
-          },
-        ] table[row sep=\\,y index=0] {
-          data\\
-        };
-        \addplot+[
-          boxplot prepared={
-            lower whisker=1,
-            lower quartile=1,
-            median=2,
-            upper quartile=3,
-            upper whisker=6,
-            % average=2.2110091743
-          },
-        ] table[row sep=\\,y index=0] {
-          data\\
-        };
-        \addplot+[
-          boxplot prepared={
-            lower whisker=1,
-            lower quartile=1,
-            median=2,
-            upper quartile=3,
-            upper whisker=6,
-            % average=2.3971979233
-          },
-        ] table[row sep=\\,y index=0] {
-          data\\
-        };
-        \addplot+[
-          boxplot prepared={
-            lower whisker=1,
-            lower quartile=1,
-            median=2,
-            upper quartile=3,
-            upper whisker=6,
-            % average=2.3565375303
-          },
-        ] table[row sep=\\,y index=0] {
-          data\\
-        };
-        \addplot+[
-          boxplot prepared={
-            lower whisker=1,
-            lower quartile=2,
-            median=3,
-            upper quartile=5,
-            upper whisker=6,
-            % average=3.1209262436
-          },
-        ] table[row sep=\\,y index=0] {
-          data\\
-        };
-      \end{axis}
-    \end{tikzpicture}
-    \ifbeamerarticle\else}\fi%
-    \caption{A box plot of the grades of theses written and
-      defended during 2010--2015 at FI, Sci and all the
-      faculties of MU}
-  \end{figure}
-\end{frame}
-\begin{frame}
   \frametitle{Conclusion}
   During 2010--2014, the usage of \TeX\ for the typesetting of
   theses at MU: \begin{itemize}
@@ -598,6 +385,7 @@
   \end{itemize}
 \end{frame}
 \FloatBarrier
+\clearpage
 \section{Review of Existing Templates}
 \def\right#1{{\hfill\ifbeamerarticle\else
     \textcolor{white!33!black}{\scriptsize
@@ -617,7 +405,7 @@
     \item Masaryk University in Brno\right{\texttt{sci.muni.thesis.sty}}
   \end{enumerate}
 \end{frame}
-\begin{frame}<1-3>[label=conclusion]
+\begin{frame}<1-2>[label=conclusion]
   \frametitle{Conclusion from the Review}
   \uncover<1,2,4->{Features to consider:}\begin{itemize}
 %   \item<1,4,5,10> Separation of concerns
@@ -626,19 +414,20 @@
       tul}}
     \item<1,4,6> Unicode \TeX\ engine support\right{\pkg{tul+tulthesis},
       \texttt{dipp.sty}}
-    \item<1,4,7> PDF metadata stamping \right{\pkg{felthesis}}
-    \item<1,4,8,9> Support for various
+    \item<1,4,6> PDF metadata stamping \right{\pkg{felthesis}}
+    \item<1,4,7> Support for various
       faculties\right{\pkg{tul+tulthesis}}
     \item<2> Additional mark-up
       \right{\texttt{dipp.sty}, \texttt{thesis.sty}, \pkg{diploma}}
     \item<2> Homebrew \textsc{Bib}\LaTeX\ ISO-690 citation styles
       \right{\pkg{KIdiplom}}
-  \end{itemize}\uncover<3,4>{Problems to avoid:}\begin{itemize}
-    \item<3,4> Lack of double-sided typesetting\right{\pkg{KIdiplom}}
-    \item<3,4> Overly large \texttt{\string\textwidth}\right{All except
-      \pkg{tul+tulthesis, felthesis}}
-  \end{itemize}
+  \end{itemize}%\uncover<3,4>{Problems to avoid:}\begin{itemize}
+    %\item<3,4> Lack of double-sided typesetting\right{\pkg{KIdiplom}}
+    %\item<3,4> Overly large \texttt{\string\textwidth}\right{All except
+      %\pkg{tul+tulthesis, felthesis}}
+  %\end{itemize}
 \end{frame}
+\clearpage
 \section{Design and Implementation}
 \againframe<4,5>{conclusion}
 {\def\showlogo#1{%
@@ -678,7 +467,7 @@
     \caption{Other colorful typographic elements}
   \end{figure}
 \end{frame}
-\againframe<5-8>{conclusion}
+\againframe<6-7>{conclusion}
 \lstset{
   backgroundcolor=\color{white}, 
   basicstyle=\ifbeamerarticle\footnotesize\else\scriptsize\fi%
@@ -703,29 +492,23 @@
 \begin{frame}[fragile]
   \begin{figure}[!]
     \begingroup
-    \lstset{basicstyle=\ifbeamerarticle\scriptsize\else\tiny\fi%
-      \ttfamily}
     \begin{lstlisting}
 \documentclass[12pt]{fithesis2}
 \usepackage[english]{babel}       % Multilingual support
-\usepackage[utf8]{inputenc}       % UTF-8 encoding
 \usepackage[T1]{fontenc}          % T1 font encoding
-\thesislang{en}                   % The language of the thesis
 \thesistitle{Sample Thesis}       % The title of the thesis
 \thesissubtitle{Bachelor Thesis}  % The type of the thesis
-\thesisstudent{Jane Doe}          % Your name
-\thesiswoman{true}                % Your gender
-\thesisfaculty{fi}                % Your faculty
+\thesisstudent{John Doe}          % Your name
 \thesisyear{Spring \the\year}     % The academic term
-\thesisadvisor{John Foo, Ph.D.}   % Your advisor
+\thesisadvisor{Jane Foo, Ph.D.}   % Your advisor
 \begin{document}
   \FrontMatter                    % The front matter
     \ThesisTitlePage                % The title page
     \begin{ThesisDeclaration}
       \DeclarationText\AdvisorName\end{ThesisDeclaration}
-    \begin{ThesisThanks}I would like to thank\,\dots\end{ThesisThanks}
-    \begin{ThesisAbstract}The aim of the\,\dots\end{ThesisAbstract}
-    \begin{ThesisKeyWords}keyword1, keyword2\,\dots\end{ThesisKeyWords}
+    \begin{ThesisThanks}I would like to thank ...\end{ThesisThanks}
+    \begin{ThesisAbstract}The aim of the ...\end{ThesisAbstract}
+    \begin{ThesisKeyWords}keywords ...\end{ThesisKeyWords}
     \tableofcontents                % The table of contents
   \MainMatter                     % The main matter
   % Here goes the text of the thesis
@@ -748,234 +531,35 @@
     \caption{A minimal \pkg{fithesis3} document}
   \end{figure}
 \end{frame}
-\begin{frame}[fragile]
-  \begin{figure}[!]
-    \begin{lstlisting}
-\documentclass[twoside,color]{fithesis3}
-\usepackage[english]{babel}
-\thesissetup{
-  title       = The Form of Theses Written in LaTeX,
-  TeXtitle    = The Form of Theses\\ Written in \LaTeX,
-  author      = Vít Novotný,
-  advisor     = {Doc. RNDr. Petr Sojka, Ph.D.},
-  keywords    = {latex document classes, thesis typesetting,
-    fithesis, tex usage statistics},
-  TeXkeywords = {\LaTeX\ document classes, thesis typesetting,
-    \textsf{fithesis}, \TeX\ usage statistics},
-  assignment  = {./misc/declaration.pdf, 1, {},
-                 ./misc/assignment.pdf,  1, {}}}
-\thesislong{abstract}{This bachelor's thesis aims to assess
-  existing templates for the typesetting of theses and ...}
-\thesislong{thanks}{I wish to express my most sincere gratitude
-  and appreciation to Doc. RNDr. Petr Sojka for sharing ...}
-\begin{document}
-  % Here goes the text of the thesis
-\end{document}
-    \end{lstlisting}
-    \caption{A standard \pkg{fithesis3} document}
-  \end{figure}
-\end{frame}
-\begin{frame}<1>[label=design]
+\begin{frame}[label=design]
   \frametitle{Design}
   \begin{itemize}
-    \item<1->\pkg{Fithesis1} and \pkg{2} mix logic, locales and
-      presentation.
+    \item<1->\pkg{Fithesis1} and \pkg{2} mix
+      \textcolor{blue}{logic}, \textcolor{green}{locales} and
+      \textcolor{red}{presentation}.
     \item<2-> Proper support for faculties requires the addition of:
       \begin{itemize}
-        \item<2-> per-faculty document layout definitions,
-        \item<3-> per-faculty locale strings,
-        \item<4-> per-faculty presentation code.
+        \item<2-> per-faculty \textcolor{red}{%
+          document layout definitions},
+        \item<2-> per-faculty \textcolor{green}{locale strings},
+        \item<2-> per-faculty \textcolor{red}{presentation code}.
       \end{itemize}
-    \item<5-> Non-functional requirements:
+    \item<3-> Non-functional requirements:
       \begin{itemize}
-        \item<5-> Adherence to the open/closed principle
-        \item<6-> Extensive documentation
+        \item<3-> Adherence to the open/closed principle
+        \item<4-> Extensive documentation
       \end{itemize}
   \end{itemize}
 \end{frame}
-\begin{frame}[fragile]
-  \begin{figure}[!]
-    \begin{lstlisting}
-\def\thesistitle#1{\gdef\@thesistitle{#1}}
-\def\thesissubtitle#1{\gdef\@thesissubtitle{#1}}
-\def\thesisstudent#1{\gdef\@thesisstudent{#1}}
-\newif\ifwoman\womanfalse
-\def\thesiswoman#1{\def\@thesiswoman{#1}
-  \ifx\@thesiswoman\True\womantrue\else\womanfalse\fi}
-\def\@w{\ifwoman a\else\fi} 
-    \end{lstlisting}
-    \caption{The input processing code within \pkg{fithesis1}
-      and \pkg{2}}
-  \end{figure}
-\end{frame}
-\begin{frame}[fragile]
-  \begin{figure}[!]
-    \begin{lstlisting}
-\def\AbstractTitlecs{Shrnutí}
-\def\AbstractTitlesk{Zhrnutie}
-\def\AbstractTitleen{Abstract}
-\def\DeclarationTextcs{%
-  %*Prohlašuji*), že tato \expandafter\lowercasewrapper%
-  \@thesissubtitle\ je mým %*původním*) autorským dílem,
-  které jsem vypracoval\@w\ %*samostatně*). %*Všechny*)
-  zdroje, prameny a literaturu, které jsem %*při*)
-  vypracování %*používal*)\@w\ nebo z~nich čerpal\@w,
-  v~práci %*řádně*) cituji s~uvedením úplného odkazu na
-  %*příslušný*) zdroj.}
-    \end{lstlisting}
-    \caption{The locale strings within \pkg{fithesis1} and
-      \pkg{2}}
-  \end{figure}
-\end{frame}
-\begin{frame}[fragile]
-  \begin{figure}[!]
-    \begin{lstlisting}
-\renewcommand*\l@chapter{%
-  \@dottedtocline{1}{0em}{1.5em}}
-\renewcommand*\l@section{%
-  \@dottedtocline{2}{1.5em}{2.3em}}
-\renewcommand*\l@subsection{%
-  \@dottedtocline{3}{3.8em}{3.2em}}
-\renewcommand*\l@subsubsection{%
-  \@dottedtocline{4}{7.0em}{3.8em}}
-    \end{lstlisting}
-    \caption{The presenation code within \pkg{fithesis1} and
-      \pkg{2}}
-  \end{figure}
-\end{frame}
-\againframe<2-4>{design}
-\begin{frame}[fragile]
-  \begin{figure}[!]
-    \begin{lstlisting}
-\if\@thesisfaculty\Fi
-  \def\@mainMatter{%
-    % ...
-  \def\@titlePage{%
-    % ...
-  % ...
-\else\if\@thesisfaculty\Sci
-  % ...
-% ...
-\fi\fi\fi\fi\fi\fi\fi\fi\fi
-    \end{lstlisting}
-    \caption{A simple extension of \pkg{fithesis1} and \pkg{2}
-      to add support for per-faculty document layouts}
-  \end{figure}
-\end{frame}
-\begin{frame}[fragile]
-  \begin{figure}[!]
-    \begin{lstlisting}
-\if\@thesisfaculty\Fi
-  \def\DeclarationTextcs{%
-    %*Prohlašuji*), že tato \expandafter\lowercasewrapper%
-    \@thesissubtitle\ je mým %*původním*) autorským dílem,
-    které jsem vypracoval\@w\ %*samostatně*). %*Všechny*)
-    zdroje, prameny a literaturu, které jsem %*při*)
-    vypracování %*používal*)\@w\ nebo z~nich čerpal\@w,
-    v~práci %*řádně*) cituji s~uvedením úplného odkazu na
-    %*příslušný*) zdroj.}
-\else\if\@thesisfaculty\Sci
-  \def\DeclarationTextcs{%
-    % ...
-% ...
-\fi\fi\fi\fi\fi\fi\fi\fi\fi
-    \end{lstlisting}
-    \caption{A simple extension of \pkg{fithesis1} and \pkg{2} to
-      add support for per-faculty locale strings}
-  \end{figure}
-\end{frame}
-\begin{frame}[fragile]
-  \begin{figure}[!]
-    \begin{lstlisting}
-\if\@thesisfaculty\Fi
-  \renewcommand*\l@chapter{%
-    \@dottedtocline{1}{0em}{1.5em}}
-  \renewcommand*\l@section{%
-    \@dottedtocline{2}{1.5em}{2.3em}}
-  \renewcommand*\l@subsection{%
-    \@dottedtocline{3}{3.8em}{3.2em}}
-  \renewcommand*\l@subsubsection{%
-    \@dottedtocline{4}{7.0em}{3.8em}}
-\else\if\@thesisfaculty\Sci
-  % ...
-% ...
-\fi\fi\fi\fi\fi\fi\fi\fi\fi
-    \end{lstlisting}
-    \caption{A simple extension of \pkg{fithesis1} and \pkg{2} to
-      add support for per-faculty presentation code}
-  \end{figure}
-\end{frame}
-\againframe<4-5>{design}
-\begin{frame}
-  \begin{figure}[!]
-    \centering
-    \parbox{0.5\textwidth}{\dirtree{%
-      .1 fithesis3/.
-        .2 locale/.
-        .2 style/.
-        .2 logo/.
-        .2 fithesis3.cls.
-    }}
-    \caption{The directory structure of \pkg{fithesis3}}
-  \end{figure}
-\end{frame}
-\begin{frame}
-  \begin{figure}[!]
-    \centering
-    \parbox{0.5\textwidth}{\dirtree{%
-      .1 locale/.
-        .2 \textit{locale}.def.
-        .2 \textit{university}/.
-          .3 \textit{locale}.def.
-          .3 \textit{faculty}/.
-            .4 \textit{locale}.def.
-    }}
-    \caption{The directory structure of the locale files of
-      \pkg{fithesis3}}
-  \end{figure}
-\end{frame}
-\begin{frame}
-  \begin{figure}[!]
-    \centering
-    \parbox{\ifbeamerarticle0.5\else0.65\fi\textwidth}{\dirtree{%
-      .1 style/.
-        .2 fithesis3-base.sty.
-        .2 \textit{university}/.
-          .3 fithesis3-base.sty.
-          .3 fithesis3-\textit{faculty}.sty.
-    }}
-    \caption{The directory structure of the style files of
-      \pkg{fithesis3}}
-  \end{figure}
-\end{frame}
-\begin{frame}
-  \begin{figure}[!]
-    \centering
-    \parbox{0.5\textwidth}{\dirtree{%
-      .1 logo/.
-        .2 \textit{university}/.
-          .3 base.eps.
-          .3 base.pdf.
-          .3 \textit{faculty}.eps.
-          .3 \textit{faculty}.pdf.
-          .3 color/.
-            .4 base.eps.
-            .4 base.pdf.
-            .4 \textit{faculty}.eps.
-            .4 \textit{faculty}.pdf.
-    }}
-    \caption{The directory structure of the logo files of
-      \pkg{fithesis3}}
-  \end{figure}
-\end{frame}
-\againframe<5->{design}
 \FloatBarrier
+\clearpage
 \section{Conclusion}
 \def\Acrlong#1{The Faculty of Informatics of the Masaryk University
   in Brno}
 \begin{frame}
   \frametitle{Results}
   \begin{itemize}
+    \only<1>{
     \item The described design has been implemented.
     \item The class has been comprehensively documented.
     \item Along with the author's thesis, several other theses were
@@ -986,7 +570,15 @@
         \mycite{kovanda15}\textsuperscript{,}%
         \mycite{zvolanek15}\textsuperscript{,}%
         \mycite{rucka15}%
-      \fi.
+      \fi.}
+    \only<2>{
+    \def\CS{$\cal C\kern-.1667em\lower.5ex%
+      \hbox{$\cal S$}\kern-.075em $}
+    \item The results of the statistical analysis of the usage of
+      \TeX\ at MU will be published in the \CS TUG bulletin.
+    \item Starting this fall, the class will be added to the
+      curriculum of the \emph{FI:PB029 -- Electronic Document
+      Preparation} subject taught at FI MU.}
   \end{itemize}
 \end{frame}
 \begin{frame}
@@ -998,13 +590,6 @@
       \item the CTAN archive (for the inclusion in \TeX\
         distibutions).
     \end{itemize}
-    \def\CS{$\cal C\kern-.1667em\lower.5ex%
-      \hbox{$\cal S$}\kern-.075em $}
-    \item The results of the statistical analysis of the usage of
-      \TeX\ at MU will be published in the \CS TUG bulletin.
-    \item Starting this fall, the class will be added to the
-      curriculum of the \emph{FI:PB029 -- Electronic Document
-      Preparation} subject taught at FI MU.
     \item During July--September 2015:\begin{itemize} 
       \item user documentation will be expanded,
       \item an author’s cookbook will be created,
@@ -1014,6 +599,18 @@
   \end{itemize}
 \end{frame}
 \ifbeamerarticle
+  \clearpage
   \printbibliography
+\else
+  \begin{frame}
+    \begin{center}
+      \rmfamily\fontsize{150}{0}\selectfont%
+      \textbf{Q}\kern-2cm%
+      \fontsize{170}{0}\selectfont%
+      \raisebox{-0.3cm}{\textcolor{yellow!90!orange}{\&}}\kern-2cm%
+      \fontsize{150}{0}\selectfont%
+      \textbf{A}
+    \end{center}
+  \end{frame}
 \fi
 \end{document}
