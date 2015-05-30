@@ -9,12 +9,10 @@
 Typeset the thesis as follows:
 
 ```bash
-git clone https://github.com/Witiko/fithesis3-bt.git 
+git clone https://github.com/Witiko/fithesis3-bt.git --branch svoc --single-branch 
 cd fithesis3-bt
-git clone https://github.com/Witiko/fithesis3.git
-cd fithesis3
-make
-cd ..
-git checkout svoc
+curl https://codeload.github.com/Witiko/fithesis3/tar.gz/v0.3.11-alpha | tar xz
+mv fithesis3-0.3.11-alpha fithesis3
+make -C fithesis3/fithesis3
 make
 ```
