@@ -56,6 +56,7 @@
 % Theming & colors
 \usetheme{Antibes}
 \usecolortheme{crane}
+\useoutertheme{infolines}
 \usefonttheme{professionalfonts}
 \definecolor{green}{RGB}{0,130,0}
 \definecolor{yellow}{RGB}{242,212,92}
@@ -135,73 +136,6 @@
 \frame{\tableofcontents}
 \redefinetables
 \section{\TeX\ Usage at MU}
-\subsection{History}
-\newlength\yearposx
-\begin{frame}<2>[label=history]
-  \frametitle{History of \TeX\ at FI MU}
-  \begin{itemize}
-    \item<2-> {1994} -- The \textcolor{violet}{%
-      logo} of FI MU
-    \item<3-> {1998--2008} -- The
-      \textcolor{red}{\pkg{fithesis1}} class
-    \item<4-> {2001--2004} -- The
-      \textcolor{green}{\pkg{xslt2}} module
-    \item<4-> {2008--2015} -- The
-      \textcolor{blue}{\pkg{fithesis2}} class
-    \item<5-> {2013} -- The
-      \textcolor{orange}{\pkg{comenia}} package
-  \end{itemize}\medskip
-  \begin{tikzpicture}[scale=\ifbeamerarticle0.57\else0.46\fi]
-    \foreach \x in {1994,1998,2001,2004,2008,2013,2015}{
-      \pgfmathsetlength\yearposx{(\x-1994)*1cm};
-      \coordinate (y\x) at (\yearposx,0);
-      \coordinate (y\x t) at (\yearposx,0.75mm);
-      \draw (\yearposx,+3pt) -- (\yearposx,-3pt);}
-    \draw [->] (y1994) -- (y2015);
-    \uncover<2-> {\node at (y1994) [above=3pt]
-      {{1994}};}
-    \only<2-> {\fill[violet] (y1994) circle (5pt);}
-    \uncover<3-> {
-      \node at (y1998) [below=3pt] {{1998}};
-      \node at (y2008) [above=3pt] {{2008}};}
-    \only<3-> {
-      \draw[red,line width=0.75mm] (y1998) -- (y2008);
-      \fill[red] (y1998) circle (5pt);
-      \fill[red] (y2008) circle (5pt);}
-    \uncover<4-> {
-      \node at (y2001) [above=3pt] {{2001}};
-      \node at (y2004) [below=3pt] {{2004}};}
-    \only<4-> {
-      \draw[green,line width=0.75mm] (y2001t) -- (y2004t);
-      \fill[green] (y2001t) circle (5pt);
-      \fill[green] (y2004t) circle (5pt);}
-    \uncover<4-> {
-      \node at (y2015) [below=3pt] {{2015}};}
-    \only<4-> {
-      \draw[blue,line width=0.75mm] (y2008) -- (y2015);
-      \fill[blue] (y2008) circle (5pt);
-      \fill[blue] (y2015) circle (5pt);}
-    \uncover<5-> {\node at (y2013) [above=3pt]
-      {{2013}};}
-    \only<5-> {\fill[orange] (y2013t) circle (5pt);}
-  \end{tikzpicture}
-\end{frame}
-\begin{frame}
-  \begin{figure}
-    \centering
-    \includegraphics[width=\ifbeamerarticle4\else5\fi cm]
-      {../fithesis3/fithesis3/logo/mu/color/fi}
-    \caption{The logo of FI MU designed by Doc. Petr Sojka and
-      implemented\ifbeamerarticle~\cite{zlatuska95}\else%
-      \footnotemark[1]\fi\ by the founding Dean of FI, Prof. Jiří
-      Zlatuška}
-    \ifbeamerarticle\else
-      \footnotetext[1]{\fullcite{zlatuska95}}
-    \fi
-  \end{figure}
-\end{frame}
-\againframe<2->{history}
-\subsection{Analysis of Existing Theses}
 \begin{frame}
   A thesis was considered to be written using \TeX, if one
   or more files submitted with it satisfied one or more of the
@@ -379,7 +313,7 @@
 \begin{frame}
   \frametitle{Conclusion}
   During 2010--2014, the usage of \TeX\ for the typesetting of
-  theses at MU: \begin{itemize}
+  theses: \begin{itemize}
     \item increased by $0.61\%$ across all faculties,
     \item correlated with significantly better grades.
   \end{itemize}
@@ -511,7 +445,7 @@
     \begin{ThesisKeyWords}keywords ...\end{ThesisKeyWords}
     \tableofcontents                % The table of contents
   \MainMatter                     % The main matter
-  % Here goes the text of the thesis
+  % Here goes the text of the thesis.
 \end{document}
     \end{lstlisting}
     \endgroup
@@ -525,7 +459,7 @@
 \usepackage[english]{babel}
 \thesissetup{faculty = sci}
 \begin{document}
-  % Here goes the text of the thesis
+  % Here goes the text of the thesis.
 \end{document}
     \end{lstlisting}
     \caption{A minimal \pkg{fithesis3} document}
@@ -537,17 +471,17 @@
     \item<1->\pkg{Fithesis1} and \pkg{2} mix
       \textcolor{blue}{logic}, \textcolor{green}{locales} and
       \textcolor{red}{presentation}.
-    \item<2-> Proper support for faculties requires the addition of:
-      \begin{itemize}
-        \item<2-> per-faculty \textcolor{red}{%
-          document layout definitions},
+    \item<2-> Proper support for faculties requires the addition
+      of: \begin{itemize}
+        \item<2-> per-faculty \textcolor{red}{presentation code},
         \item<2-> per-faculty \textcolor{green}{locale strings},
-        \item<2-> per-faculty \textcolor{red}{presentation code}.
+        \item<3-> per-faculty \textcolor{red}{%
+          document layout definitions}.
       \end{itemize}
-    \item<3-> Non-functional requirements:
+    \item<4-> Non-functional requirements:
       \begin{itemize}
-        \item<3-> Adherence to the open/closed principle
-        \item<4-> Extensive documentation
+        \item<4-> Adherence to the open/closed principle
+        \item<5-> Extensive documentation
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -578,7 +512,7 @@
       \TeX\ at MU will be published in the \CS TUG bulletin.
     \item Starting this fall, the class will be added to the
       curriculum of the \emph{FI:PB029 -- Electronic Document
-      Preparation} subject taught at FI MU.}
+      Preparation} subject.}
   \end{itemize}
 \end{frame}
 \begin{frame}
