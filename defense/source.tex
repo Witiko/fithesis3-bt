@@ -465,6 +465,29 @@
     \caption{A minimal \pkg{fithesis3} document}
   \end{figure}
 \end{frame}
+\begin{frame}[fragile]
+  \begin{figure}[!]
+    \begin{lstlisting}
+\documentclass{fithesis3}
+\usepackage[english]{babel}
+\thesissetup{
+  localeInheritance = false, styleInheritance = false,
+  localePath = ., stylePath = .,
+  locale = myEnglish, style = myStyle,
+  autoLayout = false}
+\begin{document}
+  \makeatletter
+    \thesis@blocks@cover
+    \thesis@blocks@frontMatter
+      \thesis@blocks@titlePage
+    \thesis@blocks@mainMatter
+  \makeatother
+  % Here goes the text of the thesis.
+\end{document}
+    \end{lstlisting}
+    \caption{A manually laid-out \pkg{fithesis3} document}
+  \end{figure}
+\end{frame}
 \begin{frame}[label=design]
   \frametitle{Design}
   \begin{itemize}
