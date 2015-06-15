@@ -473,13 +473,15 @@
 \thesissetup{
   localeInheritance = false, styleInheritance = false,
   localePath = ., stylePath = .,
-  locale = myEnglish, style = myStyle,
+  locale = myLocale, style = myStyle,
   autoLayout = false}
 \begin{document}
   \makeatletter
     \thesis@blocks@cover
     \thesis@blocks@frontMatter
-      \thesis@blocks@titlePage
+      \thesis@blocks@titlePage  \thesis@blocks@declaration
+      \thesis@blocks@thanks     \thesis@blocks@abstract
+      \thesis@blocks@keywords   \thesis@blocks@tables
     \thesis@blocks@mainMatter
   \makeatother
   % Here goes the text of the thesis.
