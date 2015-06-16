@@ -55,9 +55,8 @@
     fithesis, tex usage statistics},
   TeXkeywords = {\LaTeX\ document classes, thesis typesetting,
     \textsf{fithesis}, \TeX\ usage statistics},
-  basePath = ./fithesis3/fithesis3,
-  assignment = {./misc/assignment.pdf,  1, {},
-                ./misc/declaration.pdf, 1, {}}}
+  basePath    = ./fithesis3/fithesis3,
+  assignment  = {./misc/assignment, ./misc/declaration}}
 
 \thesislong{abstract}{This bachelor's thesis aims to assess
   existing templates for the typesetting of theses and to analyze
@@ -100,10 +99,6 @@
 \makeglossaries
 \input{glossaries}
 \setglossarystyle{altlistgroup}
-
-% Penalties
-%% Zero tolerance for widows and orphans
-\usepackage[defaultlines=2,all]{nowidow}
 
 % Miscellaneous
 %% Enforce more dense float-pages
@@ -1445,42 +1440,42 @@ technical documentation.
 
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Informatics}\label{sec:figuide}
-\includepdf[pages=-]{misc/fi.pdf}
+\includepdf[pages=-]{./misc/fi}
 
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Science}
-\includepdf[pages=-]{misc/sci.pdf}
+\includepdf[pages=-]{./misc/sci}
 
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Economics and Administration}
-\includepdf[pages=-]{misc/econ.pdf}
+\includepdf[pages=-]{./misc/econ}
 
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Social Studies}
-\includepdf[pages=-]{misc/fss.pdf}
+\includepdf[pages=-]{./misc/fss}
 
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of Law}
-\includepdf[pages=-]{misc/law.pdf}
+\includepdf[pages=-]{./misc/law}
 
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Medicine}
-\includepdf[pages=-]{misc/med.pdf}
+\includepdf[pages=-]{./misc/med}
 
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Education}
-\includepdf[pages=-]{misc/ped.pdf}
+\includepdf[pages=-]{./misc/ped}
 
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Arts}
-\includepdf[pages=-]{misc/phil.pdf}
+\includepdf[pages=-]{./misc/phil}
 
 \fakechapter{A \textsf{fithesis3} user guide for the Faculty of
   Sports Studies}\label{sec:fspsguide}
-\includepdf[pages=-]{misc/fsps.pdf}
+\includepdf[pages=-]{./misc/fsps}
 
 \fakechapter{The technical documentation of
   \textsf{fithesis3}}\label{sec:techdoc}
-\includepdf[pages=-]{misc/fithesis.pdf}
+\includepdf[pages=-]{./misc/fithesis}
 \end{appendices}
 
 % Bibliography
