@@ -1,4 +1,4 @@
-\PassOptionsToPackage{table}{xcolor}
+\PassOptionsToPackage{table,svgnames}{xcolor}
 \ifbeamerarticle
   \documentclass[11pt,twoside]{article}
   \usepackage{beamerarticle}
@@ -14,6 +14,7 @@
 \usepgfplotslibrary{statistics}
 \usepackage{polyglossia}
 \setmainlanguage{english}
+\setotherlanguage{czech}
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{placeins}
@@ -126,7 +127,7 @@
 % Metadata
 \title{The Form of Theses\\ Written in \LaTeX}
 \subtitle{Thesis Presentation}
-\date{May 28, 2015}
+\date{June 18, 2015}
 \author{Vít Novotný}
 \institute[FI MU]{Faculty of Informatics,\\Masaryk University in
   Brno}
@@ -136,6 +137,58 @@
 \frame{\tableofcontents}
 \redefinetables
 \section{\TeX\ Usage at MU}
+\subsection{History}
+\newlength\yearposx
+\begin{frame}<6>[label=history]
+  \frametitle{History of \TeX\ at FI MU}
+  \begin{itemize}
+    \item<2> {1994} -- The \textcolor{violet}{%
+      logo} of FI MU
+    \item<3-> {1998--2008} -- The
+      \textcolor{red}{\pkg{fithesis1}} class
+    \item<4> {2001--2004} -- The
+      \textcolor{green}{\pkg{xslt2}} module
+    \item<4-> {2008--2015} -- The
+      \textcolor{blue}{\pkg{fithesis2}} class
+    \item<5> {2013} -- The
+      \textcolor{orange}{\pkg{comenia}} package
+  \end{itemize}\medskip
+  \begin{tikzpicture}[scale=\ifbeamerarticle0.57\else0.46\fi]
+    \foreach \x in {1994,1998,2001,2004,2008,2013,2015}{
+      \pgfmathsetlength\yearposx{(\x-1994)*1cm};
+      \coordinate (y\x) at (\yearposx,0);
+      \coordinate (y\x t) at (\yearposx,0.75mm);
+      \draw (\yearposx,+3pt) -- (\yearposx,-3pt);}
+    \draw [->] (y1994) -- (y2015);
+    \uncover<2> {\node at (y1994) [above=3pt]
+      {{1994}};}
+    \only<2> {\fill[violet] (y1994) circle (5pt);}
+    \uncover<3-> {
+      \node at (y1998) [below=3pt] {{1998}};
+      \node at (y2008) [above=3pt] {{2008}};}
+    \only<3-> {
+      \draw[red,line width=0.75mm] (y1998) -- (y2008);
+      \fill[red] (y1998) circle (5pt);
+      \fill[red] (y2008) circle (5pt);}
+    \uncover<4> {
+      \node at (y2001) [above=3pt] {{2001}};
+      \node at (y2004) [below=3pt] {{2004}};}
+    \only<4> {
+      \draw[green,line width=0.75mm] (y2001t) -- (y2004t);
+      \fill[green] (y2001t) circle (5pt);
+      \fill[green] (y2004t) circle (5pt);}
+    \uncover<4-> {
+      \node at (y2015) [below=3pt] {{2015}};}
+    \only<4-> {
+      \draw[blue,line width=0.75mm] (y2008) -- (y2015);
+      \fill[blue] (y2008) circle (5pt);
+      \fill[blue] (y2015) circle (5pt);}
+    \uncover<5> {\node at (y2013) [above=3pt]
+      {{2013}};}
+    \only<5> {\fill[orange] (y2013t) circle (5pt);}
+  \end{tikzpicture}
+\end{frame}
+\subsection{Current usage}
 \begin{frame}
   A thesis was considered to be written using \TeX, if one
   or more files submitted with it satisfied one or more of the
@@ -255,50 +308,32 @@
 \end{frame}
 \begin{frame}
   \begin{table}[!b]
-    \scalebox{\ifbeamerarticle1\else0.9\fi}{\begin{tabularx}%
-      {\ifbeamerarticle1\else1.11\fi\textwidth}{Xrrrrr}
-      &\textbf{Without \TeX}&E(\textbf{With \TeX})
-      &O(\textbf{With \TeX})&$(\text{E}-\text{O})^2/\text{E}$
-      \\ \toprule
-      \textbf{\parbox[t]{1em}{\centering A}} 
-        &$15\,476$&\only<3>{\cellemph}$987.635$&\only<3>{\cellemph}
-        \textcolor{green}{$1\,181$}&
-        $37.858$\\
-      \textbf{\parbox[t]{1em}{\centering B}}
-        &$9999$&$638.108$&\textcolor{red}{$587$}&$4.093$\\
-      \textbf{\parbox[t]{1em}{\centering C}}
-        &$7\,926$&\only<3>{\cellemph}$505.815$&\only<3>{\cellemph}
-        \textcolor{red}{$381$}&
-        $30.799$\\
-      \textbf{\parbox[t]{1em}{\centering D}}
-        &$4\,020$&\only<3>{\cellemph}$256.545$&\only<3>{\cellemph}
-        \textcolor{red}{$194$}&
-        $15.248$\\
-      \textbf{\parbox[t]{1em}{\centering E}}
-        &$2\,783$&$177.603$&\textcolor{red}{$128$}&$13.853$\\
-      \textbf{\parbox[t]{1em}{\centering F}}
-        &$1\,979$&$126.294$&\textcolor{green}{$145$}&
-        $2.771$\\
-      \bottomrule
-      \textbf{Total} &$\mathbf{42\,183}$&$\mathbf{2\,692}$&
-        $\mathbf{2\,692}$&$\only<2>{\cellemph}\mathbf{104.623}$
-    \end{tabularx}}
+    \begin{center}
+      \begin{tabular}{crrrr}
+        &\textbf{Without \TeX} (\%)&\textbf{With \TeX} (\%)
+        \\ \toprule
+        \only<2>{\cellemph}\textbf{\parbox[t]{1em}{\centering A}}&
+          \only<2>{\cellemph}$36.69$&\only<2>{\cellemph}
+          \textcolor{green}{$54.44$}\\
+        \textbf{\parbox[t]{1em}{\centering B}}
+          &$23.70$&\textcolor{red}{$27.06$}\\
+        \only<2>{\cellemph}\textbf{\parbox[t]{1em}{\centering C}}&
+          \only<2>{\cellemph}$18.79$&\only<2>{\cellemph}
+          \textcolor{red}{$17.56$}\\
+          \only<2>{\cellemph}\textbf{\parbox[t]{1em}{\centering D}}&
+          \only<2>{\cellemph}$9.53$&\only<2>{\cellemph}
+          \textcolor{red}{$8.94$}\\
+        \textbf{\parbox[t]{1em}{\centering E}}
+          &$6.60$&\textcolor{red}{$5.90$}\\
+        \textbf{\parbox[t]{1em}{\centering F}}
+          &$4.69$&\textcolor{green}{$6.69$}\\
+      \end{tabular}
+    \end{center}
     \begin{overlayarea}{\textwidth}{8em}
-      \only<1>{\caption{The contingency table of the
-        numbers of marks awarded to theses written and defended
-        during 2010--2015 with Pearson's goodness-of-fit measure
-        $(\text{E}-\text{O})^2/\text{E}$ between the expected (O) and
-        the observed (E) numbers of marks awarded to theses written
-        using \TeX}}
+      \only<1>{\caption{The distribution of marks awarded to theses written and defended
+        during 2010--2015}}
       \iffalse\else
-      \only<2>{\smallskip\footnotesize There was an overwhelming difference
-        in the distribution of grades given to theses written using
-        and not using \TeX:\begin{equation}\nonumber
-        \sum_{\text{A},\text{B},\ldots,\text{F}}
-        (\text{E}-\text{O})^2/\text{E}=104.623\gg11.07=
-        \chi_{0.95}^2(5)
-      \end{equation}}
-      \only<3>{\smallskip\footnotesize Theses written using \TeX\
+      \only<2>{\medskip\footnotesize Theses written using \TeX\
         had been awarded:
         \begin{itemize}
           \item grade A statistically significantly
@@ -418,7 +453,7 @@
   showspaces=false,               
   showstringspaces=false,          
   showtabs=false,                  
-  stringstyle=\color{violet},   
+  stringstyle=\color{violet},
   tabsize=2,                      
   title=\lstname,                  
   morekeywords={not,\},\{,preconditions,effects },            
@@ -465,31 +500,6 @@
     \caption{A minimal \pkg{fithesis3} document}
   \end{figure}
 \end{frame}
-\begin{frame}[fragile]
-  \begin{figure}[!]
-    \begin{lstlisting}
-\documentclass{fithesis3}
-\usepackage[english]{babel}
-\thesissetup{
-  localeInheritance = false, styleInheritance = false,
-  localePath = ., stylePath = .,
-  locale = myLocale, style = myStyle,
-  autoLayout = false}
-\begin{document}
-  \makeatletter
-    \thesis@blocks@cover
-    \thesis@blocks@frontMatter
-      \thesis@blocks@titlePage  \thesis@blocks@declaration
-      \thesis@blocks@thanks     \thesis@blocks@abstract
-      \thesis@blocks@keywords   \thesis@blocks@tables
-    \thesis@blocks@mainMatter
-  \makeatother
-  % Here goes the text of the thesis.
-\end{document}
-    \end{lstlisting}
-    \caption{A manually laid-out \pkg{fithesis3} document}
-  \end{figure}
-\end{frame}
 \begin{frame}[label=design]
   \frametitle{Design}
   \begin{itemize}
@@ -523,7 +533,7 @@
     \item The class has been comprehensively documented.
     \item Along with the author's thesis, several other theses were
       prepared using the \pkg{fithesis3} class already this
-      semester \ifbeamerarticle
+      semester as a part of user testing \ifbeamerarticle
         \mycite{kovanda15,zvolanek15,rucka15}
       \else
         \mycite{kovanda15}\textsuperscript{,}%
@@ -543,14 +553,13 @@
 \begin{frame}
   \frametitle{Future work}
   \begin{itemize}
-    \item Testing will continue until the end of June.
-    \item The class will then be released at:\begin{itemize} 
+    \item By the end of June 2015, the class will be released at:\begin{itemize} 
       \item online collaboration platforms (Share\LaTeX, Overleaf),
       \item the CTAN archive (for the inclusion in \TeX\
         distibutions).
     \end{itemize}
     \item During July--September 2015:\begin{itemize} 
-      \item user documentation will be expanded,
+      %\item user documentation will be expanded,
       \item an author’s cookbook will be created,
       \item thesis defense and thesis report templates following a
         similar design as \pkg{fithesis3} will be released.
@@ -569,6 +578,57 @@
       \raisebox{-0.3cm}{\textcolor{yellow!90!orange}{\&}}\kern-2cm%
       \fontsize{150}{0}\selectfont%
       \textbf{A}
+    \end{center}
+  \end{frame}
+  \begin{frame}[fragile]
+  \selectlanguage{czech}
+  \emph{Stylu by prospělo zakázání vdov a sirotků, což
+  by nemělo působit problémy, protože se nesází na
+  řádkový rejstřík [\dots]}\medskip\par Vdovy a sirotci
+  jsou nyní v rámci souborů stylů Masarykovy univerzity
+  zakázány. (V případě, že má \TeX\ k
+  dispozici pouze nekonečně ošklivé zlomy, však stále
+  může dojít k jejich vzniku.)\medskip
+  \lstset{
+    morecomment=[f][\color{gray}]{@@},
+    morecomment=[f][\color{green}]{+},
+    morecomment=[f][\color{blue!50!black}]{\ },
+    morecomment=[f][\color{red}]{-}}
+    \begin{lstlisting}
+diff --git a/fithesis3/style/mu/base.dtx b/fithesis3/style/mu/base.dtx
+index 73aeb10..095f9ea 100644
+--- a/fithesis3/style/mu/base.dtx
++++ b/fithesis3/style/mu/base.dtx
+@@ -262,2 +262,7 @@
+ %    \end{macrocode}
++% Clubs and widows are set to be infinitely bad.
++%    \begin{macrocode}
++\widowpenalty 10000
++\clubpenalty  10000
++%    \end{macrocode}
+ % \begin{macro}{\thesis@color@setup}
+    \end{lstlisting}
+\end{frame}
+  \begin{frame}
+    \emph{Vyjádřete se ke zkušenostem s dosavadním testováním a
+    použitím \pkg{fithesis3}.}\medskip\par Ohlasy testujících byly
+    výhradně pozitivní. Pochvalná slova zaznívala především na
+    adresu dobře zpracované uživatelské dokumentace a zapouzdření
+    sazby povinných částí do třídy.\vfill
+    \uncover<2->{\emph{Jak byla práce přijata na ostatních
+    fakultách MU?}\medskip\par O šabloně není zatím na ostatních
+    fakultách dostatečné povědomí. Tomu nahrává především
+    skutečnost, že uživatelské testování začalo až během května
+    tohoto roku, kdy byly závěrečné práce na mnoha fakultách již
+    buďto odevzdány, nebo těsně před svým dokončením.}
+  \end{frame}
+  \begin{frame}
+    \begin{center}
+      \rmfamily\fontsize{60}{0}\selectfont%
+      \textcolor{black!100!white}{Thank}
+      \textcolor{yellow!90!orange!100!white}{You}\\[3mm]
+      \fontsize{33}{0}\selectfont%
+      For \textcolor{yellow!90!orange}{Your} Attention
     \end{center}
   \end{frame}
 \fi
