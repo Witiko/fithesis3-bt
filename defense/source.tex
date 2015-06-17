@@ -190,23 +190,6 @@
 \end{frame}
 \subsection{Current usage}
 \begin{frame}
-  A thesis was considered to be written using \TeX, if one
-  or more files submitted with it satisfied one or more of the
-  following conditions: \begin{itemize}
-    \item The suffix was \texttt{tex}.
-    \item The magic number was that of a DVI file.
-    \item The MIME type was \texttt{application/postscript} and
-      the file contained the \texttt{TeXDict} substring suggesting
-      that the file was a PS document, which had been created
-      using the \textsf{dvips} utility.
-    \item The MIME type was \texttt{application/pdf} and either
-      the \texttt{Creator} or the \texttt{Producer} PDF 
-      header contained the \texttt{TeX} substring suggesting that
-      the file had been created using either the \textsf{dvipdfm}
-      utility or a \TeX\ engine, which supports PDF output.
-  \end{itemize}
-\end{frame}
-\begin{frame}
   \begin{table}[!b]
     \scalebox{\ifbeamerarticle1\else0.83\fi}{\begin{tabularx}%
       {\ifbeamerarticle1\else1.2\fi\textwidth}{Xrrr}
