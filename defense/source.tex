@@ -1,0 +1,618 @@
+\PassOptionsToPackage{table,svgnames}{xcolor}
+\ifbeamerarticle
+  \documentclass[11pt,twoside]{article}
+  \usepackage{beamerarticle}
+\else
+  \documentclass[12pt]{beamer}
+\fi
+% Packages
+\usepackage{mflogo}
+\usepackage{tikz}
+\usetikzlibrary{fadings,patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usepgfplotslibrary{statistics}
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setotherlanguage{czech}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{placeins}
+\usepackage{listings}
+\usepackage{dirtree}
+%% Bibliography
+\usepackage[
+  backend=biber,
+  style=numeric,
+  citestyle=numeric-comp,
+  sorting=none
+]{biblatex}
+\addbibresource{../database.bib}
+\ifbeamerarticle
+  \let\mycite\cite
+\else
+  \let\mycite\footfullcite
+\fi
+%% Fonts
+\usepackage{fontspec}
+\ifbeamerarticle
+  \usepackage{mathpazo}
+\else
+  \usepackage{cmbright}
+\fi
+\setmainfont[Ligatures=TeX]{Comenia Serif}
+\setsansfont[Ligatures=TeX]{Comenia Sans}
+\setmonofont[Scale=MatchLowercase,Ligatures=TeX]{Liberation Mono}
+\ifbeamerarticle
+  \def\pkg#1{{\sf#1}}
+\else
+  \let\pkg\emph
+\fi
+%% Hyperref
+\makeatletter
+  \@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}
+\makeatother
+\hypersetup{\ifbeamerarticle color\else hide\fi links,
+  linkcolor=black}
+% Theming & colors
+\usetheme{Antibes}
+\usecolortheme{crane}
+\useoutertheme{infolines}
+\usefonttheme{professionalfonts}
+\definecolor{green}{RGB}{0,130,0}
+\definecolor{yellow}{RGB}{242,212,92}
+\definecolor{orange}{RGB}{255,100,0}
+% Tabular redefinition
+\def\redefinetables{%
+  \definecolor{tableOdd}{HTML}{FFF9E5}
+  \definecolor{tableEven}{HTML}{FFECB3}
+  \definecolor{tableEmph}{HTML}{FFD451}
+  \let\oldtabular\tabular
+  \let\endoldtabular\endtabular
+  \renewenvironment{tabular}%
+    {\rowcolors{1}{tableOdd}%
+                  {tableEven}%
+     \oldtabular}%
+    {\endoldtabular}
+  \let\oldtabularx\tabularx
+  \let\endoldtabularx\endtabularx
+  \renewenvironment{tabularx}%
+    {\rowcolors{1}{tableOdd}%
+                  {tableEven}%
+     \oldtabularx}%
+     {\endoldtabularx}}
+\setlength{\aboverulesep}{0pt}
+\setlength{\belowrulesep}{0pt}
+\setlength{\extrarowheight}{.75ex}
+\def\cellemph{\cellcolor{tableEmph}}
+\def\rowemph{\rowcolor{tableEmph}}
+
+% Frametitle for beamer/article redefinition
+\ifbeamerarticle
+  \let\oldframetitle\frametitle
+  \def\frametitle#1{\oldframetitle{#1}\noindent}
+\fi
+
+% Miscellanea
+\frenchspacing
+\ifbeamerarticle\else
+  \beamertemplatenavigationsymbolsempty
+  \setbeamertemplate{caption}[numbered]
+\fi
+% Section front page support
+\AtBeginSection{\frame{\sectionpage}}
+\AtBeginSubsection{\frame{\subsectionpage}}
+% Nested itemize fix
+% http://tex.stackexchange.com/a/74069/70941
+\ifbeamerarticle\else
+  \usepackage{etoolbox}
+  \setbeamercovered{transparent}
+  \makeatletter
+  \newcommand*\fix@beamer@close{%
+    \ifnum\beamer@trivlistdepth>0%
+      \beamer@closeitem%
+    \fi}
+  \newcommand*\fix@beamer@open{%
+    \ifnum\beamer@trivlistdepth>0%
+      \gdef\beamer@closeitem{}%
+    \fi}
+  \BeforeBeginEnvironment{enumerate}{\fix@beamer@close}
+  \AfterEndEnvironment{enumerate}{\fix@beamer@open}
+  \BeforeBeginEnvironment{itemize}{\fix@beamer@close}
+  \AfterEndEnvironment{itemize}{\fix@beamer@open}
+  \BeforeBeginEnvironment{description}{\fix@beamer@close}
+  \AfterEndEnvironment{description}{\fix@beamer@open}
+  \makeatother
+\fi
+% Metadata
+\title{The Form of Theses\\ Written in \LaTeX}
+\subtitle{Thesis Presentation}
+\date{June 18, 2015}
+\author{Vít Novotný}
+\institute[FI MU]{Faculty of Informatics,\\Masaryk University in
+  Brno}
+\begin{document}
+\frame{\maketitle}
+\ifbeamerarticle\setcounter{tocdepth}{1}\fi
+\frame{\tableofcontents}
+\redefinetables
+\section{\TeX\ Usage at MU}
+\subsection{History}
+\newlength\yearposx
+\begin{frame}<6>[label=history]
+  \frametitle{History of \TeX\ at FI MU}
+  \begin{itemize}
+    \item<2> {1994} -- The \textcolor{violet}{%
+      logo} of FI MU
+    \item<3-> {1998--2008} -- The
+      \textcolor{red}{\pkg{fithesis1}} class
+    \item<4> {2001--2004} -- The
+      \textcolor{green}{\pkg{xslt2}} module
+    \item<4-> {2008--2015} -- The
+      \textcolor{blue}{\pkg{fithesis2}} class
+    \item<5> {2013} -- The
+      \textcolor{orange}{\pkg{comenia}} package
+  \end{itemize}\medskip
+  \begin{tikzpicture}[scale=\ifbeamerarticle0.57\else0.46\fi]
+    \foreach \x in {1994,1998,2001,2004,2008,2013,2015}{
+      \pgfmathsetlength\yearposx{(\x-1994)*1cm};
+      \coordinate (y\x) at (\yearposx,0);
+      \coordinate (y\x t) at (\yearposx,0.75mm);
+      \draw (\yearposx,+3pt) -- (\yearposx,-3pt);}
+    \draw [->] (y1994) -- (y2015);
+    \uncover<2> {\node at (y1994) [above=3pt]
+      {{1994}};}
+    \only<2> {\fill[violet] (y1994) circle (5pt);}
+    \uncover<3-> {
+      \node at (y1998) [below=3pt] {{1998}};
+      \node at (y2008) [above=3pt] {{2008}};}
+    \only<3-> {
+      \draw[red,line width=0.75mm] (y1998) -- (y2008);
+      \fill[red] (y1998) circle (5pt);
+      \fill[red] (y2008) circle (5pt);}
+    \uncover<4> {
+      \node at (y2001) [above=3pt] {{2001}};
+      \node at (y2004) [below=3pt] {{2004}};}
+    \only<4> {
+      \draw[green,line width=0.75mm] (y2001t) -- (y2004t);
+      \fill[green] (y2001t) circle (5pt);
+      \fill[green] (y2004t) circle (5pt);}
+    \uncover<4-> {
+      \node at (y2015) [below=3pt] {{2015}};}
+    \only<4-> {
+      \draw[blue,line width=0.75mm] (y2008) -- (y2015);
+      \fill[blue] (y2008) circle (5pt);
+      \fill[blue] (y2015) circle (5pt);}
+    \uncover<5> {\node at (y2013) [above=3pt]
+      {{2013}};}
+    \only<5> {\fill[orange] (y2013t) circle (5pt);}
+  \end{tikzpicture}
+\end{frame}
+\subsection{Current usage}
+\begin{frame}
+  \begin{table}[!b]
+    \scalebox{\ifbeamerarticle1\else0.83\fi}{\begin{tabularx}%
+      {\ifbeamerarticle1\else1.2\fi\textwidth}{Xrrr}
+      \textbf{Faculty} & \textbf{With \TeX} & \textbf{Total} &
+      \textbf{\%} \\
+      \toprule
+      Faculty of Informatics       & $1\,716$ & $2\,904$  &
+      $59.09$ \\% 1433
+      Faculty of Science           & $786$     & $5\,275$  &
+      $14.90$ \\% 1431
+      Faculty of Economics and Administration & $64$ & $4\,591$ &
+      $1.39$  \\% 1456
+      Faculty of Arts              & $69$      & $10\,000$ &
+      $0.69$  \\% 1421
+      Faculty of Medicine          & $8$       & $2\,014$  &
+      $0.40$  \\% 1411
+      Faculty of Law               & $15$      & $4\,824$  &
+      $0.31$  \\% 1422
+      Faculty of Education         & $19$      & $8\,219$  &
+      $0.23$  \\% 1441
+      Faculty of Social Studies    & $12$      & $5\,599$  &
+      $0.21$  \\% 1423
+      Faculty of Sports Studies    & $3$       & $2\,062$  &
+      $0.15$  \\% 1451
+      \bottomrule
+      \textbf{Total} & $\mathbf{2\,692}$ & $\mathbf{45\,488}$ &
+      $\mathbf{5.92}$
+    \end{tabularx}}
+    \caption{The distribution of theses written using \TeX,
+      which were defended during 2010--2015 across the faculties of
+      MU}
+  \end{table}
+\end{frame}
+\begin{frame}
+  \begin{table}[!b]
+    \scalebox{\ifbeamerarticle1\else0.85\fi}{\begin{tabularx}%
+      {\ifbeamerarticle1\else1.17\fi\textwidth}{Xlrrrrrr}
+      \textbf{Degree} & \textbf{Fac.} & \textbf{2010} &
+      \textbf{2011} & \textbf{2012} & \textbf{2013} & \textbf{2014}
+      & $R$\\
+      \toprule
+      \ifbeamerarticle
+        Bachelor's
+          & FI  & $58.92$ & $59.44$ & $49.54$ & $53.77$ &
+            $59.06$ & \textcolor{red}{$-0.195$} \\
+          & Sci & $11.55$ & $13.00$ & $15.90$ & $19.79$ &
+            $15.16$ & \textcolor{green}{$+0.703$} \\
+          & All & $5.08$ & $6.19$ &
+            $6.00$ & $6.08$ & $6.24$ &
+            \textcolor{green}{$+0.731$} \\ \midrule
+        Master's
+          & FI  & $60.61$ & $59.91$ & $60.08$ & $64.50$ &
+            $57.96$ & \textcolor{red}{$-0.046$} \\
+          & Sci & $19.38$ & $13.54$ & $13.75$ & $13.78$ &
+            $17.71$ & \textcolor{red}{$-0.180$} \\
+          & All & $6.02$ & $4.88$ &
+            $5.22$ & $6.59$ & $6.29$ &
+            \textcolor{green}{$+0.490$} \\ \midrule
+      \else
+        Bachelor's &&&& \multicolumn{1}{c}{\vdots} &&& \\ \midrule
+        Master's   &&&& \multicolumn{1}{c}{\vdots} &&& \\ \midrule
+      \fi
+      Doctoral
+        & FI  & $100.00$ & $76.67$ & $71.88$ & $83.87$ &
+          $90.91$ & \textcolor{red}{$-0.155$} \\
+        & Sci & $18.09$ & $10.71$ & $12.75$ & $10.19$ &
+          $8.85$ & \only<2>{\cellemph}\textcolor{red}{$-0.830$} \\
+        & All & $8.83$ & $8.23$ &
+          $8.41$ & $9.38$ & $7.43$ &
+          \textcolor{red}{$-0.361$} \\
+        \bottomrule
+      \textbf{All}
+        & \textbf{FI} & $\mathbf{60.83}$ &
+          $\mathbf{60.53}$ & $\mathbf{54.92}$ & $\mathbf{60.57}$ &
+          $\mathbf{59.34}$ & \textcolor{red}{$\mathbf{-0.188}$} \\
+        & \textbf{Sci} & $\mathbf{14.86}$ &
+          $\mathbf{12.96}$ & $\mathbf{14.74}$ & $\mathbf{16.55}$ &
+          $\mathbf{15.45}$ &
+          \textcolor{green}{$\mathbf{+0.577}$}\\
+        & \textbf{All} & $\mathbf{5.67}$ &
+          $\mathbf{5.70}$ & $\mathbf{5.73}$ &
+          $\mathbf{6.41}$ & $\mathbf{6.28}$ &
+          \only<2>{\cellemph}\textcolor{green}{$\mathbf{+0.855}$}
+      \end{tabularx}}
+    \begin{overlayarea}{\textwidth}{8em}
+    \only<1>{\caption{The percentage of theses written using \TeX\ 
+      which were defended in each year during 2010--2014 and the
+      sample correlation coefficient $R$ between the percentage and
+      the years with remarkably strong correlations emphasized}}
+    \ifbeamerarticle\else\addtocounter{table}{1}\fi
+    \only<2>{\smallskip\footnotesize There was a marked and steady
+      increase in the use of \TeX\ for the typesetting of theses
+      during 2010--2014. This does not necessarily hold true for
+      individual faculties and degree study programmes, as
+      exemplified by the pronounced downwards trend in the use of
+      \TeX\ for the typesetting of doctoral theses at Sci.}
+    \end{overlayarea}
+  \end{table}
+\end{frame}
+\begin{frame}
+  \begin{table}[!b]
+    \begin{center}
+      \begin{tabular}{crrrr}
+        &\textbf{Without \TeX} (\%)&\textbf{With \TeX} (\%)
+        \\ \toprule
+        \only<2>{\cellemph}\textbf{\parbox[t]{1em}{\centering A}}&
+          \only<2>{\cellemph}$36.69$&\only<2>{\cellemph}
+          \textcolor{green}{$54.44$}\\
+        \textbf{\parbox[t]{1em}{\centering B}}
+          &$23.70$&\textcolor{red}{$27.06$}\\
+        \only<2>{\cellemph}\textbf{\parbox[t]{1em}{\centering C}}&
+          \only<2>{\cellemph}$18.79$&\only<2>{\cellemph}
+          \textcolor{red}{$17.56$}\\
+          \only<2>{\cellemph}\textbf{\parbox[t]{1em}{\centering D}}&
+          \only<2>{\cellemph}$9.53$&\only<2>{\cellemph}
+          \textcolor{red}{$8.94$}\\
+        \textbf{\parbox[t]{1em}{\centering E}}
+          &$6.60$&\textcolor{red}{$5.90$}\\
+        \textbf{\parbox[t]{1em}{\centering F}}
+          &$4.69$&\textcolor{green}{$6.69$}\\
+      \end{tabular}
+    \end{center}
+    \begin{overlayarea}{\textwidth}{8em}
+      \only<1>{\caption{The distribution of marks awarded to theses written and defended
+        during 2010--2015}}
+      \iffalse\else
+      \only<2>{\medskip\footnotesize Theses written using \TeX\
+        had been awarded:
+        \begin{itemize}
+          \item grade A statistically significantly
+            \textcolor{green}{more often},
+          \item grades C and D statistically significantly
+            \textcolor{red}{less often}.
+        \end{itemize}
+      }\fi
+    \end{overlayarea}
+  \end{table}
+\end{frame}
+\begin{frame}
+  \frametitle{Conclusion}
+  During 2010--2014, the usage of \TeX\ for the typesetting of
+  theses: \begin{itemize}
+    \item increased by $0.61\%$ across all faculties,
+    \item correlated with significantly better grades.
+  \end{itemize}
+\end{frame}
+\FloatBarrier
+\clearpage
+\section{Review of Existing Templates}
+\def\right#1{{\hfill\ifbeamerarticle\else
+    \textcolor{white!33!black}{\scriptsize
+  \fi(#1)\ifbeamerarticle\else}\fi}}
+\begin{frame}[fragile]
+  \frametitle{Templates of Czech Universities}
+  The templates of the following universities were reviewed:
+  \begin{enumerate}
+    \item Charles University\right{\pkg{CUStyle}, official template}
+    \item Czech Technical University\right{\pkg{CTUStyle, felthesis}}
+    \item Mendel University in Brno\right{\texttt{dipp.sty}}
+    \item Brno University of Technology\right{\texttt{thesis.sty}}
+    \item Technical University of Liberec\right{\pkg{tul+tulthesis}}
+    \item Technical University of Ostrava\right{\pkg{diploma}}
+    \item Palacký University in Olomouc\right{\pkg{KIDiplom},
+      \texttt{maam-dipl.sty}}
+    \item Masaryk University in Brno\right{\texttt{sci.muni.thesis.sty}}
+  \end{enumerate}
+\end{frame}
+\begin{frame}<1-2>[label=conclusion]
+  \frametitle{Conclusion from the Review}
+  \uncover<1,2,4->{Features to consider:}\begin{itemize}
+%   \item<1,4,5,10> Separation of concerns
+%     \right{\pkg{tul+tulthesis, KIDiplom}}
+    \item<1,4,5> Moderate use of color \right{\pkg{CTUStyle, CUStyle,
+      tul}}
+    \item<1,4,6> Unicode \TeX\ engine support\right{\pkg{tul+tulthesis},
+      \texttt{dipp.sty}}
+    \item<1,4,6> PDF metadata stamping \right{\pkg{felthesis}}
+    \item<1,4,7> Support for various
+      faculties\right{\pkg{tul+tulthesis}}
+    \item<2> Additional mark-up
+      \right{\texttt{dipp.sty}, \texttt{thesis.sty}, \pkg{diploma}}
+    \item<2> Homebrew \textsc{Bib}\LaTeX\ ISO-690 citation styles
+      \right{\pkg{KIdiplom}}
+  \end{itemize}%\uncover<3,4>{Problems to avoid:}\begin{itemize}
+    %\item<3,4> Lack of double-sided typesetting\right{\pkg{KIdiplom}}
+    %\item<3,4> Overly large \texttt{\string\textwidth}\right{All except
+      %\pkg{tul+tulthesis, felthesis}}
+  %\end{itemize}
+\end{frame}
+\clearpage
+\section{Design and Implementation}
+\againframe<4,5>{conclusion}
+{\def\showlogo#1{%
+  \includegraphics[width=2cm]{%
+    ../fithesis3/fithesis3/logo/mu/color/#1}}
+\def\logokern{\kern 1ex}
+\begin{frame}
+  \begin{figure}[!]
+    \centering
+    \showlogo{base}\logokern%
+    \showlogo{fsps}\logokern%
+    \showlogo{phil}\logokern%
+    \showlogo{law}\logokern%
+    \showlogo{sci}\\<all>[1ex]%
+    \showlogo{fss}\logokern%
+    \showlogo{econ}\logokern%
+    \showlogo{med}\logokern%
+    \showlogo{ped}\logokern%
+    \showlogo{fi}%
+    \caption{The colorful logos of MU}
+  \end{figure}
+\end{frame}}
+\begin{frame}
+  \begin{figure}[!]
+    \centering
+    \begin{tabularx}{\textwidth}{lll>{\raggedright\arraybackslash}X}
+    \toprule
+    Day & Min Temp & Max Temp & Summary \\ \midrule
+    Monday & $11^{\circ}\mathrm{C}$ & $22^\circ\mathrm{C}$ &
+      A clear day with lots of sunshine.\\
+    Tuesday & $9^{\circ}\mathrm{C}$ & $19^\circ\mathrm{C}$ &
+      Cloudy with rain, across many northern regions.\\
+    Wednesday & $10^{\circ}\mathrm{C}$ & $21^\circ\mathrm{C}$ &
+      Rain will still linger for the morning.\\
+    \bottomrule
+    \end{tabularx}
+    \caption{Other colorful typographic elements}
+  \end{figure}
+\end{frame}
+\againframe<6-7>{conclusion}
+\lstset{
+  backgroundcolor=\color{white}, 
+  basicstyle=\ifbeamerarticle\footnotesize\else\scriptsize\fi%
+    \ttfamily,
+  breakatwhitespace=false,        
+  breaklines=true,                 
+  captionpos=n,                    
+  commentstyle=\color{green},   
+  escapeinside={\%*}{*)},        
+  extendedchars=true,              
+  keywordstyle=\color{blue},       
+  language=[LaTeX]TeX,            
+  escapeinside={\%*}{*)},    
+  showspaces=false,               
+  showstringspaces=false,          
+  showtabs=false,                  
+  stringstyle=\color{violet},
+  tabsize=2,                      
+  title=\lstname,                  
+  morekeywords={not,\},\{,preconditions,effects },            
+  deletekeywords={time}}
+\begin{frame}[fragile]
+  \begin{figure}[!]
+    \begingroup
+    \begin{lstlisting}
+\documentclass[12pt]{fithesis2}
+\usepackage[english]{babel}       % Multilingual support
+\usepackage[T1]{fontenc}          % T1 font encoding
+\thesistitle{Sample Thesis}       % The title of the thesis
+\thesissubtitle{Bachelor Thesis}  % The type of the thesis
+\thesisstudent{John Doe}          % Your name
+\thesisyear{Spring \the\year}     % The academic term
+\thesisadvisor{Jane Foo, Ph.D.}   % Your advisor
+\begin{document}
+  \FrontMatter                    % The front matter
+    \ThesisTitlePage                % The title page
+    \begin{ThesisDeclaration}
+      \DeclarationText\AdvisorName\end{ThesisDeclaration}
+    \begin{ThesisThanks}I would like to thank ...\end{ThesisThanks}
+    \begin{ThesisAbstract}The aim of the ...\end{ThesisAbstract}
+    \begin{ThesisKeyWords}keywords ...\end{ThesisKeyWords}
+    \tableofcontents                % The table of contents
+  \MainMatter                     % The main matter
+  % Here goes the text of the thesis.
+\end{document}
+    \end{lstlisting}
+    \endgroup
+    \caption{A minimal \pkg{fithesis2} document}
+  \end{figure}
+\end{frame}
+\begin{frame}[fragile]
+  \begin{figure}[!]
+    \begin{lstlisting}
+\documentclass{fithesis3}
+\usepackage[english]{babel}
+\thesissetup{faculty = sci}
+\begin{document}
+  % Here goes the text of the thesis.
+\end{document}
+    \end{lstlisting}
+    \caption{A minimal \pkg{fithesis3} document}
+  \end{figure}
+\end{frame}
+\begin{frame}[label=design]
+  \frametitle{Design}
+  \begin{itemize}
+    \item<1->\pkg{Fithesis1} and \pkg{2} mix
+      \textcolor{blue}{logic}, \textcolor{green}{locales} and
+      \textcolor{red}{presentation}.
+    \item<2-> Proper support for faculties requires the addition
+      of: \begin{itemize}
+        \item<2-> per-faculty \textcolor{red}{presentation code},
+        \item<2-> per-faculty \textcolor{green}{locale strings},
+        \item<3-> per-faculty \textcolor{red}{%
+          document layout definitions}.
+      \end{itemize}
+    \item<4-> Non-functional requirements:
+      \begin{itemize}
+        \item<4-> Adherence to the open/closed principle
+        \item<5-> Extensive documentation
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+\FloatBarrier
+\clearpage
+\section{Conclusion}
+\def\Acrlong#1{The Faculty of Informatics of the Masaryk University
+  in Brno}
+\begin{frame}
+  \frametitle{Results}
+  \begin{itemize}
+    \only<1>{
+    \item The described design has been implemented.
+    \item The class has been comprehensively documented.
+    \item Along with the author's thesis, several other theses were
+      prepared using the \pkg{fithesis3} class already this
+      semester as a part of user testing \ifbeamerarticle
+        \mycite{kovanda15,zvolanek15,rucka15}
+      \else
+        \mycite{kovanda15}\textsuperscript{,}%
+        \mycite{zvolanek15}\textsuperscript{,}%
+        \mycite{rucka15}%
+      \fi.}
+    \only<2>{
+    \def\CS{$\cal C\kern-.1667em\lower.5ex%
+      \hbox{$\cal S$}\kern-.075em $}
+    \item The results of the statistical analysis of the usage of
+      \TeX\ at MU will be published in the \CS TUG bulletin.
+    \item Starting this fall, the class will be added to the
+      curriculum of the \emph{FI:PB029 -- Electronic Document
+      Preparation} subject.}
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Future work}
+  \begin{itemize}
+    \item By the end of June 2015, the class will be released at:\begin{itemize} 
+      \item online collaboration platforms (Share\LaTeX, Overleaf),
+      \item the CTAN archive (for the inclusion in \TeX\
+        distibutions).
+    \end{itemize}
+    \item During July--September 2015:\begin{itemize} 
+      %\item user documentation will be expanded,
+      \item an author’s cookbook will be created,
+      \item thesis defense and thesis report templates following a
+        similar design as \pkg{fithesis3} will be released.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+\ifbeamerarticle
+  \clearpage
+  \printbibliography
+\else
+  \begin{frame}
+    \begin{center}
+      \rmfamily\fontsize{150}{0}\selectfont%
+      \textbf{Q}\kern-2cm%
+      \fontsize{170}{0}\selectfont%
+      \raisebox{-0.3cm}{\textcolor{yellow!90!orange}{\&}}\kern-2cm%
+      \fontsize{150}{0}\selectfont%
+      \textbf{A}
+    \end{center}
+  \end{frame}
+  \begin{frame}[fragile]
+  \selectlanguage{czech}
+  \emph{Stylu by prospělo zakázání vdov a sirotků, což
+  by nemělo působit problémy, protože se nesází na
+  řádkový rejstřík [\dots]}\medskip\par Vdovy a sirotci
+  jsou nyní v rámci souborů stylů Masarykovy univerzity
+  zakázány. (V případě, že má \TeX\ k
+  dispozici pouze nekonečně ošklivé zlomy, však stále
+  může dojít k jejich vzniku.)\medskip
+  \lstset{
+    morecomment=[f][\color{gray}]{@@},
+    morecomment=[f][\color{green}]{+},
+    morecomment=[f][\color{blue!50!black}]{\ },
+    morecomment=[f][\color{red}]{-}}
+    \begin{lstlisting}
+diff --git a/fithesis3/style/mu/base.dtx b/fithesis3/style/mu/base.dtx
+index 73aeb10..095f9ea 100644
+--- a/fithesis3/style/mu/base.dtx
++++ b/fithesis3/style/mu/base.dtx
+@@ -262,2 +262,7 @@
+ %    \end{macrocode}
++% Clubs and widows are set to be infinitely bad.
++%    \begin{macrocode}
++\widowpenalty 10000
++\clubpenalty  10000
++%    \end{macrocode}
+ % \begin{macro}{\thesis@color@setup}
+    \end{lstlisting}
+\end{frame}
+  \begin{frame}
+    \emph{Vyjádřete se ke zkušenostem s dosavadním testováním a
+    použitím \pkg{fithesis3}.}\medskip\par Ohlasy testujících byly
+    výhradně pozitivní. Pochvalná slova zaznívala především na
+    adresu dobře zpracované uživatelské dokumentace a zapouzdření
+    sazby povinných částí do třídy.\vfill
+    \uncover<2->{\emph{Jak byla práce přijata na ostatních
+    fakultách MU?}\medskip\par O šabloně není zatím na ostatních
+    fakultách dostatečné povědomí. Tomu nahrává především
+    skutečnost, že uživatelské testování začalo až během května
+    tohoto roku, kdy byly závěrečné práce na mnoha fakultách již
+    buďto odevzdány, nebo těsně před svým dokončením.}
+  \end{frame}
+  \begin{frame}
+    \begin{center}
+      \rmfamily\fontsize{60}{0}\selectfont%
+      \textcolor{black!100!white}{Thank}
+      \textcolor{yellow!90!orange!100!white}{You}\\[3mm]
+      \fontsize{33}{0}\selectfont%
+      For \textcolor{yellow!90!orange}{Your} Attention
+    \end{center}
+  \end{frame}
+\fi
+\end{document}
