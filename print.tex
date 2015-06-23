@@ -1,5 +1,5 @@
 \documentclass[12pt,twoside,color,table]%
-  {fithesis3/fithesis3/fithesis3} % 0_0
+  {fithesis3/fithesis/fithesis3} % 0_0
 
 % Packages
 \usepackage[english]{babel} % Babel
@@ -55,7 +55,7 @@
     fithesis, tex usage statistics},
   TeXkeywords = {\LaTeX\ document classes, thesis typesetting,
     \textsf{fithesis}, \TeX\ usage statistics},
-  basePath    = ./fithesis3/fithesis3,
+  basePath    = ./fithesis3/fithesis,
   assignment  = {./misc/assignment, ./misc/declaration}}
 
 \thesislong{abstract}{This bachelor's thesis aims to assess
@@ -1145,7 +1145,7 @@ chapter, the author is going to describe the main goals of the
   \begin{figure}
     \centering
     \parbox{0.5\textwidth}{\dirtree{%
-      .1 fithesis3/.
+      .1 fithesis/.
         .2 locale/.
         .2 style/.
         .2 logo/.
@@ -1198,15 +1198,15 @@ chapter, the author is going to describe the main goals of the
   The structure of the \texttt{style/} directory is shown in Figure
   \ref{fig:dirs-style}. The style files for a given faculty of a
   given university are named
-  \texttt{fithesis3\hyph{}\textit{faculty}.sty} and
+  \texttt{fithesis\hyph{}\textit{faculty}.sty} and
   are stored within the \texttt{\textit{university}/}
   subdirectory. Common behavior is inherited from the
-  \texttt{fithesis3\hyph{}base.sty} style files,
+  \texttt{fithesis\hyph{}base.sty} style files,
   which, much like locale files, are loaded from the least to the
   most specific one starting at the root of the \texttt{style/}
   directory and ending up in the
   \texttt{\textit{university}/} subdirectory. The
-  \texttt{fithesis3-} filename prefix serves to prevent naming
+  \texttt{fithesis-} filename prefix serves to prevent naming
   collisions. Since the style files are ordinary \LaTeX{} packages
   and the \gls{tds} is flat, naming the style files only
   \texttt{\textit{faculty}.sty} would run the risk of clashing with
@@ -1232,7 +1232,7 @@ chapter, the author is going to describe the main goals of the
   
   The compatibility of the style files of \gls{mu} with the
   \Hologo{XeTeX} and \Hologo{LuaTeX} \glspl{texeng} is implemented
-  by the \texttt{fithesis3-base.sty} style file stored within the
+  by the \texttt{fithesis-base.sty} style file stored within the
   \texttt{mu/} directory, which loads \gls{texeng}-specific
   packages based on the \gls{texeng} used. Drawing inspiration
   from Petr Olšák's \hyperref[sec:ctu&custyle]{\textsf{CTUStyle}
@@ -1246,7 +1246,7 @@ chapter, the author is going to describe the main goals of the
   each faculty of a given university consists of one
   \texttt{\textit{faculty}.dtx} \gls{dtx} file stored within the
   \texttt{\textit{university}/} subdirectory. This file is
-  converted into the \texttt{fithesis3-\textit{faculty}.sty} file
+  converted into the \texttt{fithesis-\textit{faculty}.sty} file
   using the \texttt{\textit{faculty}.ins} \gls{ins} file and the
   \gls{makefile} stored within the \texttt{locale/} directory.
   
@@ -1254,10 +1254,10 @@ chapter, the author is going to describe the main goals of the
     \centering
     \parbox{0.5\textwidth}{\dirtree{%
       .1 style/.
-        .2 fithesis3-base.sty.
+        .2 fithesis-base.sty.
         .2 \textit{university}/.
-          .3 fithesis3-base.sty.
-          .3 fithesis3-\textit{faculty}.sty.
+          .3 fithesis-base.sty.
+          .3 fithesis-\textit{faculty}.sty.
     }}
     \caption{The directory structure of the style files of
       \textsf{fithesis3}}
@@ -1327,8 +1327,8 @@ chapter, the author is going to describe the main goals of the
 
   \subsection{The class file}
   With the majority of the \textsf{fithesis2} code being reduced to
-  layout definitions in the \texttt{fithesis3-base.sty} style file
-  and the \texttt{fithesis3-10}, \texttt{11} and \texttt{12.clo}
+  layout definitions in the \texttt{fithesis-base.sty} style file
+  and the \texttt{fithesis-10}, \texttt{11} and \texttt{12.clo}
   class options files, the \textsf{fithesis3} \gls{docclass} was
   written from scratch. Although most of the class file concerns
   dry processing of the input metadata, there are some parts that

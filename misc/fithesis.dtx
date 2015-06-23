@@ -21,8 +21,7 @@
 % <http://is.muni.cz/auth/df/fithesis-sazba/>.
 %
 % This work consists of the files fithesis.dtx and fithesis.ins
-% and the derived files fithesis3.cls, fithesis2.cls, fithesis.cls,
-% fit10.clo, fit11.clo, fit12.clo.
+% and the derived files fithesis3.cls, fithesis2.cls, fithesis.cls.
 %
 %    \begin{macrocode}
 %<*driver>
@@ -279,9 +278,9 @@
 % |\thesis@localepath|) used by the class. If non-empty, the
 % \textit{path} gets normalized to \textit{path/}. The normalized
 % \textit{path} is stored within the private |\thesis@basepath| macro,
-% whose implicit value is |fithesis3/|.
+% whose implicit value is |fithesis/|.
 %    \begin{macrocode}
-\def\thesis@basepath{fithesis3/}
+\def\thesis@basepath{fithesis/}
 \define@key{thesis}{basePath}{%
   \ifx\thesis@empty#1\thesis@empty%
     \def\thesis@basepath{}%
@@ -644,11 +643,11 @@
 % The \marg{\texttt{style}=filename} pair sets the filename of the
 % style file to be used to \textit{filename}. The \textit{filename}
 % is stored within the private |\thesis@style| macro, whose
-% implicit value is |\thesis@university/fithesis3-\thesis@faculty|.
+% implicit value is |\thesis@university/fithesis-\thesis@faculty|.
 % The style file is loaded from the
 % |\thesis@stylepath\thesis@style| path.
 %    \begin{macrocode}
-\def\thesis@style{\thesis@university/fithesis3-\thesis@faculty}
+\def\thesis@style{\thesis@university/fithesis-\thesis@faculty}
 \define@key{thesis}{style}{%
   \def\thesis@style{#1}}
 %    \end{macrocode}
@@ -1129,20 +1128,20 @@
 % |\thesis@requireStyle|\marg{style} private macro sequentially
 % loads each of the following files, provided they exist:
 % \begin{enumerate}
-%   \item|\thesis@stylepath fithesis3-base.sty|
-%   \item|\thesis@stylepath\thesis@university/fithesis3-base.sty|
+%   \item|\thesis@stylepath fithesis-base.sty|
+%   \item|\thesis@stylepath\thesis@university/fithesis-base.sty|
 %   \item|\thesis@stylepath| \textit{style}|.sty|
 % \end{enumerate}If inheritance is disabled for style files,
 % then only the |\thesis@stylepath| \textit{style}|.sty| file is
-% loaded. The \texttt{fithesis3-} prefix serves to prevent package
+% loaded. The \texttt{fithesis-} prefix serves to prevent package
 % clashes with other similarly named package files within the \TeX\
 % directory structure.
 %    \begin{macrocode}
 \def\thesis@requireStyle#1{%
   \ifthesis@style@inheritance%
-    \thesis@requireWithOptions{\thesis@stylepath fithesis3-base}%
+    \thesis@requireWithOptions{\thesis@stylepath fithesis-base}%
     \thesis@requireWithOptions{\thesis@stylepath\thesis@university%
-      /fithesis3-base}
+      /fithesis-base}
   \fi%
   \thesis@requireWithOptions{\thesis@stylepath#1}}
 %    \end{macrocode}
