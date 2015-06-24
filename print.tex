@@ -1266,33 +1266,33 @@ chapter, the author is going to describe the main goals of the
   
   \subsection{Logo files}
   The structure of the \texttt{logo/} directory is shown in Figure
-  \ref{fig:dirs-logo}. The university logo of a given
-  university is stored in the \texttt{base.pdf} \gls{pdf} and
-  \texttt{base.eps} \gls{eps} files within the
+  \ref{fig:dirs-logo}. The university logo of a given university is
+  stored in the \texttt{fithesis-base.eps} \gls{eps} files and
+  \texttt{fithesis-base.pdf} \gls{pdf} files within the
   \texttt{\textit{university}/} subdirectory. The faculty logo for
   a given faculty of a given university is stored in the
-  \texttt{\textit{faculty}.pdf} \gls{pdf} and
-  \texttt{\textit{faculty}.eps} \gls{eps} files within
-  the \texttt{\textit{university}/} subdirectory. The
-  \texttt{\textit{university}/color/} subdirectory is required by
-  the style files of \gls{mu} when color printing is enabled and
-  contains the color versions of logos in an identical directory
-  structure.
+  \texttt{fithesis-\textit{faculty}.eps} \gls{eps} and
+  \texttt{fithesis-\textit{faculty}.pdf} \gls{pdf} files within the
+  \texttt{\textit{university}/} subdirectory. The files with the
+  \texttt{-color} suffix contain the color versions of logos and
+  are used by the style files of \gls{mu}, when color printing is
+  enabled. The \texttt{fithesis-} filename prefix serves to prevent
+  naming collisions. Since the \gls{tds} is flat, omitting the
+  prefix would run the risk of clashing with similarly named files.
 
   \begin{figure}
     \centering
-    \parbox{0.5\textwidth}{\dirtree{%
+    \parbox{0.6\textwidth}{\dirtree{%
       .1 logo/.
         .2 \textit{university}/.
-          .3 base.eps.
-          .3 base.pdf.
-          .3 \textit{faculty}.eps.
-          .3 \textit{faculty}.pdf.
-          .3 color/.
-            .4 base.eps.
-            .4 base.pdf.
-            .4 \textit{faculty}.eps.
-            .4 \textit{faculty}.pdf.
+          .3 fithesis-base.eps.
+          .3 fithesis-base.pdf.
+          .3 fithesis-base-color.eps.
+          .3 fithesis-base-color.pdf.
+          .3 fithesis-\textit{faculty}.eps.
+          .3 fithesis-\textit{faculty}.pdf.
+          .3 fithesis-\textit{faculty}-color.eps.
+          .3 fithesis-\textit{faculty}-color.pdf.
     }}
     \caption{The directory structure of the logo files of
       \textsf{fithesis3}}
@@ -1300,22 +1300,17 @@ chapter, the author is going to describe the main goals of the
   \end{figure}
   
   The monochrome and color versions of the logos in \gls{eps}
-  format were downloaded from the website of \gls{mu} \cite{muvis}
-  and subsequently converted to \gls{pdf} using the
-  \textsf{epstopdf} utility. The only exception was the
-  logo of \gls{fi}, which was instead taken from the bachelor's
-  thesis of Mgr.\ Matúš Kominka \cite{Kominka08}. Figure
-  \ref{fig:logo} contrasts the vector logo with the original
-  \gls{metafont} logo designed by \thesis{advisor}\ and
-  implemented by the founding Dean of \gls{fi}, Prof.\ Jiří
-  Zlatuška~\cite{filogo}.
-
-  For maintenance purposes, the logo files consist of only the
-  \gls{eps} files. The \gls{eps} files can be converted into
-  \gls{pdf} files using the \glspl{makefile} stored in the
-  \texttt{\textit{university}/} and 
-  \texttt{\textit{university}/color/}
-  subdirectories.
+  format were downloaded from the website of \gls{mu} \cite{muvis}.
+  The only exception was the logo of \gls{fi}, which was instead
+  taken from the bachelor's thesis of Mgr.\ Matúš Kominka
+  \cite{Kominka08}. Figure \ref{fig:logo} contrasts the vector logo
+  with the original \gls{metafont} logo designed by
+  \thesis{advisor}\ and implemented by the founding Dean of
+  \gls{fi}, Prof.\ RNDr.\ Jiří Zlatuška, CSc.~\cite{filogo}.  For
+  maintenance purposes, the logo files consist of only the
+  \gls{eps} logo files. These are converted into \gls{pdf} files
+  using the \glspl{makefile} stored in the
+  \texttt{\textit{university}/} subdirectory.
 
   \begin{figure}
     \includegraphics[clip,trim=4.25cm 19.2cm 4.25cm 5.8cm]%
