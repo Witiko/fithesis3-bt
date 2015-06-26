@@ -1141,6 +1141,12 @@ chapter, the author is going to describe the main goals of the
   and faculty logos in \gls{pdf} and \gls{eps} formats. The
   \texttt{fithesis3.cls} file represents the \textsf{fithesis3}
   \gls{docclass}.
+  
+  Most files described in the following sections use the
+  \texttt{fithesis-} filename prefix. The purpose of the prefix is
+  to prevent naming collisions with other \glspl{texpackage}. Since
+  the \gls{tds} is flat, omitting the prefix would run the risk of
+  clashing with similarly named files.
 
   \begin{figure}
     \centering
@@ -1159,7 +1165,7 @@ chapter, the author is going to describe the main goals of the
   The structure of the \texttt{locale/} directory is shown in in
   Figure \ref{fig:dirs-locale}. The locale files of a given
   locale for a given faculty of a given university are named
-  \texttt{\textit{locale}.def} and are
+  \texttt{fithesis-\textit{locale}.def} and are
   loaded from the least to the most specific one starting at the
   root of the \texttt{locale/} directory and ending up in the
   \texttt{\textit{university}/\textit{faculty}/}
@@ -1183,11 +1189,11 @@ chapter, the author is going to describe the main goals of the
     \centering
     \parbox{0.5\textwidth}{\dirtree{%
       .1 locale/.
-        .2 \textit{locale}.def.
+        .2 fithesis-\textit{locale}.def.
         .2 \textit{university}/.
-          .3 \textit{locale}.def.
+          .3 fithesis-\textit{locale}.def.
           .3 \textit{faculty}/.
-            .4 \textit{locale}.def.
+            .4 fithesis-\textit{locale}.def.
     }}
     \caption{The directory structure of the locale files of
       \textsf{fithesis3}}
@@ -1205,12 +1211,7 @@ chapter, the author is going to describe the main goals of the
   which, much like locale files, are loaded from the least to the
   most specific one starting at the root of the \texttt{style/}
   directory and ending up in the
-  \texttt{\textit{university}/} subdirectory. The
-  \texttt{fithesis-} filename prefix serves to prevent naming
-  collisions. Since the style files are ordinary \LaTeX{} packages
-  and the \gls{tds} is flat, naming the style files only
-  \texttt{\textit{faculty}.sty} would run the risk of clashing with
-  a similarly named \gls{ltxpackage}.
+  \texttt{\textit{university}/} subdirectory.
 
   The majority of the style files of \gls{mu} were developed in
   accordance with Dean's directives or formal requirements
@@ -1276,9 +1277,7 @@ chapter, the author is going to describe the main goals of the
   \texttt{\textit{university}/} subdirectory. The files with the
   \texttt{-color} suffix contain the color versions of logos and
   are used by the style files of \gls{mu}, when color printing is
-  enabled. The \texttt{fithesis-} filename prefix serves to prevent
-  naming collisions. Since the \gls{tds} is flat, omitting the
-  prefix would run the risk of clashing with similarly named files.
+  enabled.
 
   \begin{figure}
     \centering
