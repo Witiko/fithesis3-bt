@@ -1,4 +1,4 @@
-.PHONY: all clean clean-all
+.PHONY: all clean implode
 
 RESOURCES=database.bib definitions.sty glossaries.tex misc/*.pdf
 NONSOURCES=$(OUTPUT).pdf

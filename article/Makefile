@@ -1,4 +1,4 @@
-.PHONY: all
+.PHONY: all clean implode
 
 NONSOURCES=$(OUTPUT).pdf
 OUTPUT=article
@@ -20,5 +20,5 @@ clean:
 	rm -f $(AUX)
 
 # This target removes all non-source files.
-clean-all: clean
+implode: clean
 	rm -f $(NONSOURCES)
