@@ -11,7 +11,7 @@ typeset econ 73
 typeset fss 91
 typeset law 111
 typeset med 131
-typeset ped 147
-typeset phil 167
-typeset fsps 187
+typeset ped 149
+typeset phil 169
+typeset fsps 189
 make clean

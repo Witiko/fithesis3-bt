@@ -1,7 +1,7 @@
 % \iffalse\begin{macrocode}
 %<*driver>
 
-\documentclass{ltxdoc}\setcounter{page}{205}
+\documentclass{ltxdoc}\setcounter{page}{207}
 \usepackage[utf8]{inputenc} % this file uses UTF-8
 \usepackage[english]{babel}
 \usepackage{tgpagella}
@@ -16,6 +16,7 @@
 \usepackage{hypdoc}
 \usepackage{microtype}
 \usepackage{ragged2e}
+\usepackage{paralist}
 
 % Making paragraphs numbered
 \makeatletter
@@ -33,7 +34,8 @@
 \EnableCrossrefs
 \DoNotIndex{}
 \makeatletter
-\c@IndexColumns=2
+  \c@IndexColumns=2
+  \c@GlossaryColumns=2
 \makeatother
 
 \begin{document}
@@ -49,11 +51,38 @@
 %<*class>
 \NeedsTeXFormat{LaTeX2e}
 % Define `\thesis@version` and store it in the `VERSION.tex` file \fi
-\def\thesis@version{2015/11/21 v0.3.26 fithesis3 MU thesis class}
+\def\thesis@version{2015/11/30 v0.3.27 fithesis3 MU thesis class}
 % {\newwrite\f\openout\f=VERSION\write\f{\thesis@version}\closeout\f}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
+%
+% \changes{v0.3.27:5}{2015/11/30}{The PDF bookmarks are no longer
+%   garbled, when the \Hologo{LuaTeX} engine is used. [VN]}
+% \changes{v0.3.27:4}{2015/11/30}{\cs{thesis@english@declaration}
+%   now uses the correct idiom (by one's own $\to$ on
+%   one's own). [VN]}
+% \changes{v0.3.27:3}{2015/11/29}{As a preparation for the future
+%   inclusion of bibliography support, the \textsf{csquotes}
+%   package is loaded, \texttt{@csquotesStyle} is a new part of
+%   the locale interface that sets the \textsf{csquotes} style
+%   of a locale, and \cs{thesis@selectLocale} now switches the
+%   \textsf{csquotes} style. [VN]}
+% \changes{v0.3.27:2}{2015/11/29}{\cs{thesis@selectLocale} is no
+%   longer performed globally for the entire document during
+%   \cs{thesis@load} (effectively overriding the user's hyphenation
+%   settings, if Babel's or Polyglossia's \cs{languagename}
+%   differs from \cs{thesis@locale}). Instead, \cs{thesis@preamble}
+%   and \texttt{@postamble} now locally switch the locale and
+%   expand \cs{thesis@blocks@preamble} and \texttt{@postamble},
+%   which are the new redefinables. Since this breaks the behaviour
+%   of \cs{thesis@blocks@mainMatter}, whose effects would also be
+%   local, \texttt{@mainMatter} is now executed directly by
+%   \cs{thesis@preamble} after closing the group and becomes a new
+%   part of the interface between the class and the style files.
+%   [VN]}
+% \changes{v0.3.27:1}{2015/11/29}{Fixed a typo in the guide.
+%   Added a compatibility layer for \cs{title}, \cs{author}, and
+%   \cs{maketitle}. Minor changes of the documentation. [VN]}
 % \changes{v0.3.26}  {2015/11/21}{Updated the example documents and
 %   the user guide. Fixed a typo in the description of
 %   \cs{thesis@season}. [VN]}
@@ -177,7 +206,7 @@
 %   was decomposed into a base class, locale files and style files. [VN]}
 % \changes{v0.3.08}  {2015/03/04}{Fixed a non-terminated \cs{if} condition.
 %   [VN] (backport of v0.2.18)\\Fixed mostly documentation errors reported
-%   at the new fithesis discussion forum (-ti, eco$\rightarrow$econ, implicit
+%   at the new fithesis discussion forum (-ti, eco$\to$econ, implicit
 %   twocolumn, example extended (font setup), etc.). [PS] (backport of v0.2.17)}
 % \changes{v0.3.07}  {2015/02/03}{Replaced the \cs{thesiswoman} command with
 %   \cs{thesisgender}. [VN]}
@@ -228,13 +257,13 @@
 % \changes{v0.2.01}  {2004/05/11}{add subsubsection to toc [JP]}
 % \changes{v0.2.00}  {2004/05/03}{add sk lang [JP, Peter Cerensky]
 %   set default cls class to \textsf{rapport3} [JP]}
-% \changes{v0.1g}   {2004/04/01}{change of default size (12pt$\rightarrow$11pt) [JP]}
+% \changes{v0.1g}   {2004/04/01}{change of default size (12pt$\to$11pt) [JP]}
 % \changes{v0.1f}   {2004/01/24}{add documentation for hyperref [JP]}
 % \changes{v0.1e}   {2004/01/07}{add Brno to MU title [JP]}
 % \changes{v0.1d}   {2003/03/24}{removed def schapter from fit1*.clo [JP]}
 % \changes{v0.1c}   {2003/02/21}{default values of \cs{facultyname} and
 %   \\\cs{@thesissubtitle} set for backward compatibility) [PS]}
-% \changes{v0.1b}   {2003/02/14}{change of default size (11pt$\rightarrow$12pt) [JP]}
+% \changes{v0.1b}   {2003/02/14}{change of default size (11pt$\to$12pt) [JP]}
 % \changes{v0.1a}   {2003/02/12}{minor documentation changes (CZ only,
 %   sorry) [PS]}
 % \changes{v0.1}    {2003/02/11}{new release, documentation editing (CZ only,
@@ -508,6 +537,8 @@
 %     -- The full name without the first space-delimited part of
 %     the name. This corresponds to the author's surname.
 % \end{itemize}
+% The standard \LaTeX\ \DescribeMacro{\author}|\author| macro also
+% sets this key.
 %    \begin{macrocode}
 \def\thesis@parseAuthor#1{%
   \def\thesis@author{#1}%
@@ -519,6 +550,7 @@
 \thesis@def[author]{author@tail}%
 \define@key{thesis}{author}{%
   \thesis@parseAuthor{#1}}
+\let\author\thesis@parseAuthor
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\thesis@id}
@@ -896,11 +928,19 @@
 % \subsubsection{The \texttt{title} key}
 % The \marg{\texttt{title}=title} pair sets the title of the
 % thesis to \textit{title}. The \textit{title} is stored within the
-% |\thesis@title| macro.
+% |\thesis@title| macro. The standard \LaTeX\
+% \DescribeMacro{\title}|\title| macro also sets this key.
 %    \begin{macrocode}
 \thesis@def{title}
 \define@key{thesis}{title}{%
   \def\thesis@title{#1}}
+\def\title#1{\def\thesis@title{#1}}
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\maketitle}
+% The standard \LaTeX\ |\maketitle| macro is defined, but disabled.
+%    \begin{macrocode}
+\let\maketitle\relax
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\thesis@TeXtitle}
@@ -1068,13 +1108,36 @@
 %    \end{macrocode}
 % \end{macro} ^^A The nested \ifthesis@auto macro definition
 % \end{macro} ^^A The \thesissetup macro definition
-% The \DescribeMacro{\thesis@preamble}|\thesis@postamble|
-% and \DescribeMacro{\thesis@postamble}|\thesis@preamble|
-% macros are defined as empty token strings by default and
-% are subject to redefinition by the style files.
+% The \DescribeMacro{\thesis@preamble}|\thesis@preamble|
+% and \DescribeMacro{\thesis@postamble}|\thesis@postamble|
+% macros temporarily switch to the hyphenation patterns and the
+% \textsf{csquotes} style of the main locale and typeset the
+% contents of the
+% \DescribeMacro{\thesis@blocks@preamble}|\thesis@blocks@preamble|
+% or
+% \DescribeMacro{\thesis@blocks@postamble}|\thesis@blocks@postamble|
+% macros, respectively.
+%
+% Before leaving the group, the |\thesis@preamble| macro clears the
+% page. After leaving the group, the |\thesis@preamble| macro sets
+% up the style of the main matter by expanding the
+% \DescribeMacro{\thesis@blocks@mainMatter}|\thesis@blocks@mainMatter|
+% macro. All the aforementioned |@block@| macros are defined as
+% |\relax| and are subject to redefinition by the loaded style
+% files.
 %    \begin{macrocode}
-\def\thesis@preamble{}
-\def\thesis@postamble{}
+\def\thesis@preamble{%
+  {\thesis@selectLocale{\thesis@locale}%
+  \thesis@blocks@preamble\clearpage}
+  \thesis@blocks@mainMatter}
+
+\def\thesis@postamble{{%
+  \thesis@selectLocale{\thesis@locale}%
+  \thesis@blocks@postamble}}
+
+\let\thesis@blocks@preamble\relax
+\let\thesis@blocks@postamble\relax
+\let\thesis@blocks@mainMatter\relax
 %    \end{macrocode}
 % \subsection{The \cs{thesislong} macro}\label{sec:thesislong}
 % \begin{macro}{\thesislong}
@@ -1083,12 +1146,12 @@
 % used as an alternative to the |\thesissetup| public macro, which
 % only permits a single paragraph as the \textit{value}, for the
 % following \textit{key}s:
-% \begin{itemize}
+% \begin{compactitem}
 %   \item\texttt{abstract}
 %   \item\texttt{abstractEn}
 %   \item\texttt{thanks}
 %   \item\texttt{declaration}
-% \end{itemize}
+% \end{compactitem}
 %    \begin{macrocode}
 \long\def\thesislong#1#2{%
   \csname KV@thesis@#1\endcsname{#2}}
@@ -1113,14 +1176,12 @@
     \thesis@loadedtrue
     \makeatletter%
 %    \end{macrocode}
-% First, the main locale is selected and its files are loaded using
-% the |\thesis@selectLocale| macro. If the user specified an
-% explicit empty string as the value of |\thesis@locale|, do
-% nothing.
+% First, the main locale file is loaded using the
+% |\thesis@requireLocale| macro. If the user specified an explicit
+% empty string as the value of |\thesis@locale|, do nothing.
 %    \begin{macrocode}
       \ifx\thesis@locale\empty\else
         \thesis@requireLocale{\thesis@locale}
-        \thesis@selectLocale{\thesis@locale}
       \fi
 %    \end{macrocode}
 % Consequently, the style files are loaded. If the user specified an
@@ -1141,32 +1202,24 @@
 %   \item\texttt{Creator} is set to \texttt{\thesis@version}.
 % \end{itemize}
 %    \begin{macrocode}
-       \thesis@require{hyperref}%
-      {\hypersetup{unicode,
-         pdftitle={\thesis@title},%
-         pdfauthor={\thesis@author},%
-         pdfkeywords={\thesis@keywords},%
-         pdfcreator={\thesis@version},%
-     }}%
+       \thesis@require{hyperref}
+       \hypersetup{
+         unicode=true,
+         pdfencoding=auto,
+         pdftitle=\thesis@title,
+         pdfauthor=\thesis@author,
+         pdfkeywords=\thesis@keywords,
+         pdfcreator=\thesis@version}
 %    \end{macrocode}
 % If autolayout is enabled, the |\thesis@preamble| and
 % |\thesis@postamble| macros are scheduled for expansion at the
 % beginning and at the end of the document, respectively.
 %    \begin{macrocode}
-      \ifthesis@auto%
-        \AtBeginDocument{\thesis@preamble}%
-        \AtEndDocument{\thesis@postamble}%
-      \fi%
-%    \end{macrocode}
-% Lastly, the \DescribeMacro{\thesis@pages}|\thesis@pages| 
-% macro definition containing the length of the document is
-% scheduled to be included in the auxiliary file.
-%    \begin{macrocode}
-      \AtEndDocument{%
-        % Define \thesis@pages for the next run
-        \write\@auxout{\noexpand\gdef\noexpand%
-          \thesis@pages{\thepage}}}
-    \makeatother%
+      \ifthesis@auto
+        \AtBeginDocument{\thesis@preamble}
+        \AtEndDocument{\thesis@postamble}
+      \fi
+    \makeatother
   \fi}
 %    \end{macrocode}
 % \end{macro}
@@ -1320,8 +1373,8 @@
 %    \end{macrocode}
 % The \DescribeMacro{\thesis@head}|\thesis@head|
 % and \DescribeMacro{\thesis@tail}|\thesis@tail|
-% macros are used for retrieving a head or a tail of
-% space-separated token sequences, which end with |\relax|.
+% macros are used for retrieving the head or the tail of
+% space-separated token sequences that end with |\relax|.
 %    \begin{macrocode}
 \def\thesis@head#1 #2{%
   \ifx\relax#2%
@@ -1338,25 +1391,33 @@
   \thesis@tail#2}%
 %    \end{macrocode}
 % \subsection{General purpose macros}
-% The \DescribeMacro{\thesis@pages}|\thesis@pages| macro is defined
-% at the beginning of the second \LaTeX\ run as a part of the main
-% routine (see Section \ref{sec:thesis@load}). During the first
-% run, the macro expands to \texttt{??}.
+% The \DescribeMacro{\thesis@pages}|\thesis@pages| macro contains
+% the total number of pages within the document. During the first
+% \TeX\ compilation, the macro expands to \texttt{??}.
 %    \begin{macrocode}
+\AtEndDocument{\write\@auxout{\noexpand\gdef\noexpand\thesis@pages{\thepage}}}
 \ifx\thesis@pages\undefined\def\thesis@pages{??}\fi
 %    \end{macrocode}
 % \DescribeMacro{\thesis@selectLocale}|\thesis@selectLocale|\marg{locale}
 % macro redefines the |\thesis@locale| macro to \textit{locale},
-% and switches to the hyphenation patterns of \textit{locale}. The
-% respective locale files and polyglossia locale definitions should
-% be loaded beforehand using the |\thesis@requireLocale| macro.
+% switches to the hyphenation patterns of \textit{locale}, and
+% starts using the |\thesis@|\textit{locale}|@csquotesStyle| style
+% of the \textsf{csquotes} package. The respective locale files and
+% polyglossia locale definitions should be loaded beforehand using
+% the |\thesis@requireLocale| macro.
 %
 % This macro should always be used within a group, so that the
-% locale settings and the hyphenation return back to what the user
-% has specified after the localized block of typographic material.
+% locale, \textsf{csquotes}, and hyphenation settings return back to
+% what the user has specified after the localized blocks of
+% typographic material.
+%
+% If not loaded by the user, the \textsf{csquotes} package gets
+% loaded at the end of the preamble.
 %    \begin{macrocode}
+\AtEndPreamble{\thesis@require{csquotes}}
 \def\thesis@selectLocale#1{%
   \edef\thesis@locale{#1}%
+  \csq@setstyle{\thesis@@{csquotesStyle}}%
   \ltx@ifpackageloaded{polyglossia}{%
     \selectlanguage{\thesis@locale}
   }{%
@@ -1420,6 +1481,9 @@
 % in Section \ref{sec:reflection}) needs to globally define the
 % following macros:
 % \begin{itemize}
+%   \item|\thesis@|\textit{locale}|@csquotesStyle| -- The name of
+%     the style of the \textsf{csquotes} package that matches this
+%     locale
 %   \item|\thesis@|\textit{locale}|@universityName| -- The name of
 %     the university
 %   \item|\thesis@|\textit{locale}|@facultyName| -- The name of the
@@ -1485,14 +1549,17 @@
 % Section \ref{sec:reflection}) should globally define at least one
 % of the following macros:
 % \begin{itemize}
-%   \item\DescribeMacro{\thesis@preamble}
-%                      |\thesis@preamble| -- If autolayout is
-%                      enabled, then this macro is expanded at the
-%                      very beginning of the document.
-%   \item\DescribeMacro{\thesis@postamble}
-%                      |\thesis@postamble| -- If autolayout is
-%                      enabled, then this macro is expanded at the
-%                      very end of the document.
+%   \item\DescribeMacro{\thesis@blocks@preamble}^^A
+%     |\thesis@blocks@preamble| -- If autolayout is enabled, then
+%     this macro is expanded at the very beginning of the document.
+%   \item\DescribeMacro{\thesis@blocks@postamble}^^A
+%     |\thesis@blocks@postamble| -- If autolayout is enabled, then
+%     this macro is expanded at the very end of the document.
+%   \item\DescribeMacro{\thesis@blocks@mainMatter}^^A
+%     |\thesis@blocks@mainMatter| -- If autolayout is enabled, then
+%     this macro is expanded at the beginning of the document right
+%     after |\thesis@blocks@preamble|. This macro sets the style of
+%     the main matter of the thesis.
 % \end{itemize}
 %
 % \subsubsection{Base style files}
