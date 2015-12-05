@@ -5,9 +5,6 @@
 \usepackage[english]{babel} % Babel
 \usepackage{hologo}         % \XeLaTeX and friends
 \usepackage{mflogo}         % \MF and friends
-\usepackage[                % Microtype
-  protrusion                  % Protrusion support
-]{microtype}
 \usepackage{amsmath}        % The split and multiline environments
 \usepackage{setspace}       % Paragraph spacing
 \usepackage{blindtext}      % Blind text
@@ -928,12 +925,12 @@ will also be considered.
   \section{Technical University of Ostrava}\index{\textsf{diploma}|(}
   The official style for the typesetting of documents at \gls{vsb}
   is the \textsf{diploma} \gls{docclass} by Jiří Dvorský. Like Jiří
-  Rybička's \hyperref[sec:dipp.sty]{\tt dipp.sty}, \textsf{diploma}
-  uses the base \textsf{article} \gls{docclass}, modifies its
-  geometry and adds thesis sectioning commands and additional
-  macros for the users' convenience \cite{diploma}. The output
-  documents are one-sided by default and the font size of 11\,pt is
-  too small for the \gls{textwidth} of \begin{equation}
+  Rybička's \hyperref[sec:dipp.sty]{\texttt{dipp.sty}},
+  \textsf{diploma} uses the base \textsf{article} \gls{docclass},
+  modifies its geometry and adds thesis sectioning commands and
+  additional macros for the users' convenience \cite{diploma}. The
+  output documents are one-sided by default and the font size of
+  11\,pt is too small for the \gls{textwidth} of \begin{equation}
     \begin{split}
       210\,\text{mm} \text{ (A4 width) }
         &- 28\,\text{mm} \text{ (left margin) }  \\
