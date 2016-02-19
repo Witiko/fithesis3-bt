@@ -52,11 +52,21 @@
 %<*class>
 \NeedsTeXFormat{LaTeX2e}
 % Define `\thesis@version` and store it in the `VERSION.tex` file \fi
-\def\thesis@version{2016/01/13 v0.3.31 fithesis3 MU thesis class}
+{\def\thesis@versiondef#1#2{
+  \gdef\thesis@version@number{#1}
+  \gdef\thesis@version@date{#2}
+  \gdef\thesis@version{#2 #1 fithesis3 MU thesis class}}
+\thesis@versiondef{v0.3.33}{2016/02/19}}
 % {\newwrite\f\openout\f=VERSION\write\f{\thesis@version}\closeout\f}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% \changes{v0.3.33}  {2016/02/19}{Added \cs{thesis@patch}.}
+% \changes{v0.3.32}  {2016/02/18}{Fixed a regression from 
+%   v0.3.27:2 -- The margins in \cs{thesis@blocks@mainMatter} were
+%   corrected in the style files of the Faculty of Economics and
+%   Administration and the Faculty of Medicine at the Masaryk
+%   University in Brno.}
 % \changes{v0.3.31:3}{2016/01/13}{The
 %   \texttt{style/mu/fithesis-sci.sty} style file redefines
 %   \cs{thesis@blocks}\texttt{\discretionary{@}{@}{@}declaration}
@@ -64,15 +74,17 @@
 %   The locale file \texttt{style/mu/sci/czech.def} contains a new
 %   string \cs{thesis@czech\discretionary{@}{@}{@}formattedDate}.
 %   [VN]}
-% \changes{v0.3.31:2}{2016/01/07}{All trailing \%s were removed.
-%   Some of the inherited \textsf{fithesis2} code in the
-%   \texttt{fithesis-1*.clo} and \texttt{style/mu/fithesis-base.sty}
-%   files was refactored and reformatted. Alternative
-%   templates for the Faculty of Science at the Masaryk University
-%   in Brno are now mentioned in the respective user guide. [VN]}
-% \changes{v0.3.31:1}{2016/01/07}{The redefinition of \cs{appendix}
-%   from the \texttt{fithesis-1*.clo}, which broke the hyperref
-%   links to the appendices, were removed. [VN]}
+% \changes{v0.3.31:2}{2016/01/07}{All trailing \texttt{\%}s were
+%   removed. Some of the inherited \textsf{fithesis2} code in the
+%   \texttt{style/mu/fithesis-1*.clo} and
+%   \texttt{style/mu/fithesis-base.sty} files was refactored and
+%   reformatted. Alternative templates for the Faculty of Science
+%   at the Masaryk University in Brno are now mentioned in the
+%   respective user guide. [VN]}
+% \changes{v0.3.31:1}{2016/01/07}{The redefinitions of
+%   \cs{appendix} from the
+%   \texttt{style/mu\discretionary{/}{/}{/}fithesis-1*.clo} files,
+%   which broke hyperref links to appendices, were removed. [VN]}
 % \changes{v0.3.30}  {2016/01/05}{The \cs{thesis@seasonYear} macro
 %   has been added, which, unlike \cs{thesis@year} takes into
 %   account the fact that January and Fabruary of the year $n$
@@ -1503,6 +1515,31 @@
     \language\csname l@\thesis@locale\endcsname
   }}
 %    \end{macrocode}
+% \begin{macro}{\thesis@patch}
+% The |\thesis@patch|\oarg{versions}\oarg{patch} macro expands
+% \textit{patch}, if |\thesis@version|\texttt{\discretionary{@}^^A
+% {@}{@}}|number| (defined at the top of the file
+% \texttt{fithesis3.cls}) matches any of the comma-delimited
+% \textit{versions}. This macro enables the simple deployment of
+% version-targeted patches.
+%    \begin{macrocode}
+\def\thesis@patch#1#2{%
+  \def\thesis@patch@versions{#1}%
+  \def\thesis@patch@action{#2}%
+  \def\thesis@patch@next##1,{%
+    \def\thesis@patch@arg{##1}%
+    \def\thesis@patch@relax{\relax}%
+    \ifx\thesis@patch@arg\thesis@version@number
+      \def\thesis@patch@next####1\relax,{}%
+      \expandafter\thesis@patch@action
+      \expandafter\thesis@patch@next
+    \else\ifx\thesis@patch@arg\thesis@patch@relax\else
+      \expandafter\expandafter\expandafter\thesis@patch@next
+    \fi\fi}%
+  \expandafter\expandafter\expandafter\thesis@patch@next
+  \expandafter\thesis@patch@versions\expandafter,\relax,}
+%    \end{macrocode}
+% \end{macro}
 % \iffalse
 %</class>
 % ^^A Old fithesis classes

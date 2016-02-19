@@ -20,7 +20,7 @@ $(OUTPUT).pdf: $(OUTPUT).tex $(RESOURCES)
 	@toolbox/test.sh pdflatex texindy biber makeglossaries
 	$(TEX) $<
 	# Prepare index, bibliography and glossaries
-	texindy -I omega --language english $(OUTPUT).idx
+	texindy -I latex -C utf8 -L english $(OUTPUT).idx
 	makeglossaries $(OUTPUT)
 	$(TEX) $<
 	biber $(OUTPUT)
