@@ -56,7 +56,7 @@
     {\thesis@selectLocale{\thesis@locale}
      \thesis@blocks@titlePage\clearpage}
      \thesis@blocks@mainMatter
-  \makeatother\setcounter{page}{191%??page??
+  \makeatother\setcounter{page}{203%??page??
   }
   \chapter{Introduction}
   To use the \textsf{fithesis3} class, you can use an online
@@ -152,8 +152,8 @@
   \TeX\ Live can be acquired from
   \url{http://www.tug.org/texlive}.}, which can be installed on
   both Unix and Windows operating systems. The advantages of
-  Mik\TeX\ include refined graphical user interface and the ability
-  to install new packages on the fly.
+  Mik\TeX\ over \TeX Live include refined graphical user interface
+  and the ability to install new packages on the fly.
   
   Along with Mik\TeX{}, you will also need to install a Perl
   interpreter, such as Strawberry Perl\footnote{Strawberry Perl can
@@ -649,6 +649,11 @@
       This key can be used to specify the name of the department at
       which the thesis is going to be defended.
 %</law,med,ped,phil>
+%<*phil>
+      Specifying \texttt{kisk} as the department name changes the
+      output to fit the requirements of the Division of Information
+      and Library Studies.
+%</phil>
 %<*sci>
     \item[departmentEn]
       This key can be used to specify the English name of the
@@ -729,7 +734,7 @@
   may wishe to configure the class beyond what the class options
   and the metadata settings offer. An understanding of how the
   main routine of \textsf{fithesis3} works is beneficial. The main
-  routine is documented in Section 3.1 of the technical
+  routine is documented in Section 2.4 of the technical
   documentation of the \textsf{fithesis3} class \cite{novotny15}.
 
   \section{Throubleshooting option clashes}
@@ -742,11 +747,11 @@
   configure the package, you can do that anywhere after the document preamble.
   If the package needs to be configured within the preamble, you can load the
   \textsf{fithesis3} style files prematurely using the
-  \texttt{\string\thesis@load} command as follows:
+  \mintinline{latex}{\thesisload} command as follows:
   \begin{minted}{latex}
 \documentclass[...]{fithesis3}
 %% The preamble
-\makeatletter\thesis@load\makeatother
+\thesisload
 %% Here goes the package configuration.
 \begin{document}
   %% The document
@@ -757,6 +762,39 @@
   rest of the packages is \emph{lazy-loaded} (loaded only if the
   user hasn't already loaded them), in which case no clash is
   possible.
+
+  \section{Overriding changes made by style and locale files}
+  The \textsf{fithesis3} style files are loaded immediately before
+  the beginning of your document and may change values you would
+  like to set by yourself, such as the \LaTeX\ \texttt{tocdepth}
+  and \texttt{secnumdepth} counters. Locale files are also loaded
+  immediately before your document, which prevents you from
+  changing locale strings from within the preamble of your
+  document.
+  
+  To overcome this limitation, you can load the style and locale
+  files prematurely using the \mintinline{latex}{\thesisload} command
+  as follows:
+  \begin{minted}{latex}
+\documentclass[...]{fithesis3}
+%% The preamble
+\thesisload
+%% Here go your changes.
+\begin{document}
+  %% The document
+\end{document}
+  \end{minted}
+  Although you can use the \mintinline{latex}{\thesisload} command
+  anywhere in the preamble, using the macro before the metadata
+  configuration will load the default style and locale files not
+  taking into account your faculty and locale settings.
+  
+  The \mintinline{latex}{\thesisload} command also loads the
+  \textsf{hyperref} package, which adds hyperlinks and PDF metadata
+  into the resulting PDF document. This package is rather delicate,
+  as it needs to be loaded after most other packages. Loading
+  additional packages after \mintinline{latex}{\thesisload} may
+  therefore cause problems.
   
   \section{Changing the layout}
   If you are unsatisfied with the automatic arrangement of the

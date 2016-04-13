@@ -1,7 +1,8 @@
 % \iffalse\begin{macrocode}
 %<*driver>
 
-\documentclass{ltxdoc}\setcounter{page}{209}
+\documentclass{ltxdoc}
+\setcounter{page}{223}
 \usepackage[utf8]{inputenc} % this file uses UTF-8
 \usepackage[english]{babel}
 \usepackage{tgpagella}
@@ -56,11 +57,32 @@
   \gdef\thesis@version@number{#1}
   \gdef\thesis@version@date{#2}
   \gdef\thesis@version{#2 #1 fithesis3 MU thesis class}}
-\thesis@versiondef{v0.3.33}{2016/02/19}}
+\thesis@versiondef{v0.3.37}{2016/04/12}}
 % {\newwrite\f\openout\f=VERSION\write\f{\thesis@version}\closeout\f}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% \changes{v0.3.37}  {2016/04/12}{The \cs{tableofcontents} in the
+%   style files of the Masaryk University in Brno now correctly
+%   handles all tocdepth values. The expansion of \cs{part} also no
+%   longer results in a \textsf{hyperref}-related error in the
+%   style files of the Masaryk University in Brno.}
+% \changes{v0.3.36}  {2016/03/26}{The \cs{thesis@load} macro has
+%   been lifted to the public API as \cs{thesisload}.}
+% \changes{v0.3.35:3}{2016/03/23}{Fixed \cs{l@}\textit{locale}
+%   being possibly undefined in a LuaLaTeX run.}
+% \changes{v0.3.35:2}{2016/03/22}{Added support for seminar papers
+%   on the \textsf{fithesis3} class level. The style files for the
+%   faculties of the Masaryk University in Brno do not provide any
+%   special handling of this thesis type yet.}
+% \changes{v0.3.35:1}{2016/03/22}{Added support for the Division of
+%   Information and Library Studies of the Faculty of Arts at the
+%   Masaryk University in Brno. This support is enabled by
+%   specifying \cs{thesis@department} to be \texttt{kisk}.}
+% \changes{v0.3.34}  {2016/02/24}{Added visual tests of output
+%   PDFs. The \texttt{test/} directory is now also uses the
+%   \textit{university}\texttt{/}\textit{faculty} path scheme
+%   employed by the rest of the package.}
 % \changes{v0.3.33}  {2016/02/19}{Added \cs{thesis@patch}.}
 % \changes{v0.3.32}  {2016/02/18}{Fixed a regression from 
 %   v0.3.27:2 -- The margins in \cs{thesis@blocks@mainMatter} were
@@ -381,7 +403,7 @@
 % \end{itemize}
 % The \texttt{hyperref} package is also conditionally loaded during
 % the expansion of the |\thesis@load| macro (see Section
-% \ref{sec:thesis@load}). Other packages may be required by the
+% \ref{sec:thesisload}). Other packages may be required by the
 % style files (see Section \ref{sec:style-files}) you are using.
 %    \begin{macrocode}
 \RequirePackage{keyval}
@@ -625,22 +647,25 @@
 % The \marg{\texttt{type}=type} pair sets the type of the thesis
 % to \textit{type}. The following types of theses are recognized:
 % \begin{center}\begin{tabular}{lc}\toprule
-%   The thesis type & The value of \textit{type} \\\midrule
+%   The thesis type   & The value of \textit{type} \\\midrule
+%   Seminar paper     & \texttt{sem} \\
 %   Bachelor's thesis & \texttt{bc} \\
-%   Master's thesis & \texttt{mgr} \\
-%   Doctoral thesis & \texttt{d} \\
-%   Rigorous thesis & \texttt{r} \\\bottomrule
+%   Master's thesis   & \texttt{mgr} \\
+%   Doctoral thesis   & \texttt{d} \\
+%   Rigorous thesis   & \texttt{r} \\\bottomrule
 % \end{tabular}\end{center}
 % The \textit{type} is stored within the |\thesis@type| macro,
 % whose implicit value is |bc|. For the ease of testing of the
 % thesis type via |\ifx| conditions within style and locale files,
-% the \DescribeMacro{\thesis@bachelors}|\thesis@bachelors|,
+% the \DescribeMacro{\thesis@sempaper}|\thesis@sempaper|,
+% \DescribeMacro{\thesis@bachelors}|\thesis@bachelors|,
 % \DescribeMacro{\thesis@masters}|\thesis@masters|,
 % \DescribeMacro{\thesis@doctoral}|\thesis@doctoral| and
 % \DescribeMacro{\thesis@rigorous}|\thesis@rigorous| macros
 % containing the corresponding \textit{type} values are available
 % as a part of the private API.
 %    \begin{macrocode}
+\def\thesis@sempaper{sem}
 \def\thesis@bachelors{bc}
 \def\thesis@masters{mgr}
 \def\thesis@doctoral{d}
@@ -694,10 +719,10 @@
 % \subsubsection{The \texttt{department} key}
 % The \marg{\texttt{department}=name} pair sets the name of the
 % department, at which the thesis is being written, to
-% \textit{name}. Unlike the university and faculty identifiers, the
-% department \textit{name} is only used for typesetting and it
-% should therefore be specified in plain language with optional
-% \TeX\ macros. The \textit{name} is stored within the
+% \textit{name}. Unlike the university and faculty identifiers,
+% \textsf{fithesis3} does not prescribe the format of the
+% \textit{name}; the style files may internally parse it, or
+% typeset it as-is. The \textit{name} is stored within the
 % |\thesis@department| macro.
 %    \begin{macrocode}
 \thesis@def{department}
@@ -809,7 +834,7 @@
 % implicit value is |\thesis@university/fithesis-\thesis@faculty|.
 % When the \textit{filename} is an empty token string, no style
 % files will be loaded during the main routine (see Section
-% \ref{sec:thesis@load}).
+% \ref{sec:thesisload}).
 %    \begin{macrocode}
 \def\thesis@style{\thesis@university/fithesis-\thesis@faculty}
 \define@key{thesis}{style}{%
@@ -847,7 +872,7 @@
 % package, or \texttt{english}, when undefined. When the
 % \textit{name} is an empty token string, no locale files will be
 % loaded during the main routine (see Section
-% \ref{sec:thesis@load}).
+% \ref{sec:thesisload}).
 %    \begin{macrocode}
 \def\thesis@locale{%
   % Babel / polyglossia detection
@@ -1229,21 +1254,23 @@
   \csname KV@thesis@#1\endcsname{#2}}
 %    \end{macrocode}
 % \end{macro}
-% \section{Private API}
-% \subsection{Main routine}\label{sec:thesis@load}
-% \begin{macro}{\thesis@load}
-% The |\thesis@load| macro is responsible for preparing the
+% \subsection{The \cs{thesisload} macro}\label{sec:thesisload}
+% \begin{macro}{\thesisload}
+% The |\thesisload| macro is responsible for preparing the
 % environment for, and consequently loading, the necessary locale
-% and style files. By default, the |\thesis@load| macro gets
+% and style files. By default, the |\thesisload| macro gets
 % expanded at the end of the preamble,
 % but it can be expanded manually prior to that point, if necessary
 % to prevent package clashes. The \DescribeMacro{\ifthesis@loaded}
-% |\ifthesis@loaded| semaphore ensures that the expansion is only
-% performed once.
+% |\ifthesis@loaded| macro ensures that the expansion is only
+% performed once. For backwards compatibility, the
+% \DescribeMacro{\thesis@load}|\thesis@load| macro can be used to
+% the same effect.
 %    \begin{macrocode}
 \newif\ifthesis@loaded\thesis@loadedfalse
-\AtEndPreamble{\thesis@load}
-\def\thesis@load{%
+\AtEndPreamble{\thesisload}
+\def\thesis@load{\thesisload}
+\def\thesisload{%
   \ifthesis@loaded\else
     \thesis@loadedtrue
     \makeatletter
@@ -1256,6 +1283,17 @@
       \ifx\thesis@locale\empty\else
         \edef\thesis@locale{\thesis@locale}
         \thesis@requireLocale{\thesis@locale}
+%    \end{macrocode}
+% Coerce LuaTeX into defining |\l@|\textit{locale} for
+% \textit{locale}s with known hyphenation patterns, unless
+% \textsf{babel} has been loaded. In that case
+% |\l@|\textit{locale} has already been defined.
+%    \begin{macrocode}
+    \ifluatex
+      \ltx@ifpackageloaded{babel}{}{
+        % See <article.gmane.org/gmane.comp.tex.luatex.user/5680>
+        \RequirePackage[base]{babel}}
+    \fi
 %    \end{macrocode}
 % If the \textsf{babel} or \textsf{polyglossia} locale is identical
 % to the thesis locale, the |\thesis@selectLocale| macro will be
@@ -1314,6 +1352,7 @@
   \fi}
 %    \end{macrocode}
 % \end{macro}
+% \section{Private API}
 % \subsection{File manipulation macros}\label{sec:reflection}
 % \begin{macro}{\thesis@exists}
 % The |\thesis@exists|\marg{file}\marg{tokens} macro is
@@ -1574,7 +1613,7 @@
 % \label{sec:locale-files}
 % Locale files contain macro definitions for various locales. They
 % live in the \texttt{locale/} subtree and they are loaded during
-% the main routine (see Section \ref{sec:thesis@load}).
+% the main routine (see Section \ref{sec:thesisload}).
 %
 % When creating a new locale file, it is advisable to create one
 % self-contained \texttt{dtx} file, which is then partitioned into
@@ -1647,7 +1686,7 @@
 % Style files define the structure and the look of the resulting
 % document. They live in the \texttt{style/} subtree and they are
 % loaded during the main routine (see Section
-% \ref{sec:thesis@load}).
+% \ref{sec:thesisload}).
 %
 % When creating a new style file, it is advisable to create one
 % self-contained \texttt{dtx} file, which can contain several

@@ -6,12 +6,12 @@ typeset() {
 
 make -C resources
 typeset fi 33
-typeset sci 53
-typeset econ 75
-typeset fss 93
-typeset law 113
-typeset med 133
-typeset ped 151
-typeset phil 171
-typeset fsps 191
+typeset sci 55
+typeset econ 77
+typeset fss 95
+typeset law 117
+typeset med 139
+typeset ped 159
+typeset phil 181
+typeset fsps 203
 make clean
