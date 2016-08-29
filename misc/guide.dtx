@@ -26,22 +26,22 @@
   TeXkeywords={thesis, typesetting, \LaTeX{}},
   keywordsEn=\thesis@keywords,
   TeXkeywordsEn=\thesis@TeXkeywords,
+  abstract={%
+    \textsf{Fithesis3} is a \LaTeX{} document class, which
+    streamlines the typesetting of the mandatory parts of theses, so
+    that the author can focus at content alone. \textsf{Fithesis3}
+    can be used to write theses in various languages across the
+    faculties of the \thesis@english@universityName.
+
+    This document describes the installation of the
+    \textsf{fithesis3} class, its configuration and its use at the
+    \thesis@english@facultyName. As a demonstration of its
+    capabilities, this document was typeset using the
+    \textsf{fithesis3} class.},
   abstractEn=\thesis@abstract,
   faculty=\jobname,
   bib=guide.bib,
   autoLayout=false}
-\thesislong{abstract}{%
-  \textsf{Fithesis3} is a \LaTeX{} document class, which
-  streamlines the typesetting of the mandatory parts of theses, so
-  that the author can focus at content alone. \textsf{Fithesis3}
-  can be used to write theses in various languages across the
-  faculties of the \thesis@english@universityName.
-
-  This document describes the installation of the
-  \textsf{fithesis3} class, its configuration and its use at the
-  \thesis@english@facultyName. As a demonstration of its
-  capabilities, this document was typeset using the
-  \textsf{fithesis3} class.}
 \makeatother
 \thesisload% The menukeys package does not play nice, when it is
   \usepackage[os=win]{menukeys}% loaded before BibLaTeX.
@@ -282,11 +282,11 @@
   Before using the \textsf{fithesis3} class, it is useful to be
   familiar with the \LaTeX{} typesetting system. A good way to get
   started is to read one of the introductory texts in English
-  \cite{veryshortlatex,shortlatex,longlatex,latex} or in Czech
-  \cite{rybicka03,satrapa11}. Taking one of the \textit{FI:PB029},
-  \textit{PřF:M5751}, or \textit{FF:PLIN028} courses taught at
-  the \makeatletter\thesis@english@universityName\makeatother\ is
-  also helpful.
+  \parencite{veryshortlatex,shortlatex,longlatex,latex} or in Czech
+  \parencite{rybicka03,satrapa11}. Taking one of the
+  \textit{FI:PB029}, \textit{PřF:M5751}, or \textit{FF:PLIN028}
+  courses taught at the \makeatletter\thesis@english@universityName
+  \makeatother\ is also helpful.
   
   To become familiar with \textsf{fithesis3}, you are encouraged to
   inspect the example documents \makeatletter
@@ -327,15 +327,17 @@
   documents.
 
   If you are using the command line, you can typeset \LaTeX{}
-  source files by running either \texttt{pdflatex
-  \textit{name.tex}} or \texttt{lualatex
-  \textit{name.tex}} (depending on your choice of \TeX\
-  engine), where \texttt{\textit{name.tex}} corresponds to the name
-  of a \LaTeX\ source file. In the case of the two aforementioned
-  example files, the corresponding commands would be:
+  source files by running either the \texttt{pdflatex
+  -{}-shell-escape \textit{name.tex}} command or the
+  \texttt{lualatex \textit{name.tex}} command depending on your
+  chosen \TeX\ engine, where \texttt{\textit{name.tex}}
+  corresponds to the name of a \LaTeX\ source file. In the case of
+  the two aforementioned example files, the corresponding commands
+  would be
   \begin{center}\makeatletter
-  \texttt{pdflatex \thesis@faculty-pdflatex.tex}
-\\\texttt{lualatex \thesis@faculty-lualatex.tex}
+  \texttt{pdflatex -{}-shell-escape \thesis@faculty-pdflatex.tex}
+  for \hologo{pdfLaTeX},\\and \texttt{lualatex \thesis@faculty-%
+  lualatex.tex} for Lua\LaTeX{}.
   \makeatother\end{center}
   The command needs to be executed from within the directory, where
   the \LaTeX\ source file is located. In Windows, the command line
@@ -413,6 +415,13 @@
       typesetting is generally regarded as more visually pleasing
       and double-sided printing consumes less paper. Use at least
       120 grams per square meter paper to prevent show-through.
+
+      \emph{You may feel compelled to use \thguide@itemfmt{twoside}
+      for the printed version of the thesis and \thguide@itemfmt{%
+      oneside} for the digital version to reduce the number of
+      blank pages. This will, however, cause the page numbers to
+      differ between the printed and the digital version, which
+      will make it difficult to cite your work. Do not do it.}
     \item[\thguide@default onecolumn]
       This option causes the main text of the thesis to be set in
       one column.
@@ -712,19 +721,6 @@
       When this key is not specified, no bibliography will be
       produced, which provides the opportunity for the advanced user
       to set up their bibliography management manually.
-  \end{description}
-  Apart from the single-paragraph \mintinline{latex}{\thesissetup}
-  command, the following keys can be configured with multiple
-  paragraphs of text as the value using the command
-  \begin{minted}{latex}
-\thesislong{key}{%
-  The first paragraph
-
-  The second paragraph
-  ...
-}
-  \end{minted}
-  \begin{description}
 %<*econ,fi,fss,law,med,ped,sci>
     \item[abstract]
       This key can be used to specify the abstract of the thesis.

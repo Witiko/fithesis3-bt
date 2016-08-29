@@ -2,7 +2,7 @@
 %<*driver>
 
 \documentclass{ltxdoc}
-\setcounter{page}{217}
+\setcounter{page}{211}
 \usepackage[utf8]{inputenc} % this file uses UTF-8
 \usepackage[english]{babel}
 \usepackage{tgpagella}
@@ -57,38 +57,68 @@
   \gdef\thesis@version@number{#1}
   \gdef\thesis@version@date{#2}
   \gdef\thesis@version{#2 #1 fithesis3 MU thesis class}}
-\thesis@versiondef{v0.3.37}{2016/04/12}}
+\thesis@versiondef{v0.3.41}{2016/08/17}}
 % {\newwrite\f\openout\f=VERSION\write\f{\thesis@version}\closeout\f}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
+% \changes{v0.3.41}  {2016/08/17}{Removed the arbitrary limitation
+%   of \cs{thesissetup}, which prevented it from accepting
+%   multi-paragraph values. The \cs{thesislong} macro is therefore
+%   no longer necessary, but kept around for backwards
+%   compatibility. [VN]}
+% \changes{v0.3.40}  {2016/06/06}{Fixed \cs{thesis@pages} not
+%   working properly when the \texttt{autoLayout} key is set to
+%   \texttt{false}. Added a section on the \textsf{markdown}
+%   package to the example documents of the Masaryk University in
+%   Brno. Added the \cs{ifthesis@blocks@assignment@hideIfDigital@}
+%   conditional to the \texttt{style/mu/fithesis-base.sty} style
+%   file. [VN]}
+% \changes{v0.3.39:2}{2016/05/26}{The \texttt{assignment} key no
+%   longer affects the page numbers and takes into account the
+%   \texttt{digital} and \texttt{printed} class options in the
+%   style files of the Masaryk University in Brno. [VN]}
+% \changes{v0.3.39:1}{2016/05/26}{The
+%   \cs{thesis@blocks@bibliography} now uses an emergency stretch
+%   of 3\,em in the style files of the Masaryk University in Brno.
+%   [VN]}
+% \changes{v0.3.38:2}{2016/05/15}{Fixed \cs{thesis@pages} not
+%   taking \cs{thesis@postamble} into account. Fixed the chapter
+%   number being printed regardless of secnumdepth by the style
+%   files of the Masaryk University in Brno. Fixed
+%   \cs{thesis@blocks@assignment} being typeset in Czech only
+%   by the style file of the Faculty of Science at the Masaryk
+%   University in Brno. [VN]}
+% \changes{v0.3.38:1}{2016/04/18}{The \texttt{bib} key was added
+%   on the \textsf{fithesis3} class level and is supported by the
+%   style files of the Masaryk University in Brno. [VN]}
 % \changes{v0.3.37}  {2016/04/12}{The \cs{tableofcontents} in the
 %   style files of the Masaryk University in Brno now correctly
 %   handles all tocdepth values. The expansion of \cs{part} also no
 %   longer results in a \textsf{hyperref}-related error in the
-%   style files of the Masaryk University in Brno.}
+%   style files of the Masaryk University in Brno. [VN]}
 % \changes{v0.3.36}  {2016/03/26}{The \cs{thesis@load} macro has
-%   been lifted to the public API as \cs{thesisload}.}
+%   been lifted to the public API as \cs{thesisload}. [VN]}
 % \changes{v0.3.35:3}{2016/03/23}{Fixed \cs{l@}\textit{locale}
-%   being possibly undefined in a LuaLaTeX run.}
+%   being possibly undefined in a LuaLaTeX run. [VN]}
 % \changes{v0.3.35:2}{2016/03/22}{Added support for seminar papers
 %   on the \textsf{fithesis3} class level. The style files for the
 %   faculties of the Masaryk University in Brno do not provide any
-%   special handling of this thesis type yet.}
+%   special handling of this thesis type yet. [VN]}
 % \changes{v0.3.35:1}{2016/03/22}{Added support for the Division of
 %   Information and Library Studies of the Faculty of Arts at the
 %   Masaryk University in Brno. This support is enabled by
-%   specifying \cs{thesis@department} to be \texttt{kisk}.}
+%   specifying \cs{thesis@department} to be \texttt{kisk}. [VN]}
 % \changes{v0.3.34}  {2016/02/24}{Added visual tests of output
 %   PDFs. The \texttt{test/} directory is now also uses the
 %   \textit{university}\texttt{/}\textit{faculty} path scheme
-%   employed by the rest of the package.}
-% \changes{v0.3.33}  {2016/02/19}{Added \cs{thesis@patch}.}
+%   employed by the rest of the package. [VN]}
+% \changes{v0.3.33}  {2016/02/19}{Added \cs{thesis@patch}. [VN]}
 % \changes{v0.3.32}  {2016/02/18}{Fixed a regression from 
 %   v0.3.27:2 -- The margins in \cs{thesis@blocks@mainMatter} were
 %   corrected in the style files of the Faculty of Economics and
 %   Administration and the Faculty of Medicine at the Masaryk
-%   University in Brno.}
+%   University in Brno. [VN]}
 % \changes{v0.3.31:3}{2016/01/13}{The
 %   \texttt{style/mu/fithesis-sci.sty} style file redefines
 %   \cs{thesis@blocks}\texttt{\discretionary{@}{@}{@}declaration}
@@ -432,14 +462,8 @@
 % key-value pairs as defined by the \textsf{keyval} package. This
 % macro needs to be included prior to the beginning of a \LaTeX\ 
 % document. When used, the \textit{keyvals} are processed.
-%
-% Note that the values passed to the |\thesissetup| public macro
-% may only contain one paragraph of text. If you wish to set
-% multiple paragraphs of text as the value, you need to use
-% the |\thesislong| public macro (see Section
-% \ref{sec:thesislong}).
 %    \begin{macrocode}
-\def\thesissetup#1{%
+\long\def\thesissetup#1{%
   \setkeys{thesis}{#1}}
 %    \end{macrocode}
 % \subsubsection{The \texttt{basePath} key}
@@ -1183,6 +1207,23 @@
   \def\thesis@assignmentFiles{#1}}
 %    \end{macrocode}
 % \end{macro}
+% When the |\thesis@assignmentFiles| macro is defined and
+% non-empty, the style files should take that as a cue that the
+% user wishes to typeset the thesis assignment.
+% \begin{macro}{\thesis@bibFiles}
+% \subsubsection{The \texttt{bib} key}
+% The \marg{\texttt{bib}=list} pair sets the comma-delimited
+% list of paths to the BIB files containing the bibliography
+% databases to \textit{list}. The \textit{list} is stored within
+% the |\thesis@bibFiles| macro.
+%    \begin{macrocode}
+\define@key{thesis}{bib}{%
+  \def\thesis@bibFiles{#1}}
+%    \end{macrocode}
+% \end{macro}
+% When the |\thesis@bibFiles| macro is defined and non-empty, the
+% style files should take that as a cue that the user wishes to
+% typeset the bibliography.
 % \begin{macro}{\ifthesis@auto}
 % \subsubsection{The \texttt{autoLayout} key}
 % The \marg{\texttt{autoLayout}=bool} pair either enables,
@@ -1238,21 +1279,15 @@
 %    \end{macrocode}
 % \subsection{The \cs{thesislong} macro}\label{sec:thesislong}
 % \begin{macro}{\thesislong}
-% The public macro |\thesislong|\marg{key}\marg{value}, where
-% \textit{value} may contain multiple paragraphs of text, can be
-% used as an alternative to the |\thesissetup| public macro, which
-% only permits a single paragraph as the \textit{value}, for the
-% following \textit{key}s:
-% \begin{compactitem}
-%   \item\texttt{abstract}
-%   \item\texttt{abstractEn}
-%   \item\texttt{thanks}
-%   \item\texttt{declaration}
-% \end{compactitem}
+% The public macro |\thesislong|\marg{key}\marg{value}, can be
+% used as an alternative to the |\thesissetup{|\meta{key}%
+% | = |\marg{value}|}| public macro:
 %    \begin{macrocode}
 \long\def\thesislong#1#2{%
   \csname KV@thesis@#1\endcsname{#2}}
 %    \end{macrocode}
+% This macro is a relict of the time when |\thesissetup| did not
+% accept multi-paragraph input.
 % \end{macro}
 % \subsection{The \cs{thesisload} macro}\label{sec:thesisload}
 % \begin{macro}{\thesisload}
@@ -1268,7 +1303,7 @@
 % the same effect.
 %    \begin{macrocode}
 \newif\ifthesis@loaded\thesis@loadedfalse
-\AtEndPreamble{\thesisload}
+\BeforeBeginEnvironment{document}{\thesisload}
 \def\thesis@load{\thesisload}
 \def\thesisload{%
   \ifthesis@loaded\else
@@ -1283,6 +1318,7 @@
       \ifx\thesis@locale\empty\else
         \edef\thesis@locale{\thesis@locale}
         \thesis@requireLocale{\thesis@locale}
+      \fi
 %    \end{macrocode}
 % Coerce LuaTeX into defining |\l@|\textit{locale} for
 % \textit{locale}s with known hyphenation patterns, unless
@@ -1295,30 +1331,29 @@
         \RequirePackage[base]{babel}}
     \fi
 %    \end{macrocode}
-% If the \textsf{babel} or \textsf{polyglossia} locale is identical
-% to the thesis locale, the |\thesis@selectLocale| macro will be
-% used to globally set up the \textsf{csquotes} style appropriate for
-% the given locale.
-%    \begin{macrocode}
-        \ifx\languagename\empty\else
-          \begingroup
-          \edef\@doclocale{\languagename}%
-          \ifx\@doclocale\thesis@locale
-            \endgroup
-            \AtBeginDocument{%
-              \thesis@selectLocale{\thesis@locale}}%
-          \else
-            \endgroup
-          \fi
-        \fi
-      \fi
-%    \end{macrocode}
 % Consequently, the style files are loaded. If the user specified an
 % explicit empty string as the value of |\thesis@style|, do nothing.
 %    \begin{macrocode}
       \ifx\thesis@style\empty\else
         \thesis@requireStyle{\thesis@style}
       \fi
+%    \end{macrocode}
+% If the \textsf{babel} or \textsf{polyglossia} locale is identical
+% to the thesis locale, the |\thesis@selectLocale| macro will be
+% used to globally set up the \textsf{csquotes} style appropriate for
+% the given locale.
+%    \begin{macrocode}
+    \ifx\languagename\empty\else
+      \begingroup
+      \edef\@doclocale{\languagename}%
+      \ifx\@doclocale\thesis@locale
+        \endgroup
+        \AtBeginDocument{%
+          \thesis@selectLocale{\thesis@locale}}%
+      \else
+        \endgroup
+      \fi
+    \fi
 %    \end{macrocode}
 % With the placeholder strings loaded from the locale files, we
 % can now inject metadata into the resulting PDF file. To this
@@ -1342,11 +1377,18 @@
 %    \end{macrocode}
 % If autolayout is enabled, the |\thesis@preamble| and
 % |\thesis@postamble| macros are scheduled for expansion at the
-% beginning and at the end of the document, respectively.
+% beginning and at the end of the document, respectively. The
+% definition of the |\thesis@pages| macro is also scheduled to be
+% written to the auxiliary file at the end of the document.
 %    \begin{macrocode}
       \ifthesis@auto
         \AtBeginDocument{\thesis@preamble}
-        \AtEndDocument{\thesis@postamble}
+        \AtEndDocument{%
+          \thesis@postamble
+          \write\@auxout{\noexpand\gdef\noexpand\thesis@pages{\thepage}}}
+      \else
+        \AtEndDocument{%
+          \write\@auxout{\noexpand\gdef\noexpand\thesis@pages{\thepage}}}
       \fi
     \makeatother
   \fi}
@@ -1525,7 +1567,6 @@
 % the total number of pages within the document. During the first
 % \TeX\ compilation, the macro expands to \texttt{??}.
 %    \begin{macrocode}
-\AtEndDocument{\write\@auxout{\noexpand\gdef\noexpand\thesis@pages{\thepage}}}
 \ifx\thesis@pages\undefined\def\thesis@pages{??}\fi
 %    \end{macrocode}
 % \DescribeMacro{\thesis@selectLocale}|\thesis@selectLocale|\marg{locale}
@@ -1540,14 +1581,12 @@
 % locale, \textsf{csquotes}, and hyphenation settings return back to
 % what the user has specified after the localized blocks of
 % typographic material.
-%
-% If not loaded by the user, the \textsf{csquotes} package gets
-% loaded at the end of the preamble.
 %    \begin{macrocode}
-\AtEndPreamble{\thesis@require{csquotes}}
 \def\thesis@selectLocale#1{%
   \edef\thesis@locale{#1}%
-  \csq@setstyle{\thesis@@{csquotesStyle}}%
+  \ltx@ifpackageloaded{csquotes}{%
+    \csq@setstyle{\thesis@@{csquotesStyle}}%
+  }{}%
   \ltx@ifpackageloaded{polyglossia}{%
     \selectlanguage{\thesis@locale}
   }{%

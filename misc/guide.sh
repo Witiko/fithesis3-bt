@@ -9,9 +9,9 @@ typeset fi 33
 typeset sci 55
 typeset econ 77
 typeset fss 95
-typeset law 117
-typeset med 139
-typeset ped 157
-typeset phil 179
-typeset fsps 199
+typeset law 115
+typeset med 135
+typeset ped 153
+typeset phil 173
+typeset fsps 193
 make clean
